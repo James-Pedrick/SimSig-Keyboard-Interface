@@ -36,9 +36,9 @@ namespace SimSig_Keyboard_Interface.Data
 
 				while ((itemId = xmlData.ReadLine()) != null)
 				{
-			//		if (itemId.Contains("TBER ID=")) Berths_Parse(itemId);  //Berths
+					if (itemId.Contains("TBER ID=")) Berths_Parse(itemId);  //Berths
 					if (itemId.Contains("TPTS ID=")) Points_Parse(itemId);  //Points
-			//		if (itemId.Contains("TSIG ID=")) Signal_Parse(itemId);  //Signals
+					if (itemId.Contains("TSIG ID=")) Signal_Parse(itemId);  //Signals
 				}
 
 
@@ -66,13 +66,49 @@ namespace SimSig_Keyboard_Interface.Data
 				itemId = itemId.TrimEnd('>');                     /*start and end of line chars*/
 				itemId = itemId.TrimEnd('"');
 			}
-			Console.WriteLine(itemId.PadRight(6, ' ') + "    " + pointsHex + "   " + _pointsDecimal);
+			Console.WriteLine(itemId.PadRight(11, ' ') + " - " + pointsHex + " - " + _pointsDecimal);
 
 			_pointsDecimal++;
 		}
 
-		
+		private static void Signal_Parse(string itemId)
+		{
+			string signalHex = _signalDecimal.ToString("X").PadLeft(4, '0');
 
+			/*Want to take the specific item ID only, without the	*/
+			/*start and end of tag characters from the XML          */
+
+			{
+				itemId = itemId.TrimStart(' ');                 /*Want to take the spicific  */
+				itemId = itemId.Remove(0, 10);                  /*item ID only, wihtout the  */
+				itemId = itemId.TrimEnd('>');                   /*start and end of line chars*/
+				itemId = itemId.TrimEnd('"');
+			}
+			
+			Console.WriteLine(itemId.PadRight(11, ' ') + " - " + signalHex + " - " + _signalDecimal);
+			
+			_signalDecimal++;
+		}
+		private static void Berths_Parse(string itemId)
+		{
+			string berthsHex;
+
+			berthsHex = _berthsDecimal.ToString("X").PadLeft(4, '0');
+
+			/*Want to take the specific item ID only, without the	*/
+			/*start and end of tag characters from the XML          */
+
+			{
+				itemId = itemId.TrimStart(' ');                   /*Want to take the spicific  */
+				itemId = itemId.Remove(0, 10);                    /*item ID only, wihtout the  */
+				itemId = itemId.TrimEnd('>');                     /*start and end of line chars*/
+				itemId = itemId.TrimEnd('"');
+			}
+
+			Console.WriteLine(itemId.PadRight(11, ' ') + " - " + berthsHex + " - " + _berthsDecimal);
+
+			_berthsDecimal++;
+		}
 
 	}
 }
