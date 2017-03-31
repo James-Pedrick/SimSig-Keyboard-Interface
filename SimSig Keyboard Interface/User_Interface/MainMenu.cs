@@ -10,11 +10,22 @@ using System.Windows.Forms;
 
 namespace SimSig_Keyboard_Interface
 {
-	public partial class Form1 : Form
+	public partial class MainMenu : Form
 	{
-		public Form1()
+		public MainMenu()
 		{
+			
 			InitializeComponent();
+		}
+
+		private void MainMenu_Load(object sender, EventArgs e)
+		{
+			
+		}
+
+		private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			Application.Exit();
 		}
 	}
 }
