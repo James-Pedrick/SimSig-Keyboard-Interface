@@ -16,9 +16,9 @@ using System.Threading;
 
 namespace SimSig_Keyboard_Interface
 {
-	public partial class MainMenu : Form
+	public partial class Main_Menu : Form
 	{
-		public MainMenu()
+		public Main_Menu()
 		{
 			
 			InitializeComponent();
