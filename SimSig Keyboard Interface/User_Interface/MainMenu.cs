@@ -47,7 +47,7 @@ namespace SimSig_Keyboard_Interface
 				if (loadSaveGameXML.ShowDialog() == DialogResult.OK)
 					Settings.Default.saveGameDirectory = loadSaveGameXML.InitialDirectory + loadSaveGameXML.FileName;
 
-
+				Data.SaveGameParser.Parse();
 
 		//		Client.XML_Parsers.Data_Parsers.Parse();
 

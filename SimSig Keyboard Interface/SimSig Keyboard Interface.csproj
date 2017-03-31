@@ -61,6 +61,9 @@
   <PropertyGroup>
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -76,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Client\Point\Points.cs" />
+    <Compile Include="Data\SaveGameParser.cs" />
     <Compile Include="User_Interface\MainMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,13 +114,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Client\Berths\" />
-    <Folder Include="Client\Gateway\" />
-    <Folder Include="Client\RS232\" />
-    <Folder Include="Client\Signal\" />
-    <Folder Include="Client\TCP\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.2">
       <Visible>False</Visible>
