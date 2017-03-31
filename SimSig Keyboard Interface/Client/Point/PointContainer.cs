@@ -8,7 +8,7 @@ namespace SimSig_Keyboard_Interface
 {
 	public class PointContainer
 	{
-		public List<Point> PointList = new List<Point>;
+		public List<Point> PointList = new List<Point>();
 
 	}
 }
