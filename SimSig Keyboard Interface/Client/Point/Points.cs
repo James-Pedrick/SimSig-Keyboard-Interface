@@ -8,7 +8,6 @@ namespace SimSig_Keyboard_Interface.Client.Point
 {
 	class Points
 	{
-
-		//THIS IS A TEST GIT UPLOAD
+		
 	}
 }
