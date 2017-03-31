@@ -78,6 +78,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Client\Point\PointContainer.cs" />
     <Compile Include="Client\Point\Points.cs" />
     <Compile Include="Data\SaveGameParser.cs" />
     <Compile Include="User_Interface\Main_Menu.cs">
