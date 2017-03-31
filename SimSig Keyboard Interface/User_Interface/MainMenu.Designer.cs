@@ -35,6 +35,9 @@
 			this.tabControl = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.debugPoints = new System.Windows.Forms.TabPage();
+			this.dataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.loadSaveXML = new System.Windows.Forms.ToolStripMenuItem();
+			this.loadSaveGameXML = new System.Windows.Forms.OpenFileDialog();
 			this.menuStrip.SuspendLayout();
 			this.tabControl.SuspendLayout();
 			this.SuspendLayout();
@@ -43,7 +46,8 @@
 			// 
 			this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.tCPToolStripMenuItem});
+            this.tCPToolStripMenuItem,
+            this.dataToolStripMenuItem});
 			this.menuStrip.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip.Name = "menuStrip";
 			this.menuStrip.Size = new System.Drawing.Size(803, 24);
@@ -61,7 +65,7 @@
 			// exitToolStripMenuItem
 			// 
 			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-			this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.exitToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
 			this.exitToolStripMenuItem.Text = "Exit";
 			this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
 			// 
@@ -102,6 +106,25 @@
 			this.debugPoints.Text = "Points";
 			this.debugPoints.UseVisualStyleBackColor = true;
 			// 
+			// dataToolStripMenuItem
+			// 
+			this.dataToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.loadSaveXML});
+			this.dataToolStripMenuItem.Name = "dataToolStripMenuItem";
+			this.dataToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
+			this.dataToolStripMenuItem.Text = "Data";
+			// 
+			// loadSaveXML
+			// 
+			this.loadSaveXML.Name = "loadSaveXML";
+			this.loadSaveXML.Size = new System.Drawing.Size(188, 22);
+			this.loadSaveXML.Text = "Load Save Game XML";
+			this.loadSaveXML.Click += new System.EventHandler(this.loadSaveGameXMLToolStripMenuItem_Click);
+			// 
+			// loadSaveGameXML
+			// 
+			this.loadSaveGameXML.FileName = "openFileDialog1";
+			// 
 			// MainMenu
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -129,6 +152,9 @@
 		private System.Windows.Forms.TabControl tabControl;
 		private System.Windows.Forms.TabPage tabPage1;
 		private System.Windows.Forms.TabPage debugPoints;
+		private System.Windows.Forms.ToolStripMenuItem dataToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem loadSaveXML;
+		private System.Windows.Forms.OpenFileDialog loadSaveGameXML;
 	}
 }
 
