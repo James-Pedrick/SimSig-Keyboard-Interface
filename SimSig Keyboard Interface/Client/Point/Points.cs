@@ -6,10 +6,21 @@ using System.Threading.Tasks;
 
 
 
+
 namespace SimSig_Keyboard_Interface
 {
 	public class PointContainer
 	{
+		private List<Point> pointContainer = new List<Point>();
+
+		/*
+		*/
+	}
+
+
+	class Point
+	{
+
 		public string hexId;
 		public string simNumber;
 		public bool calledN;
@@ -40,15 +51,6 @@ namespace SimSig_Keyboard_Interface
 			this.isolated = iso;
 		}
 
-
-
-
-
-	}
-
-
-	class Point
-	{
 		static void pointUpdate(string data)
 		{
 			//	List<PointContainer> pointList;
@@ -85,14 +87,7 @@ namespace SimSig_Keyboard_Interface
 			if (intValue >= 002) { cR = true; intValue = intValue - 002; }
 			if (intValue >= 001) { cN = true; }
 
-
-
-
-
 			pointList.Add(new PointContainer(hexId, null, cN, cR, dN, dR, fN, fR, kN, kR, locked, isolated));
-
-			
-
 		}
 	}
 }
