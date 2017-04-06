@@ -66,6 +66,8 @@ namespace SimSig_Keyboard_Interface.Data
 				itemId = itemId.TrimEnd('>');                     /*start and end of line chars*/
 				itemId = itemId.TrimEnd('"');
 			}
+			
+
 			Console.WriteLine(itemId.PadRight(11, ' ') + " - " + pointsHex + " - " + _pointsDecimal);
 
 			_pointsDecimal++;

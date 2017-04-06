@@ -39,10 +39,17 @@
 			this.connectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.tabControl = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
-			this.debugPoints = new System.Windows.Forms.TabPage();
+			this.debug = new System.Windows.Forms.TabPage();
 			this.loadSaveGameXML = new System.Windows.Forms.OpenFileDialog();
+			this.tabControl1 = new System.Windows.Forms.TabControl();
+			this.debugPoints = new System.Windows.Forms.TabPage();
+			this.debugPointView = new System.Windows.Forms.DataGridView();
 			this.menuStrip.SuspendLayout();
 			this.tabControl.SuspendLayout();
+			this.debug.SuspendLayout();
+			this.tabControl1.SuspendLayout();
+			this.debugPoints.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.debugPointView)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// menuStrip
@@ -119,13 +126,14 @@
 			// tabControl
 			// 
 			this.tabControl.Controls.Add(this.tabPage1);
-			this.tabControl.Controls.Add(this.debugPoints);
+			this.tabControl.Controls.Add(this.debug);
 			this.tabControl.Cursor = System.Windows.Forms.Cursors.Default;
-			this.tabControl.Location = new System.Drawing.Point(13, 28);
+			this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tabControl.Location = new System.Drawing.Point(0, 24);
 			this.tabControl.Multiline = true;
 			this.tabControl.Name = "tabControl";
 			this.tabControl.SelectedIndex = 0;
-			this.tabControl.Size = new System.Drawing.Size(778, 471);
+			this.tabControl.Size = new System.Drawing.Size(803, 487);
 			this.tabControl.TabIndex = 1;
 			// 
 			// tabPage1
@@ -138,18 +146,51 @@
 			this.tabPage1.Text = "tabPage1";
 			this.tabPage1.UseVisualStyleBackColor = true;
 			// 
-			// debugPoints
+			// debug
 			// 
-			this.debugPoints.Location = new System.Drawing.Point(4, 22);
-			this.debugPoints.Name = "debugPoints";
-			this.debugPoints.Size = new System.Drawing.Size(770, 445);
-			this.debugPoints.TabIndex = 1;
-			this.debugPoints.Text = "Points";
-			this.debugPoints.UseVisualStyleBackColor = true;
+			this.debug.Controls.Add(this.tabControl1);
+			this.debug.Location = new System.Drawing.Point(4, 22);
+			this.debug.Name = "debug";
+			this.debug.Size = new System.Drawing.Size(795, 461);
+			this.debug.TabIndex = 1;
+			this.debug.Text = "Debug";
+			this.debug.UseVisualStyleBackColor = true;
 			// 
 			// loadSaveGameXML
 			// 
 			this.loadSaveGameXML.FileName = "openFileDialog1";
+			// 
+			// tabControl1
+			// 
+			this.tabControl1.Controls.Add(this.debugPoints);
+			this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tabControl1.Location = new System.Drawing.Point(0, 0);
+			this.tabControl1.Multiline = true;
+			this.tabControl1.Name = "tabControl1";
+			this.tabControl1.SelectedIndex = 0;
+			this.tabControl1.Size = new System.Drawing.Size(795, 461);
+			this.tabControl1.TabIndex = 0;
+			// 
+			// debugPoints
+			// 
+			this.debugPoints.Controls.Add(this.debugPointView);
+			this.debugPoints.Location = new System.Drawing.Point(4, 22);
+			this.debugPoints.Name = "debugPoints";
+			this.debugPoints.Padding = new System.Windows.Forms.Padding(3);
+			this.debugPoints.Size = new System.Drawing.Size(787, 435);
+			this.debugPoints.TabIndex = 0;
+			this.debugPoints.Text = "Points";
+			this.debugPoints.UseVisualStyleBackColor = true;
+			// 
+			// debugPointView
+			// 
+			this.debugPointView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.debugPointView.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.debugPointView.Location = new System.Drawing.Point(3, 3);
+			this.debugPointView.Name = "debugPointView";
+			this.debugPointView.Size = new System.Drawing.Size(781, 429);
+			this.debugPointView.TabIndex = 1;
+			this.debugPointView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.debugPointView_CellContentClick);
 			// 
 			// Main_Menu
 			// 
@@ -164,6 +205,10 @@
 			this.menuStrip.ResumeLayout(false);
 			this.menuStrip.PerformLayout();
 			this.tabControl.ResumeLayout(false);
+			this.debug.ResumeLayout(false);
+			this.tabControl1.ResumeLayout(false);
+			this.debugPoints.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.debugPointView)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -177,13 +222,16 @@
 		private System.Windows.Forms.ToolStripMenuItem tCPToolStripMenuItem;
 		private System.Windows.Forms.TabControl tabControl;
 		private System.Windows.Forms.TabPage tabPage1;
-		private System.Windows.Forms.TabPage debugPoints;
+		private System.Windows.Forms.TabPage debug;
 		private System.Windows.Forms.ToolStripMenuItem dataToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem loadSaveXML;
 		private System.Windows.Forms.OpenFileDialog loadSaveGameXML;
 		private System.Windows.Forms.ToolStripMenuItem networkToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem clientToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem connectToolStripMenuItem;
+		private System.Windows.Forms.TabControl tabControl1;
+		private System.Windows.Forms.TabPage debugPoints;
+		private System.Windows.Forms.DataGridView debugPointView;
 	}
 }
 

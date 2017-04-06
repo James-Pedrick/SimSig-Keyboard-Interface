@@ -22,6 +22,10 @@ namespace SimSig_Keyboard_Interface
 		{
 			
 			InitializeComponent();
+
+			List<PointContainer> pointList = new List<PointContainer>();
+
+
 		}
 
 		private void MainMenu_Load(object sender, EventArgs e)
@@ -52,6 +56,16 @@ namespace SimSig_Keyboard_Interface
 		//		Client.XML_Parsers.Data_Parsers.Parse();
 
 			}
+		}
+
+		private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+		{
+
+		}
+
+		private void debugPointView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+		{
+
 		}
 	}
 }
