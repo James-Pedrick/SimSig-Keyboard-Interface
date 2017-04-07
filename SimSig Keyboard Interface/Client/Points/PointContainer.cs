@@ -17,5 +17,18 @@ namespace SimSig_Keyboard_Interface.Client.Points
                 PointList.Add(new Points() {hexId = hId,number = pNum}); ;
             }
         }
+
+        public string printPoints()
+        {
+            string done = "";
+
+            foreach (Points x in PointList)
+            {
+                done = done + x.hexId + " " + x.number + "\n";
+
+
+            }
+            return done;
+        }
     }
 }

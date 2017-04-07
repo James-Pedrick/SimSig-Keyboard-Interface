@@ -52,7 +52,7 @@ namespace SimSig_Keyboard_Interface
 					Settings.Default.saveGameDirectory = loadSaveGameXML.InitialDirectory + loadSaveGameXML.FileName;
 
 				Data.SaveGameParser.Parse(ref points);
-
+                Console.WriteLine(points.printPoints());
 		//		Client.XML_Parsers.Data_Parsers.Parse();
 
 			}
