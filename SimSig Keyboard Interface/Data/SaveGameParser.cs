@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using SimSig_Keyboard_Interface.Properties;
 using System.IO;
-
+using SimSig_Keyboard_Interface.Client.Points;
+// ************************************************************** Load Points config file ^^^
 
 
 namespace SimSig_Keyboard_Interface.Data
@@ -18,9 +19,11 @@ namespace SimSig_Keyboard_Interface.Data
 		private static int _berthsDecimal;
 
 
-		public static void Parse()
+		public static void Parse(ref PointContainer points) // ******************************************  brings points container ref
 		{
-			Console.WriteLine("Now Reading " + Settings.Default.saveGameDirectory);
+			
+
+            Console.WriteLine("Now Reading " + Settings.Default.saveGameDirectory);
 
 			try
 			{
@@ -37,7 +40,7 @@ namespace SimSig_Keyboard_Interface.Data
 				while ((itemId = xmlData.ReadLine()) != null)
 				{
 					if (itemId.Contains("TBER ID=")) Berths_Parse(itemId);  //Berths
-					if (itemId.Contains("TPTS ID=")) Points_Parse(itemId);  //Points
+					if (itemId.Contains("TPTS ID=")) Points_Parse(ref points, itemId);  //Points ******************** also passes container ref
 					if (itemId.Contains("TSIG ID=")) Signal_Parse(itemId);  //Signals
 				}
 
@@ -48,12 +51,13 @@ namespace SimSig_Keyboard_Interface.Data
 				Console.WriteLine("Parsing of file has failed. Does the save XML excist, or has it been moved?");
 				Console.WriteLine(e);
 			}
+            
 
 		}
 
 
 
-		private static void Points_Parse(string itemId)
+		private static void Points_Parse(ref PointContainer points, string itemId)
 		{
 			string pointsHex = _pointsDecimal.ToString("X").PadLeft(4, '0');    //Convert decimal counter to hex string
 
@@ -67,6 +71,8 @@ namespace SimSig_Keyboard_Interface.Data
 				itemId = itemId.TrimEnd('"');
 			}
 			Console.WriteLine(itemId.PadRight(11, ' ') + " - " + pointsHex + " - " + _pointsDecimal);
+
+            points.AddPoint(pointsHex,itemId);
 
 			_pointsDecimal++;
 		}
