@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using SimSig_Keyboard_Interface.Properties;
 using System.IO;
 using System.Threading;
-using SimSig_Keyboard_Interface.Client.Point.Points;
+using SimSig_Keyboard_Interface.Client.Points;
 
 
 
