@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimSig_Keyboard_Interface.Client.Points
+namespace SimSig_Keyboard_Interface.Client.Point.Points
 {
     public class PointContainer
     {
@@ -14,7 +14,7 @@ namespace SimSig_Keyboard_Interface.Client.Points
         {
             if (PointList.Exists(x => x.hexId == hId) == false)
             {
-                PointList.Add(new Point() {hexId = hId,number = pNum}); ;
+                PointList.Add(new Points() {hexId = hId,number = pNum}); ;
             }
         }
     }

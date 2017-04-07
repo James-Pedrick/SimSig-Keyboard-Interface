@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using SimSig_Keyboard_Interface.Properties;
 using System.IO;
 using System.Threading;
-using Client.Points;
+using SimSig_Keyboard_Interface.Client.Point.Points;
 
 
 
@@ -19,7 +19,7 @@ namespace SimSig_Keyboard_Interface
 {
 	public partial class Main_Menu : Form
 	{
-        public static Client.Points.PointContainer points = new Client.Points.PointContainer();
+        public static PointContainer points = new PointContainer();
 
 		public Main_Menu()
 		{

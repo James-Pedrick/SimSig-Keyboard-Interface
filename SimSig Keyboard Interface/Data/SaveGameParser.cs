@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SimSig_Keyboard_Interface.Properties;
 using System.IO;
+using SimSig_Keyboard_Interface.Client.Point.Points;
 
 
 
@@ -18,7 +19,7 @@ namespace SimSig_Keyboard_Interface.Data
 		private static int _berthsDecimal;
 
 
-		public static void Parse(ref Client.Points.PointContainer points)
+		public static void Parse(ref PointContainer points)
 		{
 			
 
@@ -55,7 +56,7 @@ namespace SimSig_Keyboard_Interface.Data
 
 
 
-		private static void Points_Parse(ref Client.Points.PointContainer points, string itemId)
+		private static void Points_Parse(ref PointContainer points, string itemId)
 		{
 			string pointsHex = _pointsDecimal.ToString("X").PadLeft(4, '0');    //Convert decimal counter to hex string
 

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SimSig_Keyboard_Interface.Client.Points
+namespace SimSig_Keyboard_Interface.Client.Point.Points
 {
 
     public class Points
