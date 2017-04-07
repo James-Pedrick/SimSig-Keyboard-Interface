@@ -26,7 +26,11 @@ namespace SimSig_Keyboard_Interface
 		{
 			
 			InitializeComponent();
+            debugPointView.DataSource = PointContainer.PointList;
 
+
+            
+            
         }
 
 		private void MainMenu_Load(object sender, EventArgs e)
@@ -58,9 +62,16 @@ namespace SimSig_Keyboard_Interface
 
                 // **************************************************** Debug print list of points stored in container
                 Console.WriteLine(points.PrintPoints());
-		//		Client.XML_Parsers.Data_Parsers.Parse();
-
+                //		Client.XML_Parsers.Data_Parsers.Parse();
+         
 			}
-		}
-	}
+            Refresh();
+
+        }
+
+        private void debugPointView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+    }
 }

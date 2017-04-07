@@ -5,8 +5,8 @@ namespace SimSig_Keyboard_Interface.Client.Points
 
     public class Points
 	{
-        public string hexId;
-        public string number;
+        public string hexId { get; set; }
+        public string number { get; set; }
         public bool calledNormal = false;
         public bool calledReverse = false;
         public bool detectedNormal = false;
