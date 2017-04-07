@@ -18,9 +18,11 @@ namespace SimSig_Keyboard_Interface.Data
 		private static int _berthsDecimal;
 
 
-		public static void Parse()
+		public static void Parse(ref Client.Points.PointContainer points)
 		{
-			Console.WriteLine("Now Reading " + Settings.Default.saveGameDirectory);
+			
+
+            Console.WriteLine("Now Reading " + Settings.Default.saveGameDirectory);
 
 			try
 			{
@@ -37,7 +39,7 @@ namespace SimSig_Keyboard_Interface.Data
 				while ((itemId = xmlData.ReadLine()) != null)
 				{
 					if (itemId.Contains("TBER ID=")) Berths_Parse(itemId);  //Berths
-					if (itemId.Contains("TPTS ID=")) Points_Parse(itemId);  //Points
+					if (itemId.Contains("TPTS ID=")) Points_Parse(ref points, itemId);  //Points
 					if (itemId.Contains("TSIG ID=")) Signal_Parse(itemId);  //Signals
 				}
 
@@ -53,7 +55,7 @@ namespace SimSig_Keyboard_Interface.Data
 
 
 
-		private static void Points_Parse(string itemId)
+		private static void Points_Parse(ref Client.Points.PointContainer points, string itemId)
 		{
 			string pointsHex = _pointsDecimal.ToString("X").PadLeft(4, '0');    //Convert decimal counter to hex string
 
@@ -67,6 +69,8 @@ namespace SimSig_Keyboard_Interface.Data
 				itemId = itemId.TrimEnd('"');
 			}
 			Console.WriteLine(itemId.PadRight(11, ' ') + " - " + pointsHex + " - " + _pointsDecimal);
+
+            points.AddPoint(pointsHex,itemId);
 
 			_pointsDecimal++;
 		}
