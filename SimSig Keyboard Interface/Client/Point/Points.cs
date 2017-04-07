@@ -1,8 +1,9 @@
 ﻿using System;
 
-namespace SimSig_Keyboard_Interface
-{ 
-	public class Point
+namespace SimSig_Keyboard_Interface.Client.Points
+{
+
+    public class Points
 	{
         public string hexId;
         public string number;
@@ -17,7 +18,7 @@ namespace SimSig_Keyboard_Interface
         public bool locked = false;
         public bool isolated = false;
 
-        public DataUpdate (string data)
+        public void DataUpdate (string data)
         {
             string pointState = data.Substring(6, 3);
 
@@ -33,6 +34,19 @@ namespace SimSig_Keyboard_Interface
             if (intValue >= 004) { detectedNormal = true; intValue = intValue - 004; }
             if (intValue >= 002) { calledReverse = true; intValue = intValue - 002; }
             if (intValue >= 001) { calledNormal = true; }
+        }
+    }
+
+    public class PointContainer
+    {
+        public List<Points> PointList = new List<Points>();
+
+        public void AddPoint (string hId, string pNum)
+        {
+            if (PointList.Exists(x => x.hexId == hId) == false)
+            {
+                PointList.Add(new Point() {hexId = hId,number = pNum}); ;
+            }
         }
     }
 }
