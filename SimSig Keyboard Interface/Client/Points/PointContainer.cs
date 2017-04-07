@@ -9,12 +9,12 @@ namespace SimSig_Keyboard_Interface.Client.Points
 {
     public class PointContainer
     {
-        public static List<Points> PointList = new List<Points>();
+        public static BindingList<Points> PointList = new BindingList<Points>();
 
         public void AddPoint (string hId, string pNum)
         {
-           
-            if (PointList.Exists(x => x.hexId == hId) == false)
+            if (PointList.SingleOrDefault(p => p.hexId == hId) == (null))
+             //   if (PointList.Exists(x => x.hexId == hId) == false)
             {
                 PointList.Add(new Points() {hexId = hId,number = pNum}); ;
             }
