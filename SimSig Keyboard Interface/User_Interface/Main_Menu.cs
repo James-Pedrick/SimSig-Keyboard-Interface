@@ -16,9 +16,9 @@ using System.Threading;
 
 namespace SimSig_Keyboard_Interface
 {
-	public partial class MainMenu : Form
+	public partial class Main_Menu : Form
 	{
-		public MainMenu()
+		public Main_Menu()
 		{
 			
 			InitializeComponent();
@@ -47,7 +47,7 @@ namespace SimSig_Keyboard_Interface
 				if (loadSaveGameXML.ShowDialog() == DialogResult.OK)
 					Settings.Default.saveGameDirectory = loadSaveGameXML.InitialDirectory + loadSaveGameXML.FileName;
 
-
+				Data.SaveGameParser.Parse();
 
 		//		Client.XML_Parsers.Data_Parsers.Parse();
 
