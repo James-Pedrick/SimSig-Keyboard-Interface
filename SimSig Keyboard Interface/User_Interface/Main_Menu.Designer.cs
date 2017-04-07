@@ -33,7 +33,7 @@
 			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.dataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.loadSaveXML = new System.Windows.Forms.ToolStripMenuItem();
-			this.tCPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.tcpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.networkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.clientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.connectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,6 +44,7 @@
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.debugPoints = new System.Windows.Forms.TabPage();
 			this.debugPointView = new System.Windows.Forms.DataGridView();
+			this.tcpConnect = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip.SuspendLayout();
 			this.tabControl.SuspendLayout();
 			this.debug.SuspendLayout();
@@ -57,13 +58,14 @@
 			this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.dataToolStripMenuItem,
-            this.tCPToolStripMenuItem,
+            this.tcpToolStripMenuItem,
             this.networkToolStripMenuItem});
 			this.menuStrip.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip.Name = "menuStrip";
 			this.menuStrip.Size = new System.Drawing.Size(803, 24);
 			this.menuStrip.TabIndex = 0;
 			this.menuStrip.Text = "Menu Strip";
+			this.menuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip_ItemClicked);
 			// 
 			// fileToolStripMenuItem
 			// 
@@ -95,11 +97,14 @@
 			this.loadSaveXML.Text = "Load Save Game XML";
 			this.loadSaveXML.Click += new System.EventHandler(this.loadSaveGameXMLToolStripMenuItem_Click);
 			// 
-			// tCPToolStripMenuItem
+			// tcpToolStripMenuItem
 			// 
-			this.tCPToolStripMenuItem.Name = "tCPToolStripMenuItem";
-			this.tCPToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
-			this.tCPToolStripMenuItem.Text = "TCP";
+			this.tcpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tcpConnect});
+			this.tcpToolStripMenuItem.Enabled = false;
+			this.tcpToolStripMenuItem.Name = "tcpToolStripMenuItem";
+			this.tcpToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
+			this.tcpToolStripMenuItem.Text = "TCP";
 			// 
 			// networkToolStripMenuItem
 			// 
@@ -114,14 +119,15 @@
 			this.clientToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.connectToolStripMenuItem});
 			this.clientToolStripMenuItem.Name = "clientToolStripMenuItem";
-			this.clientToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
+			this.clientToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.clientToolStripMenuItem.Text = "Client";
 			// 
 			// connectToolStripMenuItem
 			// 
 			this.connectToolStripMenuItem.Name = "connectToolStripMenuItem";
-			this.connectToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+			this.connectToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.connectToolStripMenuItem.Text = "Connect";
+			this.connectToolStripMenuItem.Click += new System.EventHandler(this.connectToolStripMenuItem_Click);
 			// 
 			// tabControl
 			// 
@@ -192,6 +198,12 @@
 			this.debugPointView.TabIndex = 1;
 			this.debugPointView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.debugPointView_CellContentClick);
 			// 
+			// tcpConnect
+			// 
+			this.tcpConnect.Name = "tcpConnect";
+			this.tcpConnect.Size = new System.Drawing.Size(152, 22);
+			this.tcpConnect.Text = "Connect";
+			// 
 			// Main_Menu
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -219,7 +231,7 @@
 		private System.Windows.Forms.MenuStrip menuStrip;
 		private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem tCPToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem tcpToolStripMenuItem;
 		private System.Windows.Forms.TabControl tabControl;
 		private System.Windows.Forms.TabPage tabPage1;
 		private System.Windows.Forms.TabPage debug;
@@ -232,6 +244,7 @@
 		private System.Windows.Forms.TabControl tabControl1;
 		private System.Windows.Forms.TabPage debugPoints;
 		private System.Windows.Forms.DataGridView debugPointView;
+		private System.Windows.Forms.ToolStripMenuItem tcpConnect;
 	}
 }
 

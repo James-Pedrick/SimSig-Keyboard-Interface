@@ -65,7 +65,17 @@ namespace SimSig_Keyboard_Interface
 
 		private void debugPointView_CellContentClick(object sender, DataGridViewCellEventArgs e)
 		{
+		}
 
+		private void menuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+		{
+
+		}
+
+		private void connectToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			var tcpConnection = new User_Interface.TCP_Connect();
+			tcpConnection.Show(this);
 		}
 	}
 }

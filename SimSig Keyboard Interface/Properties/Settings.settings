@@ -5,5 +5,23 @@
     <Setting Name="saveGameDirectory" Type="System.String" Scope="User">
       <Value Profile="(Default)">c:\</Value>
     </Setting>
+    <Setting Name="simulation" Type="System.String" Scope="User">
+      <Value Profile="(Default)">aston</Value>
+    </Setting>
+    <Setting Name="simVersion" Type="System.String" Scope="User">
+      <Value Profile="(Default)">4.0.1</Value>
+    </Setting>
+    <Setting Name="loadverVersion" Type="System.String" Scope="User">
+      <Value Profile="(Default)">4.5.15.0</Value>
+    </Setting>
+    <Setting Name="ipAddress" Type="System.String" Scope="User">
+      <Value Profile="(Default)">127.0.0.1</Value>
+    </Setting>
+    <Setting Name="clientPort" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">50505</Value>
+    </Setting>
+    <Setting Name="clientName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">NAME</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

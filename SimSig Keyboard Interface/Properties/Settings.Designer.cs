@@ -34,5 +34,77 @@ namespace SimSig_Keyboard_Interface.Properties {
                 this["saveGameDirectory"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("aston")]
+        public string simulation {
+            get {
+                return ((string)(this["simulation"]));
+            }
+            set {
+                this["simulation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("4.0.1")]
+        public string simVersion {
+            get {
+                return ((string)(this["simVersion"]));
+            }
+            set {
+                this["simVersion"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("4.5.15.0")]
+        public string loadverVersion {
+            get {
+                return ((string)(this["loadverVersion"]));
+            }
+            set {
+                this["loadverVersion"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("127.0.0.1")]
+        public string ipAddress {
+            get {
+                return ((string)(this["ipAddress"]));
+            }
+            set {
+                this["ipAddress"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50505")]
+        public int clientPort {
+            get {
+                return ((int)(this["clientPort"]));
+            }
+            set {
+                this["clientPort"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("NAME")]
+        public string clientName {
+            get {
+                return ((string)(this["clientName"]));
+            }
+            set {
+                this["clientName"] = value;
+            }
+        }
     }
 }
