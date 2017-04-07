@@ -11,7 +11,7 @@ using SimSig_Keyboard_Interface.Properties;
 using System.IO;
 using System.Threading;
 using SimSig_Keyboard_Interface.Client.Points;
-// ************************************************************** Load Points config file ^^^
+
 
 
 
@@ -19,7 +19,6 @@ namespace SimSig_Keyboard_Interface
 {
 	public partial class Main_Menu : Form
 	{
-        // ******************************************************** Create points container
         public static PointContainer points = new PointContainer();
 
 		public Main_Menu()
@@ -51,13 +50,9 @@ namespace SimSig_Keyboard_Interface
 
 				if (loadSaveGameXML.ShowDialog() == DialogResult.OK)
 					Settings.Default.saveGameDirectory = loadSaveGameXML.InitialDirectory + loadSaveGameXML.FileName;
-                
-                
-                // **************************************************** Parse load woith ref to points container
-				Data.SaveGameParser.Parse(ref points);
 
-                // **************************************************** Debug print list of points stored in container
-                Console.WriteLine(points.PrintPoints());
+				Data.SaveGameParser.Parse(ref points);
+                Console.WriteLine(points.printPoints());
 		//		Client.XML_Parsers.Data_Parsers.Parse();
 
 			}

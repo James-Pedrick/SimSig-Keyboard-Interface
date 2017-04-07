@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using SimSig_Keyboard_Interface.Properties;
 using System.IO;
 using SimSig_Keyboard_Interface.Client.Points;
-// ************************************************************** Load Points config file ^^^
+
 
 
 namespace SimSig_Keyboard_Interface.Data
@@ -19,7 +19,7 @@ namespace SimSig_Keyboard_Interface.Data
 		private static int _berthsDecimal;
 
 
-		public static void Parse(ref PointContainer points) // ******************************************  brings points container ref
+		public static void Parse(ref PointContainer points)
 		{
 			
 
@@ -40,7 +40,7 @@ namespace SimSig_Keyboard_Interface.Data
 				while ((itemId = xmlData.ReadLine()) != null)
 				{
 					if (itemId.Contains("TBER ID=")) Berths_Parse(itemId);  //Berths
-					if (itemId.Contains("TPTS ID=")) Points_Parse(ref points, itemId);  //Points ******************** also passes container ref
+					if (itemId.Contains("TPTS ID=")) Points_Parse(ref points, itemId);  //Points
 					if (itemId.Contains("TSIG ID=")) Signal_Parse(itemId);  //Signals
 				}
 
