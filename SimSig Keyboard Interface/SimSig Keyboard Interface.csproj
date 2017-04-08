@@ -80,6 +80,8 @@
   <ItemGroup>
     <Compile Include="Client\Points\PointContainer.cs" />
     <Compile Include="Client\Points\Points.cs" />
+    <Compile Include="Client\Signals\SignalContainer.cs" />
+    <Compile Include="Client\Signals\Signals.cs" />
     <Compile Include="Data\SaveGameParser.cs" />
     <Compile Include="User_Interface\Main_Menu.cs">
       <SubType>Form</SubType>
