@@ -15,7 +15,7 @@ namespace SimSig_Keyboard_Interface.Client.Signals
 
 
 
-		public static void AddSignal(string hId, string sNum)
+		public void AddSignal(string hId, string sNum)
 		{
 
 			if (SignalList.SingleOrDefault(s => s.HexId == hId) == null)

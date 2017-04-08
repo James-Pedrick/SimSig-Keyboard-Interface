@@ -11,7 +11,7 @@ namespace SimSig_Keyboard_Interface.Client.Points
     {
         public static BindingList<Points> PointList = new BindingList<Points>();
 
-        public static void AddPoint (string hId, string pNum)
+		public void AddPoint (string hId, string pNum)
         {
             if (PointList.SingleOrDefault(p => p.HexId == hId) == null)
             {
