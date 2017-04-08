@@ -129,6 +129,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Client\TCP\" />
     <Folder Include="Properties\DataSources\" />
   </ItemGroup>
   <ItemGroup>

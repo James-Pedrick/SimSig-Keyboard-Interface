@@ -1,34 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using SimSig_Keyboard_Interface.Properties;
-using System.IO;
-using System.Threading;
 using SimSig_Keyboard_Interface.Client.Points;
+using SimSig_Keyboard_Interface.Properties;
+
 // ************************************************************** Load Points config file ^^^
 
 
 
-namespace SimSig_Keyboard_Interface
+namespace SimSig_Keyboard_Interface.User_Interface
 {
-	public partial class Main_Menu : Form
+	public partial class MainMenu : Form
 	{
         // ******************************************************** Create points container
         public static PointContainer points = new PointContainer();
 
-		public Main_Menu()
+		public MainMenu()
 		{
 			
 			InitializeComponent();
             debugPointView.DataSource = PointContainer.PointList;
 
-
+            
             
             
         }
@@ -45,7 +37,7 @@ namespace SimSig_Keyboard_Interface
 
 		private void loadSaveGameXMLToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			var fileFirectoryLoadSavedGameXML = new OpenFileDialog();
+			var fileDirectoryLoadSavedGameXml = new OpenFileDialog();
 
 			if (loadSaveXML != null)
 			{
@@ -69,9 +61,5 @@ namespace SimSig_Keyboard_Interface
 
         }
 
-        private void debugPointView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
     }
 }

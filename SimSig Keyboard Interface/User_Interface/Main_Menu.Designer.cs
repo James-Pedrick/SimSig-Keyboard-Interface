@@ -1,6 +1,6 @@
-﻿namespace SimSig_Keyboard_Interface
+﻿namespace SimSig_Keyboard_Interface.User_Interface
 {
-	partial class Main_Menu
+	partial class MainMenu
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -197,7 +197,6 @@
             this.debugPointView.ReadOnly = true;
             this.debugPointView.Size = new System.Drawing.Size(781, 429);
             this.debugPointView.TabIndex = 1;
-            this.debugPointView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.debugPointView_CellContentClick);
             // 
             // loadSaveGameXML
             // 
@@ -210,7 +209,7 @@
             this.ClientSize = new System.Drawing.Size(803, 511);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.menuStrip);
-            this.Name = "Main_Menu";
+            this.Name = "MainMenu";
             this.Text = "SimSig Keyboard Interface";
             this.Load += new System.EventHandler(this.MainMenu_Load);
             this.menuStrip.ResumeLayout(false);

@@ -99,9 +99,7 @@ namespace SimSig_Keyboard_Interface.Data
 		}
 		private static void Berths_Parse(string itemId)
 		{
-			string berthsHex;
-
-			berthsHex = _berthsDecimal.ToString("X").PadLeft(4, '0');
+			string berthsHex = _berthsDecimal.ToString("X").PadLeft(4, '0');
 
 			/*Want to take the specific item ID only, without the	*/
 			/*start and end of tag characters from the XML          */

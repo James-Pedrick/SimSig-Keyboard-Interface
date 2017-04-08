@@ -13,10 +13,14 @@ namespace SimSig_Keyboard_Interface.Client.Points
 
         public void AddPoint (string hId, string pNum)
         {
-            if (PointList.SingleOrDefault(p => p.hexId == hId) == (null))
+            if (PointList.SingleOrDefault(p => p.HexId == hId) == (null))
              //   if (PointList.Exists(x => x.hexId == hId) == false)
             {
-                PointList.Add(new Points() {hexId = hId,number = pNum}); ;
+                PointList.Add(new Points {HexId = hId,Number = pNum});
+            }
+            else
+            {
+                PointList.Single(x => x.HexId == hId).Number = pNum;
             }
         }
 
@@ -26,7 +30,7 @@ namespace SimSig_Keyboard_Interface.Client.Points
 
             foreach (Points x in PointList)
             {
-                done = done + x.hexId + " " + x.number + "\n";
+                done = done + x.HexId + " " + x.Number + "\n";
 
 
             }
