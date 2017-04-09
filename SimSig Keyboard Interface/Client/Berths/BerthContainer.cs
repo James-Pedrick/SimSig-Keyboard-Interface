@@ -14,16 +14,15 @@ namespace SimSig_Keyboard_Interface.Client.Berths
 
 
 
-		public void AddBerthXml(string hId, string bId, string bContent)
+		public void AddBerthXml(string hId, string bId)
 		{
 			if (BerthList.SingleOrDefault(b => b.HexId == hId) == null)
 			{
-				BerthList.Add(new Berths{HexId = hId, BerthId = bId, BerthContent = bContent });
+				BerthList.Add(new Berths{HexId = hId, BerthId = bId });
 			}
 			else
 			{
 				BerthList.Single(b => b.HexId == hId).BerthId = bId;
-				BerthList.Single(b => b.HexId == hId).BerthContent = bContent;
 			}
 		}
 

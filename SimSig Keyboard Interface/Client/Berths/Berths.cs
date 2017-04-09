@@ -18,7 +18,7 @@ namespace SimSig_Keyboard_Interface.Client.Berths
 			var hexId = data.Substring(0, 4);
 			var berthContent = data.Substring(4, 4);
 
-			berths.AddBerthXml(hexId, null, berthContent);
+	//		berths.AddBerthXml(hexId, berthContent);
 
 		}
 
