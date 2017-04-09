@@ -78,13 +78,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Client\Berths\BerthContainer.cs" />
-    <Compile Include="Client\Berths\Berths.cs" />
     <Compile Include="Client\Points\PointContainer.cs" />
     <Compile Include="Client\Points\Points.cs" />
     <Compile Include="Client\Signals\SignalContainer.cs" />
     <Compile Include="Client\Signals\Signals.cs" />
-    <Compile Include="Client\TCP\TcpMain.cs" />
+    <Compile Include="Client\TCP\TCP_Client.cs" />
+    <Compile Include="Client\TCP\Reciever.cs" />
+    <Compile Include="Client\TCP\Sender.cs" />
     <Compile Include="Data\SaveGameParser.cs" />
     <Compile Include="User_Interface\Main_Menu.cs">
       <SubType>Form</SubType>
