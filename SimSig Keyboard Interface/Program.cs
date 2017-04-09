@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MainMenu = SimSig_Keyboard_Interface.User_Interface.MainMenu;
 
 namespace SimSig_Keyboard_Interface
 {
@@ -16,7 +17,7 @@ namespace SimSig_Keyboard_Interface
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new Main_Menu());
+			Application.Run(new MainMenu());
 		}
 	}
 }

@@ -1,0 +1,8 @@
+version: '2.1'
+
+services:
+  simsigkeyboardinterface:
+    image: simsigkeyboardinterface
+    build:
+      context: .\SimSig Keyboard Interface
+      dockerfile: Dockerfile
