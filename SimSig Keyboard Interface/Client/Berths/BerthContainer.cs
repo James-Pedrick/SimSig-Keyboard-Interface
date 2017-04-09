@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SimSig_Keyboard_Interface.Client.Berths
 {
-	public class BerthContainer
+	public class BerthContainer 
 	{
 		public static BindingList<Berths> BerthList = new BindingList<Berths>();
 
