@@ -2,6 +2,7 @@ using System;
 using System.Net.Sockets;
 using System.Diagnostics;
 using System.Threading;
+using System.Text;
 
 namespace SimSig_Keyboard_Interface.Client.TCP
 {
@@ -20,7 +21,26 @@ namespace SimSig_Keyboard_Interface.Client.TCP
 
             private void Run()
             {
-                // main thread loop for receiving data...
+                while (true)
+                    {
+                    var buffer = new byte[1024];
+
+                    int bytesRead;
+
+                    var charBuffer = new char[1024];
+
+                    string msg = "";
+
+                    // Get back on the GUI thread - we need to modify the tbxLog control, which can only be done from the GUI thread.
+                    while ((bytesRead = _stream.Read(buffer, 0, buffer.Length)) != 0)
+                    {
+                        var charsRead = Encoding.ASCII.GetChars(buffer, 0, bytesRead, charBuffer, 0);
+
+                        msg += new string(charBuffer, 0, charsRead);
+                    }
+                    System.Console.WriteLine(msg);
+                    Thread.Sleep(1);
+                }
             }
 
             private NetworkStream _stream;

@@ -17,7 +17,7 @@ namespace SimSig_Keyboard_Interface.Client.TCP
 
         public TCP_Client()
         {
-	        Connect();
+           
         }
 
         private void OnDataReceived(object sender, DataReceivedEventArgs e)
@@ -31,24 +31,24 @@ namespace SimSig_Keyboard_Interface.Client.TCP
             throw new NotImplementedException();
         }
 
-        private void Connect()
-		{
-			_client = new TcpClient();
+        public void Connect(string ipAddress, int port, string nick, string simulation, string simVersion, string loaderVersion)
+        {
+            _client = new TcpClient();
 
-			System.Console.WriteLine(@"Connecting ...");
-			_client.Connect("127.0.0.1", 50505);
-			System.Console.WriteLine(@"Connected");
+            System.Console.WriteLine("Connecting ...");
+            _client.Connect(ipAddress, port);
+            System.Console.WriteLine("Connected");
 
-			_stream = _client.GetStream();
 
-			_receiver = new Receiver(_stream);
-			_sender = new Sender(_stream);
+            _stream = _client.GetStream();
 
-			_receiver.DataReceived += OnDataReceived;
+            _receiver = new Receiver(_stream);
+            _sender = new Sender(_stream);
 
-			SendData("iAGARYC1.1.0/4.5.15.0/aston|");
-			
-		}
+            _receiver.DataReceived += OnDataReceived;
+
+            SendData("iA"+nick+"C"+simVersion+"/"+loaderVersion+"/"+simulation+"|");
+        }
 
 
         private TcpClient _client;

@@ -16,7 +16,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 	{
 
 
-		private static TCP_Client Connection; //= new TCP_Client();
+		public static TCP_Client Connection = new TCP_Client();
 
 		/*************************/
 		/*Creating containers    */
@@ -79,18 +79,13 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 		private void connectToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-
-			Connection = new TCP_Client();
-		}
-
-		private void MainMenu_Load(object sender, EventArgs e)
-		{
-
-		}
-
-		private void menuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-		{
-
+            string simulation = "aston";
+            string simVersion = "1.1.0";
+            string loaderVersion = "4.5.15.0";
+            string ipAddress = "127.0.0.1";
+            int port = 50505;
+            string nick = "Gary";
+            Connection.Connect(ipAddress,port,nick,simulation,simVersion,loaderVersion);
 		}
 	}
 	
