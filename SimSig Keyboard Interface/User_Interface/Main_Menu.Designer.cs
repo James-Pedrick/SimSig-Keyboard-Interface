@@ -43,7 +43,6 @@
 			this.pointsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.signalResetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.tabControl = new System.Windows.Forms.TabControl();
-			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.debug = new System.Windows.Forms.TabPage();
 			this.debugTabs = new System.Windows.Forms.TabControl();
 			this.debugBerths = new System.Windows.Forms.TabPage();
@@ -52,6 +51,7 @@
 			this.debugSignalView = new System.Windows.Forms.DataGridView();
 			this.debugPoints = new System.Windows.Forms.TabPage();
 			this.debugPointView = new System.Windows.Forms.DataGridView();
+			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.loadSaveGameXML = new System.Windows.Forms.OpenFileDialog();
 			this.menuStrip.SuspendLayout();
 			this.tabControl.SuspendLayout();
@@ -121,7 +121,7 @@
 			// tcpConnect
 			// 
 			this.tcpConnect.Name = "tcpConnect";
-			this.tcpConnect.Size = new System.Drawing.Size(152, 22);
+			this.tcpConnect.Size = new System.Drawing.Size(119, 22);
 			this.tcpConnect.Text = "Connect";
 			// 
 			// networkToolStripMenuItem
@@ -137,14 +137,15 @@
 			this.clientToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.connectToolStripMenuItem});
 			this.clientToolStripMenuItem.Name = "clientToolStripMenuItem";
-			this.clientToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.clientToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
 			this.clientToolStripMenuItem.Text = "Client";
 			// 
 			// connectToolStripMenuItem
 			// 
 			this.connectToolStripMenuItem.Name = "connectToolStripMenuItem";
-			this.connectToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.connectToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
 			this.connectToolStripMenuItem.Text = "Connect";
+			this.connectToolStripMenuItem.Click += new System.EventHandler(this.connectToolStripMenuItem_Click);
 			// 
 			// dataToolStripMenuItem1
 			// 
@@ -179,8 +180,8 @@
 			// 
 			// tabControl
 			// 
-			this.tabControl.Controls.Add(this.tabPage1);
 			this.tabControl.Controls.Add(this.debug);
+			this.tabControl.Controls.Add(this.tabPage1);
 			this.tabControl.Cursor = System.Windows.Forms.Cursors.Default;
 			this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tabControl.Location = new System.Drawing.Point(0, 24);
@@ -189,16 +190,6 @@
 			this.tabControl.SelectedIndex = 0;
 			this.tabControl.Size = new System.Drawing.Size(803, 487);
 			this.tabControl.TabIndex = 1;
-			// 
-			// tabPage1
-			// 
-			this.tabPage1.Location = new System.Drawing.Point(4, 22);
-			this.tabPage1.Name = "tabPage1";
-			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(795, 461);
-			this.tabPage1.TabIndex = 0;
-			this.tabPage1.Text = "tabPage1";
-			this.tabPage1.UseVisualStyleBackColor = true;
 			// 
 			// debug
 			// 
@@ -289,6 +280,16 @@
 			this.debugPointView.ReadOnly = true;
 			this.debugPointView.Size = new System.Drawing.Size(781, 429);
 			this.debugPointView.TabIndex = 1;
+			// 
+			// tabPage1
+			// 
+			this.tabPage1.Location = new System.Drawing.Point(4, 22);
+			this.tabPage1.Name = "tabPage1";
+			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage1.Size = new System.Drawing.Size(795, 461);
+			this.tabPage1.TabIndex = 0;
+			this.tabPage1.Text = "tabPage1";
+			this.tabPage1.UseVisualStyleBackColor = true;
 			// 
 			// loadSaveGameXML
 			// 

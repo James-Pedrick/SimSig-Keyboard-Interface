@@ -1,4 +1,5 @@
 ﻿using System;
+using SimSig_Keyboard_Interface.Client.Berths;
 
 namespace SimSig_Keyboard_Interface.Client.Points
 {
@@ -20,7 +21,10 @@ namespace SimSig_Keyboard_Interface.Client.Points
 
         public void DataUpdate (string data)
         {
-            string pointState = data.Substring(6, 3);
+			string hexId = data.Substring(0,4);
+	        string pointState = data.Substring(4, 3);
+
+			
 
             int intValue = int.Parse(pointState, System.Globalization.NumberStyles.HexNumber); //Convert Hex String to Int Console.WriteLine(intValue);
 
@@ -34,6 +38,9 @@ namespace SimSig_Keyboard_Interface.Client.Points
             if (intValue >= 004) { DetectedNormal = true; intValue = intValue - 004; }
             if (intValue >= 002) { CalledReverse = true; intValue = intValue - 002; }
             if (intValue >= 001) { CalledNormal = true; }
+
+
+
         }
     }
 }

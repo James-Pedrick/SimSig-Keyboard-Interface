@@ -26,7 +26,7 @@ namespace SimSig_Keyboard_Interface.Data
 		{
 
 
-			Console.WriteLine(@"Now Reading " + Settings.Default.saveGameDirectory);
+			Console.WriteLine(@"Now Reading " + Settings.Default.wi);
 
 			try
 			{
@@ -38,7 +38,7 @@ namespace SimSig_Keyboard_Interface.Data
 
 
 
-				StreamReader xmlData = new StreamReader(Settings.Default.saveGameDirectory);
+				StreamReader xmlData = new StreamReader(Settings.Default.wi);
 
 				while ((itemId = xmlData.ReadLine()) != null)
 				{
@@ -46,7 +46,7 @@ namespace SimSig_Keyboard_Interface.Data
 					if (itemId.Contains("TPTS ID=")) Points_Parse(ref points, itemId);		//Points ******************** also passes container ref
 					if (itemId.Contains("TSIG ID=")) Signal_Parse(ref signals, itemId);		//Signals
 				}
-
+				
 
 			}
 			catch (Exception e)

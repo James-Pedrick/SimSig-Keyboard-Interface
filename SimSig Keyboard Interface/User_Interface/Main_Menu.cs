@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows.Forms;
 using SimSig_Keyboard_Interface.Client.Berths;
 using SimSig_Keyboard_Interface.Client.Points;
@@ -16,7 +17,8 @@ namespace SimSig_Keyboard_Interface.User_Interface
 	{
 
 
-        public static TCP_Client connection = new TCP_Client();
+		public static TcpClient Connection = new TcpClient();
+		public static TcpConnect TcpConnectForm = new TcpConnect();
 
 		/*************************/
 		/*Creating containers    */
@@ -31,6 +33,8 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			debugBerthView.DataSource = BerthContainer.BerthList;
 			debugPointView.DataSource = PointContainer.PointList;
 			debugSignalView.DataSource = SignalContainer.SignalList;
+
+			
 		}
 
 		private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -49,22 +53,22 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 
 				if (loadSaveGameXML.ShowDialog() == DialogResult.OK)
-					Settings.Default.saveGameDirectory = loadSaveGameXML.InitialDirectory + loadSaveGameXML.FileName;
-                
-                
+					Settings.Default.wi = loadSaveGameXML.InitialDirectory + loadSaveGameXML.FileName;
 
-				Data.SaveGameParser.Parse(ref _berths, ref _points, ref _signals);			//Parse load with ref to points container
-                Console.WriteLine(_points.PrintPoints());					//Print list of points storerd in container
-         
+
+
+				Data.SaveGameParser.Parse(ref _berths, ref _points, ref _signals);          //Parse load with ref to points container
+				Console.WriteLine(_points.PrintPoints());                   //Print list of points storerd in container
+
 			}
-            Refresh();
+			Refresh();
 
-        }
+		}
 
-        private void Point_List_Reset(object sender, EventArgs e)
-        {
-            PointContainer.PointList.Clear();
-        }
+		private void Point_List_Reset(object sender, EventArgs e)
+		{
+			PointContainer.PointList.Clear();
+		}
 
 		private void BerthListReset(object sender, EventArgs e)
 		{
@@ -76,22 +80,18 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			SignalContainer.SignalList.Clear();
 		}
 
+
+		private void connectToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			TcpConnectForm.ShowDialog();
+
+			Connection.Connect(Settings.Default.ipAddress, Settings.Default.clientPort);
+		}
+
 		private void MainMenu_Load(object sender, EventArgs e)
 		{
 
 		}
-
-		private void Tcp_Connection(object sender, EventArgs e)
-		{
-			string connectionMessage = "iA" +
-			                           Settings.Default.clientName + "C" +
-			                           Settings.Default.simVersion + "/" +
-			                           Settings.Default.loadverVersion + "/" +
-			                           Settings.Default.simulation + "|";
-
-
-			
-		}
 	}
-	
+
 }

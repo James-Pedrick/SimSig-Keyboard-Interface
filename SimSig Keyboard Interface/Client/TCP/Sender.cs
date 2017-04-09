@@ -1,15 +1,19 @@
 using System;
 using System.Net.Sockets;
+using System.Text;
 using System.Threading;
 
 namespace SimSig_Keyboard_Interface.Client.TCP
 {
-    public sealed partial class TCP_Client
+    public sealed partial class TcpClient
     {
         private sealed class Sender
         {
-            internal void SendData(byte[] data)
+            internal void SendData(string toWrite)
             {
+	            byte[] data = Encoding.ASCII.GetBytes(toWrite);
+				
+				_stream.WriteAsync(data, 0, data.Length);
                 // transition the data to the thread and send it...
             }
 
@@ -22,7 +26,10 @@ namespace SimSig_Keyboard_Interface.Client.TCP
 
             private void Run()
             {
-                // main thread loop for sending data...
+	       //     string toWrite = "iAGARYC1.1.0 / 4.5.15.0 / aston |";
+				
+				
+	            // main thread loop for sending data...
             }
 
             private NetworkStream _stream;
