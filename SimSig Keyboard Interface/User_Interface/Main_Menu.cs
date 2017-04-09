@@ -14,9 +14,9 @@ namespace SimSig_Keyboard_Interface.User_Interface
 {
 	public partial class MainMenu : Form
 	{
-        // ******************************************************** Create points container
-        public static PointContainer Points = new PointContainer();
-		public static SignalContainer Signals = new SignalContainer();
+
+
+        public static TCP_Client connection = new TCP_Client();
 
 		/*************************/
 		/*Creating containers    */
