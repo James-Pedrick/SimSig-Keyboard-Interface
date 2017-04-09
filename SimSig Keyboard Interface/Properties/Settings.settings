@@ -2,14 +2,14 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SimSig_Keyboard_Interface.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="saveGameDirectory" Type="System.String" Scope="User">
+    <Setting Name="wi" Type="System.String" Scope="User">
       <Value Profile="(Default)">c:\</Value>
     </Setting>
     <Setting Name="simulation" Type="System.String" Scope="User">
       <Value Profile="(Default)">aston</Value>
     </Setting>
     <Setting Name="simVersion" Type="System.String" Scope="User">
-      <Value Profile="(Default)">4.0.1</Value>
+      <Value Profile="(Default)">1.1.0</Value>
     </Setting>
     <Setting Name="loadverVersion" Type="System.String" Scope="User">
       <Value Profile="(Default)">4.5.15.0</Value>

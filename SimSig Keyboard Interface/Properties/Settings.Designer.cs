@@ -13,7 +13,7 @@ namespace SimSig_Keyboard_Interface.Properties {
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.0.1.0")]
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+    public sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
         
@@ -26,12 +26,12 @@ namespace SimSig_Keyboard_Interface.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("c:\\")]
-        public string saveGameDirectory {
+        public string wi {
             get {
-                return ((string)(this["saveGameDirectory"]));
+                return ((string)(this["wi"]));
             }
             set {
-                this["saveGameDirectory"] = value;
+                this["wi"] = value;
             }
         }
         
@@ -49,7 +49,7 @@ namespace SimSig_Keyboard_Interface.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("4.0.1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1.1.0")]
         public string simVersion {
             get {
                 return ((string)(this["simVersion"]));

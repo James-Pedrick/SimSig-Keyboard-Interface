@@ -1,61 +1,72 @@
 using System;
 using System.Diagnostics;
 using System.Net.Sockets;
+using SimSig_Keyboard_Interface.Properties;
 
 namespace SimSig_Keyboard_Interface.Client.TCP
 {
-    public sealed partial class TCP_Client : IDisposable
-    {
-        // Called by producers to send data over the socket.
-        public void SendData(string  data)
-        {
-            _sender.SendData(data);
-        }
+	public sealed partial class TcpClient : IDisposable
+	{
+		// Called by producers to send data over the socket.
+		public void SendData(string data)
+		{
+			_sender.SendData(data);
+		}
 
-        // Consumers register to receive data.
-        public event EventHandler<DataReceivedEventArgs> DataReceived;
+		// Consumers register to receive data.
+		public event EventHandler<DataReceivedEventArgs> DataReceived;
 
-        public TCP_Client()
-        {
-           
-        }
+		public TcpClient()
+		{
+			
+		}
 
-        private void OnDataReceived(object sender, DataReceivedEventArgs e)
-        {
-            var handler = DataReceived;
-            if (handler != null) DataReceived(this, e);  // re-raise event
-        }
+		private void OnDataReceived(object sender, DataReceivedEventArgs e)
+		{
+			var handler = DataReceived;
+		}
 
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
+		public void Dispose()
+		{
+			throw new NotImplementedException();
+		}
 
-        public void Connect(string ipAddress, int port, string nick, string simulation, string simVersion, string loaderVersion)
-        {
-            _client = new TcpClient();
+		public void Connect(string ipAddress, int port) //, string nick, string simulation, string simVersion, string loaderVersion)
+		{
+			try
+			{
+				_client = new System.Net.Sockets.TcpClient();
 
-            System.Console.WriteLine("Connecting ...");
-            _client.Connect(ipAddress, port);
-            System.Console.WriteLine("Connected");
-
-
-            _stream = _client.GetStream();
-
-            _receiver = new Receiver(_stream);
-            _sender = new Sender(_stream);
-
-            _receiver.DataReceived += OnDataReceived;
-
-            SendData("iA"+nick+"C"+simVersion+"/"+loaderVersion+"/"+simulation+"|");
-        }
+			System.Console.WriteLine(@"Connecting ...");
+			_client.Connect(ipAddress, port);
+			System.Console.WriteLine(@"Connected");
 
 
-        private TcpClient _client;
-        private NetworkStream _stream;
-        private Receiver _receiver;
-        private Sender _sender;
-    }
+			_stream = _client.GetStream();
+
+			_receiver = new Receiver(_stream);
+			_sender = new Sender(_stream);
+
+			_receiver.DataReceived += OnDataReceived;
+
+			SendData("iA" +
+					 Settings.Default.clientName + "C" +
+					 Settings.Default.simVersion + "/" +
+					 Settings.Default.loadverVersion + "/" +
+					 Settings.Default.simulation + "|");
+			}
+			catch (Exception f) { Console.WriteLine(f); }
+
+
+
+		}
+
+
+		private System.Net.Sockets.TcpClient _client;
+		private NetworkStream _stream;
+		private Receiver _receiver;
+		private Sender _sender;
+	}
 
 
 

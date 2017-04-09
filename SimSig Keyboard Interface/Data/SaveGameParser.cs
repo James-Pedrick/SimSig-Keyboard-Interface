@@ -26,7 +26,7 @@ namespace SimSig_Keyboard_Interface.Data
 		{
 
 
-			Console.WriteLine(@"Now Reading " + Settings.Default.saveGameDirectory);
+			Console.WriteLine(@"Now Reading " + Settings.Default.wi);
 
 			try
 			{
@@ -38,7 +38,7 @@ namespace SimSig_Keyboard_Interface.Data
 
 
 
-				StreamReader xmlData = new StreamReader(Settings.Default.saveGameDirectory);
+				StreamReader xmlData = new StreamReader(Settings.Default.wi);
 
 				while ((itemId = xmlData.ReadLine()) != null)
 				{

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SimSig_Keyboard_Interface.Client.TCP
 {
-    public sealed partial class TCP_Client
+    public sealed partial class TcpClient
     {
         private sealed class Receiver
         {
@@ -37,15 +37,29 @@ namespace SimSig_Keyboard_Interface.Client.TCP
                         var charsRead = Encoding.ASCII.GetChars(buffer, 0, bytesRead, charBuffer, 0);
 
                         msg += new string(charBuffer, 0, charsRead);
+
+
+
+						Console.WriteLine(msg);
+	                    msg = "";
                     }
-                    System.Console.WriteLine(msg);
+                    Console.WriteLine(msg);
                     Thread.Sleep(1);
+					
                 }
             }
 
             private NetworkStream _stream;
             private Thread _thread;
         }
+
+	    private void ReceivedUpdate(string msg)
+	    {
+
+		    
+	    }
+
+
     }
 
 

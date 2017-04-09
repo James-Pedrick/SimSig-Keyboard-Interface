@@ -78,7 +78,6 @@
 			this.menuStrip.Size = new System.Drawing.Size(803, 24);
 			this.menuStrip.TabIndex = 0;
 			this.menuStrip.Text = "Menu Strip";
-			this.menuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip_ItemClicked);
 			// 
 			// fileToolStripMenuItem
 			// 
@@ -242,7 +241,7 @@
 			this.debugSignals.Controls.Add(this.debugSignalView);
 			this.debugSignals.Location = new System.Drawing.Point(4, 22);
 			this.debugSignals.Name = "debugSignals";
-			this.debugSignals.Size = new System.Drawing.Size(787, 459);
+			this.debugSignals.Size = new System.Drawing.Size(787, 435);
 			this.debugSignals.TabIndex = 1;
 			this.debugSignals.Text = "Signals";
 			this.debugSignals.UseVisualStyleBackColor = true;
@@ -256,7 +255,7 @@
 			this.debugSignalView.Location = new System.Drawing.Point(3, 3);
 			this.debugSignalView.Name = "debugSignalView";
 			this.debugSignalView.ReadOnly = true;
-			this.debugSignalView.Size = new System.Drawing.Size(781, 453);
+			this.debugSignalView.Size = new System.Drawing.Size(781, 429);
 			this.debugSignalView.TabIndex = 1;
 			// 
 			// debugPoints
@@ -265,7 +264,7 @@
 			this.debugPoints.Location = new System.Drawing.Point(4, 22);
 			this.debugPoints.Name = "debugPoints";
 			this.debugPoints.Padding = new System.Windows.Forms.Padding(3);
-			this.debugPoints.Size = new System.Drawing.Size(787, 459);
+			this.debugPoints.Size = new System.Drawing.Size(787, 435);
 			this.debugPoints.TabIndex = 0;
 			this.debugPoints.Text = "Points";
 			this.debugPoints.UseVisualStyleBackColor = true;
@@ -279,7 +278,7 @@
 			this.debugPointView.Location = new System.Drawing.Point(3, 3);
 			this.debugPointView.Name = "debugPointView";
 			this.debugPointView.ReadOnly = true;
-			this.debugPointView.Size = new System.Drawing.Size(781, 453);
+			this.debugPointView.Size = new System.Drawing.Size(781, 429);
 			this.debugPointView.TabIndex = 1;
 			// 
 			// tabPage1

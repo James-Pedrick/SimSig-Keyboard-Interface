@@ -5,7 +5,7 @@ using System.Threading;
 
 namespace SimSig_Keyboard_Interface.Client.TCP
 {
-    public sealed partial class TCP_Client
+    public sealed partial class TcpClient
     {
         private sealed class Sender
         {
