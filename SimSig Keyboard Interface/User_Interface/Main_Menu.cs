@@ -15,6 +15,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 	public partial class MainMenu : Form
 	{
 
+
         public static TCP_Client connection = new TCP_Client();
 
 		/*************************/
