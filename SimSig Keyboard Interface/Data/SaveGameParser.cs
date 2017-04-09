@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SimSig_Keyboard_Interface.Properties;
 using System.IO;
+using SimSig_Keyboard_Interface.Client.Berths;
 using SimSig_Keyboard_Interface.Client.Points;
 using SimSig_Keyboard_Interface.Client.Signals;
 
@@ -21,7 +22,7 @@ namespace SimSig_Keyboard_Interface.Data
 		private static int _berthsDecimal;
 
 
-		public static void Parse(ref PointContainer points, ref SignalContainer signals) // ******************************************  brings points container ref
+		public static void Parse(ref BerthContainer berths, ref PointContainer points, ref SignalContainer signals) // ******************************************  brings points container ref
 		{
 
 
@@ -41,7 +42,7 @@ namespace SimSig_Keyboard_Interface.Data
 
 				while ((itemId = xmlData.ReadLine()) != null)
 				{
-					if (itemId.Contains("TBER ID=")) Berths_Parse(itemId);					//Berths
+					if (itemId.Contains("TBER ID=")) Berths_Parse(ref berths, itemId);					//Berths
 					if (itemId.Contains("TPTS ID=")) Points_Parse(ref points, itemId);		//Points ******************** also passes container ref
 					if (itemId.Contains("TSIG ID=")) Signal_Parse(ref signals, itemId);		//Signals
 				}
@@ -102,7 +103,7 @@ namespace SimSig_Keyboard_Interface.Data
 
 			_signalDecimal++;
 		}
-		private static void Berths_Parse(string itemId)
+		private static void Berths_Parse(ref BerthContainer berths, string itemId)
 		{
 			string berthsHex = _berthsDecimal.ToString("X").PadLeft(4, '0');
 
@@ -116,7 +117,10 @@ namespace SimSig_Keyboard_Interface.Data
 				itemId = itemId.TrimEnd('"');
 			}
 
-			Console.WriteLine(itemId.PadRight(11, ' ') + " - " + berthsHex + " - " + _berthsDecimal);
+			Console.WriteLine(itemId.PadRight(11, ' ') + berthsHex + _berthsDecimal);
+
+
+			berths.AddBerth(berthsHex, itemId);
 
 			_berthsDecimal++;
 		}

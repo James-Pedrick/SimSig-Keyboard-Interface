@@ -4,21 +4,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimSig_Keyboard_Interface.Client.Signals
+namespace SimSig_Keyboard_Interface.Client.Berths
 {
-	public class Signals
+	public class Berths
 	{
 		public string HexId { get; set; }
-		public string Number { get; set; }
-			
-			
+		public string BerthId { get; set; }
+		public string BerthContent { get; set; }
+
+
+
+
+
+
+
 
 		public void DataUpdate(string data)
 		{
 			
-
-
-
 		}
+
+
+
 	}
 }
