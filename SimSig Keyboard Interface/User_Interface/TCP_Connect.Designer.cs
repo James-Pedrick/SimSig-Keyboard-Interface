@@ -202,7 +202,7 @@
             this.connect.UseVisualStyleBackColor = true;
             this.connect.Click += new System.EventHandler(this.connect_Click);
             // 
-            // TCP_Connect
+            // TcpConnect
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
