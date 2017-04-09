@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using SimSig_Keyboard_Interface.Properties;
 using SimSig_Keyboard_Interface.Data;
 using SimSig_Keyboard_Interface.User_Interface;
+using SimSig_Keyboard_Interface.Client.TCP;
 using System.Windows.Forms;
 
 namespace SimSig_Keyboard_Interface.User_Interface
@@ -47,7 +48,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
             Settings.Default.ipAddress = ipAddress.Text;
             //        Settings.Default.clientPort = port
             Settings.Default.clientName = clientName.Text;
-
+            
             Close();
 
 
