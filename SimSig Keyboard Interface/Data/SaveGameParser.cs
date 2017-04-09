@@ -46,7 +46,7 @@ namespace SimSig_Keyboard_Interface.Data
 					if (itemId.Contains("TPTS ID=")) Points_Parse(ref points, itemId);		//Points ******************** also passes container ref
 					if (itemId.Contains("TSIG ID=")) Signal_Parse(ref signals, itemId);		//Signals
 				}
-
+				
 
 			}
 			catch (Exception e)
