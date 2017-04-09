@@ -119,8 +119,8 @@ namespace SimSig_Keyboard_Interface.Data
 
 			Console.WriteLine(itemId.PadRight(11, ' ') + berthsHex + _berthsDecimal);
 
-
-			berths.AddBerth(berthsHex, itemId);
+			
+			berths.AddBerthXml(berthsHex, itemId, null);
 
 			_berthsDecimal++;
 		}

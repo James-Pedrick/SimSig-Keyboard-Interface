@@ -96,8 +96,43 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
         private void Connection_DataReceived(Object sender, MsgEventArgs e)
         {
-            System.Console.WriteLine("Testing Data transmission : " + e.Msg);
+            System.Console.WriteLine(@"Testing Data transmission : " + e.Msg);
+
+	        string[] receivedStrings = e.Msg.Split('|');
+
+	        foreach (string elementString in receivedStrings)
+	        {
+		        Console.WriteLine(elementString);
+
+		        string element = elementString;
+
+		        if (elementString.StartsWith("sB"))
+		        {
+			        element = element.Substring(2, 8);
+			        Berths.DataUpdate(ref _berths,element);
+		        }
+
+	        }
+
+
+
         }
 	}
 
 }
+
+/*
+
+
+
+		        //			if (element.StartsWith("sB")) { element = element.Substring(2, 8); TDs.Td(element); }							//Berth
+		        //			if (element.StartsWith("sP")) { element = element.Substring(2, 8); Points.Point_Update_Received(element); }		//Points
+		        //			if (element.StartsWith("pM")) { Phone.New_Call(element); }														//Phone Call Start
+		        //			if (element.StartsWith("pO")) { Phone.End_Call(element);}														//Phone Call End
+		        //			if (element.StartsWith("mA") && !element.StartsWith("mA13"))													//Client Message
+		        //			if (element.StartsWith("iCB")) { string berthId = element.Substring(3, 4); string berthDescr = element.Substring(11, 4); TDs.Td(berthId + berthDescr);}							//Berth Connection
+		        //			if (element.StartsWith("iCP")) { string pointId = element.Substring(3, 4); string pointState = element.Substring(11, 3); Points.Point_Update_Received(pointId, pointState);}	//Point Connection
+
+	        }
+
+	*/
