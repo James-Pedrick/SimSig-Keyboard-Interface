@@ -23,7 +23,7 @@ namespace SimSig_Keyboard_Interface.Client.Points
             }
         }
 
-        public string PrintPoints()  // ****************************** Prints list of Points
+        public string printPoints()
         {
             string done = "";
 
