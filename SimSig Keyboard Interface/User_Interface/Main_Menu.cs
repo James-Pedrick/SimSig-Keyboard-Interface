@@ -16,7 +16,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 	{
 
 
-        public static TCP_Client connection = new TCP_Client();
+		public static TCP_Client Connection; //= new TCP_Client();
 
 		/*************************/
 		/*Creating containers    */
@@ -76,21 +76,11 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			SignalContainer.SignalList.Clear();
 		}
 
-		private void MainMenu_Load(object sender, EventArgs e)
+
+		private void connectToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 
-		}
-
-		private void Tcp_Connection(object sender, EventArgs e)
-		{
-			string connectionMessage = "iA" +
-			                           Settings.Default.clientName + "C" +
-			                           Settings.Default.simVersion + "/" +
-			                           Settings.Default.loadverVersion + "/" +
-			                           Settings.Default.simulation + "|";
-
-
-			
+			Connection = new TCP_Client();
 		}
 	}
 	

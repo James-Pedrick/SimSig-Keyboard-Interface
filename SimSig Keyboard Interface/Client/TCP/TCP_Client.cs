@@ -7,7 +7,7 @@ namespace SimSig_Keyboard_Interface.Client.TCP
     public sealed partial class TCP_Client : IDisposable
     {
         // Called by producers to send data over the socket.
-        public void SendData(byte[] data)
+        public void SendData(string  data)
         {
             _sender.SendData(data);
         }
@@ -31,7 +31,7 @@ namespace SimSig_Keyboard_Interface.Client.TCP
 
             _receiver.DataReceived += OnDataReceived;
 
-            SendData(System.Text.Encoding.ASCII.GetBytes("iAGARYC1.1.0/4.5.15.0/aston|"));
+	        SendData("iAGARYC1.1.0/4.5.15.0/aston|");
         }
 
         private void OnDataReceived(object sender, DataReceivedEventArgs e)
@@ -50,7 +50,7 @@ namespace SimSig_Keyboard_Interface.Client.TCP
             System.Console.WriteLine("Connecting ...");
             _client.Connect("127.0.0.1",50505);
             System.Console.WriteLine("Connected");
-            SendData(System.Text.Encoding.ASCII.GetBytes("iAGARYC1.1.0/4.5.15.0/aston|"));
+            SendData("iAGARYC1.1.0/4.5.15.0/aston|");
         }
 
 
