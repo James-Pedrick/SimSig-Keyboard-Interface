@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Net.Sockets;
 using SimSig_Keyboard_Interface.Properties;
 
+
 namespace SimSig_Keyboard_Interface.Client.TCP
 {
 	public sealed partial class TcpClient : IDisposable

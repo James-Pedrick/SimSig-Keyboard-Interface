@@ -14,7 +14,7 @@ namespace SimSig_Keyboard_Interface.Client.Berths
 
 
 
-		public void AddBerth(string hId, string bId)
+		public static void AddBerth(string hId, string bId)
 		{
 			if (BerthList.SingleOrDefault(b => b.HexId == hId) == null)
 			{
@@ -25,7 +25,6 @@ namespace SimSig_Keyboard_Interface.Client.Berths
 				BerthList.Single(b => b.HexId == hId).BerthId = bId;
 			}
 		}
-
 
 
 		public string PrintBerths()

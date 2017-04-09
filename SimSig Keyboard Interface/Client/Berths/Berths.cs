@@ -13,15 +13,13 @@ namespace SimSig_Keyboard_Interface.Client.Berths
 		public string BerthContent { get; set; }
 
 
-
-
-
-
-
-
-		public void DataUpdate(string data)
+		public static void DataUpdate(string data)
 		{
-			
+			var hexId = data.Substring(0, 4);
+			var berthContent = data.Substring(4, 4);
+
+
+
 		}
 
 

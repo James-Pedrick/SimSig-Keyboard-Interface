@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows.Forms;
 using SimSig_Keyboard_Interface.Client.Berths;
 using SimSig_Keyboard_Interface.Client.Points;
@@ -32,6 +33,8 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			debugBerthView.DataSource = BerthContainer.BerthList;
 			debugPointView.DataSource = PointContainer.PointList;
 			debugSignalView.DataSource = SignalContainer.SignalList;
+
+			
 		}
 
 		private void exitToolStripMenuItem_Click(object sender, EventArgs e)
