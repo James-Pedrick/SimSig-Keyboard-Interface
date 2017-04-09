@@ -19,6 +19,8 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		public static TcpClient Connection = new TcpClient();
 		public static TcpConnect TcpConnectForm = new TcpConnect();
 
+        
+
 		/*************************/
 		/*Creating containers    */
 		/*************************/
@@ -32,7 +34,8 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			debugBerthView.DataSource = BerthContainer.BerthList;
 			debugPointView.DataSource = PointContainer.PointList;
 			debugSignalView.DataSource = SignalContainer.SignalList;
-		}
+            Connection.DataReceived += Connection_DataReceived;
+        }
 
 		private void exitToolStripMenuItem_Click(object sender, EventArgs e)
 		{
@@ -89,6 +92,11 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		{
 
 		}
+
+        private void Connection_DataReceived(Object sender, MsgEventArgs e)
+        {
+            System.Console.WriteLine("Testing Data transmission : " + e.Msg);
+        }
 	}
 
 }

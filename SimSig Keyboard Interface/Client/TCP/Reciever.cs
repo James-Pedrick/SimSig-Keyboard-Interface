@@ -10,7 +10,7 @@ namespace SimSig_Keyboard_Interface.Client.TCP
     {
         private sealed class Receiver
         {
-            internal event EventHandler<DataReceivedEventArgs> DataReceived;
+            internal event EventHandler<MsgEventArgs> DataReceived;
 
             internal Receiver(NetworkStream stream)
             {
@@ -21,34 +21,42 @@ namespace SimSig_Keyboard_Interface.Client.TCP
 
             private void Run()
             {
-                while (true)
-                    {
-                    var buffer = new byte[1024];
+                try
+                {
+                    var buffer = new byte[2048];
 
                     int bytesRead;
 
-                    var charBuffer = new char[1024];
+                    var charBuffer = new char[2048];
 
                     string msg = "";
 
-                    // Get back on the GUI thread - we need to modify the tbxLog control, which can only be done from the GUI thread.
+                   
                     while ((bytesRead = _stream.Read(buffer, 0, buffer.Length)) != 0)
                     {
                         var charsRead = Encoding.ASCII.GetChars(buffer, 0, bytesRead, charBuffer, 0);
 
-                        msg += new string(charBuffer, 0, charsRead);
-
-
+                        msg = new string(charBuffer, 0, charsRead);
 
 						Console.WriteLine(msg);
-	                    msg = "";
+                        MsgEventArgs m = new MsgEventArgs() { Msg = msg };
+                        OnDataReceived(this,m);
+
+                        Thread.Sleep(20);
+
                     }
-                    Console.WriteLine(msg);
-                    Thread.Sleep(1);
 					
                 }
+                catch
+                {
+                    throw;
+                }
             }
-
+            private void OnDataReceived(object sender, MsgEventArgs e)
+            {
+                var handler = DataReceived;
+                if (handler != null) DataReceived(this, e);  // re-raise event
+            }
             private NetworkStream _stream;
             private Thread _thread;
         }

@@ -14,17 +14,18 @@ namespace SimSig_Keyboard_Interface.Client.TCP
 		}
 
 		// Consumers register to receive data.
-		public event EventHandler<DataReceivedEventArgs> DataReceived;
+		public event EventHandler<MsgEventArgs> DataReceived;
 
 		public TcpClient()
 		{
 			
 		}
 
-		private void OnDataReceived(object sender, DataReceivedEventArgs e)
+		private void OnDataReceived(object sender, MsgEventArgs e)
 		{
 			var handler = DataReceived;
-		}
+            if (handler != null) DataReceived(this, e);  // re-raise event
+        }
 
 		public void Dispose()
 		{
@@ -67,7 +68,12 @@ namespace SimSig_Keyboard_Interface.Client.TCP
 		private Receiver _receiver;
 		private Sender _sender;
 	}
+    public class MsgEventArgs : EventArgs
+    {
+        public string Msg { get; set; }
+    }
 
+    public delegate void MsgEventHandler(Object sender, MsgEventArgs e);
 
 
 
