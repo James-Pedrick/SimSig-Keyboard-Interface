@@ -26,9 +26,6 @@ namespace SimSig_Keyboard_Interface.Client.TCP
                     var buffer = new byte[1024];
 
                     int bytesRead;
-                    // Decoder is useful in properly handling multi-byte character encodings - it will only emit "complete" characters, so we're not going to
-                    // mangle multi-byte characters by accident. Do not use something like StreamReader - it would work for our exact scenario, but it breaks down
-                    // on more complicated streams.
 
                     var charBuffer = new char[1024];
 
@@ -39,9 +36,10 @@ namespace SimSig_Keyboard_Interface.Client.TCP
                     {
                         var charsRead = Encoding.ASCII.GetChars(buffer, 0, bytesRead, charBuffer, 0);
 
-                        msg += new string(charBuffer, 0, charsRead));
+                        msg += new string(charBuffer, 0, charsRead);
                     }
-
+                    System.Console.WriteLine(msg);
+                    Thread.Sleep(1);
                 }
             }
 
