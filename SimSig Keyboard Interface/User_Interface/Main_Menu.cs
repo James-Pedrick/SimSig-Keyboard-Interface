@@ -16,7 +16,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 	{
 
 
-		public static TCP_Client Connection; //= new TCP_Client();
+		private static TCP_Client Connection; //= new TCP_Client();
 
 		/*************************/
 		/*Creating containers    */
@@ -81,6 +81,16 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		{
 
 			Connection = new TCP_Client();
+		}
+
+		private void MainMenu_Load(object sender, EventArgs e)
+		{
+
+		}
+
+		private void menuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+		{
+
 		}
 	}
 	

@@ -43,7 +43,6 @@
 			this.pointsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.signalResetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.tabControl = new System.Windows.Forms.TabControl();
-			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.debug = new System.Windows.Forms.TabPage();
 			this.debugTabs = new System.Windows.Forms.TabControl();
 			this.debugBerths = new System.Windows.Forms.TabPage();
@@ -52,6 +51,7 @@
 			this.debugSignalView = new System.Windows.Forms.DataGridView();
 			this.debugPoints = new System.Windows.Forms.TabPage();
 			this.debugPointView = new System.Windows.Forms.DataGridView();
+			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.loadSaveGameXML = new System.Windows.Forms.OpenFileDialog();
 			this.menuStrip.SuspendLayout();
 			this.tabControl.SuspendLayout();
@@ -78,6 +78,7 @@
 			this.menuStrip.Size = new System.Drawing.Size(803, 24);
 			this.menuStrip.TabIndex = 0;
 			this.menuStrip.Text = "Menu Strip";
+			this.menuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip_ItemClicked);
 			// 
 			// fileToolStripMenuItem
 			// 
@@ -137,13 +138,13 @@
 			this.clientToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.connectToolStripMenuItem});
 			this.clientToolStripMenuItem.Name = "clientToolStripMenuItem";
-			this.clientToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.clientToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
 			this.clientToolStripMenuItem.Text = "Client";
 			// 
 			// connectToolStripMenuItem
 			// 
 			this.connectToolStripMenuItem.Name = "connectToolStripMenuItem";
-			this.connectToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.connectToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
 			this.connectToolStripMenuItem.Text = "Connect";
 			this.connectToolStripMenuItem.Click += new System.EventHandler(this.connectToolStripMenuItem_Click);
 			// 
@@ -160,46 +161,36 @@
 			// berthsResetToolStripMenuItem
 			// 
 			this.berthsResetToolStripMenuItem.Name = "berthsResetToolStripMenuItem";
-			this.berthsResetToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.berthsResetToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
 			this.berthsResetToolStripMenuItem.Text = "Berths Reset";
 			this.berthsResetToolStripMenuItem.Click += new System.EventHandler(this.BerthListReset);
 			// 
 			// pointsToolStripMenuItem
 			// 
 			this.pointsToolStripMenuItem.Name = "pointsToolStripMenuItem";
-			this.pointsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.pointsToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
 			this.pointsToolStripMenuItem.Text = "Points Reset";
 			this.pointsToolStripMenuItem.Click += new System.EventHandler(this.Point_List_Reset);
 			// 
 			// signalResetToolStripMenuItem
 			// 
 			this.signalResetToolStripMenuItem.Name = "signalResetToolStripMenuItem";
-			this.signalResetToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.signalResetToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
 			this.signalResetToolStripMenuItem.Text = "Signals Reset";
 			this.signalResetToolStripMenuItem.Click += new System.EventHandler(this.SignalListReset);
 			// 
 			// tabControl
 			// 
-			this.tabControl.Controls.Add(this.tabPage1);
 			this.tabControl.Controls.Add(this.debug);
+			this.tabControl.Controls.Add(this.tabPage1);
 			this.tabControl.Cursor = System.Windows.Forms.Cursors.Default;
 			this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.tabControl.Location = new System.Drawing.Point(0, 0);
+			this.tabControl.Location = new System.Drawing.Point(0, 24);
 			this.tabControl.Multiline = true;
 			this.tabControl.Name = "tabControl";
 			this.tabControl.SelectedIndex = 0;
-			this.tabControl.Size = new System.Drawing.Size(803, 511);
+			this.tabControl.Size = new System.Drawing.Size(803, 487);
 			this.tabControl.TabIndex = 1;
-			// 
-			// tabPage1
-			// 
-			this.tabPage1.Location = new System.Drawing.Point(4, 22);
-			this.tabPage1.Name = "tabPage1";
-			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(795, 485);
-			this.tabPage1.TabIndex = 0;
-			this.tabPage1.Text = "tabPage1";
-			this.tabPage1.UseVisualStyleBackColor = true;
 			// 
 			// debug
 			// 
@@ -251,7 +242,7 @@
 			this.debugSignals.Controls.Add(this.debugSignalView);
 			this.debugSignals.Location = new System.Drawing.Point(4, 22);
 			this.debugSignals.Name = "debugSignals";
-			this.debugSignals.Size = new System.Drawing.Size(787, 435);
+			this.debugSignals.Size = new System.Drawing.Size(787, 459);
 			this.debugSignals.TabIndex = 1;
 			this.debugSignals.Text = "Signals";
 			this.debugSignals.UseVisualStyleBackColor = true;
@@ -265,7 +256,7 @@
 			this.debugSignalView.Location = new System.Drawing.Point(3, 3);
 			this.debugSignalView.Name = "debugSignalView";
 			this.debugSignalView.ReadOnly = true;
-			this.debugSignalView.Size = new System.Drawing.Size(781, 429);
+			this.debugSignalView.Size = new System.Drawing.Size(781, 453);
 			this.debugSignalView.TabIndex = 1;
 			// 
 			// debugPoints
@@ -274,7 +265,7 @@
 			this.debugPoints.Location = new System.Drawing.Point(4, 22);
 			this.debugPoints.Name = "debugPoints";
 			this.debugPoints.Padding = new System.Windows.Forms.Padding(3);
-			this.debugPoints.Size = new System.Drawing.Size(787, 435);
+			this.debugPoints.Size = new System.Drawing.Size(787, 459);
 			this.debugPoints.TabIndex = 0;
 			this.debugPoints.Text = "Points";
 			this.debugPoints.UseVisualStyleBackColor = true;
@@ -288,8 +279,18 @@
 			this.debugPointView.Location = new System.Drawing.Point(3, 3);
 			this.debugPointView.Name = "debugPointView";
 			this.debugPointView.ReadOnly = true;
-			this.debugPointView.Size = new System.Drawing.Size(781, 429);
+			this.debugPointView.Size = new System.Drawing.Size(781, 453);
 			this.debugPointView.TabIndex = 1;
+			// 
+			// tabPage1
+			// 
+			this.tabPage1.Location = new System.Drawing.Point(4, 22);
+			this.tabPage1.Name = "tabPage1";
+			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage1.Size = new System.Drawing.Size(795, 461);
+			this.tabPage1.TabIndex = 0;
+			this.tabPage1.Text = "tabPage1";
+			this.tabPage1.UseVisualStyleBackColor = true;
 			// 
 			// loadSaveGameXML
 			// 
@@ -300,11 +301,11 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(803, 511);
-			this.Controls.Add(this.menuStrip);
 			this.Controls.Add(this.tabControl);
+			this.Controls.Add(this.menuStrip);
 			this.Name = "MainMenu";
 			this.Text = "SimSig Keyboard Interface";
-
+			this.Load += new System.EventHandler(this.MainMenu_Load);
 			this.menuStrip.ResumeLayout(false);
 			this.menuStrip.PerformLayout();
 			this.tabControl.ResumeLayout(false);

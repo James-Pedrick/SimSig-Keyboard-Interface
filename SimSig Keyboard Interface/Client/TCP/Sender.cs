@@ -26,7 +26,7 @@ namespace SimSig_Keyboard_Interface.Client.TCP
 
             private void Run()
             {
-	            string toWrite = "iAGARYC1.1.0 / 4.5.15.0 / aston |";
+	       //     string toWrite = "iAGARYC1.1.0 / 4.5.15.0 / aston |";
 				
 				
 	            // main thread loop for sending data...
