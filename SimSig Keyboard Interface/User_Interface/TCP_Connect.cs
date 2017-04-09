@@ -13,9 +13,9 @@ using System.Windows.Forms;
 
 namespace SimSig_Keyboard_Interface.User_Interface
 {
-    public partial class TCP_Connect : Form
+    public partial class TcpConnect : Form
     {
-        public TCP_Connect()
+        public TcpConnect()
         {
             InitializeComponent();
 
@@ -36,7 +36,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
         private void cancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void connect_Click(object sender, EventArgs e)
@@ -48,7 +48,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
             //        Settings.Default.clientPort = port
             Settings.Default.clientName = clientName.Text;
 
-            this.Close();
+            Close();
 
 
         }

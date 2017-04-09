@@ -1,6 +1,6 @@
 ﻿namespace SimSig_Keyboard_Interface.User_Interface
 {
-	partial class TCP_Connect
+	partial class TcpConnect
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -229,7 +229,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "TCP_Connect";
+            this.Name = "TcpConnect";
             this.Text = "TCP_Connect";
             this.Load += new System.EventHandler(this.TCP_Connect_Load);
             ((System.ComponentModel.ISupportInitialize)(this.port)).EndInit();

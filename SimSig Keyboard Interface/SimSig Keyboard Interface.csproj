@@ -78,8 +78,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Client\Berths\BerthContainer.cs" />
+    <Compile Include="Client\Berths\Berths.cs" />
     <Compile Include="Client\Points\PointContainer.cs" />
     <Compile Include="Client\Points\Points.cs" />
+    <Compile Include="Client\Signals\SignalContainer.cs" />
+    <Compile Include="Client\Signals\Signals.cs" />
+    <Compile Include="Client\TCP\TcpMain.cs" />
     <Compile Include="Data\SaveGameParser.cs" />
     <Compile Include="User_Interface\Main_Menu.cs">
       <SubType>Form</SubType>
@@ -110,6 +115,10 @@
     <EmbeddedResource Include="User_Interface\TCP_Connect.resx">
       <DependentUpon>TCP_Connect.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include=".dockerignore">
+      <DependentUpon>Dockerfile</DependentUpon>
+    </None>
+    <None Include="Dockerfile" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

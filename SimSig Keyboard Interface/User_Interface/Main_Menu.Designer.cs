@@ -1,6 +1,6 @@
-﻿namespace SimSig_Keyboard_Interface
+﻿namespace SimSig_Keyboard_Interface.User_Interface
 {
-	partial class Main_Menu
+	partial class MainMenu
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -34,21 +34,33 @@
 			this.dataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.loadSaveXML = new System.Windows.Forms.ToolStripMenuItem();
 			this.tcpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.tcpConnect = new System.Windows.Forms.ToolStripMenuItem();
 			this.networkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.clientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.connectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.dataToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+			this.berthsResetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.pointsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.signalResetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.tabControl = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.debug = new System.Windows.Forms.TabPage();
-			this.loadSaveGameXML = new System.Windows.Forms.OpenFileDialog();
-			this.tabControl1 = new System.Windows.Forms.TabControl();
+			this.debugTabs = new System.Windows.Forms.TabControl();
+			this.debugBerths = new System.Windows.Forms.TabPage();
+			this.debugBerthView = new System.Windows.Forms.DataGridView();
+			this.debugSignals = new System.Windows.Forms.TabPage();
+			this.debugSignalView = new System.Windows.Forms.DataGridView();
 			this.debugPoints = new System.Windows.Forms.TabPage();
 			this.debugPointView = new System.Windows.Forms.DataGridView();
-			this.tcpConnect = new System.Windows.Forms.ToolStripMenuItem();
+			this.loadSaveGameXML = new System.Windows.Forms.OpenFileDialog();
 			this.menuStrip.SuspendLayout();
 			this.tabControl.SuspendLayout();
 			this.debug.SuspendLayout();
-			this.tabControl1.SuspendLayout();
+			this.debugTabs.SuspendLayout();
+			this.debugBerths.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.debugBerthView)).BeginInit();
+			this.debugSignals.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.debugSignalView)).BeginInit();
 			this.debugPoints.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.debugPointView)).BeginInit();
 			this.SuspendLayout();
@@ -59,13 +71,13 @@
             this.fileToolStripMenuItem,
             this.dataToolStripMenuItem,
             this.tcpToolStripMenuItem,
-            this.networkToolStripMenuItem});
+            this.networkToolStripMenuItem,
+            this.dataToolStripMenuItem1});
 			this.menuStrip.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip.Name = "menuStrip";
 			this.menuStrip.Size = new System.Drawing.Size(803, 24);
 			this.menuStrip.TabIndex = 0;
 			this.menuStrip.Text = "Menu Strip";
-			this.menuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip_ItemClicked);
 			// 
 			// fileToolStripMenuItem
 			// 
@@ -106,6 +118,12 @@
 			this.tcpToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
 			this.tcpToolStripMenuItem.Text = "TCP";
 			// 
+			// tcpConnect
+			// 
+			this.tcpConnect.Name = "tcpConnect";
+			this.tcpConnect.Size = new System.Drawing.Size(152, 22);
+			this.tcpConnect.Text = "Connect";
+			// 
 			// networkToolStripMenuItem
 			// 
 			this.networkToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -127,7 +145,37 @@
 			this.connectToolStripMenuItem.Name = "connectToolStripMenuItem";
 			this.connectToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.connectToolStripMenuItem.Text = "Connect";
-			this.connectToolStripMenuItem.Click += new System.EventHandler(this.connectToolStripMenuItem_Click);
+			// 
+			// dataToolStripMenuItem1
+			// 
+			this.dataToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.berthsResetToolStripMenuItem,
+            this.pointsToolStripMenuItem,
+            this.signalResetToolStripMenuItem});
+			this.dataToolStripMenuItem1.Name = "dataToolStripMenuItem1";
+			this.dataToolStripMenuItem1.Size = new System.Drawing.Size(43, 20);
+			this.dataToolStripMenuItem1.Text = "Data";
+			// 
+			// berthsResetToolStripMenuItem
+			// 
+			this.berthsResetToolStripMenuItem.Name = "berthsResetToolStripMenuItem";
+			this.berthsResetToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+			this.berthsResetToolStripMenuItem.Text = "Berths Reset";
+			this.berthsResetToolStripMenuItem.Click += new System.EventHandler(this.BerthListReset);
+			// 
+			// pointsToolStripMenuItem
+			// 
+			this.pointsToolStripMenuItem.Name = "pointsToolStripMenuItem";
+			this.pointsToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+			this.pointsToolStripMenuItem.Text = "Points Reset";
+			this.pointsToolStripMenuItem.Click += new System.EventHandler(this.Point_List_Reset);
+			// 
+			// signalResetToolStripMenuItem
+			// 
+			this.signalResetToolStripMenuItem.Name = "signalResetToolStripMenuItem";
+			this.signalResetToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+			this.signalResetToolStripMenuItem.Text = "Signals Reset";
+			this.signalResetToolStripMenuItem.Click += new System.EventHandler(this.SignalListReset);
 			// 
 			// tabControl
 			// 
@@ -147,14 +195,14 @@
 			this.tabPage1.Location = new System.Drawing.Point(4, 22);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(770, 445);
+			this.tabPage1.Size = new System.Drawing.Size(795, 461);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "tabPage1";
 			this.tabPage1.UseVisualStyleBackColor = true;
 			// 
 			// debug
 			// 
-			this.debug.Controls.Add(this.tabControl1);
+			this.debug.Controls.Add(this.debugTabs);
 			this.debug.Location = new System.Drawing.Point(4, 22);
 			this.debug.Name = "debug";
 			this.debug.Size = new System.Drawing.Size(795, 461);
@@ -162,20 +210,62 @@
 			this.debug.Text = "Debug";
 			this.debug.UseVisualStyleBackColor = true;
 			// 
-			// loadSaveGameXML
+			// debugTabs
 			// 
-			this.loadSaveGameXML.FileName = "openFileDialog1";
+			this.debugTabs.Controls.Add(this.debugBerths);
+			this.debugTabs.Controls.Add(this.debugSignals);
+			this.debugTabs.Controls.Add(this.debugPoints);
+			this.debugTabs.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.debugTabs.Location = new System.Drawing.Point(0, 0);
+			this.debugTabs.Multiline = true;
+			this.debugTabs.Name = "debugTabs";
+			this.debugTabs.SelectedIndex = 0;
+			this.debugTabs.Size = new System.Drawing.Size(795, 461);
+			this.debugTabs.TabIndex = 0;
 			// 
-			// tabControl1
+			// debugBerths
 			// 
-			this.tabControl1.Controls.Add(this.debugPoints);
-			this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.tabControl1.Location = new System.Drawing.Point(0, 0);
-			this.tabControl1.Multiline = true;
-			this.tabControl1.Name = "tabControl1";
-			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(795, 461);
-			this.tabControl1.TabIndex = 0;
+			this.debugBerths.Controls.Add(this.debugBerthView);
+			this.debugBerths.Location = new System.Drawing.Point(4, 22);
+			this.debugBerths.Name = "debugBerths";
+			this.debugBerths.Size = new System.Drawing.Size(787, 435);
+			this.debugBerths.TabIndex = 2;
+			this.debugBerths.Text = "Berths";
+			this.debugBerths.UseVisualStyleBackColor = true;
+			// 
+			// debugBerthView
+			// 
+			this.debugBerthView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.debugBerthView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.debugBerthView.Location = new System.Drawing.Point(3, 3);
+			this.debugBerthView.Name = "debugBerthView";
+			this.debugBerthView.ReadOnly = true;
+			this.debugBerthView.Size = new System.Drawing.Size(781, 429);
+			this.debugBerthView.TabIndex = 2;
+			// 
+			// debugSignals
+			// 
+			this.debugSignals.Controls.Add(this.debugSignalView);
+			this.debugSignals.Location = new System.Drawing.Point(4, 22);
+			this.debugSignals.Name = "debugSignals";
+			this.debugSignals.Size = new System.Drawing.Size(787, 435);
+			this.debugSignals.TabIndex = 1;
+			this.debugSignals.Text = "Signals";
+			this.debugSignals.UseVisualStyleBackColor = true;
+			// 
+			// debugSignalView
+			// 
+			this.debugSignalView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.debugSignalView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.debugSignalView.Location = new System.Drawing.Point(3, 3);
+			this.debugSignalView.Name = "debugSignalView";
+			this.debugSignalView.ReadOnly = true;
+			this.debugSignalView.Size = new System.Drawing.Size(781, 429);
+			this.debugSignalView.TabIndex = 1;
 			// 
 			// debugPoints
 			// 
@@ -190,35 +280,39 @@
 			// 
 			// debugPointView
 			// 
+			this.debugPointView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.debugPointView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.debugPointView.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.debugPointView.Location = new System.Drawing.Point(3, 3);
 			this.debugPointView.Name = "debugPointView";
+			this.debugPointView.ReadOnly = true;
 			this.debugPointView.Size = new System.Drawing.Size(781, 429);
 			this.debugPointView.TabIndex = 1;
-			this.debugPointView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.debugPointView_CellContentClick);
 			// 
-			// tcpConnect
+			// loadSaveGameXML
 			// 
-			this.tcpConnect.Name = "tcpConnect";
-			this.tcpConnect.Size = new System.Drawing.Size(152, 22);
-			this.tcpConnect.Text = "Connect";
+			this.loadSaveGameXML.FileName = "openFileDialog1";
 			// 
-			// Main_Menu
+			// MainMenu
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(803, 511);
 			this.Controls.Add(this.tabControl);
 			this.Controls.Add(this.menuStrip);
-			this.Name = "Main_Menu";
+			this.Name = "MainMenu";
 			this.Text = "SimSig Keyboard Interface";
 			this.Load += new System.EventHandler(this.MainMenu_Load);
 			this.menuStrip.ResumeLayout(false);
 			this.menuStrip.PerformLayout();
 			this.tabControl.ResumeLayout(false);
 			this.debug.ResumeLayout(false);
-			this.tabControl1.ResumeLayout(false);
+			this.debugTabs.ResumeLayout(false);
+			this.debugBerths.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.debugBerthView)).EndInit();
+			this.debugSignals.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.debugSignalView)).EndInit();
 			this.debugPoints.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.debugPointView)).EndInit();
 			this.ResumeLayout(false);
@@ -241,10 +335,18 @@
 		private System.Windows.Forms.ToolStripMenuItem networkToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem clientToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem connectToolStripMenuItem;
-		private System.Windows.Forms.TabControl tabControl1;
+		private System.Windows.Forms.TabControl debugTabs;
 		private System.Windows.Forms.TabPage debugPoints;
 		private System.Windows.Forms.DataGridView debugPointView;
 		private System.Windows.Forms.ToolStripMenuItem tcpConnect;
+		private System.Windows.Forms.ToolStripMenuItem dataToolStripMenuItem1;
+		private System.Windows.Forms.ToolStripMenuItem pointsToolStripMenuItem;
+		private System.Windows.Forms.TabPage debugSignals;
+		private System.Windows.Forms.DataGridView debugSignalView;
+		private System.Windows.Forms.TabPage debugBerths;
+		private System.Windows.Forms.DataGridView debugBerthView;
+		private System.Windows.Forms.ToolStripMenuItem berthsResetToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem signalResetToolStripMenuItem;
 	}
 }
 
