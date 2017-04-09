@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using SimSig_Keyboard_Interface.Client.Points;
 using SimSig_Keyboard_Interface.Client.Signals;
+using SimSig_Keyboard_Interface.Client.TCP;
 using SimSig_Keyboard_Interface.Properties;
 
 // ************************************************************** Load Points config file ^^^
@@ -15,6 +16,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
         // ******************************************************** Create points container
         public static PointContainer Points = new PointContainer();
 		public static SignalContainer Signals = new SignalContainer();
+        public static TCP_Client connection = new TCP_Client();
 
 		public MainMenu()
 		{
