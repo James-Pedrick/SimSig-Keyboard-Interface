@@ -107,7 +107,7 @@
 			this.loadSaveXML.Name = "loadSaveXML";
 			this.loadSaveXML.Size = new System.Drawing.Size(188, 22);
 			this.loadSaveXML.Text = "Load Save Game XML";
-			this.loadSaveXML.Click += new System.EventHandler(this.loadSaveGameXMLToolStripMenuItem_Click);
+			this.loadSaveXML.Click += new System.EventHandler(this.MenuLoadSaveXml);
 			// 
 			// tcpToolStripMenuItem
 			// 
