@@ -55,7 +55,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
                 loadSaveGameXML.Title = @"Open saved XML save game";
                 loadSaveGameXML.Filter = @"XML Files | *xml";
 
-                
+
                 if (loadSaveGameXML.ShowDialog() == DialogResult.OK)
                     Settings.Default.wi = loadSaveGameXML.InitialDirectory + loadSaveGameXML.FileName;
                 Data.SaveGameParser.Parse(ref _berths, ref _points, ref _signals);          //Parse load with ref to points container
@@ -77,7 +77,9 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
             foreach (string element in receivedStrings)
             {
-                Console.WriteLine(element);
+                //    Console.WriteLine(element);
+                if (element.StartsWith("sS008E"))
+                    Console.WriteLine(element);
 
                 if (element.StartsWith("sB"))
                 {
