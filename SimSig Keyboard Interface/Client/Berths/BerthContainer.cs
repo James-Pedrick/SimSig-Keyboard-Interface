@@ -56,8 +56,6 @@ namespace SimSig_Keyboard_Interface.Client.Berths
         }
 
 
-
-
         public string PrintBerths()
 		{
 			string done = "";
@@ -68,9 +66,5 @@ namespace SimSig_Keyboard_Interface.Client.Berths
 
 			return done;
 		}
-
-
-
-
 	}
 }

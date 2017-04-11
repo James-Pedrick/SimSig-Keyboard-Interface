@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Windows.Forms;
 using SimSig_Keyboard_Interface.Client.Berths;
 using SimSig_Keyboard_Interface.Client.Points;
@@ -45,10 +44,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
             Connection.DataReceived += TcpDataUpdate;
 
-
-
         }
-
 
         private void MenuLoadSaveXml(object sender, EventArgs e)
         {
@@ -73,9 +69,6 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
         }
 
-
-
-
         private void MainMenu_Load(object sender, EventArgs e)
         {
 
@@ -93,6 +86,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
                 if (element.StartsWith("sB"))
                 {
                     if (InvokeRequired)
+                    {
                         this.Invoke(new MethodInvoker(delegate
                         {
                             var z = element.Substring(2, 8);
@@ -100,15 +94,9 @@ namespace SimSig_Keyboard_Interface.User_Interface
                             Refresh();
 
                         }));
+                    }
                 }
             }
-        }
-
-
-        private Delegate BerthUpdate(string element)
-        {
-            _berths.DataUpdateXml(element);
-            return null;
         }
     }
 }
