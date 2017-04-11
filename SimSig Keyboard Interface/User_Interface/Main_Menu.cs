@@ -43,20 +43,8 @@ namespace SimSig_Keyboard_Interface.User_Interface
             debugPointView.DataSource = PointContainer.PointList;
             debugSignalView.DataSource = SignalContainer.SignalList;
 
-
-
-            /*     if (InvokeRequired)
-                     this.Invoke(new MethodInvoker(delegate
-                     {
-
-                         debugBerthView.DataSource = BerthContainer.BerthList;
-
-                     }));*/
-
-
-
             Connection.DataReceived += TcpDataUpdate;
-            //   Connection.DataReceived += Connection_DataReceived;
+
 
 
         }
@@ -115,37 +103,6 @@ namespace SimSig_Keyboard_Interface.User_Interface
                 }
             }
         }
-
-
-
-        /*      private void Connection_DataReceived(Object sender, MsgEventArgs e)
-              {
-                  System.Console.WriteLine(@"Testing Data transmission : " + e.Msg);
-
-                  string[] receivedStrings = e.Msg.Split('|');
-
-                  foreach (string elementString in receivedStrings)
-                  {
-                      Console.WriteLine(elementString);
-
-                      string element = elementString;
-
-                      if (elementString.StartsWith("sB"))
-                      {
-                          element = element.Substring(2, 8);
-                          try
-                          {
-                              debugBerthView.Invoke(BerthUpdate(element));
-
-                          }
-                          catch (Exception d)
-                          {
-                              System.Console.WriteLine(d.ToString());
-                          }
-                      }
-
-                  }
-              }*/
 
 
         private Delegate BerthUpdate(string element)
