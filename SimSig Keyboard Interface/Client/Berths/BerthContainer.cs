@@ -14,11 +14,11 @@ namespace SimSig_Keyboard_Interface.Client.Berths
 
 
 
-		public static void AddBerth(string hId, string bId)
+		public void AddBerthXml(string hId, string bId)
 		{
 			if (BerthList.SingleOrDefault(b => b.HexId == hId) == null)
 			{
-				BerthList.Add(new Berths{HexId = hId, BerthId = bId});
+				BerthList.Add(new Berths{HexId = hId, BerthId = bId });
 			}
 			else
 			{
@@ -26,8 +26,39 @@ namespace SimSig_Keyboard_Interface.Client.Berths
 			}
 		}
 
+		public void AddBerthTcp(string hId, string bContent)
+		{
+			if (BerthList.SingleOrDefault(b => b.HexId == hId) == null)
+			{
+				BerthList.Add(new Berths { HexId = hId, BerthContent = bContent });
+			}
+			else
+			{ 
+				BerthList.Single(b => b.HexId == hId).BerthContent = bContent;
+			}
+		}
 
-		public string PrintBerths()
+        public void DataUpdateXml(string data)
+        {
+            var hexId = data.Substring(0, 4);
+            var berthContent = data.Substring(4, 4);
+
+            AddBerthXml(hexId, berthContent);
+        }
+
+
+        public void DataUpdateTcp(string data)
+        {
+            var hexId = data.Substring(0, 4);
+            var berthContent = data.Substring(4, 4);
+
+            AddBerthTcp(hexId, berthContent);
+        }
+
+
+
+
+        public string PrintBerths()
 		{
 			string done = "";
 
