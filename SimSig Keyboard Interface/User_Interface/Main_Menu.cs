@@ -59,14 +59,10 @@ namespace SimSig_Keyboard_Interface.User_Interface
                 loadSaveGameXML.Title = @"Open saved XML save game";
                 loadSaveGameXML.Filter = @"XML Files | *xml";
 
-
-
-
-
+                
                 if (loadSaveGameXML.ShowDialog() == DialogResult.OK)
                     Settings.Default.wi = loadSaveGameXML.InitialDirectory + loadSaveGameXML.FileName;
                 Data.SaveGameParser.Parse(ref _berths, ref _points, ref _signals);          //Parse load with ref to points container
-                Console.WriteLine(_points.PrintPoints());                   //Print list of points storerd in container
 
             }
             Refresh();
@@ -97,6 +93,17 @@ namespace SimSig_Keyboard_Interface.User_Interface
                         {
                             var z = element.Substring(2, 8);
                             _berths.DataUpdateTcp(z);
+                            Refresh();
+
+                        }));
+                }
+                if (element.StartsWith("sP"))
+                {
+                    if (InvokeRequired)
+                        this.Invoke(new MethodInvoker(delegate
+                        {
+                            var z = element.Substring(2, 7);
+                            _points.DataUpdateTcp(z);
                             Refresh();
 
                         }));
