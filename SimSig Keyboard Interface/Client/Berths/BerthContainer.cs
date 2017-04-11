@@ -33,18 +33,26 @@ namespace SimSig_Keyboard_Interface.Client.Berths
 				BerthList.Add(new Berths { HexId = hId, BerthContent = bContent });
 			}
 			else
-			{
+			{ 
 				BerthList.Single(b => b.HexId == hId).BerthContent = bContent;
 			}
 		}
 
-        public void DataUpdate(string data)
+        public void DataUpdateXml(string data)
         {
             var hexId = data.Substring(0, 4);
             var berthContent = data.Substring(4, 4);
 
             AddBerthXml(hexId, berthContent);
+        }
 
+
+        public void DataUpdateTcp(string data)
+        {
+            var hexId = data.Substring(0, 4);
+            var berthContent = data.Substring(4, 4);
+
+            AddBerthTcp(hexId, berthContent);
         }
 
 

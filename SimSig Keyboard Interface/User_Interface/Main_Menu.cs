@@ -29,21 +29,40 @@ namespace SimSig_Keyboard_Interface.User_Interface
         private static PointContainer _points = new PointContainer();
         private static SignalContainer _signals = new SignalContainer();
 
+
+
+
+
+
         public MainMenu()
         {
             InitializeComponent();
+
+
             debugBerthView.DataSource = BerthContainer.BerthList;
             debugPointView.DataSource = PointContainer.PointList;
             debugSignalView.DataSource = SignalContainer.SignalList;
-            Connection.DataReceived += Connection_DataReceived;
+
+
+
+            /*     if (InvokeRequired)
+                     this.Invoke(new MethodInvoker(delegate
+                     {
+
+                         debugBerthView.DataSource = BerthContainer.BerthList;
+
+                     }));*/
+
+
+
+            Connection.DataReceived += TcpDataUpdate;
+            //   Connection.DataReceived += Connection_DataReceived;
+
+
         }
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
 
-        private void loadSaveGameXMLToolStripMenuItem_Click(object sender, EventArgs e)
+        private void MenuLoadSaveXml(object sender, EventArgs e)
         {
 
 
@@ -53,11 +72,11 @@ namespace SimSig_Keyboard_Interface.User_Interface
                 loadSaveGameXML.Filter = @"XML Files | *xml";
 
 
+
+
+
                 if (loadSaveGameXML.ShowDialog() == DialogResult.OK)
                     Settings.Default.wi = loadSaveGameXML.InitialDirectory + loadSaveGameXML.FileName;
-
-
-
                 Data.SaveGameParser.Parse(ref _berths, ref _points, ref _signals);          //Parse load with ref to points container
                 Console.WriteLine(_points.PrintPoints());                   //Print list of points storerd in container
 
@@ -66,73 +85,79 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
         }
 
-        private void Point_List_Reset(object sender, EventArgs e)
-        {
-            PointContainer.PointList.Clear();
-        }
-
-        private void BerthListReset(object sender, EventArgs e)
-        {
-            BerthContainer.BerthList.Clear();
-        }
-
-        private void SignalListReset(object sender, EventArgs e)
-        {
-            SignalContainer.SignalList.Clear();
-        }
 
 
-        private void connectToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            TcpConnectForm.ShowDialog();
-
-            Connection.Connect(Settings.Default.ipAddress, Settings.Default.clientPort);
-        }
 
         private void MainMenu_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void Connection_DataReceived(Object sender, MsgEventArgs e)
+        private void TcpDataUpdate(Object sender, MsgEventArgs e)
         {
-            System.Console.WriteLine(@"Testing Data transmission : " + e.Msg);
-
             string[] receivedStrings = e.Msg.Split('|');
 
-            foreach (string elementString in receivedStrings)
+
+            foreach (string element in receivedStrings)
             {
-                Console.WriteLine(elementString);
+                Console.WriteLine(element);
 
-                string element = elementString;
-
-                if (elementString.StartsWith("sB"))
+                if (element.StartsWith("sB"))
                 {
-                    element = element.Substring(2, 8);
-                    try
-                    {
-                        debugBerthView.Invoke(BerthUpdate(element));
+                    if (InvokeRequired)
+                        this.Invoke(new MethodInvoker(delegate
+                        {
+                            var z = element.Substring(2, 8);
+                            _berths.DataUpdateTcp(z);
+                            Refresh();
 
-                    }
-                    catch (Exception d)
-                    {
-                        System.Console.WriteLine(d.ToString());
-                    }
+                        }));
                 }
-
             }
         }
 
+
+
+        /*      private void Connection_DataReceived(Object sender, MsgEventArgs e)
+              {
+                  System.Console.WriteLine(@"Testing Data transmission : " + e.Msg);
+
+                  string[] receivedStrings = e.Msg.Split('|');
+
+                  foreach (string elementString in receivedStrings)
+                  {
+                      Console.WriteLine(elementString);
+
+                      string element = elementString;
+
+                      if (elementString.StartsWith("sB"))
+                      {
+                          element = element.Substring(2, 8);
+                          try
+                          {
+                              debugBerthView.Invoke(BerthUpdate(element));
+
+                          }
+                          catch (Exception d)
+                          {
+                              System.Console.WriteLine(d.ToString());
+                          }
+                      }
+
+                  }
+              }*/
+
+
         private Delegate BerthUpdate(string element)
         {
-            _berths.DataUpdate(element);
+            _berths.DataUpdateXml(element);
             return null;
         }
-}
     }
+}
 
 
-        
+
 
 
 
