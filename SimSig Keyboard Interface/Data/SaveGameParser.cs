@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SimSig_Keyboard_Interface.Properties;
 using System.IO;
 using SimSig_Keyboard_Interface.Client.Berths;

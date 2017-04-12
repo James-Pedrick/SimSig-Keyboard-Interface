@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SimSig_Keyboard_Interface.Client.Signals
 {
@@ -72,17 +67,11 @@ namespace SimSig_Keyboard_Interface.Client.Signals
 			{
 				case 0x00:
 					signalOut = true;
-					signalNormal = false;
-					signalAuto = false;
 					break;
 				case 0x02:
-					signalOut = false;
 					signalNormal = true;
-					signalAuto = false;
 					break;
 				case 0x03:
-					signalOut = false;
-					signalNormal = false;
 					signalAuto = true;
 					break;
 			}
