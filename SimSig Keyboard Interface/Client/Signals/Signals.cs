@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,68 +14,51 @@ namespace SimSig_Keyboard_Interface.Client.Signals
 
 
 
-		public static void DataUpdate(string data)
+		public static string SignalUpdateAspect(string data)
 		{
+			int intVal = Convert.ToInt32(data);
+			string aspect = "R";
 
-			int Group1 = Convert.ToInt32(data.Substring(1, 1));     //Reminders
-			int Group2 = Convert.ToInt32(data.Substring(2, 1));     //Signal Proving
-			int Group3 = Convert.ToInt32(data.Substring(3, 1));     //Signal Aspect
+			if (intVal == 0x00) aspect = "R";
+			if (intVal == 0x01) aspect = "C";
+			if (intVal == 0x02) aspect = "Y";
+			if (intVal == 0x03) aspect = "FY";
+			if (intVal == 0x04) aspect = "YY";
+			if (intVal == 0x05) aspect = "FYY";
+			if (intVal == 0x06) aspect = "G";
+			
+			return aspect;
 
 
+		}
 
+		public static bool [] SignalUpdateRem(string data)
+		{
 			bool isoAppliedSignal = false;
 			bool remAppliedSignal = false;
 			bool isoAppliedReplace = false;
 			bool remAppliedReplace = false;
 
-			switch (Group1)
-			{
-				case 0x00:
-					remAppliedSignal = false;
-					isoAppliedSignal = false;
-					isoAppliedReplace = false;
-					remAppliedReplace = false;
-					break;
-				case 0x02:
-					remAppliedSignal = false;
-					isoAppliedSignal = true;
-					isoAppliedReplace = false;
-					remAppliedReplace = false;
-					break;
-				case 0x03:
-					remAppliedSignal = true;
-					isoAppliedSignal = true;
-					isoAppliedReplace = false;
-					remAppliedReplace = false;
-					break;
-				case 0x04:
-					remAppliedSignal = false;
-					isoAppliedSignal = false;
-					isoAppliedReplace = false;
-					remAppliedReplace = true;
-					break;
-				case 0x08:
-					remAppliedSignal = false;
-					isoAppliedSignal = false;
-					isoAppliedReplace = true;
-					remAppliedReplace = false;
-					break;
-				case 0x0C:
-					remAppliedSignal = false;
-					isoAppliedSignal = false;
-					isoAppliedReplace = true;
-					remAppliedReplace = true;
-					break;
-			}
+
+			int intValue = Convert.ToInt32(data);
 
 
+			if (intValue >= 0x80) { isoAppliedReplace = true; intValue = intValue - 0x80; }
+			if (intValue >= 0x40) { remAppliedReplace = true; intValue = intValue - 0x40; }
+			if (intValue >= 0x20) { isoAppliedSignal = true; intValue = intValue - 0x20; }
+			if (intValue >= 0x10) { remAppliedSignal = true; }
 
+			bool[] returnReminders = {isoAppliedReplace, remAppliedReplace, isoAppliedSignal, remAppliedSignal};
+			return returnReminders;
+		}
 
+		public static bool[] SignalUpdateControl(string data)
+		{
 			var signalOut = false;
 			var signalNormal = false;
 			var signalAuto = false;
 
-			switch (Group2)
+			switch (Convert.ToInt32(data))
 			{
 				case 0x00:
 					signalOut = true;
@@ -95,21 +79,10 @@ namespace SimSig_Keyboard_Interface.Client.Signals
 
 
 
-			int aspect = Group3;
 
-
-			Console.WriteLine(
-				isoAppliedReplace.ToString() +
-				remAppliedReplace.ToString() +
-				isoAppliedSignal +
-				remAppliedReplace +" - "+
-				signalOut.ToString() +
-				signalNormal.ToString() +
-				signalAuto+ " - "+
-				aspect.ToString()) ;
-
-
-
+			bool[] returnVal = {signalOut,signalNormal,signalAuto};
+			return returnVal;
 		}
+
 	}
 }

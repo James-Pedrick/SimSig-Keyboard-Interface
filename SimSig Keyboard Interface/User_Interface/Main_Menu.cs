@@ -105,13 +105,13 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
                         }));
                 }
-	            if (element.StartsWith("sS0118"))
+	            if (element.StartsWith("sS0112"))
 	            {
 		            if (InvokeRequired)
 			            Invoke(new MethodInvoker(delegate
 			            {
 				            var z = element.Substring(2, 13);
-				            _signals.DataUpdateTcp(z);
+							_signals.DataUpdateTcp(z);
 				            Refresh();
 
 			            }));
