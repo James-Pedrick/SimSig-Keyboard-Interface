@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SimSig_Keyboard_Interface.Properties;
 using System.IO;
 using SimSig_Keyboard_Interface.Client.Berths;
@@ -77,7 +73,7 @@ namespace SimSig_Keyboard_Interface.Data
 
 			Console.WriteLine(itemId.PadRight(11, ' ') + pointsHex + _pointsDecimal);
 			
-			points.AddPoint(pointsHex, itemId);
+			points.AddPointXml(pointsHex, itemId);
 
 			_pointsDecimal++;
 		}
@@ -99,7 +95,7 @@ namespace SimSig_Keyboard_Interface.Data
 
 			Console.WriteLine(itemId.PadRight(11, ' ') + signalHex + _signalDecimal);
 			
-			signals.AddSignal(signalHex, itemId);
+			signals.AddSignalXml(signalHex, itemId);
 
 			_signalDecimal++;
 		}

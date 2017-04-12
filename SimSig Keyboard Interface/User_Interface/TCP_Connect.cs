@@ -1,14 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SimSig_Keyboard_Interface.Data;
-using SimSig_Keyboard_Interface.User_Interface;
-using SimSig_Keyboard_Interface.Client.TCP;
 using System.Windows.Forms;
 using SimSig_Keyboard_Interface.Properties;
 

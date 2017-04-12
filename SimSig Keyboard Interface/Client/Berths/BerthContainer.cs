@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SimSig_Keyboard_Interface.Client.Berths
 {
@@ -26,6 +21,9 @@ namespace SimSig_Keyboard_Interface.Client.Berths
 			}
 		}
 
+
+
+
 		public void AddBerthTcp(string hId, string bContent)
 		{
 			if (BerthList.SingleOrDefault(b => b.HexId == hId) == null)
@@ -37,6 +35,10 @@ namespace SimSig_Keyboard_Interface.Client.Berths
 				BerthList.Single(b => b.HexId == hId).BerthContent = bContent;
 			}
 		}
+
+
+
+
 
         public void DataUpdateXml(string data)
         {
@@ -52,10 +54,11 @@ namespace SimSig_Keyboard_Interface.Client.Berths
             var hexId = data.Substring(0, 4);
             var berthContent = data.Substring(4, 4);
 
+
+
+
             AddBerthTcp(hexId, berthContent);
         }
-
-
 
 
         public string PrintBerths()
@@ -68,9 +71,5 @@ namespace SimSig_Keyboard_Interface.Client.Berths
 
 			return done;
 		}
-
-
-
-
 	}
 }

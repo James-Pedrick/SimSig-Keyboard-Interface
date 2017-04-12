@@ -29,13 +29,13 @@ namespace SimSig_Keyboard_Interface.Client.TCP
 
                     var charBuffer = new char[2048];
 
-                    string msg = "";
+                
 					
                     while ((bytesRead = _stream.Read(buffer, 0, buffer.Length)) != 0)
                     {
                         var charsRead = Encoding.ASCII.GetChars(buffer, 0, bytesRead, charBuffer, 0);
 
-                        msg = new string(charBuffer, 0, charsRead);
+                        string msg = new string(charBuffer, 0, charsRead);
 						
                         MsgEventArgs m = new MsgEventArgs() { Msg = msg };
                         OnDataReceived(this,m);

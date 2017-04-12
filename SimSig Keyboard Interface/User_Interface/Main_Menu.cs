@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Windows.Forms;
 using SimSig_Keyboard_Interface.Client.Berths;
 using SimSig_Keyboard_Interface.Client.Points;
@@ -43,24 +42,9 @@ namespace SimSig_Keyboard_Interface.User_Interface
             debugPointView.DataSource = PointContainer.PointList;
             debugSignalView.DataSource = SignalContainer.SignalList;
 
-
-
-            /*     if (InvokeRequired)
-                     this.Invoke(new MethodInvoker(delegate
-                     {
-
-                         debugBerthView.DataSource = BerthContainer.BerthList;
-
-                     }));*/
-
-
-
             Connection.DataReceived += TcpDataUpdate;
-            //   Connection.DataReceived += Connection_DataReceived;
-
 
         }
-
 
         private void MenuLoadSaveXml(object sender, EventArgs e)
         {
@@ -72,21 +56,14 @@ namespace SimSig_Keyboard_Interface.User_Interface
                 loadSaveGameXML.Filter = @"XML Files | *xml";
 
 
-
-
-
                 if (loadSaveGameXML.ShowDialog() == DialogResult.OK)
                     Settings.Default.wi = loadSaveGameXML.InitialDirectory + loadSaveGameXML.FileName;
                 Data.SaveGameParser.Parse(ref _berths, ref _points, ref _signals);          //Parse load with ref to points container
-                Console.WriteLine(_points.PrintPoints());                   //Print list of points storerd in container
 
             }
             Refresh();
 
         }
-
-
-
 
         private void MainMenu_Load(object sender, EventArgs e)
         {
@@ -100,58 +77,46 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
             foreach (string element in receivedStrings)
             {
-                Console.WriteLine(element);
+                //    Console.WriteLine(element);
+                if (element.StartsWith("sS004F"))
+                    Console.WriteLine(element);
 
                 if (element.StartsWith("sB"))
                 {
                     if (InvokeRequired)
-                        this.Invoke(new MethodInvoker(delegate
+                    {
+                        Invoke(new MethodInvoker(delegate
                         {
                             var z = element.Substring(2, 8);
                             _berths.DataUpdateTcp(z);
                             Refresh();
 
                         }));
+                    }
                 }
+                if (element.StartsWith("sP"))
+                {
+                    if (InvokeRequired)
+                        Invoke(new MethodInvoker(delegate
+                        {
+                            var z = element.Substring(2, 7);
+                            _points.DataUpdateTcp(z);
+                            Refresh();
+
+                        }));
+                }
+	        /*    if (element.StartsWith("sS004F"))
+	            {
+		            if (InvokeRequired)
+			            Invoke(new MethodInvoker(delegate
+			            {
+				            var z = element.Substring(2, 13);
+							_signals.DataUpdateTcp(z);
+				            Refresh();
+
+			            }));
+	            }*/
             }
-        }
-
-
-
-        /*      private void Connection_DataReceived(Object sender, MsgEventArgs e)
-              {
-                  System.Console.WriteLine(@"Testing Data transmission : " + e.Msg);
-
-                  string[] receivedStrings = e.Msg.Split('|');
-
-                  foreach (string elementString in receivedStrings)
-                  {
-                      Console.WriteLine(elementString);
-
-                      string element = elementString;
-
-                      if (elementString.StartsWith("sB"))
-                      {
-                          element = element.Substring(2, 8);
-                          try
-                          {
-                              debugBerthView.Invoke(BerthUpdate(element));
-
-                          }
-                          catch (Exception d)
-                          {
-                              System.Console.WriteLine(d.ToString());
-                          }
-                      }
-
-                  }
-              }*/
-
-
-        private Delegate BerthUpdate(string element)
-        {
-            _berths.DataUpdateXml(element);
-            return null;
         }
     }
 }
