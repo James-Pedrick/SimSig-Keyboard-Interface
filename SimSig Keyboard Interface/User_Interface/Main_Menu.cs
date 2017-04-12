@@ -78,14 +78,14 @@ namespace SimSig_Keyboard_Interface.User_Interface
             foreach (string element in receivedStrings)
             {
                 //    Console.WriteLine(element);
-                if (element.StartsWith("sS008E"))
+                if (element.StartsWith("sS0118"))
                     Console.WriteLine(element);
 
                 if (element.StartsWith("sB"))
                 {
                     if (InvokeRequired)
                     {
-                        this.Invoke(new MethodInvoker(delegate
+                        Invoke(new MethodInvoker(delegate
                         {
                             var z = element.Substring(2, 8);
                             _berths.DataUpdateTcp(z);
@@ -97,7 +97,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
                 if (element.StartsWith("sP"))
                 {
                     if (InvokeRequired)
-                        this.Invoke(new MethodInvoker(delegate
+                        Invoke(new MethodInvoker(delegate
                         {
                             var z = element.Substring(2, 7);
                             _points.DataUpdateTcp(z);
@@ -105,6 +105,17 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
                         }));
                 }
+	            if (element.StartsWith("sS0118"))
+	            {
+		            if (InvokeRequired)
+			            Invoke(new MethodInvoker(delegate
+			            {
+				            var z = element.Substring(2, 13);
+				            _signals.DataUpdateTcp(z);
+				            Refresh();
+
+			            }));
+	            }
             }
         }
     }

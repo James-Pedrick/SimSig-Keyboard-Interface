@@ -1,6 +1,4 @@
-﻿using System;
-using SimSig_Keyboard_Interface.Client.Berths;
-
+﻿
 namespace SimSig_Keyboard_Interface.Client.Points
 {
 
@@ -21,7 +19,7 @@ namespace SimSig_Keyboard_Interface.Client.Points
 
         public static bool[] DataUpdate(string data)
         {
-            string hexId = data.Substring(0, 4);
+
             string pointState = data.Substring(4, 3);
 
 
@@ -41,16 +39,16 @@ namespace SimSig_Keyboard_Interface.Client.Points
 
 
 
-            if (intValue >= 512) { lo = true; intValue = intValue - 512; }
-            if (intValue >= 256) { iso = true; intValue = intValue - 256; }
-            if (intValue >= 128) { kR = true; intValue = intValue - 128; }
-            if (intValue >= 64) { kN = true; intValue = intValue - 64; }
-            if (intValue >= 32) { fR = true; intValue = intValue - 32; }
-            if (intValue >= 16) { fN = true; intValue = intValue - 16; }
-            if (intValue >= 8) { dR = true; intValue = intValue - 8; }
-            if (intValue >= 4) { dN = true; intValue = intValue - 4; }
-            if (intValue >= 2) { cR = true; intValue = intValue - 2; }
-            if (intValue >= 1) { cN = true; }
+            if (intValue >= 0x200) { lo = true; intValue = intValue - 512; }
+            if (intValue >= 0x100) { iso = true; intValue = intValue - 256; }
+            if (intValue >= 0x80) { kR = true; intValue = intValue - 128; }
+            if (intValue >= 0x40) { kN = true; intValue = intValue - 64; }
+            if (intValue >= 0x20) { fR = true; intValue = intValue - 32; }
+            if (intValue >= 0x10) { fN = true; intValue = intValue - 16; }
+            if (intValue >= 0x08) { dR = true; intValue = intValue - 8; }
+            if (intValue >= 0x04) { dN = true; intValue = intValue - 4; }
+            if (intValue >= 0x02) { cR = true; intValue = intValue - 2; }
+            if (intValue >= 0x01) { cN = true; }
 
             bool[] returnVal = { cN, cR, dN, dR, fN, fR, kN, kR, iso, lo };
 

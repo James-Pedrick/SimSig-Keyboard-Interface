@@ -15,7 +15,7 @@ namespace SimSig_Keyboard_Interface.Client.Signals
 
 
 
-		public void AddSignal(string hId, string sNum)
+		public void AddSignalXml(string hId, string sNum)
 		{
 
 			if (SignalList.SingleOrDefault(s => s.HexId == hId) == null)
@@ -28,17 +28,15 @@ namespace SimSig_Keyboard_Interface.Client.Signals
 			}
 		}
 
-
-		public string PrintSignals()
+		public void DataUpdateTcp(string data)
 		{
-			var done = @"";
+			string hId = data.Substring(0, 4);
 
-			foreach (Signals x in SignalList)
-			{
-				done = done + x.HexId.PadRight(6) + x.Number + "\n";
-			}
-			return done;
+			Signals.DataUpdate(data.Substring(4,7));
+
+
 		}
+
 
 
 

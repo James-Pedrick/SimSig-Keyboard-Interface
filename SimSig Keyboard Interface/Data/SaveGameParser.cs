@@ -99,7 +99,7 @@ namespace SimSig_Keyboard_Interface.Data
 
 			Console.WriteLine(itemId.PadRight(11, ' ') + signalHex + _signalDecimal);
 			
-			signals.AddSignal(signalHex, itemId);
+			signals.AddSignalXml(signalHex, itemId);
 
 			_signalDecimal++;
 		}
