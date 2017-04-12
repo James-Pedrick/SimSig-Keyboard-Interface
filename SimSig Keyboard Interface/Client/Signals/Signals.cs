@@ -16,39 +16,49 @@ namespace SimSig_Keyboard_Interface.Client.Signals
 
 		public static string SignalUpdateAspect(string data)
 		{
-			int intVal = Convert.ToInt32(data);
+			int intValue = int.Parse(data, System.Globalization.NumberStyles.HexNumber);
 			string aspect = "R";
 
-			if (intVal == 0x00) aspect = "R";
-			if (intVal == 0x01) aspect = "C";
-			if (intVal == 0x02) aspect = "Y";
-			if (intVal == 0x03) aspect = "FY";
-			if (intVal == 0x04) aspect = "YY";
-			if (intVal == 0x05) aspect = "FYY";
-			if (intVal == 0x06) aspect = "G";
-			
+			if (intValue == 0x00) aspect = "R";
+			if (intValue == 0x01) aspect = "C";
+			if (intValue == 0x02) aspect = "Y";
+			if (intValue == 0x03) aspect = "FY";
+			if (intValue == 0x04) aspect = "YY";
+			if (intValue == 0x05) aspect = "FYY";
+			if (intValue == 0x06) aspect = "G";
+
 			return aspect;
 
 
 		}
 
-		public static bool [] SignalUpdateRem(string data)
+		public static bool[] SignalUpdateRem(string data)
 		{
 			bool isoAppliedSignal = false;
 			bool remAppliedSignal = false;
+
+			bool remAppliedAuto = false;
+			bool isoAppliedAuto = false;
+
 			bool isoAppliedReplace = false;
 			bool remAppliedReplace = false;
 
 
-			int intValue = Convert.ToInt32(data);
+			int intValue = int.Parse(data, System.Globalization.NumberStyles.HexNumber);
 
 
 			if (intValue >= 0x80) { isoAppliedReplace = true; intValue = intValue - 0x80; }
 			if (intValue >= 0x40) { remAppliedReplace = true; intValue = intValue - 0x40; }
-			if (intValue >= 0x20) { isoAppliedSignal = true; intValue = intValue - 0x20; }
-			if (intValue >= 0x10) { remAppliedSignal = true; }
 
-			bool[] returnReminders = {isoAppliedReplace, remAppliedReplace, isoAppliedSignal, remAppliedSignal};
+
+			if (intValue >= 0x08) { remAppliedAuto = true; intValue = intValue - 0x08; }
+			if (intValue >= 0x04) { isoAppliedAuto = true; intValue = intValue - 0x04; }
+
+
+			if (intValue >= 0x02) { isoAppliedSignal = true; intValue = intValue - 0x02; }
+			if (intValue >= 0x01) { remAppliedSignal = true; }
+
+			bool[] returnReminders = { isoAppliedReplace, remAppliedReplace, remAppliedAuto, isoAppliedAuto, isoAppliedSignal, remAppliedSignal };
 			return returnReminders;
 		}
 
@@ -80,7 +90,7 @@ namespace SimSig_Keyboard_Interface.Client.Signals
 
 
 
-			bool[] returnVal = {signalOut,signalNormal,signalAuto};
+			bool[] returnVal = { signalOut, signalNormal, signalAuto };
 			return returnVal;
 		}
 

@@ -32,7 +32,7 @@ namespace SimSig_Keyboard_Interface.Client.Signals
 		{
 			string hId = data.Substring(0, 4);
 
-		//	Signals.DataUpdate(data.Substring(4, 7));
+			//	Signals.DataUpdate(data.Substring(4, 7));
 
 			//Byte 0 - 3 Berths Hex Id
 			//Byte 4 -	 Reminder States
@@ -48,12 +48,15 @@ namespace SimSig_Keyboard_Interface.Client.Signals
 				signalReminders[0] +
 				signalReminders[1] +
 				signalReminders[2] +
-				signalReminders[3] + " " +
+				signalReminders[3] +
+				signalReminders[4] +
+				signalReminders[5] + " " +
 				signalProving[0] +
 				signalProving[1] +
 				signalProving[2] + " " + singalAspect);
 
 
+			//		bool[] returnReminders = {isoAppliedReplace, remAppliedReplace, remAppliedAuto, isoAppliedAuto, isoAppliedSignal, remAppliedSignal};
 
 		}
 

@@ -4,15 +4,59 @@
 
 TO FIND OUT - Auto Button Replacement Reminder / Isolation States
 
-	GROUPS	    0	 1    2    3    4    5    6    7	8		ASP	PROV	REM	ISO	AUTO	
+	GROUPS		 4	 5    6    7    8    9    10   11	12		ASP	PROV	REM	ISO	AUTO	
 ========================================================================================
 
-0100 FFFF 0		0000 0001 0000 0000 1111 1111 1111 1111 0000		R, REM APPLIED
-0122 000E 0		0000 0001 0010 0010 0000 0000 0000 1110 0000		Y, REM APPLIED
-0124 000E 0		0000 0001 0010 0100 0000 0000 0000 1110 0000		YY
-0036 019E 0		0000 0001 0011 0110 0000 0001 1001 1110 0000		G
-0125 000E 0		0000 0001 0010 0101 0000 0000 0000 1110 0000		FYY
-0033 019E 0		0000 0001 0011 0011 0000 0001 1001 1110 0000		FY
+
+
+GROUP 0 (4) - Signal Id
+=======
+Signal Hex Id
+
+
+
+
+GROUP 4 (2) -Reminder
+=======
+0000 0000 - 0x00 -  No Reminder
+
+0000 0001 - 0x01 - REM Applied on Signal
+0000 0010 - 0x02 - ISO Applied on Signal
+
+0000 0100 - 0x04 - REM Applied on Auto
+0000 1000 - 0x08 - ISO Applied on Auto
+
+0100 0000 - 0x40 - REM Applied on Replacement
+1000 0000 - 0x80 - ISO Applied on Replacement
+
+
+
+GROUP 6 (1) - Lamp Proving etc
+=======
+0000 - 0x00 Signal out
+0010 - 0x02 Normal
+0011 - 0x03 Auto
+
+GROUP 7 (1)- Displayed Aspect
+=======
+0000 - 0x00	R
+0001 - 0x01 C
+0010 - 0x02	Y
+0011 - 0x03	FY
+0100 - 0x04	YY
+0101 - 0x05	FYY
+0110 - 0x06	G
+
+
+	GROUPS		 4	 5    6    7    8    9    10   11	12		ASP	PROV	REM	ISO	AUTO	
+========================================================================================
+
+0020 0085 0		0000 0000 0010 0000 0000 0000 1000 0101 0000	Route Set, Signal still RED
+0022 0085 0		0000 0000 0010 0010 0000 0000 1000 0101 0000	Route Set, Signal Yellow
+0032 0085 0		0000 0000 0011 0010 0000 0000 1000 0101 0000	Route Set, Signal Yellow, Auto Set
+0432 0085 0		0000 0100 0011 0010 0000 0000 1000 0100 0000	Route Set, Signal Yellow, REM on Auto
+0C32 0085 0		0000 1100 0011 0010 0000 0000 1000 0101 0000	 Route Set, Signal Yellow, Rem + Iso on Auto
+
 
 
 0026 01B6 0		0000 0000 0100 0110 0000 0001 1011 0110 0000	Replacement Applied (G)
@@ -22,34 +66,13 @@ C036 01B6 0		1100 0000 0011 0110 0000 0001 1011 0110 0000	Reminder + Iso on Repl
 8036 01B6 0		1000 0000 0011 0110 0000 0001 1011 0110 0000	Iso on Replacement
 4136 01B6 0		0100 0001 0011 0110 0000 0001 1011 0110 0000	Rem on Replacement AND Signal
 
-GROUP 1 (1) -Reminder
-=======
-0000 -0 No Reminder
+0100 FFFF 0		0000 0001 0000 0000 1111 1111 1111 1111 0000		R, REM APPLIED
+0122 000E 0		0000 0001 0010 0010 0000 0000 0000 1110 0000		Y, REM APPLIED
+0124 000E 0		0000 0001 0010 0100 0000 0000 0000 1110 0000		YY
+0036 019E 0		0000 0001 0011 0110 0000 0001 1001 1110 0000		G
+0125 000E 0		0000 0001 0010 0101 0000 0000 0000 1110 0000		FYY
+0033 019E 0		0000 0001 0011 0011 0000 0001 1001 1110 0000		FY
 
-0001 -1 General Rem
-0010 -2 Isolation
-0011 -3 Isolation + Rem
-
-0100 -4 Rem Replacement
-1000 -8 Iso Replacement
-1100 -C Rem + ISO on replacement
-
-GROUP 2 (1) - Lamp Proving etc
-=======
-0000 -0 Signal out
-0001 - 
-0010 -2 Normal
-0011 -3 Auto
-
-GROUP 3 (1)- Displayed Aspect
-=======
-0000 -0	R
-0001 -1 C
-0010 -2	Y
-0011 -3	FY
-0100 -4	YY
-0101 -5	FYY
-0110 -6	G
 
 0020 0103 0		0000 0000 0010 0000 0000 0001 0000 0011 0000 		Route set, not proved
 0026 0103 0		0000 0000 0010 0110 0000 0001 0000 0011 0000		Route Set, Signal Green
