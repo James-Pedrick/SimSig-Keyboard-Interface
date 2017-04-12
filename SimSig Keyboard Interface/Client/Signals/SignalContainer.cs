@@ -29,7 +29,16 @@ namespace SimSig_Keyboard_Interface.Client.Signals
 		}
 
 
-		public string PrintSignals()
+        public void DataUpdateTcp(string data)
+        {
+            var hexId = data.Substring(0, 4);
+            var berthContent = data.Substring(4, 4);
+
+            AddSignal(hexId, berthContent);
+        }
+
+
+        public string PrintSignals()
 		{
 			var done = @"";
 
