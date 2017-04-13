@@ -1,5 +1,7 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
+using System.Runtime.Remoting.Channels;
 using System.Windows.Forms;
 using SimSig_Keyboard_Interface.Client.Berths;
 using SimSig_Keyboard_Interface.Client.Points;
@@ -130,15 +132,61 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			}
 		}
 
+		#region Keyboard Interface Controls
 		private void keyboardInterpose_Click(object sender, EventArgs e)
 		{
 			string[] userInput = userInputString.Text.Split(' ');
 
+			if (userInputString.Text.Contains(' ') == false)
+				return;
+
+			
+
+			
+
+			var berthHex = _berths.BerthHIdLookup(userInput[0]);
+
+			Connection.SendData(@"BB" + berthHex + userInput[1] + "|");
 
 		}
-	}
 
+		#endregion
+
+		#region Misc Menu Items
+
+		private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			Application.Exit();
+		}
+
+		private void Point_List_Reset(object sender, EventArgs e)
+		{
+			PointContainer.PointList.Clear();
+		}
+
+		private void BerthListReset(object sender, EventArgs e)
+		{
+			BerthContainer.BerthList.Clear();
+		}
+
+		private void SignalListReset(object sender, EventArgs e)
+		{
+			SignalContainer.SignalList.Clear();
+		}
+
+
+		private void connectToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			TcpConnectForm.ShowDialog();
+
+			Connection.Connect(Settings.Default.ipAddress, Settings.Default.clientPort);
+		}
+
+		#endregion
+	}
 }
+
+
 
 /*
 

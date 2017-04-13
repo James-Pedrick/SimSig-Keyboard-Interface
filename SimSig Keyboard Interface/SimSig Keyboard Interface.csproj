@@ -22,7 +22,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationRevision>2</ApplicationRevision>
     <ApplicationVersion>0.0.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -97,9 +97,6 @@
     <Compile Include="Client\TCP\TcpMain.cs" />
     <Compile Include="Data\SaveGameParser.cs" />
     <Compile Include="Settings.cs" />
-    <Compile Include="User_Interface\MainMenu_MenuBreakout.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="User_Interface\Main_Menu.cs">
       <SubType>Form</SubType>
     </Compile>
