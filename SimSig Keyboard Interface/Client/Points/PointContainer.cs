@@ -37,13 +37,5 @@ namespace SimSig_Keyboard_Interface.Client.Points
 				PointList.Single(b => b.HexId == hId).Number = pointId;
 
 		}
-
-
-
-
-
-
-
-
 	}
 }

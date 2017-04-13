@@ -1,11 +1,12 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Linq;
 
 namespace SimSig_Keyboard_Interface.Client.Signals
 {
 	public class SignalContainer
 	{
+
+
 
 		public static BindingList<Signals> SignalList = new BindingList<Signals>();
 
@@ -17,7 +18,7 @@ namespace SimSig_Keyboard_Interface.Client.Signals
 		{
 
 			if (SignalList.SingleOrDefault(s => s.HexId == hId) == null)
-				SignalList.Add(new Signals { HexId = hId, Number = sNum });
+				SignalList.Add(new Signals {HexId = hId, Number = sNum});
 			else
 				SignalList.Single(s => s.HexId == hId).Number = sNum;
 

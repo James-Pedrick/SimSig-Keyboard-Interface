@@ -42,6 +42,11 @@
 			this.berthsResetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.pointsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.signalResetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.logsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.savePointsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.saveSignalsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.saveBerthsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.saveRawToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.tabControl = new System.Windows.Forms.TabControl();
 			this.debug = new System.Windows.Forms.TabPage();
 			this.debugTabs = new System.Windows.Forms.TabControl();
@@ -51,8 +56,11 @@
 			this.debugSignalView = new System.Windows.Forms.DataGridView();
 			this.debugPoints = new System.Windows.Forms.TabPage();
 			this.debugPointView = new System.Windows.Forms.DataGridView();
+			this.debugRaw = new System.Windows.Forms.TabPage();
+			this.debugRawTcpDisplay = new System.Windows.Forms.ListBox();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.loadSaveGameXML = new System.Windows.Forms.OpenFileDialog();
+			this.dataSave = new System.Windows.Forms.SaveFileDialog();
 			this.menuStrip.SuspendLayout();
 			this.tabControl.SuspendLayout();
 			this.debug.SuspendLayout();
@@ -63,6 +71,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.debugSignalView)).BeginInit();
 			this.debugPoints.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.debugPointView)).BeginInit();
+			this.debugRaw.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// menuStrip
@@ -72,7 +81,8 @@
             this.dataToolStripMenuItem,
             this.tcpToolStripMenuItem,
             this.networkToolStripMenuItem,
-            this.dataToolStripMenuItem1});
+            this.dataToolStripMenuItem1,
+            this.logsToolStripMenuItem});
 			this.menuStrip.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip.Name = "menuStrip";
 			this.menuStrip.Size = new System.Drawing.Size(803, 24);
@@ -178,6 +188,42 @@
 			this.signalResetToolStripMenuItem.Text = "Signals Reset";
 			this.signalResetToolStripMenuItem.Click += new System.EventHandler(this.SignalListReset);
 			// 
+			// logsToolStripMenuItem
+			// 
+			this.logsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.savePointsToolStripMenuItem,
+            this.saveSignalsToolStripMenuItem,
+            this.saveBerthsToolStripMenuItem,
+            this.saveRawToolStripMenuItem});
+			this.logsToolStripMenuItem.Name = "logsToolStripMenuItem";
+			this.logsToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+			this.logsToolStripMenuItem.Text = "Logs";
+			// 
+			// savePointsToolStripMenuItem
+			// 
+			this.savePointsToolStripMenuItem.Name = "savePointsToolStripMenuItem";
+			this.savePointsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.savePointsToolStripMenuItem.Text = "Save Points";
+			// 
+			// saveSignalsToolStripMenuItem
+			// 
+			this.saveSignalsToolStripMenuItem.Name = "saveSignalsToolStripMenuItem";
+			this.saveSignalsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.saveSignalsToolStripMenuItem.Text = "Save Signals";
+			// 
+			// saveBerthsToolStripMenuItem
+			// 
+			this.saveBerthsToolStripMenuItem.Name = "saveBerthsToolStripMenuItem";
+			this.saveBerthsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.saveBerthsToolStripMenuItem.Text = "Save Berths";
+			// 
+			// saveRawToolStripMenuItem
+			// 
+			this.saveRawToolStripMenuItem.Name = "saveRawToolStripMenuItem";
+			this.saveRawToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.saveRawToolStripMenuItem.Text = "Save Raw";
+			this.saveRawToolStripMenuItem.Click += new System.EventHandler(this.SaveRawToolStripMenuItem_Click);
+			// 
 			// tabControl
 			// 
 			this.tabControl.Controls.Add(this.debug);
@@ -206,6 +252,7 @@
 			this.debugTabs.Controls.Add(this.debugBerths);
 			this.debugTabs.Controls.Add(this.debugSignals);
 			this.debugTabs.Controls.Add(this.debugPoints);
+			this.debugTabs.Controls.Add(this.debugRaw);
 			this.debugTabs.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.debugTabs.Location = new System.Drawing.Point(0, 0);
 			this.debugTabs.Multiline = true;
@@ -288,6 +335,25 @@
 			this.debugPointView.Size = new System.Drawing.Size(781, 429);
 			this.debugPointView.TabIndex = 1;
 			// 
+			// debugRaw
+			// 
+			this.debugRaw.Controls.Add(this.debugRawTcpDisplay);
+			this.debugRaw.Location = new System.Drawing.Point(4, 22);
+			this.debugRaw.Name = "debugRaw";
+			this.debugRaw.Size = new System.Drawing.Size(787, 435);
+			this.debugRaw.TabIndex = 3;
+			this.debugRaw.Text = "Raw";
+			this.debugRaw.UseVisualStyleBackColor = true;
+			// 
+			// debugRawTcpDisplay
+			// 
+			this.debugRawTcpDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.debugRawTcpDisplay.FormattingEnabled = true;
+			this.debugRawTcpDisplay.Location = new System.Drawing.Point(0, 0);
+			this.debugRawTcpDisplay.Name = "debugRawTcpDisplay";
+			this.debugRawTcpDisplay.Size = new System.Drawing.Size(787, 435);
+			this.debugRawTcpDisplay.TabIndex = 4;
+			// 
 			// tabPage1
 			// 
 			this.tabPage1.Location = new System.Drawing.Point(4, 22);
@@ -301,6 +367,7 @@
 			// loadSaveGameXML
 			// 
 			this.loadSaveGameXML.FileName = "openFileDialog1";
+			this.loadSaveGameXML.FileOk += new System.ComponentModel.CancelEventHandler(this.loadSaveGameXML_FileOk);
 			// 
 			// MainMenu
 			// 
@@ -323,6 +390,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.debugSignalView)).EndInit();
 			this.debugPoints.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.debugPointView)).EndInit();
+			this.debugRaw.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -343,18 +411,26 @@
 		private System.Windows.Forms.ToolStripMenuItem networkToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem clientToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem connectToolStripMenuItem;
-		private System.Windows.Forms.TabControl debugTabs;
-		private System.Windows.Forms.TabPage debugPoints;
-		private System.Windows.Forms.DataGridView debugPointView;
 		private System.Windows.Forms.ToolStripMenuItem tcpConnect;
 		private System.Windows.Forms.ToolStripMenuItem dataToolStripMenuItem1;
 		private System.Windows.Forms.ToolStripMenuItem pointsToolStripMenuItem;
-		private System.Windows.Forms.TabPage debugSignals;
-		private System.Windows.Forms.DataGridView debugSignalView;
-		private System.Windows.Forms.TabPage debugBerths;
-		private System.Windows.Forms.DataGridView debugBerthView;
 		private System.Windows.Forms.ToolStripMenuItem berthsResetToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem signalResetToolStripMenuItem;
+		private System.Windows.Forms.TabControl debugTabs;
+		private System.Windows.Forms.TabPage debugBerths;
+		private System.Windows.Forms.DataGridView debugBerthView;
+		private System.Windows.Forms.TabPage debugSignals;
+		private System.Windows.Forms.DataGridView debugSignalView;
+		private System.Windows.Forms.TabPage debugPoints;
+		private System.Windows.Forms.DataGridView debugPointView;
+		private System.Windows.Forms.TabPage debugRaw;
+		public System.Windows.Forms.ListBox debugRawTcpDisplay;
+		private System.Windows.Forms.ToolStripMenuItem logsToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem savePointsToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem saveSignalsToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem saveBerthsToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem saveRawToolStripMenuItem;
+		private System.Windows.Forms.SaveFileDialog dataSave;
 	}
 }
 
