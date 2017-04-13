@@ -58,7 +58,9 @@
 			this.debugPointView = new System.Windows.Forms.DataGridView();
 			this.debugRaw = new System.Windows.Forms.TabPage();
 			this.debugRawTcpDisplay = new System.Windows.Forms.ListBox();
-			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.keyboardInterface = new System.Windows.Forms.TabPage();
+			this.keyboardInterpose = new System.Windows.Forms.Button();
+			this.userInputString = new System.Windows.Forms.TextBox();
 			this.loadSaveGameXML = new System.Windows.Forms.OpenFileDialog();
 			this.dataSave = new System.Windows.Forms.SaveFileDialog();
 			this.menuStrip.SuspendLayout();
@@ -72,6 +74,7 @@
 			this.debugPoints.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.debugPointView)).BeginInit();
 			this.debugRaw.SuspendLayout();
+			this.keyboardInterface.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// menuStrip
@@ -202,32 +205,31 @@
 			// savePointsToolStripMenuItem
 			// 
 			this.savePointsToolStripMenuItem.Name = "savePointsToolStripMenuItem";
-			this.savePointsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.savePointsToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
 			this.savePointsToolStripMenuItem.Text = "Save Points";
 			// 
 			// saveSignalsToolStripMenuItem
 			// 
 			this.saveSignalsToolStripMenuItem.Name = "saveSignalsToolStripMenuItem";
-			this.saveSignalsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.saveSignalsToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
 			this.saveSignalsToolStripMenuItem.Text = "Save Signals";
 			// 
 			// saveBerthsToolStripMenuItem
 			// 
 			this.saveBerthsToolStripMenuItem.Name = "saveBerthsToolStripMenuItem";
-			this.saveBerthsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.saveBerthsToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
 			this.saveBerthsToolStripMenuItem.Text = "Save Berths";
 			// 
 			// saveRawToolStripMenuItem
 			// 
 			this.saveRawToolStripMenuItem.Name = "saveRawToolStripMenuItem";
-			this.saveRawToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.saveRawToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
 			this.saveRawToolStripMenuItem.Text = "Save Raw";
-			this.saveRawToolStripMenuItem.Click += new System.EventHandler(this.SaveRawToolStripMenuItem_Click);
 			// 
 			// tabControl
 			// 
 			this.tabControl.Controls.Add(this.debug);
-			this.tabControl.Controls.Add(this.tabPage1);
+			this.tabControl.Controls.Add(this.keyboardInterface);
 			this.tabControl.Cursor = System.Windows.Forms.Cursors.Default;
 			this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tabControl.Location = new System.Drawing.Point(0, 24);
@@ -354,20 +356,43 @@
 			this.debugRawTcpDisplay.Size = new System.Drawing.Size(787, 435);
 			this.debugRawTcpDisplay.TabIndex = 4;
 			// 
-			// tabPage1
+			// keyboardInterface
 			// 
-			this.tabPage1.Location = new System.Drawing.Point(4, 22);
-			this.tabPage1.Name = "tabPage1";
-			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(795, 461);
-			this.tabPage1.TabIndex = 0;
-			this.tabPage1.Text = "tabPage1";
-			this.tabPage1.UseVisualStyleBackColor = true;
+			this.keyboardInterface.BackColor = System.Drawing.Color.Black;
+			this.keyboardInterface.Controls.Add(this.keyboardInterpose);
+			this.keyboardInterface.Controls.Add(this.userInputString);
+			this.keyboardInterface.Location = new System.Drawing.Point(4, 22);
+			this.keyboardInterface.Name = "keyboardInterface";
+			this.keyboardInterface.Padding = new System.Windows.Forms.Padding(3);
+			this.keyboardInterface.Size = new System.Drawing.Size(795, 461);
+			this.keyboardInterface.TabIndex = 0;
+			this.keyboardInterface.Text = "Keyboard Interface";
+			// 
+			// keyboardInterpose
+			// 
+			this.keyboardInterpose.Location = new System.Drawing.Point(8, 67);
+			this.keyboardInterpose.Name = "keyboardInterpose";
+			this.keyboardInterpose.Size = new System.Drawing.Size(123, 23);
+			this.keyboardInterpose.TabIndex = 1;
+			this.keyboardInterpose.Text = "Interpose";
+			this.keyboardInterpose.UseVisualStyleBackColor = true;
+			this.keyboardInterpose.Click += new System.EventHandler(this.keyboardInterpose_Click);
+			// 
+			// userInputString
+			// 
+			this.userInputString.BackColor = System.Drawing.SystemColors.InfoText;
+			this.userInputString.Font = new System.Drawing.Font("Engravers MT", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.userInputString.ForeColor = System.Drawing.Color.Cyan;
+			this.userInputString.Location = new System.Drawing.Point(7, 7);
+			this.userInputString.MinimumSize = new System.Drawing.Size(4, 25);
+			this.userInputString.Name = "userInputString";
+			this.userInputString.Size = new System.Drawing.Size(294, 25);
+			this.userInputString.TabIndex = 0;
+			this.userInputString.Text = "1212";
 			// 
 			// loadSaveGameXML
 			// 
 			this.loadSaveGameXML.FileName = "openFileDialog1";
-			this.loadSaveGameXML.FileOk += new System.ComponentModel.CancelEventHandler(this.loadSaveGameXML_FileOk);
 			// 
 			// MainMenu
 			// 
@@ -391,6 +416,8 @@
 			this.debugPoints.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.debugPointView)).EndInit();
 			this.debugRaw.ResumeLayout(false);
+			this.keyboardInterface.ResumeLayout(false);
+			this.keyboardInterface.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -403,7 +430,7 @@
 		private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem tcpToolStripMenuItem;
 		private System.Windows.Forms.TabControl tabControl;
-		private System.Windows.Forms.TabPage tabPage1;
+		private System.Windows.Forms.TabPage keyboardInterface;
 		private System.Windows.Forms.TabPage debug;
 		private System.Windows.Forms.ToolStripMenuItem dataToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem loadSaveXML;
@@ -431,6 +458,8 @@
 		private System.Windows.Forms.ToolStripMenuItem saveBerthsToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem saveRawToolStripMenuItem;
 		private System.Windows.Forms.SaveFileDialog dataSave;
+		public System.Windows.Forms.TextBox userInputString;
+		private System.Windows.Forms.Button keyboardInterpose;
 	}
 }
 

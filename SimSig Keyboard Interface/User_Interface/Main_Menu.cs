@@ -130,27 +130,21 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			}
 		}
 
-		private void SaveRawToolStripMenuItem_Click(object sender, EventArgs e)
+		private void keyboardInterpose_Click(object sender, EventArgs e)
 		{
+			string[] userInput = userInputString.Text.Split(' ');
 
-
-			
-
-		}
-
-		private void loadSaveGameXML_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
-		{
 
 		}
 	}
 
 }
 
-
-
-
-
 /*
+
+
+
+
 
 
 
