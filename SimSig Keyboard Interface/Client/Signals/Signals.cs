@@ -6,81 +6,82 @@ namespace SimSig_Keyboard_Interface.Client.Signals
 	{
 		public string HexId { get; set; }
 		public string Number { get; set; }
+		public string Aspect { get; set; } = "R";
 
+		public bool IsoAppS { get; set; } = false;
+		public bool RemAppS { get; set; } = false;
+		public bool IsoAppA { get; set; } = false;
+		public bool RemAppA { get; set; } = false;
+		public bool IsoAppR { get; set; } = false;
+		public bool RemAppR { get; set; } = false;
 
+		public bool SignalOut { get; set; } = false;
+		public bool SignalNormal { get; set; } = false;
+		public bool SignalAuto { get; set; } = false;
 
-		public static string SignalUpdateAspect(string data)
+		/*********************************************************************/
+		/* STILL NEEDING TO BE LOOKED AT:	Signal Update Controls as these  */
+		/* don't seem right, or appear to not be correctly updating          */
+		/*********************************************************************/
+
+		public void SignalUpdateAspect(string data)
 		{
 			int intValue = int.Parse(data, System.Globalization.NumberStyles.HexNumber);
-			string aspect = "R";
-
-			if (intValue == 0x00) aspect = "R";
-			if (intValue == 0x01) aspect = "C";
-			if (intValue == 0x02) aspect = "Y";
-			if (intValue == 0x03) aspect = "FY";
-			if (intValue == 0x04) aspect = "YY";
-			if (intValue == 0x05) aspect = "FYY";
-			if (intValue == 0x06) aspect = "G";
-
-			return aspect;
-
-
+	
+			if (intValue == 0x00) Aspect = "R";
+			if (intValue == 0x01) Aspect = "C";
+			if (intValue == 0x02) Aspect = "Y";
+			if (intValue == 0x03) Aspect = "FY";
+			if (intValue == 0x04) Aspect = "YY";
+			if (intValue == 0x05) Aspect = "FYY";
+			if (intValue == 0x06) Aspect = "G";
 		}
 
-		public static bool[] SignalUpdateRem(string data)
+		public void SignalUpdateRem(string data)
 		{
-			bool isoAppliedSignal = false;
-			bool remAppliedSignal = false;
-
-			bool remAppliedAuto = false;
-			bool isoAppliedAuto = false;
-
-			bool isoAppliedReplace = false;
-			bool remAppliedReplace = false;
 
 
 			int intValue = int.Parse(data, System.Globalization.NumberStyles.HexNumber);
 
 
-			if (intValue >= 0x80) { isoAppliedReplace = true; intValue = intValue - 0x80; }
-			if (intValue >= 0x40) { remAppliedReplace = true; intValue = intValue - 0x40; }
+			if (intValue >= 0x80) { IsoAppR = true; intValue = intValue - 0x80; } else { IsoAppR = false; }
+			if (intValue >= 0x40) { RemAppR = true; intValue = intValue - 0x40; } else { RemAppR = false; }
 
 
-			if (intValue >= 0x08) { remAppliedAuto = true; intValue = intValue - 0x08; }
-			if (intValue >= 0x04) { isoAppliedAuto = true; intValue = intValue - 0x04; }
+			if (intValue >= 0x08) { RemAppA = true; intValue = intValue - 0x08; } else { RemAppA = false; }
+			if (intValue >= 0x04) { IsoAppA = true; intValue = intValue - 0x04; } else { IsoAppA = false; }
 
 
-			if (intValue >= 0x02) { isoAppliedSignal = true; intValue = intValue - 0x02; }
-			if (intValue >= 0x01) { remAppliedSignal = true; }
-
-			bool[] returnReminders = { isoAppliedReplace, remAppliedReplace, remAppliedAuto, isoAppliedAuto, isoAppliedSignal, remAppliedSignal };
-			return returnReminders;
+			if (intValue >= 0x02) { IsoAppS = true; intValue = intValue - 0x02; } else { IsoAppS = false; }
+			if (intValue >= 0x01) { RemAppS = true; } else { RemAppS = false; }
 		}
 
-		public static bool[] SignalUpdateControl(string data)
-		{
-			var signalOut = false;
-			var signalNormal = false;
-			var signalAuto = false;
 
-			switch (Convert.ToInt32(data))
+
+
+		public void SignalUpdateControls(string data)
+		{
+
+			switch (int.Parse(data, System.Globalization.NumberStyles.HexNumber))
 			{
 				case 0x00:
-					signalOut = true;
+					SignalAuto = false;
+					SignalNormal = false;
+					SignalOut = true;
 					break;
 				case 0x02:
-					signalNormal = true;
+					SignalAuto = false;
+					SignalNormal = true;
+					SignalAuto = false;
 					break;
 				case 0x03:
-					signalAuto = true;
+					SignalAuto = false;
+					SignalNormal = false;
+					SignalAuto = true;
 					break;
 			}
 
-
-
-
-			bool[] returnVal = { signalOut, signalNormal, signalAuto };
-			return returnVal;
+			
 		}
 
 	}

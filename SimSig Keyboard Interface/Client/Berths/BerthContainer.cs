@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Linq;
+using System.Net.Http.Headers;
 
 namespace SimSig_Keyboard_Interface.Client.Berths
 {
@@ -21,9 +22,6 @@ namespace SimSig_Keyboard_Interface.Client.Berths
 			}
 		}
 
-
-
-
 		public void AddBerthTcp(string hId, string bContent)
 		{
 			if (BerthList.SingleOrDefault(b => b.HexId == hId) == null)
@@ -36,19 +34,6 @@ namespace SimSig_Keyboard_Interface.Client.Berths
 			}
 		}
 
-
-
-
-
-        public void DataUpdateXml(string data)
-        {
-            var hexId = data.Substring(0, 4);
-            var berthContent = data.Substring(4, 4);
-
-            AddBerthXml(hexId, berthContent);
-        }
-
-
         public void DataUpdateTcp(string data)
         {
             var hexId = data.Substring(0, 4);
@@ -60,16 +45,13 @@ namespace SimSig_Keyboard_Interface.Client.Berths
             AddBerthTcp(hexId, berthContent);
         }
 
-
-        public string PrintBerths()
+		public string BerthHIdLookup(string data)
 		{
-			string done = "";
 
-			foreach (Berths x in BerthList)
-				done = done + x.HexId.PadRight(6) + x.BerthId + @"\n";
+			var berth = BerthList.Single(b => b.BerthId == data);
 
-
-			return done;
+			return berth.HexId;
 		}
+
 	}
 }

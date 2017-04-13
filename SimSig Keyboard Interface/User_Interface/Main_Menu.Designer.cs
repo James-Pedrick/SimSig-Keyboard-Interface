@@ -42,6 +42,11 @@
 			this.berthsResetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.pointsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.signalResetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.logsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.savePointsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.saveSignalsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.saveBerthsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.saveRawToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.tabControl = new System.Windows.Forms.TabControl();
 			this.debug = new System.Windows.Forms.TabPage();
 			this.debugTabs = new System.Windows.Forms.TabControl();
@@ -51,8 +56,13 @@
 			this.debugSignalView = new System.Windows.Forms.DataGridView();
 			this.debugPoints = new System.Windows.Forms.TabPage();
 			this.debugPointView = new System.Windows.Forms.DataGridView();
-			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.debugRaw = new System.Windows.Forms.TabPage();
+			this.debugRawTcpDisplay = new System.Windows.Forms.ListBox();
+			this.keyboardInterface = new System.Windows.Forms.TabPage();
+			this.keyboardInterpose = new System.Windows.Forms.Button();
+			this.userInputString = new System.Windows.Forms.TextBox();
 			this.loadSaveGameXML = new System.Windows.Forms.OpenFileDialog();
+			this.dataSave = new System.Windows.Forms.SaveFileDialog();
 			this.menuStrip.SuspendLayout();
 			this.tabControl.SuspendLayout();
 			this.debug.SuspendLayout();
@@ -63,6 +73,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.debugSignalView)).BeginInit();
 			this.debugPoints.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.debugPointView)).BeginInit();
+			this.debugRaw.SuspendLayout();
+			this.keyboardInterface.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// menuStrip
@@ -72,7 +84,8 @@
             this.dataToolStripMenuItem,
             this.tcpToolStripMenuItem,
             this.networkToolStripMenuItem,
-            this.dataToolStripMenuItem1});
+            this.dataToolStripMenuItem1,
+            this.logsToolStripMenuItem});
 			this.menuStrip.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip.Name = "menuStrip";
 			this.menuStrip.Size = new System.Drawing.Size(803, 24);
@@ -178,10 +191,45 @@
 			this.signalResetToolStripMenuItem.Text = "Signals Reset";
 			this.signalResetToolStripMenuItem.Click += new System.EventHandler(this.SignalListReset);
 			// 
+			// logsToolStripMenuItem
+			// 
+			this.logsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.savePointsToolStripMenuItem,
+            this.saveSignalsToolStripMenuItem,
+            this.saveBerthsToolStripMenuItem,
+            this.saveRawToolStripMenuItem});
+			this.logsToolStripMenuItem.Name = "logsToolStripMenuItem";
+			this.logsToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+			this.logsToolStripMenuItem.Text = "Logs";
+			// 
+			// savePointsToolStripMenuItem
+			// 
+			this.savePointsToolStripMenuItem.Name = "savePointsToolStripMenuItem";
+			this.savePointsToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+			this.savePointsToolStripMenuItem.Text = "Save Points";
+			// 
+			// saveSignalsToolStripMenuItem
+			// 
+			this.saveSignalsToolStripMenuItem.Name = "saveSignalsToolStripMenuItem";
+			this.saveSignalsToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+			this.saveSignalsToolStripMenuItem.Text = "Save Signals";
+			// 
+			// saveBerthsToolStripMenuItem
+			// 
+			this.saveBerthsToolStripMenuItem.Name = "saveBerthsToolStripMenuItem";
+			this.saveBerthsToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+			this.saveBerthsToolStripMenuItem.Text = "Save Berths";
+			// 
+			// saveRawToolStripMenuItem
+			// 
+			this.saveRawToolStripMenuItem.Name = "saveRawToolStripMenuItem";
+			this.saveRawToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+			this.saveRawToolStripMenuItem.Text = "Save Raw";
+			// 
 			// tabControl
 			// 
 			this.tabControl.Controls.Add(this.debug);
-			this.tabControl.Controls.Add(this.tabPage1);
+			this.tabControl.Controls.Add(this.keyboardInterface);
 			this.tabControl.Cursor = System.Windows.Forms.Cursors.Default;
 			this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tabControl.Location = new System.Drawing.Point(0, 24);
@@ -206,6 +254,7 @@
 			this.debugTabs.Controls.Add(this.debugBerths);
 			this.debugTabs.Controls.Add(this.debugSignals);
 			this.debugTabs.Controls.Add(this.debugPoints);
+			this.debugTabs.Controls.Add(this.debugRaw);
 			this.debugTabs.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.debugTabs.Location = new System.Drawing.Point(0, 0);
 			this.debugTabs.Multiline = true;
@@ -226,14 +275,14 @@
 			// 
 			// debugBerthView
 			// 
-			this.debugBerthView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
 			this.debugBerthView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.debugBerthView.Location = new System.Drawing.Point(3, 3);
+			this.debugBerthView.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.debugBerthView.Location = new System.Drawing.Point(0, 0);
 			this.debugBerthView.Name = "debugBerthView";
 			this.debugBerthView.ReadOnly = true;
-			this.debugBerthView.Size = new System.Drawing.Size(781, 429);
+			this.debugBerthView.RowTemplate.ReadOnly = true;
+			this.debugBerthView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.debugBerthView.Size = new System.Drawing.Size(787, 435);
 			this.debugBerthView.TabIndex = 2;
 			// 
 			// debugSignals
@@ -248,14 +297,18 @@
 			// 
 			// debugSignalView
 			// 
-			this.debugSignalView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.debugSignalView.AllowUserToAddRows = false;
+			this.debugSignalView.AllowUserToDeleteRows = false;
+			this.debugSignalView.AllowUserToOrderColumns = true;
+			this.debugSignalView.AllowUserToResizeColumns = false;
+			this.debugSignalView.AllowUserToResizeRows = false;
+			this.debugSignalView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
 			this.debugSignalView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.debugSignalView.Location = new System.Drawing.Point(3, 3);
+			this.debugSignalView.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.debugSignalView.Location = new System.Drawing.Point(0, 0);
 			this.debugSignalView.Name = "debugSignalView";
 			this.debugSignalView.ReadOnly = true;
-			this.debugSignalView.Size = new System.Drawing.Size(781, 429);
+			this.debugSignalView.Size = new System.Drawing.Size(787, 435);
 			this.debugSignalView.TabIndex = 1;
 			// 
 			// debugPoints
@@ -271,25 +324,71 @@
 			// 
 			// debugPointView
 			// 
-			this.debugPointView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.debugPointView.AllowUserToAddRows = false;
+			this.debugPointView.AllowUserToDeleteRows = false;
+			this.debugPointView.AllowUserToOrderColumns = true;
+			this.debugPointView.AllowUserToResizeColumns = false;
+			this.debugPointView.AllowUserToResizeRows = false;
 			this.debugPointView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.debugPointView.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.debugPointView.Location = new System.Drawing.Point(3, 3);
 			this.debugPointView.Name = "debugPointView";
 			this.debugPointView.ReadOnly = true;
 			this.debugPointView.Size = new System.Drawing.Size(781, 429);
 			this.debugPointView.TabIndex = 1;
 			// 
-			// tabPage1
+			// debugRaw
 			// 
-			this.tabPage1.Location = new System.Drawing.Point(4, 22);
-			this.tabPage1.Name = "tabPage1";
-			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(795, 461);
-			this.tabPage1.TabIndex = 0;
-			this.tabPage1.Text = "tabPage1";
-			this.tabPage1.UseVisualStyleBackColor = true;
+			this.debugRaw.Controls.Add(this.debugRawTcpDisplay);
+			this.debugRaw.Location = new System.Drawing.Point(4, 22);
+			this.debugRaw.Name = "debugRaw";
+			this.debugRaw.Size = new System.Drawing.Size(787, 435);
+			this.debugRaw.TabIndex = 3;
+			this.debugRaw.Text = "Raw";
+			this.debugRaw.UseVisualStyleBackColor = true;
+			// 
+			// debugRawTcpDisplay
+			// 
+			this.debugRawTcpDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.debugRawTcpDisplay.FormattingEnabled = true;
+			this.debugRawTcpDisplay.Location = new System.Drawing.Point(0, 0);
+			this.debugRawTcpDisplay.Name = "debugRawTcpDisplay";
+			this.debugRawTcpDisplay.Size = new System.Drawing.Size(787, 435);
+			this.debugRawTcpDisplay.TabIndex = 4;
+			// 
+			// keyboardInterface
+			// 
+			this.keyboardInterface.BackColor = System.Drawing.Color.Black;
+			this.keyboardInterface.Controls.Add(this.keyboardInterpose);
+			this.keyboardInterface.Controls.Add(this.userInputString);
+			this.keyboardInterface.Location = new System.Drawing.Point(4, 22);
+			this.keyboardInterface.Name = "keyboardInterface";
+			this.keyboardInterface.Padding = new System.Windows.Forms.Padding(3);
+			this.keyboardInterface.Size = new System.Drawing.Size(795, 461);
+			this.keyboardInterface.TabIndex = 0;
+			this.keyboardInterface.Text = "Keyboard Interface";
+			// 
+			// keyboardInterpose
+			// 
+			this.keyboardInterpose.Location = new System.Drawing.Point(8, 67);
+			this.keyboardInterpose.Name = "keyboardInterpose";
+			this.keyboardInterpose.Size = new System.Drawing.Size(123, 23);
+			this.keyboardInterpose.TabIndex = 1;
+			this.keyboardInterpose.Text = "Interpose";
+			this.keyboardInterpose.UseVisualStyleBackColor = true;
+			this.keyboardInterpose.Click += new System.EventHandler(this.keyboardInterpose_Click);
+			// 
+			// userInputString
+			// 
+			this.userInputString.BackColor = System.Drawing.SystemColors.InfoText;
+			this.userInputString.Font = new System.Drawing.Font("Engravers MT", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.userInputString.ForeColor = System.Drawing.Color.Cyan;
+			this.userInputString.Location = new System.Drawing.Point(7, 7);
+			this.userInputString.MinimumSize = new System.Drawing.Size(4, 25);
+			this.userInputString.Name = "userInputString";
+			this.userInputString.Size = new System.Drawing.Size(294, 25);
+			this.userInputString.TabIndex = 0;
+			this.userInputString.Text = "1212";
 			// 
 			// loadSaveGameXML
 			// 
@@ -316,6 +415,9 @@
 			((System.ComponentModel.ISupportInitialize)(this.debugSignalView)).EndInit();
 			this.debugPoints.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.debugPointView)).EndInit();
+			this.debugRaw.ResumeLayout(false);
+			this.keyboardInterface.ResumeLayout(false);
+			this.keyboardInterface.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -328,7 +430,7 @@
 		private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem tcpToolStripMenuItem;
 		private System.Windows.Forms.TabControl tabControl;
-		private System.Windows.Forms.TabPage tabPage1;
+		private System.Windows.Forms.TabPage keyboardInterface;
 		private System.Windows.Forms.TabPage debug;
 		private System.Windows.Forms.ToolStripMenuItem dataToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem loadSaveXML;
@@ -336,18 +438,28 @@
 		private System.Windows.Forms.ToolStripMenuItem networkToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem clientToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem connectToolStripMenuItem;
-		private System.Windows.Forms.TabControl debugTabs;
-		private System.Windows.Forms.TabPage debugPoints;
-		private System.Windows.Forms.DataGridView debugPointView;
 		private System.Windows.Forms.ToolStripMenuItem tcpConnect;
 		private System.Windows.Forms.ToolStripMenuItem dataToolStripMenuItem1;
 		private System.Windows.Forms.ToolStripMenuItem pointsToolStripMenuItem;
-		private System.Windows.Forms.TabPage debugSignals;
-		private System.Windows.Forms.DataGridView debugSignalView;
-		private System.Windows.Forms.TabPage debugBerths;
-		private System.Windows.Forms.DataGridView debugBerthView;
 		private System.Windows.Forms.ToolStripMenuItem berthsResetToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem signalResetToolStripMenuItem;
+		private System.Windows.Forms.TabControl debugTabs;
+		private System.Windows.Forms.TabPage debugBerths;
+		private System.Windows.Forms.DataGridView debugBerthView;
+		private System.Windows.Forms.TabPage debugSignals;
+		private System.Windows.Forms.DataGridView debugSignalView;
+		private System.Windows.Forms.TabPage debugPoints;
+		private System.Windows.Forms.DataGridView debugPointView;
+		private System.Windows.Forms.TabPage debugRaw;
+		public System.Windows.Forms.ListBox debugRawTcpDisplay;
+		private System.Windows.Forms.ToolStripMenuItem logsToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem savePointsToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem saveSignalsToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem saveBerthsToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem saveRawToolStripMenuItem;
+		private System.Windows.Forms.SaveFileDialog dataSave;
+		public System.Windows.Forms.TextBox userInputString;
+		private System.Windows.Forms.Button keyboardInterpose;
 	}
 }
 

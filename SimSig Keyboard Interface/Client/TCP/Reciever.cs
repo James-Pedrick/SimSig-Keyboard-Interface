@@ -44,9 +44,9 @@ namespace SimSig_Keyboard_Interface.Client.TCP
                     }
 					
                 }
-                catch
+                catch(Exception e)
                 {
-                    throw;
+                    Console.WriteLine(e);
                 }
             }
             private void OnDataReceived(object sender, MsgEventArgs e)

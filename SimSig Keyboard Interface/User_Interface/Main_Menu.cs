@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Forms;
 using SimSig_Keyboard_Interface.Client.Berths;
 using SimSig_Keyboard_Interface.Client.Points;
@@ -12,122 +13,138 @@ using SimSig_Keyboard_Interface.Properties;
 
 namespace SimSig_Keyboard_Interface.User_Interface
 {
-    public partial class MainMenu : Form
-    {
+	public partial class MainMenu : Form
+	{
 
 
-        public static TcpClient Connection = new TcpClient();
-        public static TcpConnect TcpConnectForm = new TcpConnect();
-
-
-
-        /*************************/
-        /*Creating containers    */
-        /*************************/
-        private static BerthContainer _berths = new BerthContainer();
-        private static PointContainer _points = new PointContainer();
-        private static SignalContainer _signals = new SignalContainer();
+		public static TcpClient Connection = new TcpClient();
+		public static TcpConnect TcpConnectForm = new TcpConnect();
 
 
 
+		/*************************/
+		/*Creating containers    */
+		/*************************/
+		private static BerthContainer _berths = new BerthContainer();
+
+		private static PointContainer _points = new PointContainer();
+		private static SignalContainer _signals = new SignalContainer();
 
 
 
-        public MainMenu()
-        {
-            InitializeComponent();
 
 
-            debugBerthView.DataSource = BerthContainer.BerthList;
-            debugPointView.DataSource = PointContainer.PointList;
-            debugSignalView.DataSource = SignalContainer.SignalList;
 
-            Connection.DataReceived += TcpDataUpdate;
-
-        }
-
-        private void MenuLoadSaveXml(object sender, EventArgs e)
-        {
+		public MainMenu()
+		{
+			InitializeComponent();
 
 
-            if (loadSaveXML != null)
-            {
-                loadSaveGameXML.Title = @"Open saved XML save game";
-                loadSaveGameXML.Filter = @"XML Files | *xml";
+			debugBerthView.DataSource = BerthContainer.BerthList;
+			debugPointView.DataSource = PointContainer.PointList;
+			debugSignalView.DataSource = SignalContainer.SignalList;
+
+			Connection.DataReceived += TcpDataUpdate;
+
+		}
+
+		private void MenuLoadSaveXml(object sender, EventArgs e)
+		{
 
 
-                if (loadSaveGameXML.ShowDialog() == DialogResult.OK)
-                    Settings.Default.wi = loadSaveGameXML.InitialDirectory + loadSaveGameXML.FileName;
-                Data.SaveGameParser.Parse(ref _berths, ref _points, ref _signals);          //Parse load with ref to points container
-
-            }
-            Refresh();
-
-        }
-
-        private void MainMenu_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TcpDataUpdate(Object sender, MsgEventArgs e)
-        {
-            string[] receivedStrings = e.Msg.Split('|');
+			if (loadSaveXML != null)
+			{
+				loadSaveGameXML.Title = @"Open saved XML save game";
+				loadSaveGameXML.Filter = @"XML Files | *xml";
 
 
-            foreach (string element in receivedStrings)
-            {
-                //    Console.WriteLine(element);
-                if (element.StartsWith("sS004F"))
-                    Console.WriteLine(element);
+				if (loadSaveGameXML.ShowDialog() == DialogResult.OK)
+					Settings.Default.wi = loadSaveGameXML.InitialDirectory + loadSaveGameXML.FileName;
+				Data.SaveGameParser.Parse(ref _berths, ref _points, ref _signals); //Parse load with ref to points container
 
-                if (element.StartsWith("sB"))
-                {
-                    if (InvokeRequired)
-                    {
-                        Invoke(new MethodInvoker(delegate
-                        {
-                            var z = element.Substring(2, 8);
-                            _berths.DataUpdateTcp(z);
-                            Refresh();
+			}
+			Refresh();
 
-                        }));
-                    }
-                }
-                if (element.StartsWith("sP"))
-                {
-                    if (InvokeRequired)
-                        Invoke(new MethodInvoker(delegate
-                        {
-                            var z = element.Substring(2, 7);
-                            _points.DataUpdateTcp(z);
-                            Refresh();
+		}
 
-                        }));
-                }
-	        /*    if (element.StartsWith("sS004F"))
-	            {
-		            if (InvokeRequired)
-			            Invoke(new MethodInvoker(delegate
-			            {
-				            var z = element.Substring(2, 13);
-							_signals.DataUpdateTcp(z);
-				            Refresh();
+		private void MainMenu_Load(object sender, EventArgs e)
+		{
 
-			            }));
-	            }*/
-            }
-        }
-    }
+		}
+
+		private void TcpDataUpdate(Object sender, MsgEventArgs e)
+		{
+			string[] receivedStrings = e.Msg.Split('|');
+
+
+			foreach (string element in receivedStrings)
+			{
+
+
+				if (InvokeRequired)
+				{
+					Invoke(new MethodInvoker(delegate
+					{
+						debugRawTcpDisplay.Items.Insert(0, element);
+						//Console.WriteLine(element);
+
+					}));
+
+
+					if (element.StartsWith("sB"))
+					{
+						if (InvokeRequired)
+						{
+							Invoke(new MethodInvoker(delegate
+							{
+								var z = element.Substring(2, 8);
+								_berths.DataUpdateTcp(z);
+								Refresh();
+
+							}));
+						}
+					}
+					if (element.StartsWith("sP"))
+					{
+						if (InvokeRequired)
+							Invoke(new MethodInvoker(delegate
+							{
+								var z = element.Substring(2, 7);
+								_points.AddPointTcp(z);
+								Refresh();
+
+							}));
+					}
+					if (element.StartsWith("sS"))
+					{
+						if (InvokeRequired)
+							Invoke(new MethodInvoker(delegate
+							{
+								var z = element.Substring(2, 13);
+								_signals.AddSignalTcp(z);
+								Refresh();
+
+							}));
+					}
+				}
+			}
+		}
+
+		private void keyboardInterpose_Click(object sender, EventArgs e)
+		{
+			string[] userInput = userInputString.Text.Split(' ');
+
+
+		}
+	}
+
 }
 
-
-
-
-
-
-
 /*
+
+
+
+
 
 
 

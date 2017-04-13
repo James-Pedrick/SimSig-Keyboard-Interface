@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Linq;
 
 namespace SimSig_Keyboard_Interface.Client.Signals
@@ -7,58 +6,40 @@ namespace SimSig_Keyboard_Interface.Client.Signals
 	public class SignalContainer
 	{
 
+
+
 		public static BindingList<Signals> SignalList = new BindingList<Signals>();
 
+
+		private static Signals _signalDataUpdate = new Signals();
 
 
 		public void AddSignalXml(string hId, string sNum)
 		{
 
 			if (SignalList.SingleOrDefault(s => s.HexId == hId) == null)
-			{
-				SignalList.Add(new Signals { HexId = hId, Number = sNum });
-			}
+				SignalList.Add(new Signals {HexId = hId, Number = sNum});
 			else
-			{
 				SignalList.Single(s => s.HexId == hId).Number = sNum;
-			}
+
 		}
 
-		public void DataUpdateTcp(string data)
+		public void AddSignalTcp(string data)
 		{
 			string hId = data.Substring(0, 4);
 
-			//	Signals.DataUpdate(data.Substring(4, 7));
+			if (SignalList.SingleOrDefault(s => s.HexId == hId) == null)
+				SignalList.Add(new Signals { HexId = hId });
 
 			//Byte 0 - 3 Berths Hex Id
-			//Byte 4 -	 Reminder States
+			//Byte 4 -	 Reminder States'
+			//Byte 6 -   Controls
+			//Byte 7 -   Aspect
 
-			bool[] signalReminders = Signals.SignalUpdateRem(data.Substring(4, 2));
-			bool[] signalProving = Signals.SignalUpdateControl(data.Substring(6, 1));
-			string singalAspect = Signals.SignalUpdateAspect(data.Substring(7, 1));
+			SignalList.Single(s => s.HexId == hId).SignalUpdateRem(data.Substring(4, 2));       //Two Nibble
 
-			Console.WriteLine(hId + @" - " + singalAspect);
-
-			Console.WriteLine(
-				hId + @" " +
-				signalReminders[0] +
-				signalReminders[1] +
-				signalReminders[2] +
-				signalReminders[3] +
-				signalReminders[4] +
-				signalReminders[5] + @" " +
-				signalProving[0] +
-				signalProving[1] +
-				signalProving[2] + @" " + singalAspect);
-
-
-			//		bool[] returnReminders = {isoAppliedReplace, remAppliedReplace, remAppliedAuto, isoAppliedAuto, isoAppliedSignal, remAppliedSignal};
-
-
+			SignalList.Single(s => s.HexId == hId).SignalUpdateControls(data.Substring(6, 1));  //One Nibble
+			SignalList.Single(s => s.HexId == hId).SignalUpdateAspect(data.Substring(7, 1));    //One Nibble
 		}
-
-
-
-
 	}
 }
