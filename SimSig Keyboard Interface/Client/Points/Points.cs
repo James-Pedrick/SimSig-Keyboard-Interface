@@ -6,53 +6,34 @@ namespace SimSig_Keyboard_Interface.Client.Points
     {
         public string HexId { get; set; }
         public string Number { get; set; }
-        public bool CalledNormal { get; set; }
-        public bool CalledReverse { get; set; }
-        public bool DetectedNormal { get; set; }
-        public bool DetectedReverse { get; set; }
-        public bool FailedNormal { get; set; }
-        public bool FailedReverse { get; set; }
-        public bool KeyedNormal { get; set; }
-        public bool KeyedReverse { get; set; }
-        public bool Locked { get; set; }
-        public bool Isolated { get; set; }
+        public bool CN { get; set; }
+        public bool CR { get; set; }
+        public bool DN { get; set; }
+        public bool DR { get; set; }
+        public bool FN { get; set; }
+        public bool FR { get; set; }
+        public bool KN { get; set; }
+        public bool KR { get; set; }
+        public bool Lock { get; set; }
+        public bool Iso { get; set; }
 
-        public static bool[] DataUpdate(string data)
+        public void PointUpdate(string pointState)
         {
-
-            string pointState = data.Substring(4, 3);
-
-
-            var lo = false;
-            var iso = false;
-            var kR = false;
-            var kN = false;
-            var fR = false;
-            var fN = false;
-            var dR = false;
-            var dN = false;
-            var cR = false;
-            var cN = false;
+			
 
             int intValue = int.Parse(pointState, System.Globalization.NumberStyles.HexNumber); //Convert Hex String to Int Console.WriteLine(intValue);
 
+            if (intValue >= 0x200) { Lock = true; intValue = intValue - 0x200; } else Lock = false;
+            if (intValue >= 0x100) { Iso = true; intValue = intValue - 0x100; } else Iso = false;
+            if (intValue >= 0x80) { KR = true; intValue = intValue - 0x80; } else KR = false;
+			if (intValue >= 0x40) { KN = true; intValue = intValue - 0x40; } else KN = false;
+			if (intValue >= 0x20) { FR = true; intValue = intValue - 0x20; } else FR = false;
+			if (intValue >= 0x10) { FN = true; intValue = intValue - 0x10; } else FN = false;
+			if (intValue >= 0x08) { DR = true; intValue = intValue - 0x08; } else DR = false;
+			if (intValue >= 0x04) { DN = true; intValue = intValue - 0x04; } else DN = false;
+			if (intValue >= 0x02) { CR = true; intValue = intValue - 0x02; } else CR = false;
+			if (intValue >= 0x01) { CN = true; } else CN = false;
 
-
-
-            if (intValue >= 0x200) { lo = true; intValue = intValue - 0x200; }
-            if (intValue >= 0x100) { iso = true; intValue = intValue - 0x100; }
-            if (intValue >= 0x80) { kR = true; intValue = intValue - 0x80; }
-            if (intValue >= 0x40) { kN = true; intValue = intValue - 0x40; }
-            if (intValue >= 0x20) { fR = true; intValue = intValue - 0x20; }
-            if (intValue >= 0x10) { fN = true; intValue = intValue - 0x10; }
-            if (intValue >= 0x08) { dR = true; intValue = intValue - 0x08; }
-            if (intValue >= 0x04) { dN = true; intValue = intValue - 0x04; }
-            if (intValue >= 0x02) { cR = true; intValue = intValue - 0x02; }
-            if (intValue >= 0x01) { cN = true; }
-
-            bool[] returnVal = { cN, cR, dN, dR, fN, fR, kN, kR, iso, lo };
-
-            return returnVal;
-        }
+		}
     }
 }

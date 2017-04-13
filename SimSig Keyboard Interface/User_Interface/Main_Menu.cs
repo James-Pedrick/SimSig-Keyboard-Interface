@@ -100,7 +100,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
                         Invoke(new MethodInvoker(delegate
                         {
                             var z = element.Substring(2, 7);
-                            _points.DataUpdateTcp(z);
+                            _points.AddPointTcp(z);
                             Refresh();
 
                         }));
