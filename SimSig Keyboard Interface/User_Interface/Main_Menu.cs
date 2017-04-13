@@ -77,9 +77,9 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
             foreach (string element in receivedStrings)
             {
-                //    Console.WriteLine(element);
-                if (element.StartsWith("sS004F"))
                     Console.WriteLine(element);
+         //       if (element.StartsWith("sS004F"))
+         //           Console.WriteLine(element);
 
                 if (element.StartsWith("sB"))
                 {
@@ -105,17 +105,17 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
                         }));
                 }
-	        /*    if (element.StartsWith("sS004F"))
+	            if (element.StartsWith("sS"))
 	            {
 		            if (InvokeRequired)
 			            Invoke(new MethodInvoker(delegate
 			            {
 				            var z = element.Substring(2, 13);
-							_signals.DataUpdateTcp(z);
+							_signals.AddSignalTcp(z);
 				            Refresh();
 
 			            }));
-	            }*/
+	            }
             }
         }
     }

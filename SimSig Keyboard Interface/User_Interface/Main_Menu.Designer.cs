@@ -226,14 +226,14 @@
 			// 
 			// debugBerthView
 			// 
-			this.debugBerthView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
 			this.debugBerthView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.debugBerthView.Location = new System.Drawing.Point(3, 3);
+			this.debugBerthView.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.debugBerthView.Location = new System.Drawing.Point(0, 0);
 			this.debugBerthView.Name = "debugBerthView";
 			this.debugBerthView.ReadOnly = true;
-			this.debugBerthView.Size = new System.Drawing.Size(781, 429);
+			this.debugBerthView.RowTemplate.ReadOnly = true;
+			this.debugBerthView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.debugBerthView.Size = new System.Drawing.Size(787, 435);
 			this.debugBerthView.TabIndex = 2;
 			// 
 			// debugSignals
@@ -248,14 +248,18 @@
 			// 
 			// debugSignalView
 			// 
-			this.debugSignalView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.debugSignalView.AllowUserToAddRows = false;
+			this.debugSignalView.AllowUserToDeleteRows = false;
+			this.debugSignalView.AllowUserToOrderColumns = true;
+			this.debugSignalView.AllowUserToResizeColumns = false;
+			this.debugSignalView.AllowUserToResizeRows = false;
+			this.debugSignalView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
 			this.debugSignalView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.debugSignalView.Location = new System.Drawing.Point(3, 3);
+			this.debugSignalView.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.debugSignalView.Location = new System.Drawing.Point(0, 0);
 			this.debugSignalView.Name = "debugSignalView";
 			this.debugSignalView.ReadOnly = true;
-			this.debugSignalView.Size = new System.Drawing.Size(781, 429);
+			this.debugSignalView.Size = new System.Drawing.Size(787, 435);
 			this.debugSignalView.TabIndex = 1;
 			// 
 			// debugPoints
@@ -271,10 +275,13 @@
 			// 
 			// debugPointView
 			// 
-			this.debugPointView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.debugPointView.AllowUserToAddRows = false;
+			this.debugPointView.AllowUserToDeleteRows = false;
+			this.debugPointView.AllowUserToOrderColumns = true;
+			this.debugPointView.AllowUserToResizeColumns = false;
+			this.debugPointView.AllowUserToResizeRows = false;
 			this.debugPointView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.debugPointView.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.debugPointView.Location = new System.Drawing.Point(3, 3);
 			this.debugPointView.Name = "debugPointView";
 			this.debugPointView.ReadOnly = true;
