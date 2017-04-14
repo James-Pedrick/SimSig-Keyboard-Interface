@@ -98,7 +98,7 @@
     <Compile Include="Client\Track\Tracks.cs" />
     <Compile Include="Client\Track\TrackContainer.cs" />
     <Compile Include="Data\SaveGameParser.cs" />
-    <Compile Include="Settings.cs" />
+    <Compile Include="Properties\Settings.cs" />
     <Compile Include="User_Interface\Main_Menu.cs">
       <SubType>Form</SubType>
     </Compile>

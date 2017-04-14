@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using System.Linq;
-using System.Net.Http.Headers;
 
 namespace SimSig_Keyboard_Interface.Client.Berths
 {

@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace SimSig_Keyboard_Interface.Client.Track
 {
@@ -12,7 +9,7 @@ namespace SimSig_Keyboard_Interface.Client.Track
 		public string TrackId { get; set; }
 		public bool Occupied { get; set; }
 		public bool Eng { get; set; }
-		public bool TI { get; set; }
+		public bool Ti { get; set; }
 		public bool Bet { get; set; }
 
 
@@ -30,37 +27,37 @@ namespace SimSig_Keyboard_Interface.Client.Track
 			if (isolation == "0")
 			{
 				Eng = false;
-				TI = false;
+				Ti = false;
 				Bet = false;
 			}
 			if (isolation == "1")
 			{
 				Eng = true;
-				TI = false;
+				Ti = false;
 				Bet = false;
 			}
 			if (isolation == "2")
 			{
 				Eng = false;
-				TI = true;
+				Ti = true;
 				Bet = false;
 			}
 			if (isolation == "3")
 			{
 				Eng = true;
-				TI = true;
+				Ti = true;
 				Bet = false;
 			}
 			if (isolation == "4")
 			{
 				Eng = true;
-				TI = false;
+				Ti = false;
 				Bet = true;
 			}
 			if (isolation == "5")
 			{
 				Eng = false;
-				TI = false;
+				Ti = false;
 				Bet = true;
 			}
 
