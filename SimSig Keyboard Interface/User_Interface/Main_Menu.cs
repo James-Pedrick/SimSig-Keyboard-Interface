@@ -43,20 +43,26 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		public MainMenu()
 		{
 			InitializeComponent();
-			
+
 			debugBerthView.DataSource = BerthContainer.BerthList;
 			debugPointView.DataSource = PointContainer.PointList;
 			debugSignalView.DataSource = SignalContainer.SignalList;
 			debugTrackView.DataSource = TrackContainer.TrackList;
 			debugCallView.DataSource = CallContainer.CallList;
-			
+
+
 			Connection.DataReceived += TcpDataUpdate;
-			
+
 			callers.Items.Clear();
 
+			callers.DisplayMember = "CallerName";
+			callers.ValueMember = "CallResponses";
 
 
-			
+			callers.DataSource = CallContainer.CallList;
+
+
+
 		}
 
 		private void MenuLoadSaveXml(object sender, EventArgs e)
@@ -102,11 +108,11 @@ namespace SimSig_Keyboard_Interface.User_Interface
 					if (element.StartsWith("sT")) if (InvokeRequired) Invoke(new MethodInvoker(delegate { _tracks.AddTrackTcp(element.Substring(2, 6)); Refresh(); }));
 
 
-					if (element.StartsWith("pM")) if (InvokeRequired) Invoke(new MethodInvoker(delegate { _calls.NewIncomingCall(element); callers.Items.Clear(); foreach (var x in CallContainer.CallList) if (x.CallActive) callers.Items.Add(x.CallerName); Refresh(); }));
-					if (element.StartsWith("pO")) if (InvokeRequired) Invoke(new MethodInvoker(delegate { _calls.EndIncomingCall(element); callers.Items.Clear(); foreach (var x in CallContainer.CallList) if (x.CallActive) callers.Items.Add(x.CallerName); Refresh(); }));
+					if (element.StartsWith("pM")) if (InvokeRequired) Invoke(new MethodInvoker(delegate { _calls.NewIncomingCall(element); Refresh(); }));
+					if (element.StartsWith("pO")) if (InvokeRequired) Invoke(new MethodInvoker(delegate { _calls.EndIncomingCall(element); Refresh(); }));
 				}
-			}
 		}
+			}
 		#endregion
 
 		#region Keyboard Interface Controls
@@ -180,10 +186,12 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 		private void callers_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			int position = callers.SelectedIndex;
+			string[] x = CallContainer.CallList.Single(c => c.CallNumber == callers.SelectedItem.ToString()).CallResponses;
 
-	//		string [] responses = _calls.
 
+			foreach (var y in x)
+				callResponses.Items.Add(y);
+			//	string[] x = callers.SelectedItem.CallResponses
 		}
 	}
 }

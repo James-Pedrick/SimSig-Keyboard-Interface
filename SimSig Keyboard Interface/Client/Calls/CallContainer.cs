@@ -47,12 +47,5 @@ namespace SimSig_Keyboard_Interface.Client.Calls
 
 
 
-		public string [] GetCalLResponses(int position)
-		{
-			CallList.ite
-			CallList.Single(c => c.CallNumber == callNumber).CallerName
-		}
-
-
 	}
 }
