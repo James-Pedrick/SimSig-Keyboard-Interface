@@ -63,6 +63,8 @@
 			this.userInputString = new System.Windows.Forms.TextBox();
 			this.loadSaveGameXML = new System.Windows.Forms.OpenFileDialog();
 			this.dataSave = new System.Windows.Forms.SaveFileDialog();
+			this.debugTracks = new System.Windows.Forms.TabPage();
+			this.debugTrackView = new System.Windows.Forms.DataGridView();
 			this.menuStrip.SuspendLayout();
 			this.tabControl.SuspendLayout();
 			this.debug.SuspendLayout();
@@ -75,6 +77,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.debugPointView)).BeginInit();
 			this.debugRaw.SuspendLayout();
 			this.keyboardInterface.SuspendLayout();
+			this.debugTracks.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.debugTrackView)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// menuStrip
@@ -91,6 +95,7 @@
 			this.menuStrip.Size = new System.Drawing.Size(803, 24);
 			this.menuStrip.TabIndex = 0;
 			this.menuStrip.Text = "Menu Strip";
+			this.menuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip_ItemClicked);
 			// 
 			// fileToolStripMenuItem
 			// 
@@ -254,6 +259,7 @@
 			this.debugTabs.Controls.Add(this.debugBerths);
 			this.debugTabs.Controls.Add(this.debugSignals);
 			this.debugTabs.Controls.Add(this.debugPoints);
+			this.debugTabs.Controls.Add(this.debugTracks);
 			this.debugTabs.Controls.Add(this.debugRaw);
 			this.debugTabs.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.debugTabs.Location = new System.Drawing.Point(0, 0);
@@ -394,6 +400,32 @@
 			// 
 			this.loadSaveGameXML.FileName = "openFileDialog1";
 			// 
+			// debugTracks
+			// 
+			this.debugTracks.Controls.Add(this.debugTrackView);
+			this.debugTracks.Location = new System.Drawing.Point(4, 22);
+			this.debugTracks.Name = "debugTracks";
+			this.debugTracks.Size = new System.Drawing.Size(787, 435);
+			this.debugTracks.TabIndex = 4;
+			this.debugTracks.Text = "Tracks";
+			this.debugTracks.UseVisualStyleBackColor = true;
+			// 
+			// debugTrackView
+			// 
+			this.debugTrackView.AllowUserToAddRows = false;
+			this.debugTrackView.AllowUserToDeleteRows = false;
+			this.debugTrackView.AllowUserToOrderColumns = true;
+			this.debugTrackView.AllowUserToResizeColumns = false;
+			this.debugTrackView.AllowUserToResizeRows = false;
+			this.debugTrackView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+			this.debugTrackView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.debugTrackView.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.debugTrackView.Location = new System.Drawing.Point(0, 0);
+			this.debugTrackView.Name = "debugTrackView";
+			this.debugTrackView.ReadOnly = true;
+			this.debugTrackView.Size = new System.Drawing.Size(787, 435);
+			this.debugTrackView.TabIndex = 2;
+			// 
 			// MainMenu
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -418,6 +450,8 @@
 			this.debugRaw.ResumeLayout(false);
 			this.keyboardInterface.ResumeLayout(false);
 			this.keyboardInterface.PerformLayout();
+			this.debugTracks.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.debugTrackView)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -460,6 +494,8 @@
 		private System.Windows.Forms.SaveFileDialog dataSave;
 		public System.Windows.Forms.TextBox userInputString;
 		private System.Windows.Forms.Button keyboardInterpose;
+		private System.Windows.Forms.TabPage debugTracks;
+		private System.Windows.Forms.DataGridView debugTrackView;
 	}
 }
 

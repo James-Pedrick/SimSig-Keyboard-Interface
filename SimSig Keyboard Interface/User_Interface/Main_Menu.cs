@@ -7,6 +7,7 @@ using SimSig_Keyboard_Interface.Client.Berths;
 using SimSig_Keyboard_Interface.Client.Points;
 using SimSig_Keyboard_Interface.Client.Signals;
 using SimSig_Keyboard_Interface.Client.TCP;
+using SimSig_Keyboard_Interface.Client.Track;
 using SimSig_Keyboard_Interface.Properties;
 
 // ************************************************************** Load Points config file ^^^
@@ -31,6 +32,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 		private static PointContainer _points = new PointContainer();
 		private static SignalContainer _signals = new SignalContainer();
+		private static TrackContainer _tracks = new TrackContainer();
 
 
 
@@ -45,6 +47,8 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			debugBerthView.DataSource = BerthContainer.BerthList;
 			debugPointView.DataSource = PointContainer.PointList;
 			debugSignalView.DataSource = SignalContainer.SignalList;
+			debugTrackView.DataSource = TrackContainer.TrackList;
+
 
 			Connection.DataReceived += TcpDataUpdate;
 
@@ -62,7 +66,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 				if (loadSaveGameXML.ShowDialog() == DialogResult.OK)
 					Settings.Default.wi = loadSaveGameXML.InitialDirectory + loadSaveGameXML.FileName;
-				Data.SaveGameParser.Parse(ref _berths, ref _points, ref _signals); //Parse load with ref to points container
+				Data.SaveGameParser.Parse(ref _berths, ref _points, ref _signals, ref _tracks); //Parse load with ref to points container
 
 			}
 			Refresh();
@@ -88,7 +92,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 					Invoke(new MethodInvoker(delegate
 					{
 						debugRawTcpDisplay.Items.Insert(0, element);
-						//Console.WriteLine(element);
+						if(element.StartsWith("sT"))Console.WriteLine(element);
 
 					}));
 
@@ -183,6 +187,11 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		}
 
 		#endregion
+
+		private void menuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+		{
+
+		}
 	}
 }
 

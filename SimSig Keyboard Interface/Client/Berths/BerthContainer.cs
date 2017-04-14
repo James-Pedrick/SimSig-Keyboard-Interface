@@ -48,9 +48,10 @@ namespace SimSig_Keyboard_Interface.Client.Berths
 		public string BerthHIdLookup(string data)
 		{
 
-			if (BerthList.SingleOrDefault(b => b.HexId == data)!= null)
+			data = 'B' + data;
+
+			if (BerthList.SingleOrDefault(b => b.BerthId == data)!= null)
 			{
-				data = 'B' + data;
 				var berth = BerthList.Single(b => b.BerthId == data);
 				return berth.HexId;
 			}

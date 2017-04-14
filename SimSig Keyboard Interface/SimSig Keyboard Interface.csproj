@@ -95,6 +95,8 @@
     <Compile Include="Client\TCP\Reciever.cs" />
     <Compile Include="Client\TCP\Sender.cs" />
     <Compile Include="Client\TCP\TcpMain.cs" />
+    <Compile Include="Client\Track\Tracks.cs" />
+    <Compile Include="Client\Track\TrackContainer.cs" />
     <Compile Include="Data\SaveGameParser.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="User_Interface\Main_Menu.cs">
