@@ -87,6 +87,8 @@
   <ItemGroup>
     <Compile Include="Client\Berths\BerthContainer.cs" />
     <Compile Include="Client\Berths\Berths.cs" />
+    <Compile Include="Client\Calls\CallContainer.cs" />
+    <Compile Include="Client\Calls\Calls.cs" />
     <Compile Include="Client\Points\PointContainer.cs" />
     <Compile Include="Client\Points\Points.cs" />
     <Compile Include="Client\Signals\SignalContainer.cs" />

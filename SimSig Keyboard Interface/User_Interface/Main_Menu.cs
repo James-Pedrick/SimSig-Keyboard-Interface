@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Windows.Forms;
 using SimSig_Keyboard_Interface.Client.Berths;
+using SimSig_Keyboard_Interface.Client.Calls;
 using SimSig_Keyboard_Interface.Client.Points;
 using SimSig_Keyboard_Interface.Client.Signals;
 using SimSig_Keyboard_Interface.Client.TCP;
@@ -18,19 +20,20 @@ namespace SimSig_Keyboard_Interface.User_Interface
 	{
 
 
-		public static TcpClient Connection = new TcpClient();
-		public static TcpConnect TcpConnectForm = new TcpConnect();
-
 
 
 		/*************************/
 		/*Creating containers    */
 		/*************************/
-		private static BerthContainer _berths = new BerthContainer();
+		public static TcpClient Connection = new TcpClient();
+		public static TcpConnect TcpConnectForm = new TcpConnect();
 
+
+		private static BerthContainer _berths = new BerthContainer();
 		private static PointContainer _points = new PointContainer();
 		private static SignalContainer _signals = new SignalContainer();
 		private static TrackContainer _tracks = new TrackContainer();
+		private static CallContainer _calls = new CallContainer();
 
 
 
@@ -40,16 +43,16 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		public MainMenu()
 		{
 			InitializeComponent();
-
-
+			
 			debugBerthView.DataSource = BerthContainer.BerthList;
 			debugPointView.DataSource = PointContainer.PointList;
 			debugSignalView.DataSource = SignalContainer.SignalList;
 			debugTrackView.DataSource = TrackContainer.TrackList;
-
-
+			debugCallView.DataSource = CallContainer.CallList;
+			
 			Connection.DataReceived += TcpDataUpdate;
-
+			
+			callers.Items.Clear();
 		}
 
 		private void MenuLoadSaveXml(object sender, EventArgs e)
@@ -76,9 +79,6 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 		}
 
-
-
-
 		#region DataUpdates
 		private void TcpDataUpdate(Object sender, MsgEventArgs e)
 		{
@@ -87,64 +87,19 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 			foreach (string element in receivedStrings)
 			{
-
-
 				if (InvokeRequired)
 				{
-					Invoke(new MethodInvoker(delegate
-					{
-						debugRawTcpDisplay.Items.Insert(0, element);
-						if (element.StartsWith("sT")) Console.WriteLine(element);
-
-					}));
+					Invoke(new MethodInvoker(delegate { debugRawTcpDisplay.Items.Insert(0, element); if (element.StartsWith("sT")) Console.WriteLine(element); }));
 
 
-					if (element.StartsWith("sB"))
-					{
-						if (InvokeRequired)
-						{
-							Invoke(new MethodInvoker(delegate
-							{
-								var z = element.Substring(2, 8);
-								_berths.DataUpdateTcp(z);
-								Refresh();
+					if (element.StartsWith("sB")) if (InvokeRequired) Invoke(new MethodInvoker(delegate { _berths.DataUpdateTcp(element.Substring(2, 8)); Refresh(); }));
+					if (element.StartsWith("sP")) if (InvokeRequired) Invoke(new MethodInvoker(delegate { _points.AddPointTcp(element.Substring(2, 7)); Refresh(); }));
+					if (element.StartsWith("sS")) if (InvokeRequired) Invoke(new MethodInvoker(delegate { _signals.AddSignalTcp(element.Substring(2, 13)); Refresh(); }));
+					if (element.StartsWith("sT")) if (InvokeRequired) Invoke(new MethodInvoker(delegate { _tracks.AddTrackTcp(element.Substring(2, 6)); Refresh(); }));
 
-							}));
-						}
-					}
-					if (element.StartsWith("sP"))
-					{
-						if (InvokeRequired)
-							Invoke(new MethodInvoker(delegate
-							{
-								var z = element.Substring(2, 7);
-								_points.AddPointTcp(z);
-								Refresh();
 
-							}));
-					}
-					if (element.StartsWith("sS"))
-					{
-						if (InvokeRequired)
-							Invoke(new MethodInvoker(delegate
-							{
-								var z = element.Substring(2, 13);
-								_signals.AddSignalTcp(z);
-								Refresh();
-
-							}));
-					}
-					if (element.StartsWith("sT"))
-					{
-						if (InvokeRequired)
-							Invoke(new MethodInvoker(delegate
-							{
-								var z = element.Substring(2, 6);
-								_tracks.AddTrackTcp(z);
-								Refresh();
-
-							}));
-					}
+					if (element.StartsWith("pM")) if (InvokeRequired) Invoke(new MethodInvoker(delegate { _calls.NewIncomingCall(element); callers.Items.Clear(); foreach (var x in CallContainer.CallList) if (x.CallActive) callers.Items.Add(x.CallerName); Refresh(); }));
+					if (element.StartsWith("pO")) if (InvokeRequired) Invoke(new MethodInvoker(delegate { _calls.EndIncomingCall(element); callers.Items.Clear(); foreach (var x in CallContainer.CallList) if (x.CallActive) callers.Items.Add(x.CallerName); Refresh(); }));
 				}
 			}
 		}
@@ -155,16 +110,23 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		{
 			string[] userInput = userInputString.Text.Split(' ');
 
-			if (userInputString.Text.Contains(' ') == false)
-				return;
-
-
-
+			if (userInputString.Text.Contains(' ') == false) return;        //Not doing anything if the user has not enterd a space after the berth
 
 
 			var berthHex = _berths.BerthHIdLookup(userInput[0]);
 
 			Connection.SendData(@"BB" + berthHex + userInput[1] + "|");
+
+		}
+
+
+		private void keyboardTdCancel_Click(object sender, EventArgs e)
+		{
+			string[] userInput = userInputString.Text.Split(' ');
+
+			var berthHex = _berths.BerthHIdLookup(userInput[0]);
+
+			Connection.SendData(@"BC" + berthHex + "|");
 
 		}
 
@@ -203,6 +165,16 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		#endregion
 
 		private void menuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+		{
+
+		}
+
+		private void sendToSim_Click(object sender, EventArgs e)
+		{
+			Connection.SendData(userInputString.Text);
+		}
+
+		private void callers_SelectedIndexChanged(object sender, EventArgs e)
 		{
 
 		}
