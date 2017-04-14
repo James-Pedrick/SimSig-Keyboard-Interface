@@ -78,6 +78,10 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 		}
 
+
+
+
+		#region DataUpdates
 		private void TcpDataUpdate(Object sender, MsgEventArgs e)
 		{
 			string[] receivedStrings = e.Msg.Split('|');
@@ -92,7 +96,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 					Invoke(new MethodInvoker(delegate
 					{
 						debugRawTcpDisplay.Items.Insert(0, element);
-						if(element.StartsWith("sT"))Console.WriteLine(element);
+						if (element.StartsWith("sT")) Console.WriteLine(element);
 
 					}));
 
@@ -132,9 +136,21 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 							}));
 					}
+					if (element.StartsWith("sT"))
+					{
+						if (InvokeRequired)
+							Invoke(new MethodInvoker(delegate
+							{
+								var z = element.Substring(2, 6);
+								_tracks.AddTrackTcp(z);
+								Refresh();
+
+							}));
+					}
 				}
 			}
 		}
+		#endregion
 
 		#region Keyboard Interface Controls
 		private void keyboardInterpose_Click(object sender, EventArgs e)
@@ -144,9 +160,9 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			if (userInputString.Text.Contains(' ') == false)
 				return;
 
-			
 
-			
+
+
 
 			var berthHex = _berths.BerthHIdLookup(userInput[0]);
 

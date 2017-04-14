@@ -25,7 +25,25 @@ namespace SimSig_Keyboard_Interface.Client.Track
 
 
 		}
-		
+
+		public void AddTrackTcp(string data)
+		{
+			string hId = data.Substring(0,4);
+			string occipied = data.Substring(4, 1);
+			string isolations = data.Substring(5, 1);
+
+
+			if (TrackList.SingleOrDefault(t => t.HexId == hId) == null)
+				TrackList.Add(new Tracks {HexId = hId});
+
+
+
+			TrackList.Single(t => t.HexId == hId).TrackUpdate(occipied,isolations);
+
+
+
+
+		}
 
 
 
