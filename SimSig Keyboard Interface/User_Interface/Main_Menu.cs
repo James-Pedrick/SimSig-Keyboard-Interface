@@ -9,6 +9,7 @@ using SimSig_Keyboard_Interface.Client.Signals;
 using SimSig_Keyboard_Interface.Client.TCP;
 using SimSig_Keyboard_Interface.Client.Track;
 using SimSig_Keyboard_Interface.Properties;
+using System.Threading;
 
 // ************************************************************** Load Points config file ^^^
 
@@ -56,7 +57,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			callers.Items.Clear();
 
 			callers.DisplayMember = "CallerName";
-			callers.ValueMember = "CallResponses";
+			callers.ValueMember = "CallNumber";
 
 
 			callers.DataSource = CallContainer.CallList;
@@ -186,6 +187,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 		private void callers_SelectedIndexChanged(object sender, EventArgs e)
 		{
+			Thread.Sleep(1);
 			string[] x = CallContainer.CallList.Single(c => c.CallNumber == callers.SelectedItem.ToString()).CallResponses;
 
 
