@@ -40,17 +40,18 @@ namespace SimSig_Keyboard_Interface.Client.Calls
 			string callNumber = message[0];
 
 			callNumber = callNumber.Substring(2);
+			
 
-
-			if (CallList.SingleOrDefault(p => p.CallNumber == callNumber) == null)
-				CallList.Add(new Calls { CallNumber = callNumber });
-
-			CallList.Single(p => p.CallNumber == callNumber).CallActive = false;
-
+			CallList.Remove(CallList.Single(c => c.CallNumber == callNumber));
 		}
 
 
 
+		public string [] GetCalLResponses(int position)
+		{
+			CallList.ite
+			CallList.Single(c => c.CallNumber == callNumber).CallerName
+		}
 
 
 	}

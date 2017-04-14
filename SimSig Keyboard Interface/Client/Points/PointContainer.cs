@@ -25,9 +25,7 @@ namespace SimSig_Keyboard_Interface.Client.Points
 			PointList.Single(p => p.HexId == hId).PointUpdate(pointStates);
 
 		}
-
-
-
+		
 		public void AddPointXml(string hId, string pointId)
 		{
 

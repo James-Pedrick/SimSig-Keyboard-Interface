@@ -53,6 +53,10 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			Connection.DataReceived += TcpDataUpdate;
 			
 			callers.Items.Clear();
+
+
+
+			
 		}
 
 		private void MenuLoadSaveXml(object sender, EventArgs e)
@@ -176,6 +180,9 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 		private void callers_SelectedIndexChanged(object sender, EventArgs e)
 		{
+			int position = callers.SelectedIndex;
+
+	//		string [] responses = _calls.
 
 		}
 	}
