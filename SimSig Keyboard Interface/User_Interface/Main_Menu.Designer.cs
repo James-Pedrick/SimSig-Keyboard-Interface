@@ -52,25 +52,27 @@
 			this.debugTabs = new System.Windows.Forms.TabControl();
 			this.debugBerths = new System.Windows.Forms.TabPage();
 			this.debugBerthView = new System.Windows.Forms.DataGridView();
-			this.debugSignals = new System.Windows.Forms.TabPage();
-			this.debugSignalView = new System.Windows.Forms.DataGridView();
+			this.debugCalls = new System.Windows.Forms.TabPage();
+			this.debugCallView = new System.Windows.Forms.DataGridView();
 			this.debugPoints = new System.Windows.Forms.TabPage();
 			this.debugPointView = new System.Windows.Forms.DataGridView();
+			this.debugSignals = new System.Windows.Forms.TabPage();
+			this.debugSignalView = new System.Windows.Forms.DataGridView();
 			this.debugTracks = new System.Windows.Forms.TabPage();
 			this.debugTrackView = new System.Windows.Forms.DataGridView();
 			this.debugRaw = new System.Windows.Forms.TabPage();
 			this.debugRawTcpDisplay = new System.Windows.Forms.ListBox();
 			this.keyboardInterface = new System.Windows.Forms.TabPage();
+			this.sendToSim = new System.Windows.Forms.Button();
 			this.keyboardTdCancel = new System.Windows.Forms.Button();
 			this.keyboardInterpose = new System.Windows.Forms.Button();
 			this.userInputString = new System.Windows.Forms.TextBox();
-			this.loadSaveGameXML = new System.Windows.Forms.OpenFileDialog();
-			this.dataSave = new System.Windows.Forms.SaveFileDialog();
-			this.debugCalls = new System.Windows.Forms.TabPage();
-			this.sendToSim = new System.Windows.Forms.Button();
-			this.debugCallView = new System.Windows.Forms.DataGridView();
 			this.phoneCalls = new System.Windows.Forms.TabPage();
 			this.callMessage = new System.Windows.Forms.RichTextBox();
+			this.loadSaveGameXML = new System.Windows.Forms.OpenFileDialog();
+			this.dataSave = new System.Windows.Forms.SaveFileDialog();
+			this.panel1 = new System.Windows.Forms.Panel();
+			this.callRespond = new System.Windows.Forms.Button();
 			this.callers = new System.Windows.Forms.ListBox();
 			this.callResponses = new System.Windows.Forms.ListBox();
 			this.menuStrip.SuspendLayout();
@@ -79,17 +81,18 @@
 			this.debugTabs.SuspendLayout();
 			this.debugBerths.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.debugBerthView)).BeginInit();
-			this.debugSignals.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.debugSignalView)).BeginInit();
+			this.debugCalls.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.debugCallView)).BeginInit();
 			this.debugPoints.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.debugPointView)).BeginInit();
+			this.debugSignals.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.debugSignalView)).BeginInit();
 			this.debugTracks.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.debugTrackView)).BeginInit();
 			this.debugRaw.SuspendLayout();
 			this.keyboardInterface.SuspendLayout();
-			this.debugCalls.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.debugCallView)).BeginInit();
 			this.phoneCalls.SuspendLayout();
+			this.panel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// menuStrip
@@ -103,7 +106,7 @@
             this.logsToolStripMenuItem});
 			this.menuStrip.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip.Name = "menuStrip";
-			this.menuStrip.Size = new System.Drawing.Size(803, 24);
+			this.menuStrip.Size = new System.Drawing.Size(950, 24);
 			this.menuStrip.TabIndex = 0;
 			this.menuStrip.Text = "Menu Strip";
 			this.menuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip_ItemClicked);
@@ -166,13 +169,13 @@
 			this.clientToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.connectToolStripMenuItem});
 			this.clientToolStripMenuItem.Name = "clientToolStripMenuItem";
-			this.clientToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
+			this.clientToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.clientToolStripMenuItem.Text = "Client";
 			// 
 			// connectToolStripMenuItem
 			// 
 			this.connectToolStripMenuItem.Name = "connectToolStripMenuItem";
-			this.connectToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+			this.connectToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.connectToolStripMenuItem.Text = "Connect";
 			this.connectToolStripMenuItem.Click += new System.EventHandler(this.connectToolStripMenuItem_Click);
 			// 
@@ -253,7 +256,7 @@
 			this.tabControl.Multiline = true;
 			this.tabControl.Name = "tabControl";
 			this.tabControl.SelectedIndex = 0;
-			this.tabControl.Size = new System.Drawing.Size(803, 487);
+			this.tabControl.Size = new System.Drawing.Size(950, 629);
 			this.tabControl.TabIndex = 1;
 			// 
 			// debug
@@ -304,31 +307,31 @@
 			this.debugBerthView.Size = new System.Drawing.Size(787, 435);
 			this.debugBerthView.TabIndex = 2;
 			// 
-			// debugSignals
+			// debugCalls
 			// 
-			this.debugSignals.Controls.Add(this.debugSignalView);
-			this.debugSignals.Location = new System.Drawing.Point(4, 22);
-			this.debugSignals.Name = "debugSignals";
-			this.debugSignals.Size = new System.Drawing.Size(787, 435);
-			this.debugSignals.TabIndex = 1;
-			this.debugSignals.Text = "Signals";
-			this.debugSignals.UseVisualStyleBackColor = true;
+			this.debugCalls.Controls.Add(this.debugCallView);
+			this.debugCalls.Location = new System.Drawing.Point(4, 22);
+			this.debugCalls.Name = "debugCalls";
+			this.debugCalls.Size = new System.Drawing.Size(787, 435);
+			this.debugCalls.TabIndex = 5;
+			this.debugCalls.Text = "Calls";
+			this.debugCalls.UseVisualStyleBackColor = true;
 			// 
-			// debugSignalView
+			// debugCallView
 			// 
-			this.debugSignalView.AllowUserToAddRows = false;
-			this.debugSignalView.AllowUserToDeleteRows = false;
-			this.debugSignalView.AllowUserToOrderColumns = true;
-			this.debugSignalView.AllowUserToResizeColumns = false;
-			this.debugSignalView.AllowUserToResizeRows = false;
-			this.debugSignalView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
-			this.debugSignalView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.debugSignalView.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.debugSignalView.Location = new System.Drawing.Point(0, 0);
-			this.debugSignalView.Name = "debugSignalView";
-			this.debugSignalView.ReadOnly = true;
-			this.debugSignalView.Size = new System.Drawing.Size(787, 435);
-			this.debugSignalView.TabIndex = 1;
+			this.debugCallView.AllowUserToAddRows = false;
+			this.debugCallView.AllowUserToDeleteRows = false;
+			this.debugCallView.AllowUserToOrderColumns = true;
+			this.debugCallView.AllowUserToResizeColumns = false;
+			this.debugCallView.AllowUserToResizeRows = false;
+			this.debugCallView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+			this.debugCallView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.debugCallView.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.debugCallView.Location = new System.Drawing.Point(0, 0);
+			this.debugCallView.Name = "debugCallView";
+			this.debugCallView.ReadOnly = true;
+			this.debugCallView.Size = new System.Drawing.Size(787, 435);
+			this.debugCallView.TabIndex = 2;
 			// 
 			// debugPoints
 			// 
@@ -356,6 +359,32 @@
 			this.debugPointView.ReadOnly = true;
 			this.debugPointView.Size = new System.Drawing.Size(781, 429);
 			this.debugPointView.TabIndex = 1;
+			// 
+			// debugSignals
+			// 
+			this.debugSignals.Controls.Add(this.debugSignalView);
+			this.debugSignals.Location = new System.Drawing.Point(4, 22);
+			this.debugSignals.Name = "debugSignals";
+			this.debugSignals.Size = new System.Drawing.Size(787, 435);
+			this.debugSignals.TabIndex = 1;
+			this.debugSignals.Text = "Signals";
+			this.debugSignals.UseVisualStyleBackColor = true;
+			// 
+			// debugSignalView
+			// 
+			this.debugSignalView.AllowUserToAddRows = false;
+			this.debugSignalView.AllowUserToDeleteRows = false;
+			this.debugSignalView.AllowUserToOrderColumns = true;
+			this.debugSignalView.AllowUserToResizeColumns = false;
+			this.debugSignalView.AllowUserToResizeRows = false;
+			this.debugSignalView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+			this.debugSignalView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.debugSignalView.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.debugSignalView.Location = new System.Drawing.Point(0, 0);
+			this.debugSignalView.Name = "debugSignalView";
+			this.debugSignalView.ReadOnly = true;
+			this.debugSignalView.Size = new System.Drawing.Size(787, 435);
+			this.debugSignalView.TabIndex = 1;
 			// 
 			// debugTracks
 			// 
@@ -416,6 +445,16 @@
 			this.keyboardInterface.TabIndex = 0;
 			this.keyboardInterface.Text = "Keyboard Interface";
 			// 
+			// sendToSim
+			// 
+			this.sendToSim.Location = new System.Drawing.Point(178, 112);
+			this.sendToSim.Name = "sendToSim";
+			this.sendToSim.Size = new System.Drawing.Size(123, 23);
+			this.sendToSim.TabIndex = 3;
+			this.sendToSim.Text = "Send Direct to Sim";
+			this.sendToSim.UseVisualStyleBackColor = true;
+			this.sendToSim.Click += new System.EventHandler(this.sendToSim_Click);
+			// 
 			// keyboardTdCancel
 			// 
 			this.keyboardTdCancel.Location = new System.Drawing.Point(178, 67);
@@ -448,55 +487,15 @@
 			this.userInputString.TabIndex = 0;
 			this.userInputString.Text = "1212";
 			// 
-			// loadSaveGameXML
-			// 
-			this.loadSaveGameXML.FileName = "openFileDialog1";
-			// 
-			// debugCalls
-			// 
-			this.debugCalls.Controls.Add(this.debugCallView);
-			this.debugCalls.Location = new System.Drawing.Point(4, 22);
-			this.debugCalls.Name = "debugCalls";
-			this.debugCalls.Size = new System.Drawing.Size(787, 435);
-			this.debugCalls.TabIndex = 5;
-			this.debugCalls.Text = "Calls";
-			this.debugCalls.UseVisualStyleBackColor = true;
-			// 
-			// sendToSim
-			// 
-			this.sendToSim.Location = new System.Drawing.Point(178, 112);
-			this.sendToSim.Name = "sendToSim";
-			this.sendToSim.Size = new System.Drawing.Size(123, 23);
-			this.sendToSim.TabIndex = 3;
-			this.sendToSim.Text = "Send Direct to Sim";
-			this.sendToSim.UseVisualStyleBackColor = true;
-			this.sendToSim.Click += new System.EventHandler(this.sendToSim_Click);
-			// 
-			// debugCallView
-			// 
-			this.debugCallView.AllowUserToAddRows = false;
-			this.debugCallView.AllowUserToDeleteRows = false;
-			this.debugCallView.AllowUserToOrderColumns = true;
-			this.debugCallView.AllowUserToResizeColumns = false;
-			this.debugCallView.AllowUserToResizeRows = false;
-			this.debugCallView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
-			this.debugCallView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.debugCallView.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.debugCallView.Location = new System.Drawing.Point(0, 0);
-			this.debugCallView.Name = "debugCallView";
-			this.debugCallView.ReadOnly = true;
-			this.debugCallView.Size = new System.Drawing.Size(787, 435);
-			this.debugCallView.TabIndex = 2;
-			// 
 			// phoneCalls
 			// 
 			this.phoneCalls.BackColor = System.Drawing.Color.Black;
 			this.phoneCalls.Controls.Add(this.callResponses);
-			this.phoneCalls.Controls.Add(this.callers);
+			this.phoneCalls.Controls.Add(this.panel1);
 			this.phoneCalls.Controls.Add(this.callMessage);
 			this.phoneCalls.Location = new System.Drawing.Point(4, 22);
 			this.phoneCalls.Name = "phoneCalls";
-			this.phoneCalls.Size = new System.Drawing.Size(795, 461);
+			this.phoneCalls.Size = new System.Drawing.Size(942, 603);
 			this.phoneCalls.TabIndex = 2;
 			this.phoneCalls.Text = "Phone";
 			// 
@@ -511,27 +510,52 @@
 			this.callMessage.Margin = new System.Windows.Forms.Padding(0);
 			this.callMessage.Name = "callMessage";
 			this.callMessage.ReadOnly = true;
-			this.callMessage.Size = new System.Drawing.Size(795, 109);
+			this.callMessage.Size = new System.Drawing.Size(942, 109);
 			this.callMessage.TabIndex = 0;
 			this.callMessage.Text = "PHONE CALL MESSAGE TEXT BOX";
+			// 
+			// loadSaveGameXML
+			// 
+			this.loadSaveGameXML.FileName = "openFileDialog1";
+			// 
+			// panel1
+			// 
+			this.panel1.Controls.Add(this.callRespond);
+			this.panel1.Controls.Add(this.callers);
+			this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+			this.panel1.Location = new System.Drawing.Point(0, 109);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(200, 494);
+			this.panel1.TabIndex = 4;
+			// 
+			// callRespond
+			// 
+			this.callRespond.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.callRespond.Location = new System.Drawing.Point(0, 445);
+			this.callRespond.Name = "callRespond";
+			this.callRespond.Size = new System.Drawing.Size(200, 49);
+			this.callRespond.TabIndex = 5;
+			this.callRespond.Text = "Respond";
+			this.callRespond.UseVisualStyleBackColor = true;
+			this.callRespond.Click += new System.EventHandler(this.callRespond_Click);
 			// 
 			// callers
 			// 
 			this.callers.BackColor = System.Drawing.Color.Black;
 			this.callers.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.callers.Dock = System.Windows.Forms.DockStyle.Left;
+			this.callers.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.callers.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
 			this.callers.ForeColor = System.Drawing.Color.Cyan;
 			this.callers.FormattingEnabled = true;
 			this.callers.ItemHeight = 24;
 			this.callers.Items.AddRange(new object[] {
             "Train 1A01"});
-			this.callers.Location = new System.Drawing.Point(0, 109);
+			this.callers.Location = new System.Drawing.Point(0, 0);
 			this.callers.Margin = new System.Windows.Forms.Padding(0);
 			this.callers.Name = "callers";
-			this.callers.Size = new System.Drawing.Size(209, 352);
-			this.callers.TabIndex = 1;
-			this.callers.SelectedIndexChanged += new System.EventHandler(this.callers_SelectedIndexChanged);
+			this.callers.Size = new System.Drawing.Size(200, 494);
+			this.callers.TabIndex = 4;
+			this.callers.SelectedIndexChanged += new System.EventHandler(this.callers_SelectedIndexChanged_1);
 			// 
 			// callResponses
 			// 
@@ -544,17 +568,17 @@
 			this.callResponses.ItemHeight = 24;
 			this.callResponses.Items.AddRange(new object[] {
             "Sample Item"});
-			this.callResponses.Location = new System.Drawing.Point(209, 109);
+			this.callResponses.Location = new System.Drawing.Point(200, 109);
 			this.callResponses.Margin = new System.Windows.Forms.Padding(0);
 			this.callResponses.Name = "callResponses";
-			this.callResponses.Size = new System.Drawing.Size(586, 352);
-			this.callResponses.TabIndex = 2;
+			this.callResponses.Size = new System.Drawing.Size(742, 494);
+			this.callResponses.TabIndex = 5;
 			// 
 			// MainMenu
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(803, 511);
+			this.ClientSize = new System.Drawing.Size(950, 653);
 			this.Controls.Add(this.tabControl);
 			this.Controls.Add(this.menuStrip);
 			this.Name = "MainMenu";
@@ -567,18 +591,19 @@
 			this.debugTabs.ResumeLayout(false);
 			this.debugBerths.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.debugBerthView)).EndInit();
-			this.debugSignals.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.debugSignalView)).EndInit();
+			this.debugCalls.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.debugCallView)).EndInit();
 			this.debugPoints.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.debugPointView)).EndInit();
+			this.debugSignals.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.debugSignalView)).EndInit();
 			this.debugTracks.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.debugTrackView)).EndInit();
 			this.debugRaw.ResumeLayout(false);
 			this.keyboardInterface.ResumeLayout(false);
 			this.keyboardInterface.PerformLayout();
-			this.debugCalls.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.debugCallView)).EndInit();
 			this.phoneCalls.ResumeLayout(false);
+			this.panel1.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -628,8 +653,10 @@
 		private System.Windows.Forms.Button sendToSim;
 		private System.Windows.Forms.DataGridView debugCallView;
 		private System.Windows.Forms.TabPage phoneCalls;
-		private System.Windows.Forms.ListBox callers;
 		private System.Windows.Forms.RichTextBox callMessage;
+		private System.Windows.Forms.Panel panel1;
+		private System.Windows.Forms.Button callRespond;
+		private System.Windows.Forms.ListBox callers;
 		private System.Windows.Forms.ListBox callResponses;
 	}
 }

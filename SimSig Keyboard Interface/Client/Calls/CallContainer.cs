@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace SimSig_Keyboard_Interface.Client.Calls
 {
@@ -20,7 +16,13 @@ namespace SimSig_Keyboard_Interface.Client.Calls
 		public void NewIncomingCall(string data)
 		{
 			string[] responses = data.Split('$');
+
+			responses[0] = null;
+
+
 			string[] message = data.Split('\\');
+
+
 
 			CallList.Add(new Calls {
 				CallNumber = message[0].Substring(2),
@@ -28,8 +30,9 @@ namespace SimSig_Keyboard_Interface.Client.Calls
 				CallerName = message[1],
 				CallerMessage = message[2],
 				CallTime = message[3],
-				CallResponses = responses
+				CallResponses = responses,
 
+				
 			});
 		}
 
@@ -40,9 +43,10 @@ namespace SimSig_Keyboard_Interface.Client.Calls
 			string callNumber = message[0];
 
 			callNumber = callNumber.Substring(2);
-			
 
-			CallList.Remove(CallList.Single(c => c.CallNumber == callNumber));
+
+			if (CallList.SingleOrDefault(p => p.CallNumber == callNumber) != null)
+				CallList.Remove(CallList.Single(c => c.CallNumber == callNumber));
 		}
 
 

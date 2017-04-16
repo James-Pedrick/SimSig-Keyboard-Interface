@@ -56,6 +56,8 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 			callers.Items.Clear();
 
+
+
 			callers.DisplayMember = "CallerName";
 			callers.ValueMember = "CallNumber";
 
@@ -64,6 +66,9 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 
 
+			callResponses.Items.Clear();
+			
+			callMessage.Clear();
 		}
 
 		private void MenuLoadSaveXml(object sender, EventArgs e)
@@ -112,8 +117,8 @@ namespace SimSig_Keyboard_Interface.User_Interface
 					if (element.StartsWith("pM")) if (InvokeRequired) Invoke(new MethodInvoker(delegate { _calls.NewIncomingCall(element); Refresh(); }));
 					if (element.StartsWith("pO")) if (InvokeRequired) Invoke(new MethodInvoker(delegate { _calls.EndIncomingCall(element); Refresh(); }));
 				}
-		}
 			}
+		}
 		#endregion
 
 		#region Keyboard Interface Controls
@@ -185,15 +190,42 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			Connection.SendData(userInputString.Text);
 		}
 
-		private void callers_SelectedIndexChanged(object sender, EventArgs e)
+
+		private void callRespond_Click(object sender, EventArgs e)
 		{
-			Thread.Sleep(1);
-			string[] x = CallContainer.CallList.Single(c => c.CallNumber == callers.SelectedItem.ToString()).CallResponses;
+			string x = callResponses.SelectedIndex.ToString();
+
+			//"pN" + callid[0] + '\\' + callResponses.SelectedIndex;
+
+			string callId = CallContainer.CallList.Single(c => c.CallNumber == callers.SelectedValue.ToString()).CallNumber;
+
+			Connection.SendData("pN" + callId + '\\' + x + "|");
+
+			callResponses.Items.Clear();
+			callMessage.Clear();
+			Refresh();
+		}
+
+		private void callers_SelectedIndexChanged_1(object sender, EventArgs e)
+		{
+
+			callResponses.Items.Clear();
+			try
+			{
+				string[] x = CallContainer.CallList.Single(c => c.CallNumber == callers.SelectedValue.ToString()).CallResponses;
+
+				foreach (var i in x)
+					if (i != null)
+						callResponses.Items.Add(i.Substring(8).TrimEnd('\\'));
+
+				callMessage.Text = CallContainer.CallList.Single(c => c.CallNumber == callers.SelectedValue.ToString()).CallerMessage;
+			}
+			catch
+			{
+				callResponses.Items.Clear();
+			}
 
 
-			foreach (var y in x)
-				callResponses.Items.Add(y);
-			//	string[] x = callers.SelectedItem.CallResponses
 		}
 	}
 }
