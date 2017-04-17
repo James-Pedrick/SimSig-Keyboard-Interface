@@ -19,9 +19,9 @@ namespace SimSig_Keyboard_Interface.Client.TCP
 
             internal Sender(NetworkStream stream)
             {
-                _stream = stream;
-                _thread = new Thread(Run);
-                _thread.Start();
+	            _stream = stream;
+                var thread = new Thread(Run);
+                thread.Start();
             }
 
             private void Run()
@@ -30,7 +30,6 @@ namespace SimSig_Keyboard_Interface.Client.TCP
             }
 
             private NetworkStream _stream;
-            private Thread _thread;
         }
     }
 

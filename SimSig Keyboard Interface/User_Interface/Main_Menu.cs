@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Windows.Forms;
 using SimSig_Keyboard_Interface.Client.Berths;
@@ -9,7 +8,6 @@ using SimSig_Keyboard_Interface.Client.Signals;
 using SimSig_Keyboard_Interface.Client.TCP;
 using SimSig_Keyboard_Interface.Client.Track;
 using SimSig_Keyboard_Interface.Properties;
-using System.Threading;
 
 // ************************************************************** Load Points config file ^^^
 
@@ -67,7 +65,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 
 			callResponses.Items.Clear();
-			
+
 			callMessage.Clear();
 		}
 
@@ -121,7 +119,10 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		}
 		#endregion
 
+
+
 		#region Keyboard Interface Controls
+
 		private void keyboardInterpose_Click(object sender, EventArgs e)
 		{
 			string[] userInput = userInputString.Text.Split(' ');
@@ -131,10 +132,23 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 			var berthHex = _berths.BerthHIdLookup(userInput[0]);
 
-			Connection.SendData(@"BB" + berthHex + userInput[1] + "|");
+			Connection.SendData(@"BB" + berthHex + userInput[1] + "----|");
 
 		}
 
+		private void keyboardRouteSet_Click(object sender, EventArgs e)
+		{
+
+			string[] userInput = userInputString.Text.Split(' ');
+
+			if (userInputString.Text.Contains(' ') == false) return;        //Not doing anything if the user has not enterd a space after the berth
+
+
+			var entrySigHex = _signals.SignalIdLookup(userInput[0]);
+			var exitSigHex = _signals.SignalIdLookup(userInput[1]);
+
+			Connection.SendData(@"SA" + entrySigHex + exitSigHex + @"00" + entrySigHex + @"----|");
+		}
 
 		private void keyboardTdCancel_Click(object sender, EventArgs e)
 		{
@@ -143,6 +157,53 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			var berthHex = _berths.BerthHIdLookup(userInput[0]);
 
 			Connection.SendData(@"BC" + berthHex + "|");
+
+		}
+
+		private void keyboardRouteCancel_Click(object sender, EventArgs e)
+		{
+			string[] userInput = userInputString.Text.Split(' ');
+
+			var entrySigHex = _signals.SignalIdLookup(userInput[0]);
+			Connection.SendData(@"zD" + entrySigHex + "|");
+
+		}
+
+		private void keyboardAutoSet_Click(object sender, EventArgs e)
+		{
+			string[] userInput = userInputString.Text.Split(' ');
+
+			var entrySigHex = _signals.SignalIdLookup(userInput[0]);
+			Connection.SendData(@"SF" + entrySigHex + "|");
+
+		}
+
+		private void keyboardAutoCancel_Click(object sender, EventArgs e)
+		{
+			string[] userInput = userInputString.Text.Split(' ');
+
+			var entrySigHex = _signals.SignalIdLookup(userInput[0]);
+			Connection.SendData(@"SG" + entrySigHex + "|");
+
+
+		}
+		private void keyboardSignalRemoveReplacement_Click(object sender, EventArgs e)
+		{
+			string[] userInput = userInputString.Text.Split(' ');
+
+			var entrySigHex = _signals.SignalIdLookup(userInput[0]);
+			Connection.SendData(@"SP" + entrySigHex + "|");
+
+
+		}
+
+		private void keyboardSigReplacement_Click(object sender, EventArgs e)
+		{
+
+			string[] userInput = userInputString.Text.Split(' ');
+
+			var entrySigHex = _signals.SignalIdLookup(userInput[0]);
+			Connection.SendData(@"SQ" + entrySigHex + "|");
 
 		}
 
@@ -178,7 +239,6 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			Connection.Connect(Settings.Default.ipAddress, Settings.Default.clientPort);
 		}
 
-		#endregion
 
 		private void menuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
 		{
@@ -227,6 +287,10 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 
 		}
+
+		#endregion
+
+
 	}
 }
 
