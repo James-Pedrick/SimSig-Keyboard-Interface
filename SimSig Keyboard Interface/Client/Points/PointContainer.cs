@@ -6,7 +6,7 @@ namespace SimSig_Keyboard_Interface.Client.Points
 {
 	public class PointContainer
 	{
-		public static BindingList<Points> PointList = new BindingList<Points>();
+		public BindingList<Points> PointList = new BindingList<Points>();
 
 
 
@@ -34,6 +34,21 @@ namespace SimSig_Keyboard_Interface.Client.Points
 			else
 				PointList.Single(b => b.HexId == hId).Number = pointId;
 
+		}
+
+		public string PointLookup(string data)
+		{
+
+
+			data = 'P' + data.ToUpper();
+
+			if (PointList.SingleOrDefault(b => b.Number == data) != null)
+			{
+				var point = PointList.Single(b => b.Number == data);
+				return point.HexId;
+			}
+
+			return null;
 		}
 	}
 }

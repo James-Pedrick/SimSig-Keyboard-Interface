@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 using SimSig_Keyboard_Interface.Client.Berths;
 using SimSig_Keyboard_Interface.Client.Calls;
@@ -17,6 +18,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 {
 	public partial class MainMenu : Form
 	{
+
 
 
 
@@ -43,11 +45,11 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		{
 			InitializeComponent();
 
-			debugBerthView.DataSource = BerthContainer.BerthList;
-			debugPointView.DataSource = PointContainer.PointList;
-			debugSignalView.DataSource = SignalContainer.SignalList;
-			debugTrackView.DataSource = TrackContainer.TrackList;
-			debugCallView.DataSource = CallContainer.CallList;
+			debugBerthView.DataSource = _berths.BerthList;
+			debugPointView.DataSource = _points.PointList;
+			debugSignalView.DataSource = _signals.SignalList;
+			debugTrackView.DataSource = _tracks.TrackList;
+			debugCallView.DataSource = _calls.CallList;
 
 
 			Connection.DataReceived += TcpDataUpdate;
@@ -60,7 +62,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			callers.ValueMember = "CallNumber";
 
 
-			callers.DataSource = CallContainer.CallList;
+			callers.DataSource = _calls.CallList;
 
 
 
@@ -213,30 +215,38 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 		private void exitToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			Application.Exit();
+			Environment.Exit(1);
 		}
 
 		private void Point_List_Reset(object sender, EventArgs e)
 		{
-			PointContainer.PointList.Clear();
+			_points.PointList.Clear();
 		}
 
 		private void BerthListReset(object sender, EventArgs e)
 		{
-			BerthContainer.BerthList.Clear();
+			_berths.BerthList.Clear();
 		}
 
 		private void SignalListReset(object sender, EventArgs e)
 		{
-			SignalContainer.SignalList.Clear();
+			_signals.SignalList.Clear();
 		}
 
 
 		private void connectToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			TcpConnectForm.ShowDialog();
 
-			Connection.Connect(Settings.Default.ipAddress, Settings.Default.clientPort);
+			connectToolStripMenuItem.Enabled = false;
+			Thread tcpConnectThread = new Thread(() =>
+			{
+				TcpConnectForm.ShowDialog();
+
+
+				Connection.Connect(Settings.Default.ipAddress, Settings.Default.clientPort);
+
+			});
+			tcpConnectThread.Start();
 		}
 
 
@@ -257,7 +267,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 			//"pN" + callid[0] + '\\' + callResponses.SelectedIndex;
 
-			string callId = CallContainer.CallList.Single(c => c.CallNumber == callers.SelectedValue.ToString()).CallNumber;
+			string callId = _calls.CallList.Single(c => c.CallNumber == callers.SelectedValue.ToString()).CallNumber;
 
 			Connection.SendData("pN" + callId + '\\' + x + "|");
 
@@ -272,13 +282,13 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			callResponses.Items.Clear();
 			try
 			{
-				string[] x = CallContainer.CallList.Single(c => c.CallNumber == callers.SelectedValue.ToString()).CallResponses;
+				string[] x = _calls.CallList.Single(c => c.CallNumber == callers.SelectedValue.ToString()).CallResponses;
 
 				foreach (var i in x)
 					if (i != null)
 						callResponses.Items.Add(i.Substring(8).TrimEnd('\\'));
 
-				callMessage.Text = CallContainer.CallList.Single(c => c.CallNumber == callers.SelectedValue.ToString()).CallerMessage;
+				callMessage.Text = _calls.CallList.Single(c => c.CallNumber == callers.SelectedValue.ToString()).CallerMessage;
 			}
 			catch
 			{
@@ -288,9 +298,26 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 		}
 
+
 		#endregion
 
+		private void keyboardPointKN_Click(object sender, EventArgs e)
+		{
+			Thread keyPointsNormal = new Thread(() =>
+				{
+					string[] points = userInputString.Text.Split(' ');
 
+					string pointId = _points.PointLookup(points[0]);
+					if (pointId == null) return;
+					//(PointList.SingleOrDefault(b => b.Number == data) != null
+					
+
+				
+
+				}
+			);
+			keyPointsNormal.Start();
+		}
 	}
 }
 

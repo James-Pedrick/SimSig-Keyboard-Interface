@@ -8,10 +8,10 @@ namespace SimSig_Keyboard_Interface.Client.Signals
 
 
 
-		public static BindingList<Signals> SignalList = new BindingList<Signals>();
+		public BindingList<Signals> SignalList = new BindingList<Signals>();
 
 
-		private static Signals _signalDataUpdate = new Signals();
+		private Signals _signalDataUpdate = new Signals();
 
 
 		public void AddSignalXml(string hId, string sNum)

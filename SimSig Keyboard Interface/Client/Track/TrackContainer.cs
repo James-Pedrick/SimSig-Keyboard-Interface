@@ -8,7 +8,7 @@ namespace SimSig_Keyboard_Interface.Client.Track
 	public class TrackContainer
 	{
 
-		public static BindingList<Tracks> TrackList = new BindingList<Tracks>();
+		public BindingList<Tracks> TrackList = new BindingList<Tracks>();
 
 
 		private static Tracks _trackDataUpdate = new Tracks();

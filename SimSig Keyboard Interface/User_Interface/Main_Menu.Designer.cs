@@ -81,6 +81,9 @@
 			this.callMessage = new System.Windows.Forms.RichTextBox();
 			this.loadSaveGameXML = new System.Windows.Forms.OpenFileDialog();
 			this.dataSave = new System.Windows.Forms.SaveFileDialog();
+			this.keyboardPointKN = new System.Windows.Forms.Button();
+			this.keyboardPointF = new System.Windows.Forms.Button();
+			this.keyboardPointKR = new System.Windows.Forms.Button();
 			this.menuStrip.SuspendLayout();
 			this.tabControl.SuspendLayout();
 			this.debug.SuspendLayout();
@@ -175,13 +178,13 @@
 			this.clientToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.connectToolStripMenuItem});
 			this.clientToolStripMenuItem.Name = "clientToolStripMenuItem";
-			this.clientToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
+			this.clientToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.clientToolStripMenuItem.Text = "Client";
 			// 
 			// connectToolStripMenuItem
 			// 
 			this.connectToolStripMenuItem.Name = "connectToolStripMenuItem";
-			this.connectToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+			this.connectToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.connectToolStripMenuItem.Text = "Connect";
 			this.connectToolStripMenuItem.Click += new System.EventHandler(this.connectToolStripMenuItem_Click);
 			// 
@@ -198,21 +201,21 @@
 			// berthsResetToolStripMenuItem
 			// 
 			this.berthsResetToolStripMenuItem.Name = "berthsResetToolStripMenuItem";
-			this.berthsResetToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+			this.berthsResetToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.berthsResetToolStripMenuItem.Text = "Berths Reset";
 			this.berthsResetToolStripMenuItem.Click += new System.EventHandler(this.BerthListReset);
 			// 
 			// pointsToolStripMenuItem
 			// 
 			this.pointsToolStripMenuItem.Name = "pointsToolStripMenuItem";
-			this.pointsToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+			this.pointsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.pointsToolStripMenuItem.Text = "Points Reset";
 			this.pointsToolStripMenuItem.Click += new System.EventHandler(this.Point_List_Reset);
 			// 
 			// signalResetToolStripMenuItem
 			// 
 			this.signalResetToolStripMenuItem.Name = "signalResetToolStripMenuItem";
-			this.signalResetToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+			this.signalResetToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.signalResetToolStripMenuItem.Text = "Signals Reset";
 			this.signalResetToolStripMenuItem.Click += new System.EventHandler(this.SignalListReset);
 			// 
@@ -440,6 +443,9 @@
 			// keyboardInterface
 			// 
 			this.keyboardInterface.BackColor = System.Drawing.Color.Black;
+			this.keyboardInterface.Controls.Add(this.keyboardPointKR);
+			this.keyboardInterface.Controls.Add(this.keyboardPointF);
+			this.keyboardInterface.Controls.Add(this.keyboardPointKN);
 			this.keyboardInterface.Controls.Add(this.keyboardSignalRemoveReplacement);
 			this.keyboardInterface.Controls.Add(this.keyboardSigReplacement);
 			this.keyboardInterface.Controls.Add(this.keyboardAutoCancel);
@@ -463,7 +469,7 @@
 			this.keyboardSignalRemoveReplacement.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
 			this.keyboardSignalRemoveReplacement.Location = new System.Drawing.Point(203, 199);
 			this.keyboardSignalRemoveReplacement.Name = "keyboardSignalRemoveReplacement";
-			this.keyboardSignalRemoveReplacement.Size = new System.Drawing.Size(178, 38);
+			this.keyboardSignalRemoveReplacement.Size = new System.Drawing.Size(189, 38);
 			this.keyboardSignalRemoveReplacement.TabIndex = 9;
 			this.keyboardSignalRemoveReplacement.Text = "Remove Replacement";
 			this.keyboardSignalRemoveReplacement.UseVisualStyleBackColor = true;
@@ -487,7 +493,7 @@
 			this.keyboardAutoCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
 			this.keyboardAutoCancel.Location = new System.Drawing.Point(203, 155);
 			this.keyboardAutoCancel.Name = "keyboardAutoCancel";
-			this.keyboardAutoCancel.Size = new System.Drawing.Size(178, 38);
+			this.keyboardAutoCancel.Size = new System.Drawing.Size(189, 38);
 			this.keyboardAutoCancel.TabIndex = 7;
 			this.keyboardAutoCancel.Text = "Auto Cancel";
 			this.keyboardAutoCancel.UseVisualStyleBackColor = true;
@@ -511,7 +517,7 @@
 			this.keyboardRouteCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
 			this.keyboardRouteCancel.Location = new System.Drawing.Point(203, 111);
 			this.keyboardRouteCancel.Name = "keyboardRouteCancel";
-			this.keyboardRouteCancel.Size = new System.Drawing.Size(178, 38);
+			this.keyboardRouteCancel.Size = new System.Drawing.Size(189, 38);
 			this.keyboardRouteCancel.TabIndex = 5;
 			this.keyboardRouteCancel.Text = "Route Cancel";
 			this.keyboardRouteCancel.UseVisualStyleBackColor = true;
@@ -532,9 +538,9 @@
 			// keyboardSendToSim
 			// 
 			this.keyboardSendToSim.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-			this.keyboardSendToSim.Location = new System.Drawing.Point(387, 67);
+			this.keyboardSendToSim.Location = new System.Drawing.Point(398, 67);
 			this.keyboardSendToSim.Name = "keyboardSendToSim";
-			this.keyboardSendToSim.Size = new System.Drawing.Size(178, 38);
+			this.keyboardSendToSim.Size = new System.Drawing.Size(189, 38);
 			this.keyboardSendToSim.TabIndex = 3;
 			this.keyboardSendToSim.Text = "Send Direct to Sim";
 			this.keyboardSendToSim.UseVisualStyleBackColor = true;
@@ -545,7 +551,7 @@
 			this.keyboardTdCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
 			this.keyboardTdCancel.Location = new System.Drawing.Point(203, 67);
 			this.keyboardTdCancel.Name = "keyboardTdCancel";
-			this.keyboardTdCancel.Size = new System.Drawing.Size(178, 38);
+			this.keyboardTdCancel.Size = new System.Drawing.Size(189, 38);
 			this.keyboardTdCancel.TabIndex = 2;
 			this.keyboardTdCancel.Text = "TD Cancel";
 			this.keyboardTdCancel.UseVisualStyleBackColor = true;
@@ -661,15 +667,52 @@
 			// 
 			this.loadSaveGameXML.FileName = "openFileDialog1";
 			// 
+			// keyboardPointKN
+			// 
+			this.keyboardPointKN.AutoSize = true;
+			this.keyboardPointKN.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+			this.keyboardPointKN.Location = new System.Drawing.Point(8, 243);
+			this.keyboardPointKN.Name = "keyboardPointKN";
+			this.keyboardPointKN.Size = new System.Drawing.Size(189, 38);
+			this.keyboardPointKN.TabIndex = 10;
+			this.keyboardPointKN.Text = "Key Point Normal";
+			this.keyboardPointKN.UseVisualStyleBackColor = true;
+			this.keyboardPointKN.Click += new System.EventHandler(this.keyboardPointKN_Click);
+			// 
+			// keyboardPointF
+			// 
+			this.keyboardPointF.AutoSize = true;
+			this.keyboardPointF.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+			this.keyboardPointF.Location = new System.Drawing.Point(203, 243);
+			this.keyboardPointF.Name = "keyboardPointF";
+			this.keyboardPointF.Size = new System.Drawing.Size(189, 38);
+			this.keyboardPointF.TabIndex = 11;
+			this.keyboardPointF.Text = "Unlock Point";
+			this.keyboardPointF.UseVisualStyleBackColor = true;
+			// 
+			// keyboardPointKR
+			// 
+			this.keyboardPointKR.AutoSize = true;
+			this.keyboardPointKR.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+			this.keyboardPointKR.Location = new System.Drawing.Point(398, 243);
+			this.keyboardPointKR.Name = "keyboardPointKR";
+			this.keyboardPointKR.Size = new System.Drawing.Size(189, 38);
+			this.keyboardPointKR.TabIndex = 12;
+			this.keyboardPointKR.Text = "Key Point Reverse";
+			this.keyboardPointKR.UseVisualStyleBackColor = true;
+			// 
 			// MainMenu
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(950, 653);
+			this.ControlBox = false;
 			this.Controls.Add(this.tabControl);
 			this.Controls.Add(this.menuStrip);
+			this.MainMenuStrip = this.menuStrip;
 			this.Name = "MainMenu";
 			this.Text = "SimSig Keyboard Interface";
+			this.TopMost = true;
 			this.Load += new System.EventHandler(this.MainMenu_Load);
 			this.menuStrip.ResumeLayout(false);
 			this.menuStrip.PerformLayout();
@@ -751,6 +794,9 @@
 		private System.Windows.Forms.Button keyboardAutoSet;
 		private System.Windows.Forms.Button keyboardSignalRemoveReplacement;
 		private System.Windows.Forms.Button keyboardSigReplacement;
+		private System.Windows.Forms.Button keyboardPointKR;
+		private System.Windows.Forms.Button keyboardPointF;
+		private System.Windows.Forms.Button keyboardPointKN;
 	}
 }
 

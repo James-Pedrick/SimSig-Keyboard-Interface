@@ -5,7 +5,7 @@ namespace SimSig_Keyboard_Interface.Client.Berths
 {
 	public class BerthContainer 
 	{
-		public static BindingList<Berths> BerthList = new BindingList<Berths>();
+		public BindingList<Berths> BerthList = new BindingList<Berths>();
 
 
 

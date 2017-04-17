@@ -6,7 +6,7 @@ namespace SimSig_Keyboard_Interface.Client.Calls
 {
 	class CallContainer
 	{
-		public static BindingList<Calls> CallList = new BindingList<Calls>();
+		public BindingList<Calls> CallList = new BindingList<Calls>();
 
 
 
