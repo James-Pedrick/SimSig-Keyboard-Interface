@@ -63,6 +63,9 @@
 			this.debugRaw = new System.Windows.Forms.TabPage();
 			this.debugRawTcpDisplay = new System.Windows.Forms.ListBox();
 			this.keyboardInterface = new System.Windows.Forms.TabPage();
+			this.keyboardPointKR = new System.Windows.Forms.Button();
+			this.keyboardPointF = new System.Windows.Forms.Button();
+			this.keyboardPointKN = new System.Windows.Forms.Button();
 			this.keyboardSignalRemoveReplacement = new System.Windows.Forms.Button();
 			this.keyboardSigReplacement = new System.Windows.Forms.Button();
 			this.keyboardAutoCancel = new System.Windows.Forms.Button();
@@ -81,9 +84,6 @@
 			this.callMessage = new System.Windows.Forms.RichTextBox();
 			this.loadSaveGameXML = new System.Windows.Forms.OpenFileDialog();
 			this.dataSave = new System.Windows.Forms.SaveFileDialog();
-			this.keyboardPointKN = new System.Windows.Forms.Button();
-			this.keyboardPointF = new System.Windows.Forms.Button();
-			this.keyboardPointKR = new System.Windows.Forms.Button();
 			this.menuStrip.SuspendLayout();
 			this.tabControl.SuspendLayout();
 			this.debug.SuspendLayout();
@@ -118,7 +118,7 @@
 			this.menuStrip.Size = new System.Drawing.Size(950, 24);
 			this.menuStrip.TabIndex = 0;
 			this.menuStrip.Text = "Menu Strip";
-			this.menuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip_ItemClicked);
+			this.menuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.MenuStrip_ItemClicked);
 			// 
 			// fileToolStripMenuItem
 			// 
@@ -133,7 +133,7 @@
 			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
 			this.exitToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
 			this.exitToolStripMenuItem.Text = "Exit";
-			this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+			this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
 			// 
 			// dataToolStripMenuItem
 			// 
@@ -178,15 +178,15 @@
 			this.clientToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.connectToolStripMenuItem});
 			this.clientToolStripMenuItem.Name = "clientToolStripMenuItem";
-			this.clientToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.clientToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
 			this.clientToolStripMenuItem.Text = "Client";
 			// 
 			// connectToolStripMenuItem
 			// 
 			this.connectToolStripMenuItem.Name = "connectToolStripMenuItem";
-			this.connectToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.connectToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
 			this.connectToolStripMenuItem.Text = "Connect";
-			this.connectToolStripMenuItem.Click += new System.EventHandler(this.connectToolStripMenuItem_Click);
+			this.connectToolStripMenuItem.Click += new System.EventHandler(this.ConnectToolStripMenuItem_Click);
 			// 
 			// dataToolStripMenuItem1
 			// 
@@ -201,21 +201,21 @@
 			// berthsResetToolStripMenuItem
 			// 
 			this.berthsResetToolStripMenuItem.Name = "berthsResetToolStripMenuItem";
-			this.berthsResetToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.berthsResetToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
 			this.berthsResetToolStripMenuItem.Text = "Berths Reset";
 			this.berthsResetToolStripMenuItem.Click += new System.EventHandler(this.BerthListReset);
 			// 
 			// pointsToolStripMenuItem
 			// 
 			this.pointsToolStripMenuItem.Name = "pointsToolStripMenuItem";
-			this.pointsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.pointsToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
 			this.pointsToolStripMenuItem.Text = "Points Reset";
 			this.pointsToolStripMenuItem.Click += new System.EventHandler(this.Point_List_Reset);
 			// 
 			// signalResetToolStripMenuItem
 			// 
 			this.signalResetToolStripMenuItem.Name = "signalResetToolStripMenuItem";
-			this.signalResetToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.signalResetToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
 			this.signalResetToolStripMenuItem.Text = "Signals Reset";
 			this.signalResetToolStripMenuItem.Click += new System.EventHandler(this.SignalListReset);
 			// 
@@ -321,7 +321,7 @@
 			this.debugCalls.Controls.Add(this.debugCallView);
 			this.debugCalls.Location = new System.Drawing.Point(4, 22);
 			this.debugCalls.Name = "debugCalls";
-			this.debugCalls.Size = new System.Drawing.Size(787, 435);
+			this.debugCalls.Size = new System.Drawing.Size(934, 577);
 			this.debugCalls.TabIndex = 5;
 			this.debugCalls.Text = "Calls";
 			this.debugCalls.UseVisualStyleBackColor = true;
@@ -339,7 +339,7 @@
 			this.debugCallView.Location = new System.Drawing.Point(0, 0);
 			this.debugCallView.Name = "debugCallView";
 			this.debugCallView.ReadOnly = true;
-			this.debugCallView.Size = new System.Drawing.Size(787, 435);
+			this.debugCallView.Size = new System.Drawing.Size(934, 577);
 			this.debugCallView.TabIndex = 2;
 			// 
 			// debugPoints
@@ -348,7 +348,7 @@
 			this.debugPoints.Location = new System.Drawing.Point(4, 22);
 			this.debugPoints.Name = "debugPoints";
 			this.debugPoints.Padding = new System.Windows.Forms.Padding(3);
-			this.debugPoints.Size = new System.Drawing.Size(787, 435);
+			this.debugPoints.Size = new System.Drawing.Size(934, 577);
 			this.debugPoints.TabIndex = 0;
 			this.debugPoints.Text = "Points";
 			this.debugPoints.UseVisualStyleBackColor = true;
@@ -366,7 +366,7 @@
 			this.debugPointView.Location = new System.Drawing.Point(3, 3);
 			this.debugPointView.Name = "debugPointView";
 			this.debugPointView.ReadOnly = true;
-			this.debugPointView.Size = new System.Drawing.Size(781, 429);
+			this.debugPointView.Size = new System.Drawing.Size(928, 571);
 			this.debugPointView.TabIndex = 1;
 			// 
 			// debugSignals
@@ -374,7 +374,7 @@
 			this.debugSignals.Controls.Add(this.debugSignalView);
 			this.debugSignals.Location = new System.Drawing.Point(4, 22);
 			this.debugSignals.Name = "debugSignals";
-			this.debugSignals.Size = new System.Drawing.Size(787, 435);
+			this.debugSignals.Size = new System.Drawing.Size(934, 577);
 			this.debugSignals.TabIndex = 1;
 			this.debugSignals.Text = "Signals";
 			this.debugSignals.UseVisualStyleBackColor = true;
@@ -392,7 +392,7 @@
 			this.debugSignalView.Location = new System.Drawing.Point(0, 0);
 			this.debugSignalView.Name = "debugSignalView";
 			this.debugSignalView.ReadOnly = true;
-			this.debugSignalView.Size = new System.Drawing.Size(787, 435);
+			this.debugSignalView.Size = new System.Drawing.Size(934, 577);
 			this.debugSignalView.TabIndex = 1;
 			// 
 			// debugTracks
@@ -400,7 +400,7 @@
 			this.debugTracks.Controls.Add(this.debugTrackView);
 			this.debugTracks.Location = new System.Drawing.Point(4, 22);
 			this.debugTracks.Name = "debugTracks";
-			this.debugTracks.Size = new System.Drawing.Size(787, 435);
+			this.debugTracks.Size = new System.Drawing.Size(934, 577);
 			this.debugTracks.TabIndex = 4;
 			this.debugTracks.Text = "Tracks";
 			this.debugTracks.UseVisualStyleBackColor = true;
@@ -418,7 +418,7 @@
 			this.debugTrackView.Location = new System.Drawing.Point(0, 0);
 			this.debugTrackView.Name = "debugTrackView";
 			this.debugTrackView.ReadOnly = true;
-			this.debugTrackView.Size = new System.Drawing.Size(787, 435);
+			this.debugTrackView.Size = new System.Drawing.Size(934, 577);
 			this.debugTrackView.TabIndex = 2;
 			// 
 			// debugRaw
@@ -426,7 +426,7 @@
 			this.debugRaw.Controls.Add(this.debugRawTcpDisplay);
 			this.debugRaw.Location = new System.Drawing.Point(4, 22);
 			this.debugRaw.Name = "debugRaw";
-			this.debugRaw.Size = new System.Drawing.Size(787, 435);
+			this.debugRaw.Size = new System.Drawing.Size(934, 577);
 			this.debugRaw.TabIndex = 3;
 			this.debugRaw.Text = "Raw";
 			this.debugRaw.UseVisualStyleBackColor = true;
@@ -437,7 +437,7 @@
 			this.debugRawTcpDisplay.FormattingEnabled = true;
 			this.debugRawTcpDisplay.Location = new System.Drawing.Point(0, 0);
 			this.debugRawTcpDisplay.Name = "debugRawTcpDisplay";
-			this.debugRawTcpDisplay.Size = new System.Drawing.Size(787, 435);
+			this.debugRawTcpDisplay.Size = new System.Drawing.Size(934, 577);
 			this.debugRawTcpDisplay.TabIndex = 4;
 			// 
 			// keyboardInterface
@@ -463,6 +463,42 @@
 			this.keyboardInterface.TabIndex = 0;
 			this.keyboardInterface.Text = "Keyboard Interface";
 			// 
+			// keyboardPointKR
+			// 
+			this.keyboardPointKR.AutoSize = true;
+			this.keyboardPointKR.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+			this.keyboardPointKR.Location = new System.Drawing.Point(398, 243);
+			this.keyboardPointKR.Name = "keyboardPointKR";
+			this.keyboardPointKR.Size = new System.Drawing.Size(189, 38);
+			this.keyboardPointKR.TabIndex = 12;
+			this.keyboardPointKR.Text = "Key Point Reverse";
+			this.keyboardPointKR.UseVisualStyleBackColor = true;
+			this.keyboardPointKR.Click += new System.EventHandler(this.KeyboardPointKR_Click);
+			// 
+			// keyboardPointF
+			// 
+			this.keyboardPointF.AutoSize = true;
+			this.keyboardPointF.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+			this.keyboardPointF.Location = new System.Drawing.Point(203, 243);
+			this.keyboardPointF.Name = "keyboardPointF";
+			this.keyboardPointF.Size = new System.Drawing.Size(189, 38);
+			this.keyboardPointF.TabIndex = 11;
+			this.keyboardPointF.Text = "Unlock Point";
+			this.keyboardPointF.UseVisualStyleBackColor = true;
+			this.keyboardPointF.Click += new System.EventHandler(this.KeyboardPointF_Click);
+			// 
+			// keyboardPointKN
+			// 
+			this.keyboardPointKN.AutoSize = true;
+			this.keyboardPointKN.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+			this.keyboardPointKN.Location = new System.Drawing.Point(8, 243);
+			this.keyboardPointKN.Name = "keyboardPointKN";
+			this.keyboardPointKN.Size = new System.Drawing.Size(189, 38);
+			this.keyboardPointKN.TabIndex = 10;
+			this.keyboardPointKN.Text = "Key Point Normal";
+			this.keyboardPointKN.UseVisualStyleBackColor = true;
+			this.keyboardPointKN.Click += new System.EventHandler(this.KeyboardPointKN_Click);
+			// 
 			// keyboardSignalRemoveReplacement
 			// 
 			this.keyboardSignalRemoveReplacement.AutoSize = true;
@@ -473,7 +509,7 @@
 			this.keyboardSignalRemoveReplacement.TabIndex = 9;
 			this.keyboardSignalRemoveReplacement.Text = "Remove Replacement";
 			this.keyboardSignalRemoveReplacement.UseVisualStyleBackColor = true;
-			this.keyboardSignalRemoveReplacement.Click += new System.EventHandler(this.keyboardSignalRemoveReplacement_Click);
+			this.keyboardSignalRemoveReplacement.Click += new System.EventHandler(this.KeyboardSignalRemoveReplacement_Click);
 			// 
 			// keyboardSigReplacement
 			// 
@@ -485,7 +521,7 @@
 			this.keyboardSigReplacement.TabIndex = 8;
 			this.keyboardSigReplacement.Text = "Signal Replacement";
 			this.keyboardSigReplacement.UseVisualStyleBackColor = true;
-			this.keyboardSigReplacement.Click += new System.EventHandler(this.keyboardSigReplacement_Click);
+			this.keyboardSigReplacement.Click += new System.EventHandler(this.KeyboardSigReplacement_Click);
 			// 
 			// keyboardAutoCancel
 			// 
@@ -497,7 +533,7 @@
 			this.keyboardAutoCancel.TabIndex = 7;
 			this.keyboardAutoCancel.Text = "Auto Cancel";
 			this.keyboardAutoCancel.UseVisualStyleBackColor = true;
-			this.keyboardAutoCancel.Click += new System.EventHandler(this.keyboardAutoCancel_Click);
+			this.keyboardAutoCancel.Click += new System.EventHandler(this.KeyboardAutoCancel_Click);
 			// 
 			// keyboardAutoSet
 			// 
@@ -509,7 +545,7 @@
 			this.keyboardAutoSet.TabIndex = 6;
 			this.keyboardAutoSet.Text = "Auto Set";
 			this.keyboardAutoSet.UseVisualStyleBackColor = true;
-			this.keyboardAutoSet.Click += new System.EventHandler(this.keyboardAutoSet_Click);
+			this.keyboardAutoSet.Click += new System.EventHandler(this.KeyboardAutoSet_Click);
 			// 
 			// keyboardRouteCancel
 			// 
@@ -521,7 +557,7 @@
 			this.keyboardRouteCancel.TabIndex = 5;
 			this.keyboardRouteCancel.Text = "Route Cancel";
 			this.keyboardRouteCancel.UseVisualStyleBackColor = true;
-			this.keyboardRouteCancel.Click += new System.EventHandler(this.keyboardRouteCancel_Click);
+			this.keyboardRouteCancel.Click += new System.EventHandler(this.KeyboardRouteCancel_Click);
 			// 
 			// keyboardRouteSet
 			// 
@@ -533,7 +569,7 @@
 			this.keyboardRouteSet.TabIndex = 4;
 			this.keyboardRouteSet.Text = "Route Set";
 			this.keyboardRouteSet.UseVisualStyleBackColor = true;
-			this.keyboardRouteSet.Click += new System.EventHandler(this.keyboardRouteSet_Click);
+			this.keyboardRouteSet.Click += new System.EventHandler(this.KeyboardRouteSet_Click);
 			// 
 			// keyboardSendToSim
 			// 
@@ -544,7 +580,7 @@
 			this.keyboardSendToSim.TabIndex = 3;
 			this.keyboardSendToSim.Text = "Send Direct to Sim";
 			this.keyboardSendToSim.UseVisualStyleBackColor = true;
-			this.keyboardSendToSim.Click += new System.EventHandler(this.sendToSim_Click);
+			this.keyboardSendToSim.Click += new System.EventHandler(this.SendToSim_Click);
 			// 
 			// keyboardTdCancel
 			// 
@@ -555,7 +591,7 @@
 			this.keyboardTdCancel.TabIndex = 2;
 			this.keyboardTdCancel.Text = "TD Cancel";
 			this.keyboardTdCancel.UseVisualStyleBackColor = true;
-			this.keyboardTdCancel.Click += new System.EventHandler(this.keyboardTdCancel_Click);
+			this.keyboardTdCancel.Click += new System.EventHandler(this.KeyboardTdCancel_Click);
 			// 
 			// keyboardInterpose
 			// 
@@ -566,7 +602,7 @@
 			this.keyboardInterpose.TabIndex = 1;
 			this.keyboardInterpose.Text = "TD Interpose";
 			this.keyboardInterpose.UseVisualStyleBackColor = true;
-			this.keyboardInterpose.Click += new System.EventHandler(this.keyboardInterpose_Click);
+			this.keyboardInterpose.Click += new System.EventHandler(this.KeyboardInterpose_Click);
 			// 
 			// userInputString
 			// 
@@ -628,7 +664,7 @@
 			this.callRespond.TabIndex = 5;
 			this.callRespond.Text = "Respond";
 			this.callRespond.UseVisualStyleBackColor = true;
-			this.callRespond.Click += new System.EventHandler(this.callRespond_Click);
+			this.callRespond.Click += new System.EventHandler(this.CallRespond_Click);
 			// 
 			// callers
 			// 
@@ -646,7 +682,7 @@
 			this.callers.Name = "callers";
 			this.callers.Size = new System.Drawing.Size(200, 494);
 			this.callers.TabIndex = 4;
-			this.callers.SelectedIndexChanged += new System.EventHandler(this.callers_SelectedIndexChanged_1);
+			this.callers.SelectedIndexChanged += new System.EventHandler(this.Callers_SelectedIndexChanged_1);
 			// 
 			// callMessage
 			// 
@@ -666,40 +702,6 @@
 			// loadSaveGameXML
 			// 
 			this.loadSaveGameXML.FileName = "openFileDialog1";
-			// 
-			// keyboardPointKN
-			// 
-			this.keyboardPointKN.AutoSize = true;
-			this.keyboardPointKN.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-			this.keyboardPointKN.Location = new System.Drawing.Point(8, 243);
-			this.keyboardPointKN.Name = "keyboardPointKN";
-			this.keyboardPointKN.Size = new System.Drawing.Size(189, 38);
-			this.keyboardPointKN.TabIndex = 10;
-			this.keyboardPointKN.Text = "Key Point Normal";
-			this.keyboardPointKN.UseVisualStyleBackColor = true;
-			this.keyboardPointKN.Click += new System.EventHandler(this.keyboardPointKN_Click);
-			// 
-			// keyboardPointF
-			// 
-			this.keyboardPointF.AutoSize = true;
-			this.keyboardPointF.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-			this.keyboardPointF.Location = new System.Drawing.Point(203, 243);
-			this.keyboardPointF.Name = "keyboardPointF";
-			this.keyboardPointF.Size = new System.Drawing.Size(189, 38);
-			this.keyboardPointF.TabIndex = 11;
-			this.keyboardPointF.Text = "Unlock Point";
-			this.keyboardPointF.UseVisualStyleBackColor = true;
-			// 
-			// keyboardPointKR
-			// 
-			this.keyboardPointKR.AutoSize = true;
-			this.keyboardPointKR.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-			this.keyboardPointKR.Location = new System.Drawing.Point(398, 243);
-			this.keyboardPointKR.Name = "keyboardPointKR";
-			this.keyboardPointKR.Size = new System.Drawing.Size(189, 38);
-			this.keyboardPointKR.TabIndex = 12;
-			this.keyboardPointKR.Text = "Key Point Reverse";
-			this.keyboardPointKR.UseVisualStyleBackColor = true;
 			// 
 			// MainMenu
 			// 

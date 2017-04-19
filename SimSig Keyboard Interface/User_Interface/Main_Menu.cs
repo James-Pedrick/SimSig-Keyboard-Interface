@@ -27,6 +27,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		/*Creating containers    */
 		/*************************/
 		public static TcpClient Connection = new TcpClient();
+
 		public static TcpConnect TcpConnectForm = new TcpConnect();
 
 
@@ -83,7 +84,8 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 				if (loadSaveGameXML.ShowDialog() == DialogResult.OK)
 					Settings.Default.wi = loadSaveGameXML.InitialDirectory + loadSaveGameXML.FileName;
-				Data.SaveGameParser.Parse(ref _berths, ref _points, ref _signals, ref _tracks); //Parse load with ref to points container
+				Data.SaveGameParser.Parse(ref _berths, ref _points, ref _signals,
+					ref _tracks); //Parse load with ref to points container
 
 			}
 			Refresh();
@@ -96,6 +98,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		}
 
 		#region DataUpdates
+
 		private void TcpDataUpdate(Object sender, MsgEventArgs e)
 		{
 			string[] receivedStrings = e.Msg.Split('|');
@@ -105,31 +108,78 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			{
 				if (InvokeRequired)
 				{
-					Invoke(new MethodInvoker(delegate { debugRawTcpDisplay.Items.Insert(0, element); if (element.StartsWith("sT")) Console.WriteLine(element); }));
+
+					Invoke(new MethodInvoker(delegate
+					{
+						debugRawTcpDisplay.Items.Insert(0, element);
+						if (element.StartsWith("sT")) Console.WriteLine(element);
+					}));
+					try
+					{
+
+						if (element.StartsWith("sB"))
+							if (InvokeRequired)
+								Invoke(new MethodInvoker(delegate
+								{
+									_berths.DataUpdateTcp(element.Substring(2, 8));
+									Refresh();
+								}));
+						if (element.StartsWith("sP"))
+							if (InvokeRequired)
+								Invoke(new MethodInvoker(delegate
+								{
+									_points.AddPointTcp(element.Substring(2, 7));
+									Refresh();
+								}));
+						if (element.StartsWith("sS"))
+							if (InvokeRequired)
+								Invoke(new MethodInvoker(delegate
+								{
+									_signals.AddSignalTcp(element.Substring(2, 13));
+									Refresh();
+								}));
+						if (element.StartsWith("sT"))
+							if (InvokeRequired)
+								Invoke(new MethodInvoker(delegate
+								{
+									_tracks.AddTrackTcp(element.Substring(2, 6));
+									Refresh();
+								}));
 
 
-					if (element.StartsWith("sB")) if (InvokeRequired) Invoke(new MethodInvoker(delegate { _berths.DataUpdateTcp(element.Substring(2, 8)); Refresh(); }));
-					if (element.StartsWith("sP")) if (InvokeRequired) Invoke(new MethodInvoker(delegate { _points.AddPointTcp(element.Substring(2, 7)); Refresh(); }));
-					if (element.StartsWith("sS")) if (InvokeRequired) Invoke(new MethodInvoker(delegate { _signals.AddSignalTcp(element.Substring(2, 13)); Refresh(); }));
-					if (element.StartsWith("sT")) if (InvokeRequired) Invoke(new MethodInvoker(delegate { _tracks.AddTrackTcp(element.Substring(2, 6)); Refresh(); }));
-
-
-					if (element.StartsWith("pM")) if (InvokeRequired) Invoke(new MethodInvoker(delegate { _calls.NewIncomingCall(element); Refresh(); }));
-					if (element.StartsWith("pO")) if (InvokeRequired) Invoke(new MethodInvoker(delegate { _calls.EndIncomingCall(element); Refresh(); }));
+						if (element.StartsWith("pM"))
+							if (InvokeRequired)
+								Invoke(new MethodInvoker(delegate
+								{
+									_calls.NewIncomingCall(element);
+									Refresh();
+								}));
+						if (element.StartsWith("pO"))
+							if (InvokeRequired)
+								Invoke(new MethodInvoker(delegate
+								{
+									_calls.EndIncomingCall(element);
+									Refresh();
+								}));
+					}
+					catch
+					{
+						Console.WriteLine(@"A Unhandled String was Received - " + element);
+					}
 				}
 			}
 		}
+
 		#endregion
-
-
 
 		#region Keyboard Interface Controls
 
-		private void keyboardInterpose_Click(object sender, EventArgs e)
+		private void KeyboardInterpose_Click(object sender, EventArgs e)
 		{
 			string[] userInput = userInputString.Text.Split(' ');
 
-			if (userInputString.Text.Contains(' ') == false) return;        //Not doing anything if the user has not enterd a space after the berth
+			if (userInputString.Text.Contains(' ') == false)
+				return; //Not doing anything if the user has not enterd a space after the berth
 
 
 			var berthHex = _berths.BerthHIdLookup(userInput[0]);
@@ -138,12 +188,13 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 		}
 
-		private void keyboardRouteSet_Click(object sender, EventArgs e)
+		private void KeyboardRouteSet_Click(object sender, EventArgs e)
 		{
 
 			string[] userInput = userInputString.Text.Split(' ');
 
-			if (userInputString.Text.Contains(' ') == false) return;        //Not doing anything if the user has not enterd a space after the berth
+			if (userInputString.Text.Contains(' ') == false)
+				return; //Not doing anything if the user has not enterd a space after the berth
 
 
 			var entrySigHex = _signals.SignalIdLookup(userInput[0]);
@@ -152,7 +203,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			Connection.SendData(@"SA" + entrySigHex + exitSigHex + @"00" + entrySigHex + @"----|");
 		}
 
-		private void keyboardTdCancel_Click(object sender, EventArgs e)
+		private void KeyboardTdCancel_Click(object sender, EventArgs e)
 		{
 			string[] userInput = userInputString.Text.Split(' ');
 
@@ -162,7 +213,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 		}
 
-		private void keyboardRouteCancel_Click(object sender, EventArgs e)
+		private void KeyboardRouteCancel_Click(object sender, EventArgs e)
 		{
 			string[] userInput = userInputString.Text.Split(' ');
 
@@ -171,7 +222,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 		}
 
-		private void keyboardAutoSet_Click(object sender, EventArgs e)
+		private void KeyboardAutoSet_Click(object sender, EventArgs e)
 		{
 			string[] userInput = userInputString.Text.Split(' ');
 
@@ -180,7 +231,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 		}
 
-		private void keyboardAutoCancel_Click(object sender, EventArgs e)
+		private void KeyboardAutoCancel_Click(object sender, EventArgs e)
 		{
 			string[] userInput = userInputString.Text.Split(' ');
 
@@ -189,7 +240,8 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 
 		}
-		private void keyboardSignalRemoveReplacement_Click(object sender, EventArgs e)
+
+		private void KeyboardSignalRemoveReplacement_Click(object sender, EventArgs e)
 		{
 			string[] userInput = userInputString.Text.Split(' ');
 
@@ -199,7 +251,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 		}
 
-		private void keyboardSigReplacement_Click(object sender, EventArgs e)
+		private void KeyboardSigReplacement_Click(object sender, EventArgs e)
 		{
 
 			string[] userInput = userInputString.Text.Split(' ');
@@ -209,11 +261,124 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 		}
 
+		private void KeyboardPointKN_Click(object sender, EventArgs e)
+		{
+
+
+			Thread keyPointsNormal = new Thread(() =>
+				{
+					string[] points = userInputString.Text.Split(' ');
+
+					string pointId = _points.PointLookup(points[0]);
+					if (pointId == null) return;
+
+
+
+
+					if (_points.PointList.SingleOrDefault(p => p.HexId == pointId) == null) return;
+
+					//(PointList.SingleOrDefault(b => b.Number == data) != null
+
+					while (_points.PointsKn(pointId) == false)
+					{
+						while (_points.PointUpdated(pointId) == false)
+							Thread.Sleep(10);
+						Thread.Sleep(10);
+						if (_points.PointsKn(pointId) == true)
+							return;
+
+						if (_points.PointsKn(pointId) == false && _points.PointUpdated(pointId) == true)
+						{
+							Connection.SendData(@"PB" + pointId + @"|");
+
+							_points.PointList.Single(b => b.HexId == pointId).Updated = false;
+						}
+					}
+				}
+			);
+			keyPointsNormal.Start();
+		}
+
+		private void KeyboardPointKR_Click(object sender, EventArgs e)
+		{
+
+
+			Thread keyPointsReverse = new Thread(() =>
+				{
+					string[] points = userInputString.Text.Split(' ');
+
+					string pointId = _points.PointLookup(points[0]);
+					if (pointId == null) return;
+
+
+
+
+					if (_points.PointList.SingleOrDefault(p => p.HexId == pointId) == null) return;
+
+					//(PointList.SingleOrDefault(b => b.Number == data) != null
+
+					while (_points.PointsKr(pointId) == false)
+					{
+						while (_points.PointUpdated(pointId) == false)
+							Thread.Sleep(10);
+						Thread.Sleep(10);
+						if (_points.PointsKr(pointId) == true)
+							return;
+
+						if (_points.PointsKr(pointId) == false && _points.PointUpdated(pointId) == true)
+						{
+							Connection.SendData(@"PC" + pointId + @"|");
+
+							_points.PointList.Single(b => b.HexId == pointId).Updated = false;
+						}
+					}
+				}
+			);
+			keyPointsReverse.Start();
+		}
+
+		private void KeyboardPointF_Click(object sender, EventArgs e)
+		{
+			Thread keyPointsFree = new Thread(() =>
+				{
+					string[] points = userInputString.Text.Split(' ');
+
+					string pointId = _points.PointLookup(points[0]);
+					if (pointId == null) return;
+
+
+
+
+					if (_points.PointList.SingleOrDefault(p => p.HexId == pointId) == null) return;
+
+					//(PointList.SingleOrDefault(b => b.Number == data) != null
+
+					while (_points.PointsKn(pointId) == true || _points.PointsKr(pointId) == true)
+					{
+						while (_points.PointUpdated(pointId) == false)
+							Thread.Sleep(10);
+						Thread.Sleep(10);
+						if (_points.PointsKn(pointId) == false && _points.PointsKr(pointId) == false)
+							return;
+
+						if ((_points.PointsKn(pointId) == true || _points.PointsKr(pointId) == true) &&
+						    _points.PointUpdated(pointId) == true)
+						{
+							Connection.SendData(@"PB" + pointId + @"|");
+
+							_points.PointList.Single(b => b.HexId == pointId).Updated = false;
+						}
+					}
+				}
+			);
+			keyPointsFree.Start();
+		}
+
 		#endregion
 
 		#region Misc Menu Items
 
-		private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+		private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			Environment.Exit(1);
 		}
@@ -234,7 +399,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		}
 
 
-		private void connectToolStripMenuItem_Click(object sender, EventArgs e)
+		private void ConnectToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 
 			connectToolStripMenuItem.Enabled = false;
@@ -250,18 +415,18 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		}
 
 
-		private void menuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+		private void MenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
 		{
 
 		}
 
-		private void sendToSim_Click(object sender, EventArgs e)
+		private void SendToSim_Click(object sender, EventArgs e)
 		{
 			Connection.SendData(userInputString.Text);
 		}
 
 
-		private void callRespond_Click(object sender, EventArgs e)
+		private void CallRespond_Click(object sender, EventArgs e)
 		{
 			string x = callResponses.SelectedIndex.ToString();
 
@@ -276,7 +441,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			Refresh();
 		}
 
-		private void callers_SelectedIndexChanged_1(object sender, EventArgs e)
+		private void Callers_SelectedIndexChanged_1(object sender, EventArgs e)
 		{
 
 			callResponses.Items.Clear();
@@ -301,26 +466,8 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 		#endregion
 
-		private void keyboardPointKN_Click(object sender, EventArgs e)
-		{
-			Thread keyPointsNormal = new Thread(() =>
-				{
-					string[] points = userInputString.Text.Split(' ');
-
-					string pointId = _points.PointLookup(points[0]);
-					if (pointId == null) return;
-					//(PointList.SingleOrDefault(b => b.Number == data) != null
-					
-
-				
-
-				}
-			);
-			keyPointsNormal.Start();
-		}
 	}
 }
-
 
 
 /*

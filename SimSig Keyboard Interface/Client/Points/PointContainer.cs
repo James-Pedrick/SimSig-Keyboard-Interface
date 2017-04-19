@@ -25,7 +25,7 @@ namespace SimSig_Keyboard_Interface.Client.Points
 			PointList.Single(p => p.HexId == hId).PointUpdate(pointStates);
 
 		}
-		
+
 		public void AddPointXml(string hId, string pointId)
 		{
 
@@ -49,6 +49,43 @@ namespace SimSig_Keyboard_Interface.Client.Points
 			}
 
 			return null;
+		}
+
+		public bool PointUpdated(string data)
+		{
+			if (PointList.SingleOrDefault(p => p.HexId == data) != null)
+			{
+				var returnVal = PointList.Single(p => p.HexId == data);
+
+				return returnVal.Updated;
+
+			}
+			return true;            //This line should not be reachable
+		}
+
+		public bool PointsKn(string data)
+		{
+			if (PointList.SingleOrDefault(p => p.HexId == data) != null)
+			{
+				var returnVal = PointList.Single(p => p.HexId == data);
+
+				return returnVal.Kn;
+
+			}
+			return true;            //This line should not be reachable
+
+		}
+		public bool PointsKr(string data)
+		{
+			if (PointList.SingleOrDefault(p => p.HexId == data) != null)
+			{
+				var returnVal = PointList.Single(p => p.HexId == data);
+
+				return returnVal.Kr;
+
+			}
+			return true;            //This line should not be reachable
+
 		}
 	}
 }

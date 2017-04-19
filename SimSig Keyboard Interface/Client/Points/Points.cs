@@ -16,7 +16,7 @@ namespace SimSig_Keyboard_Interface.Client.Points
         public bool Kr { get; set; }
         public bool Lock { get; set; }
         public bool Iso { get; set; }
-		public bool Updated { get; set; }
+	    public bool Updated { get; set; } = true;
 
         public void PointUpdate(string pointState)
         {
