@@ -1,10 +1,13 @@
 ﻿using System;
-using System.IO;
+using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 using SimSig_Keyboard_Interface.Client.Berths;
+using SimSig_Keyboard_Interface.Client.Calls;
 using SimSig_Keyboard_Interface.Client.Points;
 using SimSig_Keyboard_Interface.Client.Signals;
 using SimSig_Keyboard_Interface.Client.TCP;
+using SimSig_Keyboard_Interface.Client.Track;
 using SimSig_Keyboard_Interface.Properties;
 
 // ************************************************************** Load Points config file ^^^
@@ -17,18 +20,22 @@ namespace SimSig_Keyboard_Interface.User_Interface
 	{
 
 
-		public static TcpClient Connection = new TcpClient();
-		public static TcpConnect TcpConnectForm = new TcpConnect();
 
 
 
 		/*************************/
 		/*Creating containers    */
 		/*************************/
-		private static BerthContainer _berths = new BerthContainer();
+		public static TcpClient Connection = new TcpClient();
 
+		public static TcpConnect TcpConnectForm = new TcpConnect();
+
+
+		private static BerthContainer _berths = new BerthContainer();
 		private static PointContainer _points = new PointContainer();
 		private static SignalContainer _signals = new SignalContainer();
+		private static TrackContainer _tracks = new TrackContainer();
+		private static CallContainer _calls = new CallContainer();
 
 
 
@@ -39,13 +46,30 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		{
 			InitializeComponent();
 
+			debugBerthView.DataSource = _berths.BerthList;
+			debugPointView.DataSource = _points.PointList;
+			debugSignalView.DataSource = _signals.SignalList;
+			debugTrackView.DataSource = _tracks.TrackList;
+			debugCallView.DataSource = _calls.CallList;
 
-			debugBerthView.DataSource = BerthContainer.BerthList;
-			debugPointView.DataSource = PointContainer.PointList;
-			debugSignalView.DataSource = SignalContainer.SignalList;
 
 			Connection.DataReceived += TcpDataUpdate;
 
+			callers.Items.Clear();
+
+
+
+			callers.DisplayMember = "CallerName";
+			callers.ValueMember = "CallNumber";
+
+
+			callers.DataSource = _calls.CallList;
+
+
+
+			callResponses.Items.Clear();
+
+			callMessage.Clear();
 		}
 
 		private void MenuLoadSaveXml(object sender, EventArgs e)
@@ -60,7 +84,8 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 				if (loadSaveGameXML.ShowDialog() == DialogResult.OK)
 					Settings.Default.wi = loadSaveGameXML.InitialDirectory + loadSaveGameXML.FileName;
-				Data.SaveGameParser.Parse(ref _berths, ref _points, ref _signals); //Parse load with ref to points container
+				Data.SaveGameParser.Parse(ref _berths, ref _points, ref _signals,
+					ref _tracks); //Parse load with ref to points container
 
 			}
 			Refresh();
@@ -72,6 +97,8 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 		}
 
+		#region DataUpdates
+
 		private void TcpDataUpdate(Object sender, MsgEventArgs e)
 		{
 			string[] receivedStrings = e.Msg.Split('|');
@@ -79,66 +106,369 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 			foreach (string element in receivedStrings)
 			{
-
-
 				if (InvokeRequired)
 				{
+
 					Invoke(new MethodInvoker(delegate
 					{
 						debugRawTcpDisplay.Items.Insert(0, element);
-						//Console.WriteLine(element);
-
+						if (element.StartsWith("sT")) Console.WriteLine(element);
 					}));
-
-
-					if (element.StartsWith("sB"))
+					try
 					{
-						if (InvokeRequired)
-						{
-							Invoke(new MethodInvoker(delegate
-							{
-								var z = element.Substring(2, 8);
-								_berths.DataUpdateTcp(z);
-								Refresh();
 
-							}));
-						}
+						if (element.StartsWith("sB"))
+							if (InvokeRequired)
+								Invoke(new MethodInvoker(delegate
+								{
+									_berths.DataUpdateTcp(element.Substring(2, 8));
+									Refresh();
+								}));
+						if (element.StartsWith("sP"))
+							if (InvokeRequired)
+								Invoke(new MethodInvoker(delegate
+								{
+									_points.AddPointTcp(element.Substring(2, 7));
+									Refresh();
+								}));
+						if (element.StartsWith("sS"))
+							if (InvokeRequired)
+								Invoke(new MethodInvoker(delegate
+								{
+									_signals.AddSignalTcp(element.Substring(2, 13));
+									Refresh();
+								}));
+						if (element.StartsWith("sT"))
+							if (InvokeRequired)
+								Invoke(new MethodInvoker(delegate
+								{
+									_tracks.AddTrackTcp(element.Substring(2, 6));
+									Refresh();
+								}));
+
+
+						if (element.StartsWith("pM"))
+							if (InvokeRequired)
+								Invoke(new MethodInvoker(delegate
+								{
+									_calls.NewIncomingCall(element);
+									Refresh();
+								}));
+						if (element.StartsWith("pO"))
+							if (InvokeRequired)
+								Invoke(new MethodInvoker(delegate
+								{
+									_calls.EndIncomingCall(element);
+									Refresh();
+								}));
 					}
-					if (element.StartsWith("sP"))
+					catch
 					{
-						if (InvokeRequired)
-							Invoke(new MethodInvoker(delegate
-							{
-								var z = element.Substring(2, 7);
-								_points.AddPointTcp(z);
-								Refresh();
-
-							}));
-					}
-					if (element.StartsWith("sS"))
-					{
-						if (InvokeRequired)
-							Invoke(new MethodInvoker(delegate
-							{
-								var z = element.Substring(2, 13);
-								_signals.AddSignalTcp(z);
-								Refresh();
-
-							}));
+						Console.WriteLine(@"A Unhandled String was Received - " + element);
 					}
 				}
 			}
 		}
 
-		private void keyboardInterpose_Click(object sender, EventArgs e)
+		#endregion
+
+		#region Keyboard Interface Controls
+
+		private void KeyboardInterpose_Click(object sender, EventArgs e)
 		{
 			string[] userInput = userInputString.Text.Split(' ');
 
+			if (userInputString.Text.Contains(' ') == false)
+				return; //Not doing anything if the user has not enterd a space after the berth
+
+
+			var berthHex = _berths.BerthHIdLookup(userInput[0]);
+
+			Connection.SendData(@"BB" + berthHex + userInput[1] + "----|");
 
 		}
-	}
 
+		private void KeyboardRouteSet_Click(object sender, EventArgs e)
+		{
+
+			string[] userInput = userInputString.Text.Split(' ');
+
+			if (userInputString.Text.Contains(' ') == false)
+				return; //Not doing anything if the user has not enterd a space after the berth
+
+
+			var entrySigHex = _signals.SignalIdLookup(userInput[0]);
+			var exitSigHex = _signals.SignalIdLookup(userInput[1]);
+
+			Connection.SendData(@"SA" + entrySigHex + exitSigHex + @"00" + entrySigHex + @"----|");
+		}
+
+		private void KeyboardTdCancel_Click(object sender, EventArgs e)
+		{
+			string[] userInput = userInputString.Text.Split(' ');
+
+			var berthHex = _berths.BerthHIdLookup(userInput[0]);
+
+			Connection.SendData(@"BC" + berthHex + "|");
+
+		}
+
+		private void KeyboardRouteCancel_Click(object sender, EventArgs e)
+		{
+			string[] userInput = userInputString.Text.Split(' ');
+
+			var entrySigHex = _signals.SignalIdLookup(userInput[0]);
+			Connection.SendData(@"zD" + entrySigHex + "|");
+
+		}
+
+		private void KeyboardAutoSet_Click(object sender, EventArgs e)
+		{
+			string[] userInput = userInputString.Text.Split(' ');
+
+			var entrySigHex = _signals.SignalIdLookup(userInput[0]);
+			Connection.SendData(@"SF" + entrySigHex + "|");
+
+		}
+
+		private void KeyboardAutoCancel_Click(object sender, EventArgs e)
+		{
+			string[] userInput = userInputString.Text.Split(' ');
+
+			var entrySigHex = _signals.SignalIdLookup(userInput[0]);
+			Connection.SendData(@"SG" + entrySigHex + "|");
+
+
+		}
+
+		private void KeyboardSignalRemoveReplacement_Click(object sender, EventArgs e)
+		{
+			string[] userInput = userInputString.Text.Split(' ');
+
+			var entrySigHex = _signals.SignalIdLookup(userInput[0]);
+			Connection.SendData(@"SP" + entrySigHex + "|");
+
+
+		}
+
+		private void KeyboardSigReplacement_Click(object sender, EventArgs e)
+		{
+
+			string[] userInput = userInputString.Text.Split(' ');
+
+			var entrySigHex = _signals.SignalIdLookup(userInput[0]);
+			Connection.SendData(@"SQ" + entrySigHex + "|");
+
+		}
+
+		private void KeyboardPointKN_Click(object sender, EventArgs e)
+		{
+
+
+			Thread keyPointsNormal = new Thread(() =>
+				{
+					string[] points = userInputString.Text.Split(' ');
+
+					string pointId = _points.PointLookup(points[0]);
+					if (pointId == null) return;
+
+
+
+
+					if (_points.PointList.SingleOrDefault(p => p.HexId == pointId) == null) return;
+
+					//(PointList.SingleOrDefault(b => b.Number == data) != null
+
+					while (_points.PointsKn(pointId) == false)
+					{
+						while (_points.PointUpdated(pointId) == false)
+							Thread.Sleep(10);
+						Thread.Sleep(10);
+						if (_points.PointsKn(pointId) == true)
+							return;
+
+						if (_points.PointsKn(pointId) == false && _points.PointUpdated(pointId) == true)
+						{
+							Connection.SendData(@"PB" + pointId + @"|");
+
+							_points.PointList.Single(b => b.HexId == pointId).Updated = false;
+						}
+					}
+				}
+			);
+			keyPointsNormal.Start();
+		}
+
+		private void KeyboardPointKR_Click(object sender, EventArgs e)
+		{
+
+
+			Thread keyPointsReverse = new Thread(() =>
+				{
+					string[] points = userInputString.Text.Split(' ');
+
+					string pointId = _points.PointLookup(points[0]);
+					if (pointId == null) return;
+
+
+
+
+					if (_points.PointList.SingleOrDefault(p => p.HexId == pointId) == null) return;
+
+					//(PointList.SingleOrDefault(b => b.Number == data) != null
+
+					while (_points.PointsKr(pointId) == false)
+					{
+						while (_points.PointUpdated(pointId) == false)
+							Thread.Sleep(10);
+						Thread.Sleep(10);
+						if (_points.PointsKr(pointId) == true)
+							return;
+
+						if (_points.PointsKr(pointId) == false && _points.PointUpdated(pointId) == true)
+						{
+							Connection.SendData(@"PC" + pointId + @"|");
+
+							_points.PointList.Single(b => b.HexId == pointId).Updated = false;
+						}
+					}
+				}
+			);
+			keyPointsReverse.Start();
+		}
+
+		private void KeyboardPointF_Click(object sender, EventArgs e)
+		{
+			Thread keyPointsFree = new Thread(() =>
+				{
+					string[] points = userInputString.Text.Split(' ');
+
+					string pointId = _points.PointLookup(points[0]);
+					if (pointId == null) return;
+
+
+
+
+					if (_points.PointList.SingleOrDefault(p => p.HexId == pointId) == null) return;
+
+					//(PointList.SingleOrDefault(b => b.Number == data) != null
+
+					while (_points.PointsKn(pointId) == true || _points.PointsKr(pointId) == true)
+					{
+						while (_points.PointUpdated(pointId) == false)
+							Thread.Sleep(10);
+						Thread.Sleep(10);
+						if (_points.PointsKn(pointId) == false && _points.PointsKr(pointId) == false)
+							return;
+
+						if ((_points.PointsKn(pointId) == true || _points.PointsKr(pointId) == true) &&
+						    _points.PointUpdated(pointId) == true)
+						{
+							Connection.SendData(@"PB" + pointId + @"|");
+
+							_points.PointList.Single(b => b.HexId == pointId).Updated = false;
+						}
+					}
+				}
+			);
+			keyPointsFree.Start();
+		}
+
+		#endregion
+
+		#region Misc Menu Items
+
+		private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			Environment.Exit(1);
+		}
+
+		private void Point_List_Reset(object sender, EventArgs e)
+		{
+			_points.PointList.Clear();
+		}
+
+		private void BerthListReset(object sender, EventArgs e)
+		{
+			_berths.BerthList.Clear();
+		}
+
+		private void SignalListReset(object sender, EventArgs e)
+		{
+			_signals.SignalList.Clear();
+		}
+
+
+		private void ConnectToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+
+			connectToolStripMenuItem.Enabled = false;
+			Thread tcpConnectThread = new Thread(() =>
+			{
+				TcpConnectForm.ShowDialog();
+
+
+				Connection.Connect(Settings.Default.ipAddress, Settings.Default.clientPort);
+
+			});
+			tcpConnectThread.Start();
+		}
+
+
+		private void MenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+		{
+
+		}
+
+		private void SendToSim_Click(object sender, EventArgs e)
+		{
+			Connection.SendData(userInputString.Text);
+		}
+
+
+		private void CallRespond_Click(object sender, EventArgs e)
+		{
+			string x = callResponses.SelectedIndex.ToString();
+
+			//"pN" + callid[0] + '\\' + callResponses.SelectedIndex;
+
+			string callId = _calls.CallList.Single(c => c.CallNumber == callers.SelectedValue.ToString()).CallNumber;
+
+			Connection.SendData("pN" + callId + '\\' + x + "|");
+
+			callResponses.Items.Clear();
+			callMessage.Clear();
+			Refresh();
+		}
+
+		private void Callers_SelectedIndexChanged_1(object sender, EventArgs e)
+		{
+
+			callResponses.Items.Clear();
+			try
+			{
+				string[] x = _calls.CallList.Single(c => c.CallNumber == callers.SelectedValue.ToString()).CallResponses;
+
+				foreach (var i in x)
+					if (i != null)
+						callResponses.Items.Add(i.Substring(8).TrimEnd('\\'));
+
+				callMessage.Text = _calls.CallList.Single(c => c.CallNumber == callers.SelectedValue.ToString()).CallerMessage;
+			}
+			catch
+			{
+				callResponses.Items.Clear();
+			}
+
+
+		}
+
+
+		#endregion
+
+	}
 }
+
 
 /*
 

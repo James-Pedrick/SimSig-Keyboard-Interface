@@ -6,7 +6,7 @@ namespace SimSig_Keyboard_Interface.Client.Points
 {
 	public class PointContainer
 	{
-		public static BindingList<Points> PointList = new BindingList<Points>();
+		public BindingList<Points> PointList = new BindingList<Points>();
 
 
 
@@ -26,8 +26,6 @@ namespace SimSig_Keyboard_Interface.Client.Points
 
 		}
 
-
-
 		public void AddPointXml(string hId, string pointId)
 		{
 
@@ -35,6 +33,58 @@ namespace SimSig_Keyboard_Interface.Client.Points
 				PointList.Add(new Points { HexId = hId, Number = pointId });
 			else
 				PointList.Single(b => b.HexId == hId).Number = pointId;
+
+		}
+
+		public string PointLookup(string data)
+		{
+
+
+			data = 'P' + data.ToUpper();
+
+			if (PointList.SingleOrDefault(b => b.Number == data) != null)
+			{
+				var point = PointList.Single(b => b.Number == data);
+				return point.HexId;
+			}
+
+			return null;
+		}
+
+		public bool PointUpdated(string data)
+		{
+			if (PointList.SingleOrDefault(p => p.HexId == data) != null)
+			{
+				var returnVal = PointList.Single(p => p.HexId == data);
+
+				return returnVal.Updated;
+
+			}
+			return true;            //This line should not be reachable
+		}
+
+		public bool PointsKn(string data)
+		{
+			if (PointList.SingleOrDefault(p => p.HexId == data) != null)
+			{
+				var returnVal = PointList.Single(p => p.HexId == data);
+
+				return returnVal.Kn;
+
+			}
+			return true;            //This line should not be reachable
+
+		}
+		public bool PointsKr(string data)
+		{
+			if (PointList.SingleOrDefault(p => p.HexId == data) != null)
+			{
+				var returnVal = PointList.Single(p => p.HexId == data);
+
+				return returnVal.Kr;
+
+			}
+			return true;            //This line should not be reachable
 
 		}
 	}

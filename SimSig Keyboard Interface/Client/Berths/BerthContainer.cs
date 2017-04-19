@@ -1,12 +1,11 @@
 ﻿using System.ComponentModel;
 using System.Linq;
-using System.Net.Http.Headers;
 
 namespace SimSig_Keyboard_Interface.Client.Berths
 {
 	public class BerthContainer 
 	{
-		public static BindingList<Berths> BerthList = new BindingList<Berths>();
+		public BindingList<Berths> BerthList = new BindingList<Berths>();
 
 
 
@@ -48,9 +47,15 @@ namespace SimSig_Keyboard_Interface.Client.Berths
 		public string BerthHIdLookup(string data)
 		{
 
-			var berth = BerthList.Single(b => b.BerthId == data);
+			data = 'B' + data.ToUpper();
+			
+			if (BerthList.SingleOrDefault(b => b.BerthId == data)!= null)
+			{
+				var berth = BerthList.Single(b => b.BerthId == data);
+				return berth.HexId;
+			}
 
-			return berth.HexId;
+			return null;
 		}
 
 	}

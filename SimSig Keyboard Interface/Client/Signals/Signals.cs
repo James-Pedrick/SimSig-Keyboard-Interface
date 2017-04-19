@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SimSig_Keyboard_Interface.Client.Signals
+﻿namespace SimSig_Keyboard_Interface.Client.Signals
 {
 	public class Signals
 	{
@@ -8,16 +6,16 @@ namespace SimSig_Keyboard_Interface.Client.Signals
 		public string Number { get; set; }
 		public string Aspect { get; set; } = "R";
 
-		public bool IsoAppS { get; set; } = false;
-		public bool RemAppS { get; set; } = false;
-		public bool IsoAppA { get; set; } = false;
-		public bool RemAppA { get; set; } = false;
-		public bool IsoAppR { get; set; } = false;
-		public bool RemAppR { get; set; } = false;
+		public bool IsoAppS { get; set; }
+		public bool RemAppS { get; set; }
+		public bool IsoAppA { get; set; }
+		public bool RemAppA { get; set; }
+		public bool IsoAppR { get; set; }
+		public bool RemAppR { get; set; }
 
-		public bool SignalOut { get; set; } = false;
-		public bool SignalNormal { get; set; } = false;
-		public bool SignalAuto { get; set; } = false;
+		public bool SignalOut { get; set; }
+		public bool SignalNormal { get; set; }
+		public bool SignalAuto { get; set; }
 
 		/*********************************************************************/
 		/* STILL NEEDING TO BE LOOKED AT:	Signal Update Controls as these  */

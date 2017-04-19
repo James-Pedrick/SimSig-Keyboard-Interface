@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics;
 using System.Net.Sockets;
 using SimSig_Keyboard_Interface.Properties;
 
@@ -25,8 +24,8 @@ namespace SimSig_Keyboard_Interface.Client.TCP
 		private void OnDataReceived(object sender, MsgEventArgs e)
 		{
 			var handler = DataReceived;
-            if (handler != null) DataReceived(this, e);  // re-raise event
-        }
+            if (handler != null) DataReceived?.Invoke(this, e); // re-raise event
+		}
 
 		public void Dispose()
 		{
@@ -39,9 +38,9 @@ namespace SimSig_Keyboard_Interface.Client.TCP
 			{
 				_client = new System.Net.Sockets.TcpClient();
 
-			System.Console.WriteLine(@"Connecting ...");
+			Console.WriteLine(@"Connecting ...");
 			_client.Connect(ipAddress, port);
-			System.Console.WriteLine(@"Connected");
+			Console.WriteLine(@"Connected");
 
 
 			_stream = _client.GetStream();

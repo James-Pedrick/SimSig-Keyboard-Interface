@@ -52,15 +52,36 @@
 			this.debugTabs = new System.Windows.Forms.TabControl();
 			this.debugBerths = new System.Windows.Forms.TabPage();
 			this.debugBerthView = new System.Windows.Forms.DataGridView();
-			this.debugSignals = new System.Windows.Forms.TabPage();
-			this.debugSignalView = new System.Windows.Forms.DataGridView();
+			this.debugCalls = new System.Windows.Forms.TabPage();
+			this.debugCallView = new System.Windows.Forms.DataGridView();
 			this.debugPoints = new System.Windows.Forms.TabPage();
 			this.debugPointView = new System.Windows.Forms.DataGridView();
+			this.debugSignals = new System.Windows.Forms.TabPage();
+			this.debugSignalView = new System.Windows.Forms.DataGridView();
+			this.debugTracks = new System.Windows.Forms.TabPage();
+			this.debugTrackView = new System.Windows.Forms.DataGridView();
 			this.debugRaw = new System.Windows.Forms.TabPage();
 			this.debugRawTcpDisplay = new System.Windows.Forms.ListBox();
 			this.keyboardInterface = new System.Windows.Forms.TabPage();
+			this.keyboardPointKR = new System.Windows.Forms.Button();
+			this.keyboardPointF = new System.Windows.Forms.Button();
+			this.keyboardPointKN = new System.Windows.Forms.Button();
+			this.keyboardSignalRemoveReplacement = new System.Windows.Forms.Button();
+			this.keyboardSigReplacement = new System.Windows.Forms.Button();
+			this.keyboardAutoCancel = new System.Windows.Forms.Button();
+			this.keyboardAutoSet = new System.Windows.Forms.Button();
+			this.keyboardRouteCancel = new System.Windows.Forms.Button();
+			this.keyboardRouteSet = new System.Windows.Forms.Button();
+			this.keyboardSendToSim = new System.Windows.Forms.Button();
+			this.keyboardTdCancel = new System.Windows.Forms.Button();
 			this.keyboardInterpose = new System.Windows.Forms.Button();
 			this.userInputString = new System.Windows.Forms.TextBox();
+			this.phoneCalls = new System.Windows.Forms.TabPage();
+			this.callResponses = new System.Windows.Forms.ListBox();
+			this.panel1 = new System.Windows.Forms.Panel();
+			this.callRespond = new System.Windows.Forms.Button();
+			this.callers = new System.Windows.Forms.ListBox();
+			this.callMessage = new System.Windows.Forms.RichTextBox();
 			this.loadSaveGameXML = new System.Windows.Forms.OpenFileDialog();
 			this.dataSave = new System.Windows.Forms.SaveFileDialog();
 			this.menuStrip.SuspendLayout();
@@ -69,12 +90,18 @@
 			this.debugTabs.SuspendLayout();
 			this.debugBerths.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.debugBerthView)).BeginInit();
-			this.debugSignals.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.debugSignalView)).BeginInit();
+			this.debugCalls.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.debugCallView)).BeginInit();
 			this.debugPoints.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.debugPointView)).BeginInit();
+			this.debugSignals.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.debugSignalView)).BeginInit();
+			this.debugTracks.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.debugTrackView)).BeginInit();
 			this.debugRaw.SuspendLayout();
 			this.keyboardInterface.SuspendLayout();
+			this.phoneCalls.SuspendLayout();
+			this.panel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// menuStrip
@@ -88,9 +115,10 @@
             this.logsToolStripMenuItem});
 			this.menuStrip.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip.Name = "menuStrip";
-			this.menuStrip.Size = new System.Drawing.Size(803, 24);
+			this.menuStrip.Size = new System.Drawing.Size(950, 24);
 			this.menuStrip.TabIndex = 0;
 			this.menuStrip.Text = "Menu Strip";
+			this.menuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.MenuStrip_ItemClicked);
 			// 
 			// fileToolStripMenuItem
 			// 
@@ -105,7 +133,7 @@
 			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
 			this.exitToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
 			this.exitToolStripMenuItem.Text = "Exit";
-			this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+			this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
 			// 
 			// dataToolStripMenuItem
 			// 
@@ -158,7 +186,7 @@
 			this.connectToolStripMenuItem.Name = "connectToolStripMenuItem";
 			this.connectToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
 			this.connectToolStripMenuItem.Text = "Connect";
-			this.connectToolStripMenuItem.Click += new System.EventHandler(this.connectToolStripMenuItem_Click);
+			this.connectToolStripMenuItem.Click += new System.EventHandler(this.ConnectToolStripMenuItem_Click);
 			// 
 			// dataToolStripMenuItem1
 			// 
@@ -230,13 +258,14 @@
 			// 
 			this.tabControl.Controls.Add(this.debug);
 			this.tabControl.Controls.Add(this.keyboardInterface);
+			this.tabControl.Controls.Add(this.phoneCalls);
 			this.tabControl.Cursor = System.Windows.Forms.Cursors.Default;
 			this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tabControl.Location = new System.Drawing.Point(0, 24);
 			this.tabControl.Multiline = true;
 			this.tabControl.Name = "tabControl";
 			this.tabControl.SelectedIndex = 0;
-			this.tabControl.Size = new System.Drawing.Size(803, 487);
+			this.tabControl.Size = new System.Drawing.Size(950, 629);
 			this.tabControl.TabIndex = 1;
 			// 
 			// debug
@@ -244,7 +273,7 @@
 			this.debug.Controls.Add(this.debugTabs);
 			this.debug.Location = new System.Drawing.Point(4, 22);
 			this.debug.Name = "debug";
-			this.debug.Size = new System.Drawing.Size(795, 461);
+			this.debug.Size = new System.Drawing.Size(942, 603);
 			this.debug.TabIndex = 1;
 			this.debug.Text = "Debug";
 			this.debug.UseVisualStyleBackColor = true;
@@ -252,15 +281,17 @@
 			// debugTabs
 			// 
 			this.debugTabs.Controls.Add(this.debugBerths);
-			this.debugTabs.Controls.Add(this.debugSignals);
+			this.debugTabs.Controls.Add(this.debugCalls);
 			this.debugTabs.Controls.Add(this.debugPoints);
+			this.debugTabs.Controls.Add(this.debugSignals);
+			this.debugTabs.Controls.Add(this.debugTracks);
 			this.debugTabs.Controls.Add(this.debugRaw);
 			this.debugTabs.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.debugTabs.Location = new System.Drawing.Point(0, 0);
 			this.debugTabs.Multiline = true;
 			this.debugTabs.Name = "debugTabs";
 			this.debugTabs.SelectedIndex = 0;
-			this.debugTabs.Size = new System.Drawing.Size(795, 461);
+			this.debugTabs.Size = new System.Drawing.Size(942, 603);
 			this.debugTabs.TabIndex = 0;
 			// 
 			// debugBerths
@@ -268,7 +299,7 @@
 			this.debugBerths.Controls.Add(this.debugBerthView);
 			this.debugBerths.Location = new System.Drawing.Point(4, 22);
 			this.debugBerths.Name = "debugBerths";
-			this.debugBerths.Size = new System.Drawing.Size(787, 435);
+			this.debugBerths.Size = new System.Drawing.Size(934, 577);
 			this.debugBerths.TabIndex = 2;
 			this.debugBerths.Text = "Berths";
 			this.debugBerths.UseVisualStyleBackColor = true;
@@ -282,15 +313,68 @@
 			this.debugBerthView.ReadOnly = true;
 			this.debugBerthView.RowTemplate.ReadOnly = true;
 			this.debugBerthView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			this.debugBerthView.Size = new System.Drawing.Size(787, 435);
+			this.debugBerthView.Size = new System.Drawing.Size(934, 577);
 			this.debugBerthView.TabIndex = 2;
+			// 
+			// debugCalls
+			// 
+			this.debugCalls.Controls.Add(this.debugCallView);
+			this.debugCalls.Location = new System.Drawing.Point(4, 22);
+			this.debugCalls.Name = "debugCalls";
+			this.debugCalls.Size = new System.Drawing.Size(934, 577);
+			this.debugCalls.TabIndex = 5;
+			this.debugCalls.Text = "Calls";
+			this.debugCalls.UseVisualStyleBackColor = true;
+			// 
+			// debugCallView
+			// 
+			this.debugCallView.AllowUserToAddRows = false;
+			this.debugCallView.AllowUserToDeleteRows = false;
+			this.debugCallView.AllowUserToOrderColumns = true;
+			this.debugCallView.AllowUserToResizeColumns = false;
+			this.debugCallView.AllowUserToResizeRows = false;
+			this.debugCallView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+			this.debugCallView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.debugCallView.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.debugCallView.Location = new System.Drawing.Point(0, 0);
+			this.debugCallView.Name = "debugCallView";
+			this.debugCallView.ReadOnly = true;
+			this.debugCallView.Size = new System.Drawing.Size(934, 577);
+			this.debugCallView.TabIndex = 2;
+			// 
+			// debugPoints
+			// 
+			this.debugPoints.Controls.Add(this.debugPointView);
+			this.debugPoints.Location = new System.Drawing.Point(4, 22);
+			this.debugPoints.Name = "debugPoints";
+			this.debugPoints.Padding = new System.Windows.Forms.Padding(3);
+			this.debugPoints.Size = new System.Drawing.Size(934, 577);
+			this.debugPoints.TabIndex = 0;
+			this.debugPoints.Text = "Points";
+			this.debugPoints.UseVisualStyleBackColor = true;
+			// 
+			// debugPointView
+			// 
+			this.debugPointView.AllowUserToAddRows = false;
+			this.debugPointView.AllowUserToDeleteRows = false;
+			this.debugPointView.AllowUserToOrderColumns = true;
+			this.debugPointView.AllowUserToResizeColumns = false;
+			this.debugPointView.AllowUserToResizeRows = false;
+			this.debugPointView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.debugPointView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.debugPointView.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.debugPointView.Location = new System.Drawing.Point(3, 3);
+			this.debugPointView.Name = "debugPointView";
+			this.debugPointView.ReadOnly = true;
+			this.debugPointView.Size = new System.Drawing.Size(928, 571);
+			this.debugPointView.TabIndex = 1;
 			// 
 			// debugSignals
 			// 
 			this.debugSignals.Controls.Add(this.debugSignalView);
 			this.debugSignals.Location = new System.Drawing.Point(4, 22);
 			this.debugSignals.Name = "debugSignals";
-			this.debugSignals.Size = new System.Drawing.Size(787, 435);
+			this.debugSignals.Size = new System.Drawing.Size(934, 577);
 			this.debugSignals.TabIndex = 1;
 			this.debugSignals.Text = "Signals";
 			this.debugSignals.UseVisualStyleBackColor = true;
@@ -308,41 +392,41 @@
 			this.debugSignalView.Location = new System.Drawing.Point(0, 0);
 			this.debugSignalView.Name = "debugSignalView";
 			this.debugSignalView.ReadOnly = true;
-			this.debugSignalView.Size = new System.Drawing.Size(787, 435);
+			this.debugSignalView.Size = new System.Drawing.Size(934, 577);
 			this.debugSignalView.TabIndex = 1;
 			// 
-			// debugPoints
+			// debugTracks
 			// 
-			this.debugPoints.Controls.Add(this.debugPointView);
-			this.debugPoints.Location = new System.Drawing.Point(4, 22);
-			this.debugPoints.Name = "debugPoints";
-			this.debugPoints.Padding = new System.Windows.Forms.Padding(3);
-			this.debugPoints.Size = new System.Drawing.Size(787, 435);
-			this.debugPoints.TabIndex = 0;
-			this.debugPoints.Text = "Points";
-			this.debugPoints.UseVisualStyleBackColor = true;
+			this.debugTracks.Controls.Add(this.debugTrackView);
+			this.debugTracks.Location = new System.Drawing.Point(4, 22);
+			this.debugTracks.Name = "debugTracks";
+			this.debugTracks.Size = new System.Drawing.Size(934, 577);
+			this.debugTracks.TabIndex = 4;
+			this.debugTracks.Text = "Tracks";
+			this.debugTracks.UseVisualStyleBackColor = true;
 			// 
-			// debugPointView
+			// debugTrackView
 			// 
-			this.debugPointView.AllowUserToAddRows = false;
-			this.debugPointView.AllowUserToDeleteRows = false;
-			this.debugPointView.AllowUserToOrderColumns = true;
-			this.debugPointView.AllowUserToResizeColumns = false;
-			this.debugPointView.AllowUserToResizeRows = false;
-			this.debugPointView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.debugPointView.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.debugPointView.Location = new System.Drawing.Point(3, 3);
-			this.debugPointView.Name = "debugPointView";
-			this.debugPointView.ReadOnly = true;
-			this.debugPointView.Size = new System.Drawing.Size(781, 429);
-			this.debugPointView.TabIndex = 1;
+			this.debugTrackView.AllowUserToAddRows = false;
+			this.debugTrackView.AllowUserToDeleteRows = false;
+			this.debugTrackView.AllowUserToOrderColumns = true;
+			this.debugTrackView.AllowUserToResizeColumns = false;
+			this.debugTrackView.AllowUserToResizeRows = false;
+			this.debugTrackView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+			this.debugTrackView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.debugTrackView.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.debugTrackView.Location = new System.Drawing.Point(0, 0);
+			this.debugTrackView.Name = "debugTrackView";
+			this.debugTrackView.ReadOnly = true;
+			this.debugTrackView.Size = new System.Drawing.Size(934, 577);
+			this.debugTrackView.TabIndex = 2;
 			// 
 			// debugRaw
 			// 
 			this.debugRaw.Controls.Add(this.debugRawTcpDisplay);
 			this.debugRaw.Location = new System.Drawing.Point(4, 22);
 			this.debugRaw.Name = "debugRaw";
-			this.debugRaw.Size = new System.Drawing.Size(787, 435);
+			this.debugRaw.Size = new System.Drawing.Size(934, 577);
 			this.debugRaw.TabIndex = 3;
 			this.debugRaw.Text = "Raw";
 			this.debugRaw.UseVisualStyleBackColor = true;
@@ -353,30 +437,172 @@
 			this.debugRawTcpDisplay.FormattingEnabled = true;
 			this.debugRawTcpDisplay.Location = new System.Drawing.Point(0, 0);
 			this.debugRawTcpDisplay.Name = "debugRawTcpDisplay";
-			this.debugRawTcpDisplay.Size = new System.Drawing.Size(787, 435);
+			this.debugRawTcpDisplay.Size = new System.Drawing.Size(934, 577);
 			this.debugRawTcpDisplay.TabIndex = 4;
 			// 
 			// keyboardInterface
 			// 
 			this.keyboardInterface.BackColor = System.Drawing.Color.Black;
+			this.keyboardInterface.Controls.Add(this.keyboardPointKR);
+			this.keyboardInterface.Controls.Add(this.keyboardPointF);
+			this.keyboardInterface.Controls.Add(this.keyboardPointKN);
+			this.keyboardInterface.Controls.Add(this.keyboardSignalRemoveReplacement);
+			this.keyboardInterface.Controls.Add(this.keyboardSigReplacement);
+			this.keyboardInterface.Controls.Add(this.keyboardAutoCancel);
+			this.keyboardInterface.Controls.Add(this.keyboardAutoSet);
+			this.keyboardInterface.Controls.Add(this.keyboardRouteCancel);
+			this.keyboardInterface.Controls.Add(this.keyboardRouteSet);
+			this.keyboardInterface.Controls.Add(this.keyboardSendToSim);
+			this.keyboardInterface.Controls.Add(this.keyboardTdCancel);
 			this.keyboardInterface.Controls.Add(this.keyboardInterpose);
 			this.keyboardInterface.Controls.Add(this.userInputString);
 			this.keyboardInterface.Location = new System.Drawing.Point(4, 22);
 			this.keyboardInterface.Name = "keyboardInterface";
 			this.keyboardInterface.Padding = new System.Windows.Forms.Padding(3);
-			this.keyboardInterface.Size = new System.Drawing.Size(795, 461);
+			this.keyboardInterface.Size = new System.Drawing.Size(942, 603);
 			this.keyboardInterface.TabIndex = 0;
 			this.keyboardInterface.Text = "Keyboard Interface";
 			// 
+			// keyboardPointKR
+			// 
+			this.keyboardPointKR.AutoSize = true;
+			this.keyboardPointKR.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+			this.keyboardPointKR.Location = new System.Drawing.Point(398, 243);
+			this.keyboardPointKR.Name = "keyboardPointKR";
+			this.keyboardPointKR.Size = new System.Drawing.Size(189, 38);
+			this.keyboardPointKR.TabIndex = 12;
+			this.keyboardPointKR.Text = "Key Point Reverse";
+			this.keyboardPointKR.UseVisualStyleBackColor = true;
+			this.keyboardPointKR.Click += new System.EventHandler(this.KeyboardPointKR_Click);
+			// 
+			// keyboardPointF
+			// 
+			this.keyboardPointF.AutoSize = true;
+			this.keyboardPointF.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+			this.keyboardPointF.Location = new System.Drawing.Point(203, 243);
+			this.keyboardPointF.Name = "keyboardPointF";
+			this.keyboardPointF.Size = new System.Drawing.Size(189, 38);
+			this.keyboardPointF.TabIndex = 11;
+			this.keyboardPointF.Text = "Unlock Point";
+			this.keyboardPointF.UseVisualStyleBackColor = true;
+			this.keyboardPointF.Click += new System.EventHandler(this.KeyboardPointF_Click);
+			// 
+			// keyboardPointKN
+			// 
+			this.keyboardPointKN.AutoSize = true;
+			this.keyboardPointKN.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+			this.keyboardPointKN.Location = new System.Drawing.Point(8, 243);
+			this.keyboardPointKN.Name = "keyboardPointKN";
+			this.keyboardPointKN.Size = new System.Drawing.Size(189, 38);
+			this.keyboardPointKN.TabIndex = 10;
+			this.keyboardPointKN.Text = "Key Point Normal";
+			this.keyboardPointKN.UseVisualStyleBackColor = true;
+			this.keyboardPointKN.Click += new System.EventHandler(this.KeyboardPointKN_Click);
+			// 
+			// keyboardSignalRemoveReplacement
+			// 
+			this.keyboardSignalRemoveReplacement.AutoSize = true;
+			this.keyboardSignalRemoveReplacement.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+			this.keyboardSignalRemoveReplacement.Location = new System.Drawing.Point(203, 199);
+			this.keyboardSignalRemoveReplacement.Name = "keyboardSignalRemoveReplacement";
+			this.keyboardSignalRemoveReplacement.Size = new System.Drawing.Size(189, 38);
+			this.keyboardSignalRemoveReplacement.TabIndex = 9;
+			this.keyboardSignalRemoveReplacement.Text = "Remove Replacement";
+			this.keyboardSignalRemoveReplacement.UseVisualStyleBackColor = true;
+			this.keyboardSignalRemoveReplacement.Click += new System.EventHandler(this.KeyboardSignalRemoveReplacement_Click);
+			// 
+			// keyboardSigReplacement
+			// 
+			this.keyboardSigReplacement.AutoSize = true;
+			this.keyboardSigReplacement.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+			this.keyboardSigReplacement.Location = new System.Drawing.Point(8, 199);
+			this.keyboardSigReplacement.Name = "keyboardSigReplacement";
+			this.keyboardSigReplacement.Size = new System.Drawing.Size(189, 38);
+			this.keyboardSigReplacement.TabIndex = 8;
+			this.keyboardSigReplacement.Text = "Signal Replacement";
+			this.keyboardSigReplacement.UseVisualStyleBackColor = true;
+			this.keyboardSigReplacement.Click += new System.EventHandler(this.KeyboardSigReplacement_Click);
+			// 
+			// keyboardAutoCancel
+			// 
+			this.keyboardAutoCancel.AutoSize = true;
+			this.keyboardAutoCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+			this.keyboardAutoCancel.Location = new System.Drawing.Point(203, 155);
+			this.keyboardAutoCancel.Name = "keyboardAutoCancel";
+			this.keyboardAutoCancel.Size = new System.Drawing.Size(189, 38);
+			this.keyboardAutoCancel.TabIndex = 7;
+			this.keyboardAutoCancel.Text = "Auto Cancel";
+			this.keyboardAutoCancel.UseVisualStyleBackColor = true;
+			this.keyboardAutoCancel.Click += new System.EventHandler(this.KeyboardAutoCancel_Click);
+			// 
+			// keyboardAutoSet
+			// 
+			this.keyboardAutoSet.AutoSize = true;
+			this.keyboardAutoSet.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+			this.keyboardAutoSet.Location = new System.Drawing.Point(8, 155);
+			this.keyboardAutoSet.Name = "keyboardAutoSet";
+			this.keyboardAutoSet.Size = new System.Drawing.Size(189, 38);
+			this.keyboardAutoSet.TabIndex = 6;
+			this.keyboardAutoSet.Text = "Auto Set";
+			this.keyboardAutoSet.UseVisualStyleBackColor = true;
+			this.keyboardAutoSet.Click += new System.EventHandler(this.KeyboardAutoSet_Click);
+			// 
+			// keyboardRouteCancel
+			// 
+			this.keyboardRouteCancel.AutoSize = true;
+			this.keyboardRouteCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+			this.keyboardRouteCancel.Location = new System.Drawing.Point(203, 111);
+			this.keyboardRouteCancel.Name = "keyboardRouteCancel";
+			this.keyboardRouteCancel.Size = new System.Drawing.Size(189, 38);
+			this.keyboardRouteCancel.TabIndex = 5;
+			this.keyboardRouteCancel.Text = "Route Cancel";
+			this.keyboardRouteCancel.UseVisualStyleBackColor = true;
+			this.keyboardRouteCancel.Click += new System.EventHandler(this.KeyboardRouteCancel_Click);
+			// 
+			// keyboardRouteSet
+			// 
+			this.keyboardRouteSet.AutoSize = true;
+			this.keyboardRouteSet.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+			this.keyboardRouteSet.Location = new System.Drawing.Point(8, 111);
+			this.keyboardRouteSet.Name = "keyboardRouteSet";
+			this.keyboardRouteSet.Size = new System.Drawing.Size(189, 38);
+			this.keyboardRouteSet.TabIndex = 4;
+			this.keyboardRouteSet.Text = "Route Set";
+			this.keyboardRouteSet.UseVisualStyleBackColor = true;
+			this.keyboardRouteSet.Click += new System.EventHandler(this.KeyboardRouteSet_Click);
+			// 
+			// keyboardSendToSim
+			// 
+			this.keyboardSendToSim.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+			this.keyboardSendToSim.Location = new System.Drawing.Point(398, 67);
+			this.keyboardSendToSim.Name = "keyboardSendToSim";
+			this.keyboardSendToSim.Size = new System.Drawing.Size(189, 38);
+			this.keyboardSendToSim.TabIndex = 3;
+			this.keyboardSendToSim.Text = "Send Direct to Sim";
+			this.keyboardSendToSim.UseVisualStyleBackColor = true;
+			this.keyboardSendToSim.Click += new System.EventHandler(this.SendToSim_Click);
+			// 
+			// keyboardTdCancel
+			// 
+			this.keyboardTdCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+			this.keyboardTdCancel.Location = new System.Drawing.Point(203, 67);
+			this.keyboardTdCancel.Name = "keyboardTdCancel";
+			this.keyboardTdCancel.Size = new System.Drawing.Size(189, 38);
+			this.keyboardTdCancel.TabIndex = 2;
+			this.keyboardTdCancel.Text = "TD Cancel";
+			this.keyboardTdCancel.UseVisualStyleBackColor = true;
+			this.keyboardTdCancel.Click += new System.EventHandler(this.KeyboardTdCancel_Click);
+			// 
 			// keyboardInterpose
 			// 
+			this.keyboardInterpose.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
 			this.keyboardInterpose.Location = new System.Drawing.Point(8, 67);
 			this.keyboardInterpose.Name = "keyboardInterpose";
-			this.keyboardInterpose.Size = new System.Drawing.Size(123, 23);
+			this.keyboardInterpose.Size = new System.Drawing.Size(189, 38);
 			this.keyboardInterpose.TabIndex = 1;
-			this.keyboardInterpose.Text = "Interpose";
+			this.keyboardInterpose.Text = "TD Interpose";
 			this.keyboardInterpose.UseVisualStyleBackColor = true;
-			this.keyboardInterpose.Click += new System.EventHandler(this.keyboardInterpose_Click);
+			this.keyboardInterpose.Click += new System.EventHandler(this.KeyboardInterpose_Click);
 			// 
 			// userInputString
 			// 
@@ -390,6 +616,89 @@
 			this.userInputString.TabIndex = 0;
 			this.userInputString.Text = "1212";
 			// 
+			// phoneCalls
+			// 
+			this.phoneCalls.BackColor = System.Drawing.Color.Black;
+			this.phoneCalls.Controls.Add(this.callResponses);
+			this.phoneCalls.Controls.Add(this.panel1);
+			this.phoneCalls.Controls.Add(this.callMessage);
+			this.phoneCalls.Location = new System.Drawing.Point(4, 22);
+			this.phoneCalls.Name = "phoneCalls";
+			this.phoneCalls.Size = new System.Drawing.Size(942, 603);
+			this.phoneCalls.TabIndex = 2;
+			this.phoneCalls.Text = "Phone";
+			// 
+			// callResponses
+			// 
+			this.callResponses.BackColor = System.Drawing.SystemColors.WindowText;
+			this.callResponses.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.callResponses.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.callResponses.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+			this.callResponses.ForeColor = System.Drawing.Color.Cyan;
+			this.callResponses.FormattingEnabled = true;
+			this.callResponses.ItemHeight = 24;
+			this.callResponses.Items.AddRange(new object[] {
+            "Sample Item"});
+			this.callResponses.Location = new System.Drawing.Point(200, 109);
+			this.callResponses.Margin = new System.Windows.Forms.Padding(0);
+			this.callResponses.Name = "callResponses";
+			this.callResponses.Size = new System.Drawing.Size(742, 494);
+			this.callResponses.TabIndex = 5;
+			// 
+			// panel1
+			// 
+			this.panel1.Controls.Add(this.callRespond);
+			this.panel1.Controls.Add(this.callers);
+			this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+			this.panel1.Location = new System.Drawing.Point(0, 109);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(200, 494);
+			this.panel1.TabIndex = 4;
+			// 
+			// callRespond
+			// 
+			this.callRespond.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.callRespond.Location = new System.Drawing.Point(0, 445);
+			this.callRespond.Name = "callRespond";
+			this.callRespond.Size = new System.Drawing.Size(200, 49);
+			this.callRespond.TabIndex = 5;
+			this.callRespond.Text = "Respond";
+			this.callRespond.UseVisualStyleBackColor = true;
+			this.callRespond.Click += new System.EventHandler(this.CallRespond_Click);
+			// 
+			// callers
+			// 
+			this.callers.BackColor = System.Drawing.Color.Black;
+			this.callers.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.callers.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.callers.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+			this.callers.ForeColor = System.Drawing.Color.Cyan;
+			this.callers.FormattingEnabled = true;
+			this.callers.ItemHeight = 24;
+			this.callers.Items.AddRange(new object[] {
+            "Train 1A01"});
+			this.callers.Location = new System.Drawing.Point(0, 0);
+			this.callers.Margin = new System.Windows.Forms.Padding(0);
+			this.callers.Name = "callers";
+			this.callers.Size = new System.Drawing.Size(200, 494);
+			this.callers.TabIndex = 4;
+			this.callers.SelectedIndexChanged += new System.EventHandler(this.Callers_SelectedIndexChanged_1);
+			// 
+			// callMessage
+			// 
+			this.callMessage.BackColor = System.Drawing.Color.Black;
+			this.callMessage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.callMessage.Dock = System.Windows.Forms.DockStyle.Top;
+			this.callMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+			this.callMessage.ForeColor = System.Drawing.Color.Cyan;
+			this.callMessage.Location = new System.Drawing.Point(0, 0);
+			this.callMessage.Margin = new System.Windows.Forms.Padding(0);
+			this.callMessage.Name = "callMessage";
+			this.callMessage.ReadOnly = true;
+			this.callMessage.Size = new System.Drawing.Size(942, 109);
+			this.callMessage.TabIndex = 0;
+			this.callMessage.Text = "PHONE CALL MESSAGE TEXT BOX";
+			// 
 			// loadSaveGameXML
 			// 
 			this.loadSaveGameXML.FileName = "openFileDialog1";
@@ -398,11 +707,14 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(803, 511);
+			this.ClientSize = new System.Drawing.Size(950, 653);
+			this.ControlBox = false;
 			this.Controls.Add(this.tabControl);
 			this.Controls.Add(this.menuStrip);
+			this.MainMenuStrip = this.menuStrip;
 			this.Name = "MainMenu";
 			this.Text = "SimSig Keyboard Interface";
+			this.TopMost = true;
 			this.Load += new System.EventHandler(this.MainMenu_Load);
 			this.menuStrip.ResumeLayout(false);
 			this.menuStrip.PerformLayout();
@@ -411,13 +723,19 @@
 			this.debugTabs.ResumeLayout(false);
 			this.debugBerths.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.debugBerthView)).EndInit();
-			this.debugSignals.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.debugSignalView)).EndInit();
+			this.debugCalls.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.debugCallView)).EndInit();
 			this.debugPoints.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.debugPointView)).EndInit();
+			this.debugSignals.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.debugSignalView)).EndInit();
+			this.debugTracks.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.debugTrackView)).EndInit();
 			this.debugRaw.ResumeLayout(false);
 			this.keyboardInterface.ResumeLayout(false);
 			this.keyboardInterface.PerformLayout();
+			this.phoneCalls.ResumeLayout(false);
+			this.panel1.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -460,6 +778,27 @@
 		private System.Windows.Forms.SaveFileDialog dataSave;
 		public System.Windows.Forms.TextBox userInputString;
 		private System.Windows.Forms.Button keyboardInterpose;
+		private System.Windows.Forms.TabPage debugTracks;
+		private System.Windows.Forms.DataGridView debugTrackView;
+		private System.Windows.Forms.Button keyboardTdCancel;
+		private System.Windows.Forms.TabPage debugCalls;
+		private System.Windows.Forms.Button keyboardSendToSim;
+		private System.Windows.Forms.DataGridView debugCallView;
+		private System.Windows.Forms.TabPage phoneCalls;
+		private System.Windows.Forms.RichTextBox callMessage;
+		private System.Windows.Forms.Panel panel1;
+		private System.Windows.Forms.Button callRespond;
+		private System.Windows.Forms.ListBox callers;
+		private System.Windows.Forms.ListBox callResponses;
+		private System.Windows.Forms.Button keyboardRouteSet;
+		private System.Windows.Forms.Button keyboardRouteCancel;
+		private System.Windows.Forms.Button keyboardAutoCancel;
+		private System.Windows.Forms.Button keyboardAutoSet;
+		private System.Windows.Forms.Button keyboardSignalRemoveReplacement;
+		private System.Windows.Forms.Button keyboardSigReplacement;
+		private System.Windows.Forms.Button keyboardPointKR;
+		private System.Windows.Forms.Button keyboardPointF;
+		private System.Windows.Forms.Button keyboardPointKN;
 	}
 }
 

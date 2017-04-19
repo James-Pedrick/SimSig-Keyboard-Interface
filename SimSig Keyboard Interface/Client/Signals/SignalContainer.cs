@@ -8,10 +8,10 @@ namespace SimSig_Keyboard_Interface.Client.Signals
 
 
 
-		public static BindingList<Signals> SignalList = new BindingList<Signals>();
+		public BindingList<Signals> SignalList = new BindingList<Signals>();
 
 
-		private static Signals _signalDataUpdate = new Signals();
+		private Signals _signalDataUpdate = new Signals();
 
 
 		public void AddSignalXml(string hId, string sNum)
@@ -40,6 +40,19 @@ namespace SimSig_Keyboard_Interface.Client.Signals
 
 			SignalList.Single(s => s.HexId == hId).SignalUpdateControls(data.Substring(6, 1));  //One Nibble
 			SignalList.Single(s => s.HexId == hId).SignalUpdateAspect(data.Substring(7, 1));    //One Nibble
+		}
+		public string SignalIdLookup(string data)
+		{
+
+			data = 'S' + data.ToUpper();
+
+			if (SignalList.SingleOrDefault(b => b.Number == data) != null)
+			{
+				var signal = SignalList.Single(b => b.Number == data);
+				return signal.HexId;
+			}
+
+			return null;
 		}
 	}
 }

@@ -1,6 +1,5 @@
 using System;
 using System.Net.Sockets;
-using System.Diagnostics;
 using System.Threading;
 using System.Text;
 
@@ -15,8 +14,8 @@ namespace SimSig_Keyboard_Interface.Client.TCP
 			internal Receiver(NetworkStream stream)
 			{
 				_stream = stream;
-				_thread = new Thread(Run);
-				_thread.Start();
+				var thread = new Thread(Run);
+				thread.Start();
 			}
 
             private void Run()
@@ -52,10 +51,10 @@ namespace SimSig_Keyboard_Interface.Client.TCP
             private void OnDataReceived(object sender, MsgEventArgs e)
             {
                 var handler = DataReceived;
-                if (handler != null) DataReceived(this, e);  // re-raise event
+                if (handler != null)  DataReceived?.Invoke(this, e); // re-raise event
+                
             }
             private NetworkStream _stream;
-            private Thread _thread;
         }
 
 

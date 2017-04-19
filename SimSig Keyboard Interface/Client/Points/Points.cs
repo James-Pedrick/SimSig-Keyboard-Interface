@@ -6,16 +6,17 @@ namespace SimSig_Keyboard_Interface.Client.Points
     {
         public string HexId { get; set; }
         public string Number { get; set; }
-        public bool CN { get; set; }
-        public bool CR { get; set; }
-        public bool DN { get; set; }
-        public bool DR { get; set; }
-        public bool FN { get; set; }
-        public bool FR { get; set; }
-        public bool KN { get; set; }
-        public bool KR { get; set; }
+        public bool Cn { get; set; }
+        public bool Cr { get; set; }
+        public bool Dn { get; set; }
+        public bool Dr { get; set; }
+        public bool Fn { get; set; }
+        public bool Fr { get; set; }
+        public bool Kn { get; set; }
+        public bool Kr { get; set; }
         public bool Lock { get; set; }
         public bool Iso { get; set; }
+	    public bool Updated { get; set; } = true;
 
         public void PointUpdate(string pointState)
         {
@@ -25,15 +26,17 @@ namespace SimSig_Keyboard_Interface.Client.Points
 
             if (intValue >= 0x200) { Lock = true; intValue = intValue - 0x200; } else Lock = false;
             if (intValue >= 0x100) { Iso = true; intValue = intValue - 0x100; } else Iso = false;
-            if (intValue >= 0x80) { KR = true; intValue = intValue - 0x80; } else KR = false;
-			if (intValue >= 0x40) { KN = true; intValue = intValue - 0x40; } else KN = false;
-			if (intValue >= 0x20) { FR = true; intValue = intValue - 0x20; } else FR = false;
-			if (intValue >= 0x10) { FN = true; intValue = intValue - 0x10; } else FN = false;
-			if (intValue >= 0x08) { DR = true; intValue = intValue - 0x08; } else DR = false;
-			if (intValue >= 0x04) { DN = true; intValue = intValue - 0x04; } else DN = false;
-			if (intValue >= 0x02) { CR = true; intValue = intValue - 0x02; } else CR = false;
-			if (intValue >= 0x01) { CN = true; } else CN = false;
+            if (intValue >= 0x80) { Kr = true; intValue = intValue - 0x80; } else Kr = false;
+			if (intValue >= 0x40) { Kn = true; intValue = intValue - 0x40; } else Kn = false;
+			if (intValue >= 0x20) { Fr = true; intValue = intValue - 0x20; } else Fr = false;
+			if (intValue >= 0x10) { Fn = true; intValue = intValue - 0x10; } else Fn = false;
+			if (intValue >= 0x08) { Dr = true; intValue = intValue - 0x08; } else Dr = false;
+			if (intValue >= 0x04) { Dn = true; intValue = intValue - 0x04; } else Dn = false;
+			if (intValue >= 0x02) { Cr = true; intValue = intValue - 0x02; } else Cr = false;
+			if (intValue >= 0x01) { Cn = true; } else Cn = false;
 
-		}
+	        Updated = true;
+
+        }
     }
 }
