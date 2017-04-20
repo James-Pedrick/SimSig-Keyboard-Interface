@@ -1,10 +1,10 @@
 ﻿using System;
 using SimSig_Keyboard_Interface.Properties;
 using System.IO;
-using SimSig_Keyboard_Interface.Client.Berths;
-using SimSig_Keyboard_Interface.Client.Points;
-using SimSig_Keyboard_Interface.Client.Signals;
-using SimSig_Keyboard_Interface.Client.Track;
+using SimSig_Keyboard_Interface.Controls.Berths;
+using SimSig_Keyboard_Interface.Controls.Points;
+using SimSig_Keyboard_Interface.Controls.Signals;
+using SimSig_Keyboard_Interface.Controls.Track;
 
 // ************************************************************** Load Points config file ^^^
 

@@ -1,5 +1,5 @@
 ﻿
-namespace SimSig_Keyboard_Interface.Client.Berths
+namespace SimSig_Keyboard_Interface.Controls.Berths
 {
 	public class Berths 
 	{

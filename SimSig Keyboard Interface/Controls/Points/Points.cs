@@ -1,5 +1,5 @@
 ﻿
-namespace SimSig_Keyboard_Interface.Client.Points
+namespace SimSig_Keyboard_Interface.Controls.Points
 {
 
     public class Points
@@ -16,7 +16,10 @@ namespace SimSig_Keyboard_Interface.Client.Points
         public bool Kr { get; set; }
         public bool Lock { get; set; }
         public bool Iso { get; set; }
-	    public bool Updated { get; set; } = true;
+	    public bool UpdatedTcp { get; set; } = true;
+	    public bool UpdatedCom { get; set; } = true;
+
+
 
         public void PointUpdate(string pointState)
         {
@@ -35,7 +38,8 @@ namespace SimSig_Keyboard_Interface.Client.Points
 			if (intValue >= 0x02) { Cr = true; intValue = intValue - 0x02; } else Cr = false;
 			if (intValue >= 0x01) { Cn = true; } else Cn = false;
 
-	        Updated = true;
+	        UpdatedTcp = true;
+	        UpdatedCom = true;
 
         }
     }
