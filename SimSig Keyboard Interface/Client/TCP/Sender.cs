@@ -1,8 +1,9 @@
+
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 
-namespace SimSig_Keyboard_Interface.Data.TCP
+namespace SimSig_Keyboard_Interface.Client.TCP
 {
     public sealed partial class TcpClient
     {

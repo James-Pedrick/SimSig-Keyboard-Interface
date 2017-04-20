@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Linq;
 
-namespace SimSig_Keyboard_Interface.Controls.Signals
+namespace SimSig_Keyboard_Interface.Client.Signals
 {
 	public class SignalContainer
 	{

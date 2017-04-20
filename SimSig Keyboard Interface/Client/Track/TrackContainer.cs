@@ -1,7 +1,9 @@
-﻿using System.ComponentModel;
+﻿
+using System.ComponentModel;
 using System.Linq;
 
-namespace SimSig_Keyboard_Interface.Controls.Track
+
+namespace SimSig_Keyboard_Interface.Client.Track
 {
 	public class TrackContainer
 	{

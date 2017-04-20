@@ -1,7 +1,8 @@
-using System.ComponentModel;
-using System.Linq;
 
-namespace SimSig_Keyboard_Interface.Controls.Points
+using System.Linq;
+using System.ComponentModel;
+
+namespace SimSig_Keyboard_Interface.Client.Points
 {
 	public class PointContainer
 	{
@@ -56,7 +57,7 @@ namespace SimSig_Keyboard_Interface.Controls.Points
 			{
 				var returnVal = PointList.Single(p => p.HexId == data);
 
-				return returnVal.UpdatedTcp;
+				return returnVal.Updated;
 
 			}
 			return true;            //This line should not be reachable

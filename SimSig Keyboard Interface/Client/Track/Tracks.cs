@@ -1,6 +1,7 @@
 ﻿using System;
 
-namespace SimSig_Keyboard_Interface.Controls.Track
+
+namespace SimSig_Keyboard_Interface.Client.Track
 {
 	public class Tracks
 	{

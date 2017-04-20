@@ -2,12 +2,12 @@
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
-using SimSig_Keyboard_Interface.Controls.Berths;
-using SimSig_Keyboard_Interface.Controls.Calls;
-using SimSig_Keyboard_Interface.Controls.Points;
-using SimSig_Keyboard_Interface.Controls.Signals;
-using SimSig_Keyboard_Interface.Controls.Track;
-using SimSig_Keyboard_Interface.Data.TCP;
+using SimSig_Keyboard_Interface.Client.Berths;
+using SimSig_Keyboard_Interface.Client.Calls;
+using SimSig_Keyboard_Interface.Client.Points;
+using SimSig_Keyboard_Interface.Client.Signals;
+using SimSig_Keyboard_Interface.Client.TCP;
+using SimSig_Keyboard_Interface.Client.Track;
 using SimSig_Keyboard_Interface.Properties;
 
 // ************************************************************** Load Points config file ^^^
@@ -284,14 +284,14 @@ namespace SimSig_Keyboard_Interface.User_Interface
 						while (_points.PointUpdated(pointId) == false)
 							Thread.Sleep(10);
 						Thread.Sleep(10);
-						if (_points.PointsKn(pointId))
+						if (_points.PointsKn(pointId) == true)
 							return;
 
-						if (_points.PointsKn(pointId) == false && _points.PointUpdated(pointId))
+						if (_points.PointsKn(pointId) == false && _points.PointUpdated(pointId) == true)
 						{
 							Connection.SendData(@"PB" + pointId + @"|");
 
-							_points.PointList.Single(b => b.HexId == pointId).UpdatedTcp = false;
+							_points.PointList.Single(b => b.HexId == pointId).Updated = false;
 						}
 					}
 				}
@@ -322,14 +322,14 @@ namespace SimSig_Keyboard_Interface.User_Interface
 						while (_points.PointUpdated(pointId) == false)
 							Thread.Sleep(10);
 						Thread.Sleep(10);
-						if (_points.PointsKr(pointId))
+						if (_points.PointsKr(pointId) == true)
 							return;
 
-						if (_points.PointsKr(pointId) == false && _points.PointUpdated(pointId))
+						if (_points.PointsKr(pointId) == false && _points.PointUpdated(pointId) == true)
 						{
 							Connection.SendData(@"PC" + pointId + @"|");
 
-							_points.PointList.Single(b => b.HexId == pointId).UpdatedTcp = false;
+							_points.PointList.Single(b => b.HexId == pointId).Updated = false;
 						}
 					}
 				}
@@ -353,7 +353,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 					//(PointList.SingleOrDefault(b => b.Number == data) != null
 
-					while (_points.PointsKn(pointId) || _points.PointsKr(pointId))
+					while (_points.PointsKn(pointId) == true || _points.PointsKr(pointId) == true)
 					{
 						while (_points.PointUpdated(pointId) == false)
 							Thread.Sleep(10);
@@ -361,12 +361,12 @@ namespace SimSig_Keyboard_Interface.User_Interface
 						if (_points.PointsKn(pointId) == false && _points.PointsKr(pointId) == false)
 							return;
 
-						if ((_points.PointsKn(pointId) || _points.PointsKr(pointId)) &&
-						    _points.PointUpdated(pointId))
+						if ((_points.PointsKn(pointId) == true || _points.PointsKr(pointId) == true) &&
+						    _points.PointUpdated(pointId) == true)
 						{
 							Connection.SendData(@"PB" + pointId + @"|");
 
-							_points.PointList.Single(b => b.HexId == pointId).UpdatedTcp = false;
+							_points.PointList.Single(b => b.HexId == pointId).Updated = false;
 						}
 					}
 				}
