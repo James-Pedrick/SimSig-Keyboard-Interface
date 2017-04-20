@@ -1,4 +1,4 @@
-﻿namespace SimSig_Keyboard_Interface.Client.Signals
+﻿namespace SimSig_Keyboard_Interface.DataProcess.Signals
 {
 	public class Signals
 	{

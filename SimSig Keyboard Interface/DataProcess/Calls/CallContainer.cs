@@ -1,8 +1,7 @@
-﻿
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Linq;
 
-namespace SimSig_Keyboard_Interface.Client.Calls
+namespace SimSig_Keyboard_Interface.DataProcess.Calls
 {
 	class CallContainer
 	{

@@ -2,12 +2,12 @@
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
-using SimSig_Keyboard_Interface.Client.Berths;
-using SimSig_Keyboard_Interface.Client.Calls;
-using SimSig_Keyboard_Interface.Client.Points;
-using SimSig_Keyboard_Interface.Client.Signals;
-using SimSig_Keyboard_Interface.Client.TCP;
-using SimSig_Keyboard_Interface.Client.Track;
+using SimSig_Keyboard_Interface.Comms.TCP;
+using SimSig_Keyboard_Interface.DataProcess.Berths;
+using SimSig_Keyboard_Interface.DataProcess.Calls;
+using SimSig_Keyboard_Interface.DataProcess.Points;
+using SimSig_Keyboard_Interface.DataProcess.Signals;
+using SimSig_Keyboard_Interface.DataProcess.Track;
 using SimSig_Keyboard_Interface.Properties;
 
 // ************************************************************** Load Points config file ^^^

@@ -1,5 +1,5 @@
 ﻿
-namespace SimSig_Keyboard_Interface.Client.Points
+namespace SimSig_Keyboard_Interface.DataProcess.Points
 {
 
     public class Points

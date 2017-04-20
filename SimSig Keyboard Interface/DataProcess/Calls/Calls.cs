@@ -1,5 +1,5 @@
 ﻿
-namespace SimSig_Keyboard_Interface.Client.Calls
+namespace SimSig_Keyboard_Interface.DataProcess.Calls
 {
 	class Calls
 	{
