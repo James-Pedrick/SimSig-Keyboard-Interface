@@ -284,10 +284,10 @@ namespace SimSig_Keyboard_Interface.User_Interface
 						while (_points.PointUpdated(pointId) == false)
 							Thread.Sleep(10);
 						Thread.Sleep(10);
-						if (_points.PointsKn(pointId) == true)
+						if (_points.PointsKn(pointId))
 							return;
 
-						if (_points.PointsKn(pointId) == false && _points.PointUpdated(pointId) == true)
+						if (_points.PointsKn(pointId) == false && _points.PointUpdated(pointId))
 						{
 							Connection.SendData(@"PB" + pointId + @"|");
 
@@ -322,10 +322,10 @@ namespace SimSig_Keyboard_Interface.User_Interface
 						while (_points.PointUpdated(pointId) == false)
 							Thread.Sleep(10);
 						Thread.Sleep(10);
-						if (_points.PointsKr(pointId) == true)
+						if (_points.PointsKr(pointId))
 							return;
 
-						if (_points.PointsKr(pointId) == false && _points.PointUpdated(pointId) == true)
+						if (_points.PointsKr(pointId) == false && _points.PointUpdated(pointId))
 						{
 							Connection.SendData(@"PC" + pointId + @"|");
 
@@ -353,7 +353,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 					//(PointList.SingleOrDefault(b => b.Number == data) != null
 
-					while (_points.PointsKn(pointId) == true || _points.PointsKr(pointId) == true)
+					while (_points.PointsKn(pointId) || _points.PointsKr(pointId))
 					{
 						while (_points.PointUpdated(pointId) == false)
 							Thread.Sleep(10);
@@ -361,8 +361,8 @@ namespace SimSig_Keyboard_Interface.User_Interface
 						if (_points.PointsKn(pointId) == false && _points.PointsKr(pointId) == false)
 							return;
 
-						if ((_points.PointsKn(pointId) == true || _points.PointsKr(pointId) == true) &&
-						    _points.PointUpdated(pointId) == true)
+						if ((_points.PointsKn(pointId) || _points.PointsKr(pointId)) &&
+							_points.PointUpdated(pointId))
 						{
 							Connection.SendData(@"PB" + pointId + @"|");
 

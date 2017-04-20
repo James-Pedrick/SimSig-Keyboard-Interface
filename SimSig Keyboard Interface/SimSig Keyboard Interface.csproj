@@ -85,20 +85,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\Berths\BerthContainer.cs" />
-    <Compile Include="Controls\Berths\Berths.cs" />
-    <Compile Include="Controls\Calls\CallContainer.cs" />
-    <Compile Include="Controls\Calls\Calls.cs" />
-    <Compile Include="DataCommunication\Com\ComContainer.cs" />
-    <Compile Include="Controls\Points\PointContainer.cs" />
-    <Compile Include="Controls\Points\Points.cs" />
-    <Compile Include="Controls\Signals\SignalContainer.cs" />
-    <Compile Include="Controls\Signals\Signals.cs" />
-    <Compile Include="DataCommunication\TCP\TCP_Client.cs" />
-    <Compile Include="DataCommunication\TCP\Reciever.cs" />
-    <Compile Include="DataCommunication\TCP\Sender.cs" />
-    <Compile Include="Controls\Track\Tracks.cs" />
-    <Compile Include="Controls\Track\TrackContainer.cs" />
+    <Compile Include="Client\Berths\BerthContainer.cs" />
+    <Compile Include="Client\Berths\Berths.cs" />
+    <Compile Include="Client\Calls\CallContainer.cs" />
+    <Compile Include="Client\Calls\Calls.cs" />
+    <Compile Include="Client\Points\PointContainer.cs" />
+    <Compile Include="Client\Points\Points.cs" />
+    <Compile Include="Client\Signals\SignalContainer.cs" />
+    <Compile Include="Client\Signals\Signals.cs" />
+    <Compile Include="Client\TCP\TCP_Client.cs" />
+    <Compile Include="Client\TCP\Reciever.cs" />
+    <Compile Include="Client\TCP\Sender.cs" />
+    <Compile Include="Client\TCP\TcpMain.cs" />
+    <Compile Include="Client\Track\Tracks.cs" />
+    <Compile Include="Client\Track\TrackContainer.cs" />
     <Compile Include="Data\SaveGameParser.cs" />
     <Compile Include="Properties\Settings.cs" />
     <Compile Include="User_Interface\Main_Menu.cs">
