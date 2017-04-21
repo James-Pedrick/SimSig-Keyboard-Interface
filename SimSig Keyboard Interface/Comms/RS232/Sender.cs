@@ -8,5 +8,6 @@ namespace SimSig_Keyboard_Interface.Comms.RS2323
 {
 	class Sender
 	{
+
 	}
 }

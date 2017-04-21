@@ -84,6 +84,8 @@
 			this.callMessage = new System.Windows.Forms.RichTextBox();
 			this.loadSaveGameXML = new System.Windows.Forms.OpenFileDialog();
 			this.dataSave = new System.Windows.Forms.SaveFileDialog();
+			this.serialToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.connectToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip.SuspendLayout();
 			this.tabControl.SuspendLayout();
 			this.debug.SuspendLayout();
@@ -115,7 +117,7 @@
             this.logsToolStripMenuItem});
 			this.menuStrip.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip.Name = "menuStrip";
-			this.menuStrip.Size = new System.Drawing.Size(950, 24);
+			this.menuStrip.Size = new System.Drawing.Size(535, 24);
 			this.menuStrip.TabIndex = 0;
 			this.menuStrip.Text = "Menu Strip";
 			this.menuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.MenuStrip_ItemClicked);
@@ -168,7 +170,8 @@
 			// networkToolStripMenuItem
 			// 
 			this.networkToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.clientToolStripMenuItem});
+            this.clientToolStripMenuItem,
+            this.serialToolStripMenuItem});
 			this.networkToolStripMenuItem.Name = "networkToolStripMenuItem";
 			this.networkToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
 			this.networkToolStripMenuItem.Text = "Network";
@@ -178,13 +181,13 @@
 			this.clientToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.connectToolStripMenuItem});
 			this.clientToolStripMenuItem.Name = "clientToolStripMenuItem";
-			this.clientToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
+			this.clientToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.clientToolStripMenuItem.Text = "Client";
 			// 
 			// connectToolStripMenuItem
 			// 
 			this.connectToolStripMenuItem.Name = "connectToolStripMenuItem";
-			this.connectToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+			this.connectToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.connectToolStripMenuItem.Text = "Connect";
 			this.connectToolStripMenuItem.Click += new System.EventHandler(this.ConnectToolStripMenuItem_Click);
 			// 
@@ -201,21 +204,21 @@
 			// berthsResetToolStripMenuItem
 			// 
 			this.berthsResetToolStripMenuItem.Name = "berthsResetToolStripMenuItem";
-			this.berthsResetToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+			this.berthsResetToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.berthsResetToolStripMenuItem.Text = "Berths Reset";
 			this.berthsResetToolStripMenuItem.Click += new System.EventHandler(this.BerthListReset);
 			// 
 			// pointsToolStripMenuItem
 			// 
 			this.pointsToolStripMenuItem.Name = "pointsToolStripMenuItem";
-			this.pointsToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+			this.pointsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.pointsToolStripMenuItem.Text = "Points Reset";
 			this.pointsToolStripMenuItem.Click += new System.EventHandler(this.Point_List_Reset);
 			// 
 			// signalResetToolStripMenuItem
 			// 
 			this.signalResetToolStripMenuItem.Name = "signalResetToolStripMenuItem";
-			this.signalResetToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+			this.signalResetToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.signalResetToolStripMenuItem.Text = "Signals Reset";
 			this.signalResetToolStripMenuItem.Click += new System.EventHandler(this.SignalListReset);
 			// 
@@ -265,7 +268,7 @@
 			this.tabControl.Multiline = true;
 			this.tabControl.Name = "tabControl";
 			this.tabControl.SelectedIndex = 0;
-			this.tabControl.Size = new System.Drawing.Size(950, 629);
+			this.tabControl.Size = new System.Drawing.Size(535, 292);
 			this.tabControl.TabIndex = 1;
 			// 
 			// debug
@@ -273,7 +276,7 @@
 			this.debug.Controls.Add(this.debugTabs);
 			this.debug.Location = new System.Drawing.Point(4, 22);
 			this.debug.Name = "debug";
-			this.debug.Size = new System.Drawing.Size(942, 603);
+			this.debug.Size = new System.Drawing.Size(527, 266);
 			this.debug.TabIndex = 1;
 			this.debug.Text = "Debug";
 			this.debug.UseVisualStyleBackColor = true;
@@ -291,7 +294,7 @@
 			this.debugTabs.Multiline = true;
 			this.debugTabs.Name = "debugTabs";
 			this.debugTabs.SelectedIndex = 0;
-			this.debugTabs.Size = new System.Drawing.Size(942, 603);
+			this.debugTabs.Size = new System.Drawing.Size(527, 266);
 			this.debugTabs.TabIndex = 0;
 			// 
 			// debugBerths
@@ -299,7 +302,7 @@
 			this.debugBerths.Controls.Add(this.debugBerthView);
 			this.debugBerths.Location = new System.Drawing.Point(4, 22);
 			this.debugBerths.Name = "debugBerths";
-			this.debugBerths.Size = new System.Drawing.Size(934, 577);
+			this.debugBerths.Size = new System.Drawing.Size(519, 240);
 			this.debugBerths.TabIndex = 2;
 			this.debugBerths.Text = "Berths";
 			this.debugBerths.UseVisualStyleBackColor = true;
@@ -313,7 +316,7 @@
 			this.debugBerthView.ReadOnly = true;
 			this.debugBerthView.RowTemplate.ReadOnly = true;
 			this.debugBerthView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			this.debugBerthView.Size = new System.Drawing.Size(934, 577);
+			this.debugBerthView.Size = new System.Drawing.Size(519, 240);
 			this.debugBerthView.TabIndex = 2;
 			// 
 			// debugCalls
@@ -703,11 +706,26 @@
 			// 
 			this.loadSaveGameXML.FileName = "openFileDialog1";
 			// 
+			// serialToolStripMenuItem
+			// 
+			this.serialToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.connectToolStripMenuItem1});
+			this.serialToolStripMenuItem.Name = "serialToolStripMenuItem";
+			this.serialToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.serialToolStripMenuItem.Text = "Serial";
+			// 
+			// connectToolStripMenuItem1
+			// 
+			this.connectToolStripMenuItem1.Name = "connectToolStripMenuItem1";
+			this.connectToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+			this.connectToolStripMenuItem1.Text = "Connect";
+			this.connectToolStripMenuItem1.Click += new System.EventHandler(this.ConnectToolStripMenuItem1_Click);
+			// 
 			// MainMenu
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(950, 653);
+			this.ClientSize = new System.Drawing.Size(535, 316);
 			this.ControlBox = false;
 			this.Controls.Add(this.tabControl);
 			this.Controls.Add(this.menuStrip);
@@ -799,6 +817,8 @@
 		private System.Windows.Forms.Button keyboardPointKR;
 		private System.Windows.Forms.Button keyboardPointF;
 		private System.Windows.Forms.Button keyboardPointKN;
+		private System.Windows.Forms.ToolStripMenuItem serialToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem connectToolStripMenuItem1;
 	}
 }
 
