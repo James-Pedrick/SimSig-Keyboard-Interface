@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,7 +25,7 @@ namespace SimSig_Keyboard_Interface.Comms.RS232
 			{
 				SerialPort receive = new SerialPort();
 				receive.BaudRate = 9600;
-				receive.PortName = "COM3";
+				receive.PortName = "COM4";
 				receive.Open();
 				receive.DataBits = 8;
 
@@ -34,7 +35,16 @@ namespace SimSig_Keyboard_Interface.Comms.RS232
 					Console.WriteLine(receivedData);
 
 
-					if (receivedData.StartsWith("SS")) SerialSS(receivedData);
+					if (receivedData.StartsWith("SS")) SerialSignalSet(receivedData);
+					if (receivedData.StartsWith("SC")) SendPrep.RouteCan(receivedData.Substring(2));
+
+					if(receivedData.StartsWith("SA")) SendPrep.SigAutoSet(receivedData.Substring(2));
+					if(receivedData.StartsWith("SB")) SendPrep.SigAutoCan(receivedData.Substring(2));
+
+					if(receivedData.StartsWith("SR")) SendPrep.SigReplacementSet(receivedData.Substring(2));
+					if(receivedData.StartsWith("SP")) SendPrep.SigReplacementCan(receivedData.Substring(2));
+					
+					
 
 
 				}
@@ -49,7 +59,7 @@ namespace SimSig_Keyboard_Interface.Comms.RS232
 			}
 		}
 
-		private static void SerialSS(string data)
+		private static void SerialSignalSet(string data)
 		{
 			if (_firstSignal.Equals(true))
 			{
@@ -70,15 +80,9 @@ namespace SimSig_Keyboard_Interface.Comms.RS232
 
 
 			}
-
-
-			
-
-
-
-
 		}
-	
-	
+		
+
+
 	}
 }
