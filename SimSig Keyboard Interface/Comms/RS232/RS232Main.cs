@@ -25,55 +25,49 @@ namespace SimSig_Keyboard_Interface.Comms.RS232
 			{
 				SerialPort receive = new SerialPort();
 				receive.BaudRate = 9600;
-				receive.PortName = "COM4";
+				receive.PortName = "COM2";
 				receive.Open();
 				receive.DataBits = 8;
 
 				while (true)
 				{
-					var receivedData = receive.ReadTo("|");
-					Console.WriteLine(receivedData);
+					string[] receivedData = receive.ReadTo("|").Split('-');
+					Console.WriteLine(receivedData[0] + " - " + receivedData[1]);
 
+					if (receivedData[0].Contains("SS")) SerialSignalSet(receivedData[1]);
+					if (receivedData[0].Contains("SC")) SendPrep.RouteCan(receivedData[1]);
 
-					if (receivedData.StartsWith("SS")) SerialSignalSet(receivedData);
-					if (receivedData.StartsWith("SC")) SendPrep.RouteCan(receivedData.Substring(2));
+					if (receivedData[0].Contains("SA")) SendPrep.SigAutoSet(receivedData[1]);
+					if (receivedData[0].Contains("SB")) SendPrep.SigAutoCan(receivedData[1]);
 
-					if(receivedData.StartsWith("SA")) SendPrep.SigAutoSet(receivedData.Substring(2));
-					if(receivedData.StartsWith("SB")) SendPrep.SigAutoCan(receivedData.Substring(2));
+					if (receivedData[0].Contains("SR")) SendPrep.SigReplacementSet(receivedData[1]);
+					if (receivedData[0].Contains("SP")) SendPrep.SigReplacementCan(receivedData[1]);
 
-					if(receivedData.StartsWith("SR")) SendPrep.SigReplacementSet(receivedData.Substring(2));
-					if(receivedData.StartsWith("SP")) SendPrep.SigReplacementCan(receivedData.Substring(2));
-					
-					
-
+					if (receivedData[0].Contains("PF")) SendPrep.PointsKeyF(receivedData[1]);
+					if (receivedData[0].Contains("PN")) SendPrep.PointsKeyN(receivedData[1]);
+					if (receivedData[0].Contains("PR")) SendPrep.PointsKeyR(receivedData[1]);
 
 				}
-
 				//Console.WriteLine(Main.Program.Received_Data);
-
-
 			}
-			catch (Exception e)
-			{
-				throw;
-			}
+			catch (Exception e) { Console.WriteLine(e); }
 		}
 
 		private static void SerialSignalSet(string data)
 		{
 			if (_firstSignal.Equals(true))
 			{
-				_signalEnt = data.Substring(2);
+				_signalEnt = data;
 				_firstSignal = false;
 			}
 
 			else
 			{
-				_signalExit = data.Substring(2);
-//				var entry = MainMenu._signals.SignalIdLookup(_signalEnt);
-	//			var exit = MainMenu._signals.SignalIdLookup(_signalExit);
+				_signalExit = data;
+				//				var entry = MainMenu._signals.SignalIdLookup(_signalEnt);
+				//			var exit = MainMenu._signals.SignalIdLookup(_signalExit);
 
-				SendPrep.RouteSet(_signalEnt,_signalExit);
+				SendPrep.RouteSet(_signalEnt, _signalExit);
 				_firstSignal = true;
 
 				//MainMenu.Connection;
@@ -81,7 +75,7 @@ namespace SimSig_Keyboard_Interface.Comms.RS232
 
 			}
 		}
-		
+
 
 
 	}
