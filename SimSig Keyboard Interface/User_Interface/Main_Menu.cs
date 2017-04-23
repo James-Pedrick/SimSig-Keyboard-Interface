@@ -2,13 +2,17 @@
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
-using SimSig_Keyboard_Interface.Client.Berths;
-using SimSig_Keyboard_Interface.Client.Calls;
-using SimSig_Keyboard_Interface.Client.Points;
-using SimSig_Keyboard_Interface.Client.Signals;
-using SimSig_Keyboard_Interface.Client.TCP;
-using SimSig_Keyboard_Interface.Client.Track;
+using SimSig_Keyboard_Interface.Comms.TCP;
+using SimSig_Keyboard_Interface.DataProcess.Berths;
+using SimSig_Keyboard_Interface.DataProcess.Calls;
+using SimSig_Keyboard_Interface.DataProcess.Points;
+using SimSig_Keyboard_Interface.DataProcess.Signals;
+using SimSig_Keyboard_Interface.DataProcess.Track;
 using SimSig_Keyboard_Interface.Properties;
+using SimSig_Keyboard_Interface.Comms.RS2323;
+using System.IO.Ports;
+using SimSig_Keyboard_Interface.Comms.RS232;
+using SimSig_Keyboard_Interface.Data;
 
 // ************************************************************** Load Points config file ^^^
 
@@ -30,11 +34,13 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 		public static TcpConnect TcpConnectForm = new TcpConnect();
 
+		public static SerialPort ComReceiver = new SerialPort();
 
-		private static BerthContainer _berths = new BerthContainer();
-		private static PointContainer _points = new PointContainer();
-		private static SignalContainer _signals = new SignalContainer();
-		private static TrackContainer _tracks = new TrackContainer();
+
+		public static BerthContainer _berths = new BerthContainer();
+		public static PointContainer _points = new PointContainer();
+		public static SignalContainer _signals = new SignalContainer();
+		public static TrackContainer _tracks = new TrackContainer();
 		private static CallContainer _calls = new CallContainer();
 
 
@@ -170,6 +176,12 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			}
 		}
 
+		private void SerialDataReceived()
+		{
+
+		}
+
+
 		#endregion
 
 		#region Keyboard Interface Controls
@@ -177,201 +189,69 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		private void KeyboardInterpose_Click(object sender, EventArgs e)
 		{
 			string[] userInput = userInputString.Text.Split(' ');
-
-			if (userInputString.Text.Contains(' ') == false)
-				return; //Not doing anything if the user has not enterd a space after the berth
-
-
-			var berthHex = _berths.BerthHIdLookup(userInput[0]);
-
-			Connection.SendData(@"BB" + berthHex + userInput[1] + "----|");
-
+			if (userInputString.Text.Contains(' ') == false) return; //Not doing anything if the user has not enterd a space after the berth
+			Data.SendPrep.Interpose(userInput[0], userInput[1]);
 		}
 
 		private void KeyboardRouteSet_Click(object sender, EventArgs e)
 		{
-
 			string[] userInput = userInputString.Text.Split(' ');
-
-			if (userInputString.Text.Contains(' ') == false)
-				return; //Not doing anything if the user has not enterd a space after the berth
-
-
-			var entrySigHex = _signals.SignalIdLookup(userInput[0]);
-			var exitSigHex = _signals.SignalIdLookup(userInput[1]);
-
-			Connection.SendData(@"SA" + entrySigHex + exitSigHex + @"00" + entrySigHex + @"----|");
+			if (userInputString.Text.Contains(' ') == false) return; //Not doing anything if the user has not enterd a space after the berth
+			SendPrep.RouteSet(userInput[0], userInput[1]);
 		}
 
 		private void KeyboardTdCancel_Click(object sender, EventArgs e)
 		{
 			string[] userInput = userInputString.Text.Split(' ');
-
-			var berthHex = _berths.BerthHIdLookup(userInput[0]);
-
-			Connection.SendData(@"BC" + berthHex + "|");
-
+			SendPrep.InterposeCancel(userInput[0]);
 		}
 
 		private void KeyboardRouteCancel_Click(object sender, EventArgs e)
 		{
 			string[] userInput = userInputString.Text.Split(' ');
-
-			var entrySigHex = _signals.SignalIdLookup(userInput[0]);
-			Connection.SendData(@"zD" + entrySigHex + "|");
-
+			SendPrep.RouteCan(userInput[0]);
 		}
 
 		private void KeyboardAutoSet_Click(object sender, EventArgs e)
 		{
 			string[] userInput = userInputString.Text.Split(' ');
-
-			var entrySigHex = _signals.SignalIdLookup(userInput[0]);
-			Connection.SendData(@"SF" + entrySigHex + "|");
-
+			SendPrep.SigAutoSet(userInput[0]);
 		}
 
 		private void KeyboardAutoCancel_Click(object sender, EventArgs e)
 		{
 			string[] userInput = userInputString.Text.Split(' ');
-
-			var entrySigHex = _signals.SignalIdLookup(userInput[0]);
-			Connection.SendData(@"SG" + entrySigHex + "|");
-
-
+			SendPrep.SigAutoCan(userInput[0]);
 		}
 
 		private void KeyboardSignalRemoveReplacement_Click(object sender, EventArgs e)
 		{
 			string[] userInput = userInputString.Text.Split(' ');
-
-			var entrySigHex = _signals.SignalIdLookup(userInput[0]);
-			Connection.SendData(@"SP" + entrySigHex + "|");
-
-
+			SendPrep.SigReplacementCan(userInput[0]);
 		}
 
 		private void KeyboardSigReplacement_Click(object sender, EventArgs e)
 		{
-
 			string[] userInput = userInputString.Text.Split(' ');
-
-			var entrySigHex = _signals.SignalIdLookup(userInput[0]);
-			Connection.SendData(@"SQ" + entrySigHex + "|");
-
+			SendPrep.SigReplacementSet(userInput[0]);
 		}
 
 		private void KeyboardPointKN_Click(object sender, EventArgs e)
 		{
-
-
-			Thread keyPointsNormal = new Thread(() =>
-				{
-					string[] points = userInputString.Text.Split(' ');
-
-					string pointId = _points.PointLookup(points[0]);
-					if (pointId == null) return;
-
-
-
-
-					if (_points.PointList.SingleOrDefault(p => p.HexId == pointId) == null) return;
-
-					//(PointList.SingleOrDefault(b => b.Number == data) != null
-
-					while (_points.PointsKn(pointId) == false)
-					{
-						while (_points.PointUpdated(pointId) == false)
-							Thread.Sleep(10);
-						Thread.Sleep(10);
-						if (_points.PointsKn(pointId) == true)
-							return;
-
-						if (_points.PointsKn(pointId) == false && _points.PointUpdated(pointId) == true)
-						{
-							Connection.SendData(@"PB" + pointId + @"|");
-
-							_points.PointList.Single(b => b.HexId == pointId).Updated = false;
-						}
-					}
-				}
-			);
-			keyPointsNormal.Start();
+			string[] points = userInputString.Text.Split(' ');
+			SendPrep.PointsKeyN(points[0]);
 		}
 
 		private void KeyboardPointKR_Click(object sender, EventArgs e)
 		{
-
-
-			Thread keyPointsReverse = new Thread(() =>
-				{
-					string[] points = userInputString.Text.Split(' ');
-
-					string pointId = _points.PointLookup(points[0]);
-					if (pointId == null) return;
-
-
-
-
-					if (_points.PointList.SingleOrDefault(p => p.HexId == pointId) == null) return;
-
-					//(PointList.SingleOrDefault(b => b.Number == data) != null
-
-					while (_points.PointsKr(pointId) == false)
-					{
-						while (_points.PointUpdated(pointId) == false)
-							Thread.Sleep(10);
-						Thread.Sleep(10);
-						if (_points.PointsKr(pointId) == true)
-							return;
-
-						if (_points.PointsKr(pointId) == false && _points.PointUpdated(pointId) == true)
-						{
-							Connection.SendData(@"PC" + pointId + @"|");
-
-							_points.PointList.Single(b => b.HexId == pointId).Updated = false;
-						}
-					}
-				}
-			);
-			keyPointsReverse.Start();
+			string[] points = userInputString.Text.Split(' ');
+			SendPrep.PointsKeyR(points[0]);
 		}
 
 		private void KeyboardPointF_Click(object sender, EventArgs e)
 		{
-			Thread keyPointsFree = new Thread(() =>
-				{
-					string[] points = userInputString.Text.Split(' ');
-
-					string pointId = _points.PointLookup(points[0]);
-					if (pointId == null) return;
-
-
-
-
-					if (_points.PointList.SingleOrDefault(p => p.HexId == pointId) == null) return;
-
-					//(PointList.SingleOrDefault(b => b.Number == data) != null
-
-					while (_points.PointsKn(pointId) == true || _points.PointsKr(pointId) == true)
-					{
-						while (_points.PointUpdated(pointId) == false)
-							Thread.Sleep(10);
-						Thread.Sleep(10);
-						if (_points.PointsKn(pointId) == false && _points.PointsKr(pointId) == false)
-							return;
-
-						if ((_points.PointsKn(pointId) == true || _points.PointsKr(pointId) == true) &&
-						    _points.PointUpdated(pointId) == true)
-						{
-							Connection.SendData(@"PB" + pointId + @"|");
-
-							_points.PointList.Single(b => b.HexId == pointId).Updated = false;
-						}
-					}
-				}
-			);
-			keyPointsFree.Start();
+			string[] points = userInputString.Text.Split(' ');
+			SendPrep.PointsKeyF(points[0]);
 		}
 
 		#endregion
@@ -466,6 +346,17 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 		#endregion
 
+		private void ConnectToolStripMenuItem1_Click(object sender, EventArgs e)
+		{
+			connectToolStripMenuItem.Enabled = false;
+			Thread serialReceiver = new Thread(() =>
+			{
+
+				Rs232Main.Rs232Receiver();
+
+			});
+			serialReceiver.Start();
+		}
 	}
 }
 

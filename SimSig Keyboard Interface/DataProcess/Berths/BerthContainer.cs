@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Linq;
 
-namespace SimSig_Keyboard_Interface.Client.Berths
+namespace SimSig_Keyboard_Interface.DataProcess.Berths
 {
 	public class BerthContainer 
 	{

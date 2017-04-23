@@ -85,21 +85,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Client\Berths\BerthContainer.cs" />
-    <Compile Include="Client\Berths\Berths.cs" />
-    <Compile Include="Client\Calls\CallContainer.cs" />
-    <Compile Include="Client\Calls\Calls.cs" />
-    <Compile Include="Client\Points\PointContainer.cs" />
-    <Compile Include="Client\Points\Points.cs" />
-    <Compile Include="Client\Signals\SignalContainer.cs" />
-    <Compile Include="Client\Signals\Signals.cs" />
-    <Compile Include="Client\TCP\TCP_Client.cs" />
-    <Compile Include="Client\TCP\Reciever.cs" />
-    <Compile Include="Client\TCP\Sender.cs" />
-    <Compile Include="Client\TCP\TcpMain.cs" />
-    <Compile Include="Client\Track\Tracks.cs" />
-    <Compile Include="Client\Track\TrackContainer.cs" />
+    <Compile Include="Comms\RS232\Receiver.cs" />
+    <Compile Include="Comms\RS232\RS232Main.cs" />
+    <Compile Include="Comms\RS232\Sender.cs" />
+    <Compile Include="DataProcess\Berths\BerthContainer.cs" />
+    <Compile Include="DataProcess\Berths\Berths.cs" />
+    <Compile Include="DataProcess\Calls\CallContainer.cs" />
+    <Compile Include="DataProcess\Calls\Calls.cs" />
+    <Compile Include="DataProcess\Points\PointContainer.cs" />
+    <Compile Include="DataProcess\Points\Points.cs" />
+    <Compile Include="DataProcess\Signals\SignalContainer.cs" />
+    <Compile Include="DataProcess\Signals\Signals.cs" />
+    <Compile Include="Comms\TCP\TCP_Client.cs" />
+    <Compile Include="Comms\TCP\Reciever.cs" />
+    <Compile Include="Comms\TCP\Sender.cs" />
+    <Compile Include="DataProcess\Track\Tracks.cs" />
+    <Compile Include="DataProcess\Track\TrackContainer.cs" />
     <Compile Include="Data\SaveGameParser.cs" />
+    <Compile Include="Data\SendPrep.cs" />
     <Compile Include="Properties\Settings.cs" />
     <Compile Include="User_Interface\Main_Menu.cs">
       <SubType>Form</SubType>
