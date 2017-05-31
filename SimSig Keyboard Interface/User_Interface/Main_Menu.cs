@@ -186,72 +186,106 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 		#region Keyboard Interface Controls
 
+		private void userInputString_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.F1) { KeyboardInterpose_Click(null, null); }              //Interpose
+			if (e.KeyCode == Keys.F2) { KeyboardTdCancel_Click(null, null); }               //Cancel
+			if (e.KeyCode == Keys.F3) { KeyboardRouteSet_Click(null, null); }               //Route Set
+			if (e.KeyCode == Keys.F4) { KeyboardRouteCancel_Click(null, null); }            //Route Cancel
+			if (e.KeyCode == Keys.F5) { KeyboardAutoSet_Click(null, null); }                //Signal Auto Set
+			if (e.KeyCode == Keys.F6) { KeyboardAutoCancel_Click(null, null); }             //Signal Auto Cancel
+			if (e.KeyCode == Keys.F7) { KeyboardSigReplacement_Click(null, null); }         //Signal Replacement Set
+			if (e.KeyCode == Keys.F8) { KeyboardSigRemoveReplacement_Click(null, null); }   //Signal Replacement 
+			if (e.KeyCode == Keys.F9) { KeyboardPointKN_Click(null, null); }                //Key Point Normal
+			if (e.KeyCode == Keys.F10) { KeyboardPointF_Click(null, null); }                //Free Point
+			if (e.KeyCode == Keys.F11) { KeyboardPointKR_Click(null, null); }               //Key Point Free
+
+
+			
+
+		}
+
+
 		private void KeyboardInterpose_Click(object sender, EventArgs e)
 		{
 			string[] userInput = userInputString.Text.Split(' ');
 			if (userInputString.Text.Contains(' ') == false) return; //Not doing anything if the user has not enterd a space after the berth
 			Data.SendPrep.Interpose(userInput[0], userInput[1]);
+			userInputString.Text = "";
 		}
+
+
+		private void KeyboardTdCancel_Click(object sender, EventArgs e)
+		{
+			string[] userInput = userInputString.Text.Split(' ');
+			SendPrep.InterposeCancel(userInput[0]);
+			userInputString.Text = "";
+		}
+
 
 		private void KeyboardRouteSet_Click(object sender, EventArgs e)
 		{
 			string[] userInput = userInputString.Text.Split(' ');
 			if (userInputString.Text.Contains(' ') == false) return; //Not doing anything if the user has not enterd a space after the berth
 			SendPrep.RouteSet(userInput[0], userInput[1]);
+			userInputString.Text = "";
 		}
 
-		private void KeyboardTdCancel_Click(object sender, EventArgs e)
-		{
-			string[] userInput = userInputString.Text.Split(' ');
-			SendPrep.InterposeCancel(userInput[0]);
-		}
 
 		private void KeyboardRouteCancel_Click(object sender, EventArgs e)
 		{
 			string[] userInput = userInputString.Text.Split(' ');
 			SendPrep.RouteCan(userInput[0]);
+			userInputString.Text = "";
 		}
 
 		private void KeyboardAutoSet_Click(object sender, EventArgs e)
 		{
 			string[] userInput = userInputString.Text.Split(' ');
 			SendPrep.SigAutoSet(userInput[0]);
+			userInputString.Text = "";
 		}
 
 		private void KeyboardAutoCancel_Click(object sender, EventArgs e)
 		{
 			string[] userInput = userInputString.Text.Split(' ');
 			SendPrep.SigAutoCan(userInput[0]);
+			userInputString.Text = "";
 		}
 
-		private void KeyboardSignalRemoveReplacement_Click(object sender, EventArgs e)
+		private void KeyboardSigRemoveReplacement_Click(object sender, EventArgs e)
 		{
 			string[] userInput = userInputString.Text.Split(' ');
 			SendPrep.SigReplacementCan(userInput[0]);
+			userInputString.Text = "";
 		}
 
 		private void KeyboardSigReplacement_Click(object sender, EventArgs e)
 		{
 			string[] userInput = userInputString.Text.Split(' ');
 			SendPrep.SigReplacementSet(userInput[0]);
+			userInputString.Text = "";
 		}
 
 		private void KeyboardPointKN_Click(object sender, EventArgs e)
 		{
 			string[] points = userInputString.Text.Split(' ');
 			SendPrep.PointsKeyN(points[0]);
+			userInputString.Text = "";
 		}
 
 		private void KeyboardPointKR_Click(object sender, EventArgs e)
 		{
 			string[] points = userInputString.Text.Split(' ');
 			SendPrep.PointsKeyR(points[0]);
+			userInputString.Text = "";
 		}
 
 		private void KeyboardPointF_Click(object sender, EventArgs e)
 		{
 			string[] points = userInputString.Text.Split(' ');
 			SendPrep.PointsKeyF(points[0]);
+			userInputString.Text = "";
 		}
 
 		#endregion
@@ -357,6 +391,8 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			});
 			serialReceiver.Start();
 		}
+
+
 	}
 }
 
