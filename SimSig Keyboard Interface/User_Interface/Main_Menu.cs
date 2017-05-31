@@ -392,7 +392,10 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			serialReceiver.Start();
 		}
 
+		private void userInputString_TextChanged(object sender, EventArgs e)
+		{
 
+		}
 	}
 }
 

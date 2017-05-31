@@ -625,7 +625,8 @@
 			// userInputString
 			// 
 			this.userInputString.BackColor = System.Drawing.SystemColors.InfoText;
-			this.userInputString.Font = new System.Drawing.Font("Engravers MT", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.userInputString.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+			this.userInputString.Font = new System.Drawing.Font("Franklin Gothic Medium Cond", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.userInputString.ForeColor = System.Drawing.Color.Cyan;
 			this.userInputString.Location = new System.Drawing.Point(7, 7);
 			this.userInputString.MinimumSize = new System.Drawing.Size(4, 25);
@@ -633,6 +634,7 @@
 			this.userInputString.Size = new System.Drawing.Size(294, 25);
 			this.userInputString.TabIndex = 0;
 			this.userInputString.Text = "1212";
+			this.userInputString.TextChanged += new System.EventHandler(this.userInputString_TextChanged);
 			this.userInputString.KeyDown += new System.Windows.Forms.KeyEventHandler(this.userInputString_KeyDown);
 			// 
 			// phoneCalls
