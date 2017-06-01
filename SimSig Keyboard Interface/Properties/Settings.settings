@@ -12,7 +12,7 @@
       <Value Profile="(Default)">5.1.0</Value>
     </Setting>
     <Setting Name="loadverVersion" Type="System.String" Scope="User">
-      <Value Profile="(Default)">4.5.15.0</Value>
+      <Value Profile="(Default)">4.6.3.0</Value>
     </Setting>
     <Setting Name="ipAddress" Type="System.String" Scope="User">
       <Value Profile="(Default)">127.0.0.1</Value>

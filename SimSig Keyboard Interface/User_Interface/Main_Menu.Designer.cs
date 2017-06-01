@@ -120,7 +120,6 @@
 			this.menuStrip.Size = new System.Drawing.Size(789, 24);
 			this.menuStrip.TabIndex = 0;
 			this.menuStrip.Text = "Menu Strip";
-			this.menuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.MenuStrip_ItemClicked);
 			// 
 			// fileToolStripMenuItem
 			// 
@@ -596,7 +595,7 @@
 			this.keyboardSendToSim.Name = "keyboardSendToSim";
 			this.keyboardSendToSim.Size = new System.Drawing.Size(228, 38);
 			this.keyboardSendToSim.TabIndex = 3;
-			this.keyboardSendToSim.Text = "Send Direct to Sim";
+			this.keyboardSendToSim.Text = "Send Direct to Sim [ F12 ]";
 			this.keyboardSendToSim.UseVisualStyleBackColor = true;
 			this.keyboardSendToSim.Click += new System.EventHandler(this.SendToSim_Click);
 			// 
@@ -633,9 +632,7 @@
 			this.userInputString.Name = "userInputString";
 			this.userInputString.Size = new System.Drawing.Size(294, 25);
 			this.userInputString.TabIndex = 0;
-			this.userInputString.Text = "1212";
-			this.userInputString.TextChanged += new System.EventHandler(this.userInputString_TextChanged);
-			this.userInputString.KeyDown += new System.Windows.Forms.KeyEventHandler(this.userInputString_KeyDown);
+			this.userInputString.KeyDown += new System.Windows.Forms.KeyEventHandler(this.UserInputString_KeyDown);
 			// 
 			// phoneCalls
 			// 
@@ -732,10 +729,10 @@
 			this.ControlBox = false;
 			this.Controls.Add(this.tabControl);
 			this.Controls.Add(this.menuStrip);
+			this.KeyPreview = true;
 			this.MainMenuStrip = this.menuStrip;
 			this.Name = "MainMenu";
 			this.Text = "SimSig Keyboard Interface";
-			this.TopMost = true;
 			this.Load += new System.EventHandler(this.MainMenu_Load);
 			this.menuStrip.ResumeLayout(false);
 			this.menuStrip.PerformLayout();
