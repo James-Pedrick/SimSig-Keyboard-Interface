@@ -1,0 +1,24 @@
+﻿KEYBOARD INTERFACE CONTROLS
+===========================
+
+Signal Route Set
+Signal Route Cancel
+Signal Auto Set
+Signal Auto Cancel
+Signal Replacement Set
+Signal Replacement Cancel
+Points Key Normal
+Points Key Reverse
+Points Key Free
+Level Crossing Raise
+Level Crossing Lower
+Level Crossing Clear
+Level Crossing Auto (Enable / Disable)
+
+
+
+
+Phone call display
+Phone call respond
+
+

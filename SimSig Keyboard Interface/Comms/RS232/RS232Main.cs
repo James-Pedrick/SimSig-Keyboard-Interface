@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing.Text;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO.Ports;
 using SimSig_Keyboard_Interface.Data;
-using SimSig_Keyboard_Interface.User_Interface;
 
 namespace SimSig_Keyboard_Interface.Comms.RS232
 {
@@ -19,7 +13,6 @@ namespace SimSig_Keyboard_Interface.Comms.RS232
 
 		public static void Rs232Receiver()
 		{
-			int i = 1;
 			//OPEN THE SERIAL PORT
 			try
 			{
@@ -84,7 +77,7 @@ namespace SimSig_Keyboard_Interface.Comms.RS232
 		private static void ExitButtonPress(string data)
 		{
 
-			if (_firstSignal == true)
+			if (_firstSignal)
 				return;
 
 			_signalExit = data;
