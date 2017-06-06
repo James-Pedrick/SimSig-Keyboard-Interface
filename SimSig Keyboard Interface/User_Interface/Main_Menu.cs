@@ -97,12 +97,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			Refresh();
 
 		}
-
-		private void MainMenu_Load(object sender, EventArgs e)
-		{
-
-		}
-
+		
 		#region DataUpdates
 
 		private void TcpDataUpdate(Object sender, MsgEventArgs e)
@@ -340,10 +335,6 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			_points.PointList.Clear();
 		}
 
-		private void BerthListReset(object sender, EventArgs e)
-		{
-			_berths.BerthList.Clear();
-		}
 
 		private void SignalListReset(object sender, EventArgs e)
 		{
@@ -426,217 +417,29 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			serialReceiver.Start();
 		}
 
-		private void phoneCalls_Click(object sender, EventArgs e)
+
+
+
+
+		private void berthListResetToolStripMenuItem_Click(object sender, EventArgs e)
 		{
+			_berths.BerthList.Clear();
 
 		}
 
-		private void callResponses_SelectedIndexChanged(object sender, EventArgs e)
+		private void signalListResetToolStripMenuItem_Click(object sender, EventArgs e)
 		{
+			_signals.SignalList.Clear();
 
 		}
 
-		private void debugBerthView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+		private void pointsListResetToolStripMenuItem_Click(object sender, EventArgs e)
 		{
+			_points.PointList.Clear();
 
 		}
 
-		private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
-		{
-
-		}
-
-		private void menuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-		{
-
-		}
-
-		private void fileToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void dataToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void tcpToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void tcpConnect_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void networkToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void clientToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void serialToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void dataToolStripMenuItem1_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void logsToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void savePointsToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void saveSignalsToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void saveBerthsToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void saveRawToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void debug_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void debugTabs_SelectedIndexChanged(object sender, EventArgs e)
-		{
-
-		}
-
-		private void debugBerths_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void debugBerthView_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
-		{
-
-		}
-
-		private void debugCalls_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void debugCallView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-		{
-
-		}
-
-		private void debugPoints_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void debugPointView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-		{
-
-		}
-
-		private void debugSignals_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void debugSignalView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-		{
-
-		}
-
-		private void debugTracks_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void debugTrackView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-		{
-
-		}
-
-		private void debugTcpRaw_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void debugRawTcpDisplay_SelectedIndexChanged(object sender, EventArgs e)
-		{
-
-		}
-
-		private void keyboardInterface_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void userInputString_TextChanged(object sender, EventArgs e)
-		{
-
-		}
-
-		private void splitContainer2_SplitterMoved(object sender, SplitterEventArgs e)
-		{
-
-		}
-
-		private void splitContainer4_SplitterMoved(object sender, SplitterEventArgs e)
-		{
-
-		}
-
-		private void splitContainer3_SplitterMoved(object sender, SplitterEventArgs e)
-		{
-
-		}
-
-		private void callMsg_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void loadSaveGameXML_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
-		{
-
-		}
-
-		private void dataSave_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
-		{
-
-		}
-
-		private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
-		{
-
-		}
-
-		private void callResponses_SelectedIndexChanged_1(object sender, EventArgs e)
-		{
-
-		}
-
-		private void splitContainer2_Panel2_Paint(object sender, PaintEventArgs e)
+		private void requestDataToolStripMenuItem1_Click(object sender, EventArgs e)
 		{
 
 		}

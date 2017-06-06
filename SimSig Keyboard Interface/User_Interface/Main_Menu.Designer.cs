@@ -28,22 +28,22 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			this.menuStrip = new System.Windows.Forms.MenuStrip();
 			this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.dataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.loadSaveXML = new System.Windows.Forms.ToolStripMenuItem();
-			this.tcpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.tcpConnect = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+			this.berthListResetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.signalListResetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.pointsListResetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.networkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.clientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.connectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.requestDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.serialToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.connectToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-			this.dataToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-			this.berthsResetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.pointsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.signalResetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.logsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.savePointsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.saveSignalsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -85,10 +85,13 @@
 			this.callRespond = new System.Windows.Forms.Button();
 			this.splitContainer3 = new System.Windows.Forms.SplitContainer();
 			this.callMsg = new System.Windows.Forms.Label();
+			this.callResponses = new System.Windows.Forms.ListBox();
 			this.loadSaveGameXML = new System.Windows.Forms.OpenFileDialog();
 			this.dataSave = new System.Windows.Forms.SaveFileDialog();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-			this.callResponses = new System.Windows.Forms.ListBox();
+			this.pageSetupDialog1 = new System.Windows.Forms.PageSetupDialog();
+			this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+			this.requestDataToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip.SuspendLayout();
 			this.tabControl.SuspendLayout();
 			this.debug.SuspendLayout();
@@ -127,16 +130,13 @@
 			this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.dataToolStripMenuItem,
-            this.tcpToolStripMenuItem,
             this.networkToolStripMenuItem,
-            this.dataToolStripMenuItem1,
             this.logsToolStripMenuItem});
 			this.menuStrip.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip.Name = "menuStrip";
-			this.menuStrip.Size = new System.Drawing.Size(1192, 24);
+			this.menuStrip.Size = new System.Drawing.Size(598, 24);
 			this.menuStrip.TabIndex = 0;
 			this.menuStrip.Text = "Menu Strip";
-			this.menuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip_ItemClicked);
 			// 
 			// fileToolStripMenuItem
 			// 
@@ -145,7 +145,6 @@
 			this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
 			this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
 			this.fileToolStripMenuItem.Text = "File";
-			this.fileToolStripMenuItem.Click += new System.EventHandler(this.fileToolStripMenuItem_Click);
 			// 
 			// exitToolStripMenuItem
 			// 
@@ -157,11 +156,15 @@
 			// dataToolStripMenuItem
 			// 
 			this.dataToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.loadSaveXML});
+            this.loadSaveXML,
+            this.requestDataToolStripMenuItem1,
+            this.toolStripSeparator1,
+            this.berthListResetToolStripMenuItem,
+            this.signalListResetToolStripMenuItem,
+            this.pointsListResetToolStripMenuItem});
 			this.dataToolStripMenuItem.Name = "dataToolStripMenuItem";
 			this.dataToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
 			this.dataToolStripMenuItem.Text = "Data";
-			this.dataToolStripMenuItem.Click += new System.EventHandler(this.dataToolStripMenuItem_Click);
 			// 
 			// loadSaveXML
 			// 
@@ -170,22 +173,31 @@
 			this.loadSaveXML.Text = "Load Save Game XML";
 			this.loadSaveXML.Click += new System.EventHandler(this.MenuLoadSaveXml);
 			// 
-			// tcpToolStripMenuItem
+			// toolStripSeparator1
 			// 
-			this.tcpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tcpConnect});
-			this.tcpToolStripMenuItem.Enabled = false;
-			this.tcpToolStripMenuItem.Name = "tcpToolStripMenuItem";
-			this.tcpToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
-			this.tcpToolStripMenuItem.Text = "TCP";
-			this.tcpToolStripMenuItem.Click += new System.EventHandler(this.tcpToolStripMenuItem_Click);
+			this.toolStripSeparator1.Name = "toolStripSeparator1";
+			this.toolStripSeparator1.Size = new System.Drawing.Size(185, 6);
 			// 
-			// tcpConnect
+			// berthListResetToolStripMenuItem
 			// 
-			this.tcpConnect.Name = "tcpConnect";
-			this.tcpConnect.Size = new System.Drawing.Size(119, 22);
-			this.tcpConnect.Text = "Connect";
-			this.tcpConnect.Click += new System.EventHandler(this.tcpConnect_Click);
+			this.berthListResetToolStripMenuItem.Name = "berthListResetToolStripMenuItem";
+			this.berthListResetToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+			this.berthListResetToolStripMenuItem.Text = "Berth List Reset";
+			this.berthListResetToolStripMenuItem.Click += new System.EventHandler(this.berthListResetToolStripMenuItem_Click);
+			// 
+			// signalListResetToolStripMenuItem
+			// 
+			this.signalListResetToolStripMenuItem.Name = "signalListResetToolStripMenuItem";
+			this.signalListResetToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+			this.signalListResetToolStripMenuItem.Text = "Signal List Reset";
+			this.signalListResetToolStripMenuItem.Click += new System.EventHandler(this.signalListResetToolStripMenuItem_Click);
+			// 
+			// pointsListResetToolStripMenuItem
+			// 
+			this.pointsListResetToolStripMenuItem.Name = "pointsListResetToolStripMenuItem";
+			this.pointsListResetToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+			this.pointsListResetToolStripMenuItem.Text = "Points List Reset";
+			this.pointsListResetToolStripMenuItem.Click += new System.EventHandler(this.pointsListResetToolStripMenuItem_Click);
 			// 
 			// networkToolStripMenuItem
 			// 
@@ -195,23 +207,28 @@
 			this.networkToolStripMenuItem.Name = "networkToolStripMenuItem";
 			this.networkToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
 			this.networkToolStripMenuItem.Text = "Network";
-			this.networkToolStripMenuItem.Click += new System.EventHandler(this.networkToolStripMenuItem_Click);
 			// 
 			// clientToolStripMenuItem
 			// 
 			this.clientToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.connectToolStripMenuItem});
+            this.connectToolStripMenuItem,
+            this.requestDataToolStripMenuItem});
 			this.clientToolStripMenuItem.Name = "clientToolStripMenuItem";
 			this.clientToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
 			this.clientToolStripMenuItem.Text = "Client";
-			this.clientToolStripMenuItem.Click += new System.EventHandler(this.clientToolStripMenuItem_Click);
 			// 
 			// connectToolStripMenuItem
 			// 
 			this.connectToolStripMenuItem.Name = "connectToolStripMenuItem";
-			this.connectToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+			this.connectToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
 			this.connectToolStripMenuItem.Text = "Connect";
 			this.connectToolStripMenuItem.Click += new System.EventHandler(this.ConnectToolStripMenuItem_Click);
+			// 
+			// requestDataToolStripMenuItem
+			// 
+			this.requestDataToolStripMenuItem.Name = "requestDataToolStripMenuItem";
+			this.requestDataToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+			this.requestDataToolStripMenuItem.Text = "Request Data";
 			// 
 			// serialToolStripMenuItem
 			// 
@@ -220,7 +237,6 @@
 			this.serialToolStripMenuItem.Name = "serialToolStripMenuItem";
 			this.serialToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
 			this.serialToolStripMenuItem.Text = "Serial";
-			this.serialToolStripMenuItem.Click += new System.EventHandler(this.serialToolStripMenuItem_Click);
 			// 
 			// connectToolStripMenuItem1
 			// 
@@ -228,38 +244,6 @@
 			this.connectToolStripMenuItem1.Size = new System.Drawing.Size(119, 22);
 			this.connectToolStripMenuItem1.Text = "Connect";
 			this.connectToolStripMenuItem1.Click += new System.EventHandler(this.ConnectToolStripMenuItem1_Click);
-			// 
-			// dataToolStripMenuItem1
-			// 
-			this.dataToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.berthsResetToolStripMenuItem,
-            this.pointsToolStripMenuItem,
-            this.signalResetToolStripMenuItem});
-			this.dataToolStripMenuItem1.Name = "dataToolStripMenuItem1";
-			this.dataToolStripMenuItem1.Size = new System.Drawing.Size(43, 20);
-			this.dataToolStripMenuItem1.Text = "Data";
-			this.dataToolStripMenuItem1.Click += new System.EventHandler(this.dataToolStripMenuItem1_Click);
-			// 
-			// berthsResetToolStripMenuItem
-			// 
-			this.berthsResetToolStripMenuItem.Name = "berthsResetToolStripMenuItem";
-			this.berthsResetToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
-			this.berthsResetToolStripMenuItem.Text = "Berths Reset";
-			this.berthsResetToolStripMenuItem.Click += new System.EventHandler(this.BerthListReset);
-			// 
-			// pointsToolStripMenuItem
-			// 
-			this.pointsToolStripMenuItem.Name = "pointsToolStripMenuItem";
-			this.pointsToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
-			this.pointsToolStripMenuItem.Text = "Points Reset";
-			this.pointsToolStripMenuItem.Click += new System.EventHandler(this.Point_List_Reset);
-			// 
-			// signalResetToolStripMenuItem
-			// 
-			this.signalResetToolStripMenuItem.Name = "signalResetToolStripMenuItem";
-			this.signalResetToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
-			this.signalResetToolStripMenuItem.Text = "Signals Reset";
-			this.signalResetToolStripMenuItem.Click += new System.EventHandler(this.SignalListReset);
 			// 
 			// logsToolStripMenuItem
 			// 
@@ -271,35 +255,30 @@
 			this.logsToolStripMenuItem.Name = "logsToolStripMenuItem";
 			this.logsToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
 			this.logsToolStripMenuItem.Text = "Logs";
-			this.logsToolStripMenuItem.Click += new System.EventHandler(this.logsToolStripMenuItem_Click);
 			// 
 			// savePointsToolStripMenuItem
 			// 
 			this.savePointsToolStripMenuItem.Name = "savePointsToolStripMenuItem";
 			this.savePointsToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
 			this.savePointsToolStripMenuItem.Text = "Save Points";
-			this.savePointsToolStripMenuItem.Click += new System.EventHandler(this.savePointsToolStripMenuItem_Click);
 			// 
 			// saveSignalsToolStripMenuItem
 			// 
 			this.saveSignalsToolStripMenuItem.Name = "saveSignalsToolStripMenuItem";
 			this.saveSignalsToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
 			this.saveSignalsToolStripMenuItem.Text = "Save Signals";
-			this.saveSignalsToolStripMenuItem.Click += new System.EventHandler(this.saveSignalsToolStripMenuItem_Click);
 			// 
 			// saveBerthsToolStripMenuItem
 			// 
 			this.saveBerthsToolStripMenuItem.Name = "saveBerthsToolStripMenuItem";
 			this.saveBerthsToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
 			this.saveBerthsToolStripMenuItem.Text = "Save Berths";
-			this.saveBerthsToolStripMenuItem.Click += new System.EventHandler(this.saveBerthsToolStripMenuItem_Click);
 			// 
 			// saveRawToolStripMenuItem
 			// 
 			this.saveRawToolStripMenuItem.Name = "saveRawToolStripMenuItem";
 			this.saveRawToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
 			this.saveRawToolStripMenuItem.Text = "Save Raw";
-			this.saveRawToolStripMenuItem.Click += new System.EventHandler(this.saveRawToolStripMenuItem_Click);
 			// 
 			// tabControl
 			// 
@@ -312,20 +291,18 @@
 			this.tabControl.Multiline = true;
 			this.tabControl.Name = "tabControl";
 			this.tabControl.SelectedIndex = 0;
-			this.tabControl.Size = new System.Drawing.Size(1192, 646);
+			this.tabControl.Size = new System.Drawing.Size(598, 449);
 			this.tabControl.TabIndex = 1;
-			this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged);
 			// 
 			// debug
 			// 
 			this.debug.Controls.Add(this.debugTabs);
 			this.debug.Location = new System.Drawing.Point(4, 22);
 			this.debug.Name = "debug";
-			this.debug.Size = new System.Drawing.Size(1184, 620);
+			this.debug.Size = new System.Drawing.Size(590, 423);
 			this.debug.TabIndex = 1;
 			this.debug.Text = "Debug";
 			this.debug.UseVisualStyleBackColor = true;
-			this.debug.Click += new System.EventHandler(this.debug_Click);
 			// 
 			// debugTabs
 			// 
@@ -340,20 +317,18 @@
 			this.debugTabs.Multiline = true;
 			this.debugTabs.Name = "debugTabs";
 			this.debugTabs.SelectedIndex = 0;
-			this.debugTabs.Size = new System.Drawing.Size(1184, 620);
+			this.debugTabs.Size = new System.Drawing.Size(590, 423);
 			this.debugTabs.TabIndex = 0;
-			this.debugTabs.SelectedIndexChanged += new System.EventHandler(this.debugTabs_SelectedIndexChanged);
 			// 
 			// debugBerths
 			// 
 			this.debugBerths.Controls.Add(this.debugBerthView);
 			this.debugBerths.Location = new System.Drawing.Point(4, 22);
 			this.debugBerths.Name = "debugBerths";
-			this.debugBerths.Size = new System.Drawing.Size(1176, 594);
+			this.debugBerths.Size = new System.Drawing.Size(582, 397);
 			this.debugBerths.TabIndex = 2;
 			this.debugBerths.Text = "Berths";
 			this.debugBerths.UseVisualStyleBackColor = true;
-			this.debugBerths.Click += new System.EventHandler(this.debugBerths_Click);
 			// 
 			// debugBerthView
 			// 
@@ -368,20 +343,18 @@
 			this.debugBerthView.Location = new System.Drawing.Point(0, 0);
 			this.debugBerthView.Name = "debugBerthView";
 			this.debugBerthView.ReadOnly = true;
-			this.debugBerthView.Size = new System.Drawing.Size(1176, 594);
+			this.debugBerthView.Size = new System.Drawing.Size(582, 397);
 			this.debugBerthView.TabIndex = 3;
-			this.debugBerthView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.debugBerthView_CellContentClick_1);
 			// 
 			// debugCalls
 			// 
 			this.debugCalls.Controls.Add(this.debugCallView);
 			this.debugCalls.Location = new System.Drawing.Point(4, 22);
 			this.debugCalls.Name = "debugCalls";
-			this.debugCalls.Size = new System.Drawing.Size(1176, 594);
+			this.debugCalls.Size = new System.Drawing.Size(505, 397);
 			this.debugCalls.TabIndex = 5;
 			this.debugCalls.Text = "Calls";
 			this.debugCalls.UseVisualStyleBackColor = true;
-			this.debugCalls.Click += new System.EventHandler(this.debugCalls_Click);
 			// 
 			// debugCallView
 			// 
@@ -396,9 +369,8 @@
 			this.debugCallView.Location = new System.Drawing.Point(0, 0);
 			this.debugCallView.Name = "debugCallView";
 			this.debugCallView.ReadOnly = true;
-			this.debugCallView.Size = new System.Drawing.Size(1176, 594);
+			this.debugCallView.Size = new System.Drawing.Size(505, 397);
 			this.debugCallView.TabIndex = 3;
-			this.debugCallView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.debugCallView_CellContentClick);
 			// 
 			// debugPoints
 			// 
@@ -406,11 +378,10 @@
 			this.debugPoints.Location = new System.Drawing.Point(4, 22);
 			this.debugPoints.Name = "debugPoints";
 			this.debugPoints.Padding = new System.Windows.Forms.Padding(3);
-			this.debugPoints.Size = new System.Drawing.Size(1176, 594);
+			this.debugPoints.Size = new System.Drawing.Size(505, 397);
 			this.debugPoints.TabIndex = 0;
 			this.debugPoints.Text = "Points";
 			this.debugPoints.UseVisualStyleBackColor = true;
-			this.debugPoints.Click += new System.EventHandler(this.debugPoints_Click);
 			// 
 			// debugPointView
 			// 
@@ -425,20 +396,18 @@
 			this.debugPointView.Location = new System.Drawing.Point(3, 3);
 			this.debugPointView.Name = "debugPointView";
 			this.debugPointView.ReadOnly = true;
-			this.debugPointView.Size = new System.Drawing.Size(1170, 588);
+			this.debugPointView.Size = new System.Drawing.Size(499, 391);
 			this.debugPointView.TabIndex = 3;
-			this.debugPointView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.debugPointView_CellContentClick);
 			// 
 			// debugSignals
 			// 
 			this.debugSignals.Controls.Add(this.debugSignalView);
 			this.debugSignals.Location = new System.Drawing.Point(4, 22);
 			this.debugSignals.Name = "debugSignals";
-			this.debugSignals.Size = new System.Drawing.Size(1176, 594);
+			this.debugSignals.Size = new System.Drawing.Size(505, 397);
 			this.debugSignals.TabIndex = 1;
 			this.debugSignals.Text = "Signals";
 			this.debugSignals.UseVisualStyleBackColor = true;
-			this.debugSignals.Click += new System.EventHandler(this.debugSignals_Click);
 			// 
 			// debugSignalView
 			// 
@@ -453,20 +422,18 @@
 			this.debugSignalView.Location = new System.Drawing.Point(0, 0);
 			this.debugSignalView.Name = "debugSignalView";
 			this.debugSignalView.ReadOnly = true;
-			this.debugSignalView.Size = new System.Drawing.Size(1176, 594);
+			this.debugSignalView.Size = new System.Drawing.Size(505, 397);
 			this.debugSignalView.TabIndex = 3;
-			this.debugSignalView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.debugSignalView_CellContentClick);
 			// 
 			// debugTracks
 			// 
 			this.debugTracks.Controls.Add(this.debugTrackView);
 			this.debugTracks.Location = new System.Drawing.Point(4, 22);
 			this.debugTracks.Name = "debugTracks";
-			this.debugTracks.Size = new System.Drawing.Size(1176, 594);
+			this.debugTracks.Size = new System.Drawing.Size(505, 397);
 			this.debugTracks.TabIndex = 4;
 			this.debugTracks.Text = "Tracks";
 			this.debugTracks.UseVisualStyleBackColor = true;
-			this.debugTracks.Click += new System.EventHandler(this.debugTracks_Click);
 			// 
 			// debugTrackView
 			// 
@@ -481,20 +448,18 @@
 			this.debugTrackView.Location = new System.Drawing.Point(0, 0);
 			this.debugTrackView.Name = "debugTrackView";
 			this.debugTrackView.ReadOnly = true;
-			this.debugTrackView.Size = new System.Drawing.Size(1176, 594);
+			this.debugTrackView.Size = new System.Drawing.Size(505, 397);
 			this.debugTrackView.TabIndex = 2;
-			this.debugTrackView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.debugTrackView_CellContentClick);
 			// 
 			// debugTcpRaw
 			// 
 			this.debugTcpRaw.Controls.Add(this.debugRawTcpDisplay);
 			this.debugTcpRaw.Location = new System.Drawing.Point(4, 22);
 			this.debugTcpRaw.Name = "debugTcpRaw";
-			this.debugTcpRaw.Size = new System.Drawing.Size(1176, 594);
+			this.debugTcpRaw.Size = new System.Drawing.Size(505, 397);
 			this.debugTcpRaw.TabIndex = 3;
 			this.debugTcpRaw.Text = "TCP Raw";
 			this.debugTcpRaw.UseVisualStyleBackColor = true;
-			this.debugTcpRaw.Click += new System.EventHandler(this.debugTcpRaw_Click);
 			// 
 			// debugRawTcpDisplay
 			// 
@@ -502,9 +467,8 @@
 			this.debugRawTcpDisplay.FormattingEnabled = true;
 			this.debugRawTcpDisplay.Location = new System.Drawing.Point(0, 0);
 			this.debugRawTcpDisplay.Name = "debugRawTcpDisplay";
-			this.debugRawTcpDisplay.Size = new System.Drawing.Size(1176, 594);
+			this.debugRawTcpDisplay.Size = new System.Drawing.Size(505, 397);
 			this.debugRawTcpDisplay.TabIndex = 4;
-			this.debugRawTcpDisplay.SelectedIndexChanged += new System.EventHandler(this.debugRawTcpDisplay_SelectedIndexChanged);
 			// 
 			// keyboardInterface
 			// 
@@ -525,10 +489,9 @@
 			this.keyboardInterface.Location = new System.Drawing.Point(4, 22);
 			this.keyboardInterface.Name = "keyboardInterface";
 			this.keyboardInterface.Padding = new System.Windows.Forms.Padding(3);
-			this.keyboardInterface.Size = new System.Drawing.Size(1184, 620);
+			this.keyboardInterface.Size = new System.Drawing.Size(513, 423);
 			this.keyboardInterface.TabIndex = 0;
 			this.keyboardInterface.Text = "Keyboard Interface";
-			this.keyboardInterface.Click += new System.EventHandler(this.keyboardInterface_Click);
 			// 
 			// keyboardPointKR
 			// 
@@ -682,7 +645,6 @@
 			this.userInputString.Name = "userInputString";
 			this.userInputString.Size = new System.Drawing.Size(294, 25);
 			this.userInputString.TabIndex = 0;
-			this.userInputString.TextChanged += new System.EventHandler(this.userInputString_TextChanged);
 			this.userInputString.KeyDown += new System.Windows.Forms.KeyEventHandler(this.UserInputString_KeyDown);
 			// 
 			// phoneCalls
@@ -691,10 +653,9 @@
 			this.phoneCalls.Controls.Add(this.splitContainer2);
 			this.phoneCalls.Location = new System.Drawing.Point(4, 22);
 			this.phoneCalls.Name = "phoneCalls";
-			this.phoneCalls.Size = new System.Drawing.Size(1184, 620);
+			this.phoneCalls.Size = new System.Drawing.Size(513, 423);
 			this.phoneCalls.TabIndex = 2;
 			this.phoneCalls.Text = "Phone";
-			this.phoneCalls.Click += new System.EventHandler(this.phoneCalls_Click);
 			// 
 			// splitContainer2
 			// 
@@ -712,11 +673,9 @@
 			// splitContainer2.Panel2
 			// 
 			this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
-			this.splitContainer2.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer2_Panel2_Paint);
-			this.splitContainer2.Size = new System.Drawing.Size(1184, 620);
+			this.splitContainer2.Size = new System.Drawing.Size(513, 423);
 			this.splitContainer2.SplitterDistance = 198;
 			this.splitContainer2.TabIndex = 8;
-			this.splitContainer2.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer2_SplitterMoved);
 			// 
 			// splitContainer4
 			// 
@@ -733,10 +692,9 @@
 			// splitContainer4.Panel2
 			// 
 			this.splitContainer4.Panel2.Controls.Add(this.callRespond);
-			this.splitContainer4.Size = new System.Drawing.Size(194, 616);
-			this.splitContainer4.SplitterDistance = 550;
+			this.splitContainer4.Size = new System.Drawing.Size(194, 419);
+			this.splitContainer4.SplitterDistance = 353;
 			this.splitContainer4.TabIndex = 9;
-			this.splitContainer4.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer4_SplitterMoved);
 			// 
 			// callers
 			// 
@@ -751,7 +709,7 @@
 			this.callers.Location = new System.Drawing.Point(0, 0);
 			this.callers.Margin = new System.Windows.Forms.Padding(0);
 			this.callers.Name = "callers";
-			this.callers.Size = new System.Drawing.Size(194, 550);
+			this.callers.Size = new System.Drawing.Size(194, 353);
 			this.callers.TabIndex = 4;
 			this.callers.SelectedIndexChanged += new System.EventHandler(this.Callers_SelectedIndexChanged_1);
 			// 
@@ -782,10 +740,9 @@
 			// splitContainer3.Panel2
 			// 
 			this.splitContainer3.Panel2.Controls.Add(this.callResponses);
-			this.splitContainer3.Size = new System.Drawing.Size(978, 616);
+			this.splitContainer3.Size = new System.Drawing.Size(307, 419);
 			this.splitContainer3.SplitterDistance = 239;
 			this.splitContainer3.TabIndex = 0;
-			this.splitContainer3.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer3_SplitterMoved);
 			// 
 			// callMsg
 			// 
@@ -795,28 +752,9 @@
 			this.callMsg.ForeColor = System.Drawing.Color.Cyan;
 			this.callMsg.Location = new System.Drawing.Point(0, 0);
 			this.callMsg.Name = "callMsg";
-			this.callMsg.Size = new System.Drawing.Size(978, 239);
+			this.callMsg.Size = new System.Drawing.Size(307, 239);
 			this.callMsg.TabIndex = 7;
 			this.callMsg.Text = "callMsg";
-			this.callMsg.Click += new System.EventHandler(this.callMsg_Click);
-			// 
-			// loadSaveGameXML
-			// 
-			this.loadSaveGameXML.FileName = "openFileDialog1";
-			this.loadSaveGameXML.FileOk += new System.ComponentModel.CancelEventHandler(this.loadSaveGameXML_FileOk);
-			// 
-			// dataSave
-			// 
-			this.dataSave.FileOk += new System.ComponentModel.CancelEventHandler(this.dataSave_FileOk);
-			// 
-			// splitContainer1
-			// 
-			this.splitContainer1.Location = new System.Drawing.Point(20, 18);
-			this.splitContainer1.Name = "splitContainer1";
-			this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
-			this.splitContainer1.Size = new System.Drawing.Size(150, 100);
-			this.splitContainer1.TabIndex = 0;
-			this.splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
 			// 
 			// callResponses
 			// 
@@ -828,15 +766,38 @@
 			this.callResponses.ItemHeight = 24;
 			this.callResponses.Location = new System.Drawing.Point(0, 0);
 			this.callResponses.Name = "callResponses";
-			this.callResponses.Size = new System.Drawing.Size(978, 373);
+			this.callResponses.Size = new System.Drawing.Size(307, 176);
 			this.callResponses.TabIndex = 0;
-			this.callResponses.SelectedIndexChanged += new System.EventHandler(this.callResponses_SelectedIndexChanged_1);
+			// 
+			// loadSaveGameXML
+			// 
+			this.loadSaveGameXML.FileName = "openFileDialog1";
+			// 
+			// splitContainer1
+			// 
+			this.splitContainer1.Location = new System.Drawing.Point(20, 18);
+			this.splitContainer1.Name = "splitContainer1";
+			this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+			this.splitContainer1.Size = new System.Drawing.Size(150, 100);
+			this.splitContainer1.TabIndex = 0;
+			// 
+			// notifyIcon1
+			// 
+			this.notifyIcon1.Text = "notifyIcon1";
+			this.notifyIcon1.Visible = true;
+			// 
+			// requestDataToolStripMenuItem1
+			// 
+			this.requestDataToolStripMenuItem1.Name = "requestDataToolStripMenuItem1";
+			this.requestDataToolStripMenuItem1.Size = new System.Drawing.Size(188, 22);
+			this.requestDataToolStripMenuItem1.Text = "Request Data";
+			this.requestDataToolStripMenuItem1.Click += new System.EventHandler(this.requestDataToolStripMenuItem1_Click);
 			// 
 			// MainMenu
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1192, 670);
+			this.ClientSize = new System.Drawing.Size(598, 473);
 			this.ControlBox = false;
 			this.Controls.Add(this.tabControl);
 			this.Controls.Add(this.menuStrip);
@@ -844,7 +805,6 @@
 			this.MainMenuStrip = this.menuStrip;
 			this.Name = "MainMenu";
 			this.Text = "SimSig Keyboard Interface";
-			this.Load += new System.EventHandler(this.MainMenu_Load);
 			this.menuStrip.ResumeLayout(false);
 			this.menuStrip.PerformLayout();
 			this.tabControl.ResumeLayout(false);
@@ -888,7 +848,6 @@
 		private System.Windows.Forms.MenuStrip menuStrip;
 		private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem tcpToolStripMenuItem;
 		private System.Windows.Forms.TabControl tabControl;
 		private System.Windows.Forms.TabPage keyboardInterface;
 		private System.Windows.Forms.TabPage debug;
@@ -898,11 +857,6 @@
 		private System.Windows.Forms.ToolStripMenuItem networkToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem clientToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem connectToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem tcpConnect;
-		private System.Windows.Forms.ToolStripMenuItem dataToolStripMenuItem1;
-		private System.Windows.Forms.ToolStripMenuItem pointsToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem berthsResetToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem signalResetToolStripMenuItem;
 		private System.Windows.Forms.TabControl debugTabs;
 		private System.Windows.Forms.TabPage debugBerths;
 		private System.Windows.Forms.TabPage debugSignals;
@@ -947,6 +901,14 @@
 		private System.Windows.Forms.SplitContainer splitContainer3;
 		private System.Windows.Forms.SplitContainer splitContainer4;
 		private System.Windows.Forms.ListBox callResponses;
+		private System.Windows.Forms.PageSetupDialog pageSetupDialog1;
+		private System.Windows.Forms.ToolStripMenuItem berthListResetToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem signalListResetToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem pointsListResetToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem requestDataToolStripMenuItem;
+		private System.Windows.Forms.NotifyIcon notifyIcon1;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+		private System.Windows.Forms.ToolStripMenuItem requestDataToolStripMenuItem1;
 	}
 }
 
