@@ -58,5 +58,15 @@ namespace SimSig_Keyboard_Interface.DataProcess.Berths
 			return null;
 		}
 
+		public void BerthStatusRequest()
+		{
+			foreach (var x in BerthList)
+			{
+				var berthRequest = "iBB" + x.HexId + x.HexId + "|";
+
+				User_Interface.MainMenu.Connection.SendData(berthRequest);
+			}
+		}
+
 	}
 }

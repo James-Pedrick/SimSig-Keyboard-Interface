@@ -97,13 +97,18 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			Refresh();
 
 		}
-		
-		#region DataUpdates
+
 
 		private void TcpDataUpdate(Object sender, MsgEventArgs e)
 		{
 			string[] receivedStrings = e.Msg.Split('|');
+			string temp;
 
+			var z = receivedStrings.Length;
+
+			if (receivedStrings[z].EndsWith("|") == false)
+				temp = receivedStrings[z];
+			
 
 			foreach (string element in receivedStrings)
 			{
@@ -119,49 +124,89 @@ namespace SimSig_Keyboard_Interface.User_Interface
 					{
 
 						if (element.StartsWith("sB"))
+						{
 							if (InvokeRequired)
 								Invoke(new MethodInvoker(delegate
 								{
 									_berths.DataUpdateTcp(element.Substring(2, 8));
 									Refresh();
 								}));
+						}
 						if (element.StartsWith("sP"))
+						{
 							if (InvokeRequired)
 								Invoke(new MethodInvoker(delegate
 								{
 									_points.AddPointTcp(element.Substring(2, 7));
 									Refresh();
 								}));
+						}
+
 						if (element.StartsWith("sS"))
+						{
 							if (InvokeRequired)
 								Invoke(new MethodInvoker(delegate
 								{
 									_signals.AddSignalTcp(element.Substring(2, 13));
 									Refresh();
 								}));
+						}
 						if (element.StartsWith("sT"))
+						{
 							if (InvokeRequired)
 								Invoke(new MethodInvoker(delegate
 								{
 									_tracks.AddTrackTcp(element.Substring(2, 6));
 									Refresh();
 								}));
-
-
+						}
 						if (element.StartsWith("pM"))
+						{
 							if (InvokeRequired)
 								Invoke(new MethodInvoker(delegate
 								{
 									_calls.NewIncomingCall(element);
 									Refresh();
 								}));
+						}//New Phone Call
 						if (element.StartsWith("pO"))
+						{
 							if (InvokeRequired)
 								Invoke(new MethodInvoker(delegate
 								{
 									_calls.EndIncomingCall(element);
 									Refresh();
 								}));
+						}//End Phone Call
+
+						if (element.StartsWith("iCB"))
+						{
+							if (InvokeRequired)
+								Invoke(new MethodInvoker(delegate
+								{
+									_berths.AddBerthTcp(element.Substring(7, 4), element.Substring(11, 4));
+									Refresh();
+								}));
+						}//Berth Request State Feedback
+						if (element.StartsWith("iCP"))
+						{
+							if (InvokeRequired)
+								Invoke(new MethodInvoker(delegate
+								{
+									_points.AddPointTcp(element.Substring(7));
+									Refresh();
+								}));
+						}//Point Request State Feedback
+						if (element.StartsWith("iCS"))
+						{
+							if (InvokeRequired)
+								Invoke(new MethodInvoker(delegate
+								{
+									Console.WriteLine(element.Substring(7));
+									_signals.AddSignalTcp(element.Substring(7));
+									Refresh();
+								}));
+						}//Signal Request State Feedback
 					}
 					catch
 					{
@@ -177,7 +222,6 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		}
 
 
-		#endregion
 
 		#region Keyboard Interface Controls
 
@@ -256,7 +300,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 					DataProcess.KeyboardInterface.KeyboardRouSet(combo[y - 1] + ' ' + combo[y]);
 					y++;
 				}
-				
+
 
 			}
 
@@ -441,28 +485,16 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 		private void requestDataToolStripMenuItem1_Click(object sender, EventArgs e)
 		{
+			_berths.BerthStatusRequest();
+			_points.PointStatusRequest();
+			_signals.SignalStatusRequest();
+		}
+
+		private void MainMenu_Load(object sender, EventArgs e)
+		{
 
 		}
 	}
 }
 
 
-/*
-
-
-
-
-
-
-
-		        //			if (element.StartsWith("sB")) { element = element.Substring(2, 8); TDs.Td(element); }							//Berth
-		        //			if (element.StartsWith("sP")) { element = element.Substring(2, 8); Points.Point_Update_Received(element); }		//Points
-		        //			if (element.StartsWith("pM")) { Phone.New_Call(element); }														//Phone Call Start
-		        //			if (element.StartsWith("pO")) { Phone.End_Call(element);}														//Phone Call End
-		        //			if (element.StartsWith("mA") && !element.StartsWith("mA13"))													//Client Message
-		        //			if (element.StartsWith("iCB")) { string berthId = element.Substring(3, 4); string berthDescr = element.Substring(11, 4); TDs.Td(berthId + berthDescr);}							//Berth Connection
-		        //			if (element.StartsWith("iCP")) { string pointId = element.Substring(3, 4); string pointState = element.Substring(11, 3); Points.Point_Update_Received(pointId, pointState);}	//Point Connection
-
-	        }
-
-	*/

@@ -34,6 +34,7 @@
 			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.dataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.loadSaveXML = new System.Windows.Forms.ToolStripMenuItem();
+			this.requestDataToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.berthListResetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.signalListResetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -91,7 +92,6 @@
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.pageSetupDialog1 = new System.Windows.Forms.PageSetupDialog();
 			this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-			this.requestDataToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip.SuspendLayout();
 			this.tabControl.SuspendLayout();
 			this.debug.SuspendLayout();
@@ -172,6 +172,13 @@
 			this.loadSaveXML.Size = new System.Drawing.Size(188, 22);
 			this.loadSaveXML.Text = "Load Save Game XML";
 			this.loadSaveXML.Click += new System.EventHandler(this.MenuLoadSaveXml);
+			// 
+			// requestDataToolStripMenuItem1
+			// 
+			this.requestDataToolStripMenuItem1.Name = "requestDataToolStripMenuItem1";
+			this.requestDataToolStripMenuItem1.Size = new System.Drawing.Size(188, 22);
+			this.requestDataToolStripMenuItem1.Text = "Request Data";
+			this.requestDataToolStripMenuItem1.Click += new System.EventHandler(this.requestDataToolStripMenuItem1_Click);
 			// 
 			// toolStripSeparator1
 			// 
@@ -351,7 +358,7 @@
 			this.debugCalls.Controls.Add(this.debugCallView);
 			this.debugCalls.Location = new System.Drawing.Point(4, 22);
 			this.debugCalls.Name = "debugCalls";
-			this.debugCalls.Size = new System.Drawing.Size(505, 397);
+			this.debugCalls.Size = new System.Drawing.Size(582, 397);
 			this.debugCalls.TabIndex = 5;
 			this.debugCalls.Text = "Calls";
 			this.debugCalls.UseVisualStyleBackColor = true;
@@ -369,7 +376,7 @@
 			this.debugCallView.Location = new System.Drawing.Point(0, 0);
 			this.debugCallView.Name = "debugCallView";
 			this.debugCallView.ReadOnly = true;
-			this.debugCallView.Size = new System.Drawing.Size(505, 397);
+			this.debugCallView.Size = new System.Drawing.Size(582, 397);
 			this.debugCallView.TabIndex = 3;
 			// 
 			// debugPoints
@@ -378,7 +385,7 @@
 			this.debugPoints.Location = new System.Drawing.Point(4, 22);
 			this.debugPoints.Name = "debugPoints";
 			this.debugPoints.Padding = new System.Windows.Forms.Padding(3);
-			this.debugPoints.Size = new System.Drawing.Size(505, 397);
+			this.debugPoints.Size = new System.Drawing.Size(582, 397);
 			this.debugPoints.TabIndex = 0;
 			this.debugPoints.Text = "Points";
 			this.debugPoints.UseVisualStyleBackColor = true;
@@ -396,7 +403,7 @@
 			this.debugPointView.Location = new System.Drawing.Point(3, 3);
 			this.debugPointView.Name = "debugPointView";
 			this.debugPointView.ReadOnly = true;
-			this.debugPointView.Size = new System.Drawing.Size(499, 391);
+			this.debugPointView.Size = new System.Drawing.Size(576, 391);
 			this.debugPointView.TabIndex = 3;
 			// 
 			// debugSignals
@@ -404,7 +411,7 @@
 			this.debugSignals.Controls.Add(this.debugSignalView);
 			this.debugSignals.Location = new System.Drawing.Point(4, 22);
 			this.debugSignals.Name = "debugSignals";
-			this.debugSignals.Size = new System.Drawing.Size(505, 397);
+			this.debugSignals.Size = new System.Drawing.Size(582, 397);
 			this.debugSignals.TabIndex = 1;
 			this.debugSignals.Text = "Signals";
 			this.debugSignals.UseVisualStyleBackColor = true;
@@ -422,7 +429,7 @@
 			this.debugSignalView.Location = new System.Drawing.Point(0, 0);
 			this.debugSignalView.Name = "debugSignalView";
 			this.debugSignalView.ReadOnly = true;
-			this.debugSignalView.Size = new System.Drawing.Size(505, 397);
+			this.debugSignalView.Size = new System.Drawing.Size(582, 397);
 			this.debugSignalView.TabIndex = 3;
 			// 
 			// debugTracks
@@ -430,7 +437,7 @@
 			this.debugTracks.Controls.Add(this.debugTrackView);
 			this.debugTracks.Location = new System.Drawing.Point(4, 22);
 			this.debugTracks.Name = "debugTracks";
-			this.debugTracks.Size = new System.Drawing.Size(505, 397);
+			this.debugTracks.Size = new System.Drawing.Size(582, 397);
 			this.debugTracks.TabIndex = 4;
 			this.debugTracks.Text = "Tracks";
 			this.debugTracks.UseVisualStyleBackColor = true;
@@ -448,7 +455,7 @@
 			this.debugTrackView.Location = new System.Drawing.Point(0, 0);
 			this.debugTrackView.Name = "debugTrackView";
 			this.debugTrackView.ReadOnly = true;
-			this.debugTrackView.Size = new System.Drawing.Size(505, 397);
+			this.debugTrackView.Size = new System.Drawing.Size(582, 397);
 			this.debugTrackView.TabIndex = 2;
 			// 
 			// debugTcpRaw
@@ -456,7 +463,7 @@
 			this.debugTcpRaw.Controls.Add(this.debugRawTcpDisplay);
 			this.debugTcpRaw.Location = new System.Drawing.Point(4, 22);
 			this.debugTcpRaw.Name = "debugTcpRaw";
-			this.debugTcpRaw.Size = new System.Drawing.Size(505, 397);
+			this.debugTcpRaw.Size = new System.Drawing.Size(582, 397);
 			this.debugTcpRaw.TabIndex = 3;
 			this.debugTcpRaw.Text = "TCP Raw";
 			this.debugTcpRaw.UseVisualStyleBackColor = true;
@@ -467,7 +474,7 @@
 			this.debugRawTcpDisplay.FormattingEnabled = true;
 			this.debugRawTcpDisplay.Location = new System.Drawing.Point(0, 0);
 			this.debugRawTcpDisplay.Name = "debugRawTcpDisplay";
-			this.debugRawTcpDisplay.Size = new System.Drawing.Size(505, 397);
+			this.debugRawTcpDisplay.Size = new System.Drawing.Size(582, 397);
 			this.debugRawTcpDisplay.TabIndex = 4;
 			// 
 			// keyboardInterface
@@ -489,7 +496,7 @@
 			this.keyboardInterface.Location = new System.Drawing.Point(4, 22);
 			this.keyboardInterface.Name = "keyboardInterface";
 			this.keyboardInterface.Padding = new System.Windows.Forms.Padding(3);
-			this.keyboardInterface.Size = new System.Drawing.Size(513, 423);
+			this.keyboardInterface.Size = new System.Drawing.Size(590, 423);
 			this.keyboardInterface.TabIndex = 0;
 			this.keyboardInterface.Text = "Keyboard Interface";
 			// 
@@ -653,7 +660,7 @@
 			this.phoneCalls.Controls.Add(this.splitContainer2);
 			this.phoneCalls.Location = new System.Drawing.Point(4, 22);
 			this.phoneCalls.Name = "phoneCalls";
-			this.phoneCalls.Size = new System.Drawing.Size(513, 423);
+			this.phoneCalls.Size = new System.Drawing.Size(590, 423);
 			this.phoneCalls.TabIndex = 2;
 			this.phoneCalls.Text = "Phone";
 			// 
@@ -673,7 +680,7 @@
 			// splitContainer2.Panel2
 			// 
 			this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
-			this.splitContainer2.Size = new System.Drawing.Size(513, 423);
+			this.splitContainer2.Size = new System.Drawing.Size(590, 423);
 			this.splitContainer2.SplitterDistance = 198;
 			this.splitContainer2.TabIndex = 8;
 			// 
@@ -740,7 +747,7 @@
 			// splitContainer3.Panel2
 			// 
 			this.splitContainer3.Panel2.Controls.Add(this.callResponses);
-			this.splitContainer3.Size = new System.Drawing.Size(307, 419);
+			this.splitContainer3.Size = new System.Drawing.Size(384, 419);
 			this.splitContainer3.SplitterDistance = 239;
 			this.splitContainer3.TabIndex = 0;
 			// 
@@ -752,7 +759,7 @@
 			this.callMsg.ForeColor = System.Drawing.Color.Cyan;
 			this.callMsg.Location = new System.Drawing.Point(0, 0);
 			this.callMsg.Name = "callMsg";
-			this.callMsg.Size = new System.Drawing.Size(307, 239);
+			this.callMsg.Size = new System.Drawing.Size(384, 239);
 			this.callMsg.TabIndex = 7;
 			this.callMsg.Text = "callMsg";
 			// 
@@ -766,7 +773,7 @@
 			this.callResponses.ItemHeight = 24;
 			this.callResponses.Location = new System.Drawing.Point(0, 0);
 			this.callResponses.Name = "callResponses";
-			this.callResponses.Size = new System.Drawing.Size(307, 176);
+			this.callResponses.Size = new System.Drawing.Size(384, 176);
 			this.callResponses.TabIndex = 0;
 			// 
 			// loadSaveGameXML
@@ -786,13 +793,6 @@
 			this.notifyIcon1.Text = "notifyIcon1";
 			this.notifyIcon1.Visible = true;
 			// 
-			// requestDataToolStripMenuItem1
-			// 
-			this.requestDataToolStripMenuItem1.Name = "requestDataToolStripMenuItem1";
-			this.requestDataToolStripMenuItem1.Size = new System.Drawing.Size(188, 22);
-			this.requestDataToolStripMenuItem1.Text = "Request Data";
-			this.requestDataToolStripMenuItem1.Click += new System.EventHandler(this.requestDataToolStripMenuItem1_Click);
-			// 
 			// MainMenu
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -805,6 +805,7 @@
 			this.MainMenuStrip = this.menuStrip;
 			this.Name = "MainMenu";
 			this.Text = "SimSig Keyboard Interface";
+			this.Load += new System.EventHandler(this.MainMenu_Load);
 			this.menuStrip.ResumeLayout(false);
 			this.menuStrip.PerformLayout();
 			this.tabControl.ResumeLayout(false);
