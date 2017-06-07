@@ -66,18 +66,11 @@
 			this.debugTcpRaw = new System.Windows.Forms.TabPage();
 			this.debugRawTcpDisplay = new System.Windows.Forms.ListBox();
 			this.keyboardInterface = new System.Windows.Forms.TabPage();
+			this.label1 = new System.Windows.Forms.Label();
 			this.keyboardPointKR = new System.Windows.Forms.Button();
 			this.keyboardPointF = new System.Windows.Forms.Button();
 			this.keyboardPointKN = new System.Windows.Forms.Button();
-			this.keyboardSignalRemoveReplacement = new System.Windows.Forms.Button();
-			this.keyboardSigReplacement = new System.Windows.Forms.Button();
-			this.keyboardAutoCancel = new System.Windows.Forms.Button();
-			this.keyboardAutoSet = new System.Windows.Forms.Button();
-			this.keyboardRouteCancel = new System.Windows.Forms.Button();
-			this.keyboardRouteSet = new System.Windows.Forms.Button();
 			this.keyboardSendToSim = new System.Windows.Forms.Button();
-			this.keyboardTdCancel = new System.Windows.Forms.Button();
-			this.keyboardInterpose = new System.Windows.Forms.Button();
 			this.userInputString = new System.Windows.Forms.TextBox();
 			this.phoneCalls = new System.Windows.Forms.TabPage();
 			this.splitContainer2 = new System.Windows.Forms.SplitContainer();
@@ -92,7 +85,6 @@
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.pageSetupDialog1 = new System.Windows.Forms.PageSetupDialog();
 			this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-			this.label1 = new System.Windows.Forms.Label();
 			this.menuStrip.SuspendLayout();
 			this.tabControl.SuspendLayout();
 			this.debug.SuspendLayout();
@@ -485,15 +477,7 @@
 			this.keyboardInterface.Controls.Add(this.keyboardPointKR);
 			this.keyboardInterface.Controls.Add(this.keyboardPointF);
 			this.keyboardInterface.Controls.Add(this.keyboardPointKN);
-			this.keyboardInterface.Controls.Add(this.keyboardSignalRemoveReplacement);
-			this.keyboardInterface.Controls.Add(this.keyboardSigReplacement);
-			this.keyboardInterface.Controls.Add(this.keyboardAutoCancel);
-			this.keyboardInterface.Controls.Add(this.keyboardAutoSet);
-			this.keyboardInterface.Controls.Add(this.keyboardRouteCancel);
-			this.keyboardInterface.Controls.Add(this.keyboardRouteSet);
 			this.keyboardInterface.Controls.Add(this.keyboardSendToSim);
-			this.keyboardInterface.Controls.Add(this.keyboardTdCancel);
-			this.keyboardInterface.Controls.Add(this.keyboardInterpose);
 			this.keyboardInterface.Controls.Add(this.userInputString);
 			this.keyboardInterface.Location = new System.Drawing.Point(4, 22);
 			this.keyboardInterface.Name = "keyboardInterface";
@@ -502,15 +486,27 @@
 			this.keyboardInterface.TabIndex = 0;
 			this.keyboardInterface.Text = "Keyboard Interface";
 			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.ForeColor = System.Drawing.Color.Cyan;
+			this.label1.Location = new System.Drawing.Point(242, 44);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(224, 91);
+			this.label1.TabIndex = 13;
+			this.label1.Text = "Keys\r\n+          Interpose\r\nEnter   Route Set, Auto Set, Replacement Set\r\nDEL    " +
+    " Cancel\r\nF5        Key Points N\r\nF6        Points Centre\r\nF7        Key Points R" +
+    "";
+			// 
 			// keyboardPointKR
 			// 
 			this.keyboardPointKR.AutoSize = true;
 			this.keyboardPointKR.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-			this.keyboardPointKR.Location = new System.Drawing.Point(476, 243);
+			this.keyboardPointKR.Location = new System.Drawing.Point(8, 229);
 			this.keyboardPointKR.Name = "keyboardPointKR";
 			this.keyboardPointKR.Size = new System.Drawing.Size(228, 38);
 			this.keyboardPointKR.TabIndex = 12;
-			this.keyboardPointKR.Text = "Key Point Reverse [ F11 ]";
+			this.keyboardPointKR.Text = "Key Point Reverse [ F7 ]";
 			this.keyboardPointKR.UseVisualStyleBackColor = true;
 			this.keyboardPointKR.Click += new System.EventHandler(this.KeyboardPointKR_Click);
 			// 
@@ -518,11 +514,11 @@
 			// 
 			this.keyboardPointF.AutoSize = true;
 			this.keyboardPointF.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-			this.keyboardPointF.Location = new System.Drawing.Point(242, 243);
+			this.keyboardPointF.Location = new System.Drawing.Point(6, 185);
 			this.keyboardPointF.Name = "keyboardPointF";
 			this.keyboardPointF.Size = new System.Drawing.Size(228, 38);
 			this.keyboardPointF.TabIndex = 11;
-			this.keyboardPointF.Text = "Unlock Point [ F10 ]";
+			this.keyboardPointF.Text = "Unlock Point [ F6 ]";
 			this.keyboardPointF.UseVisualStyleBackColor = true;
 			this.keyboardPointF.Click += new System.EventHandler(this.KeyboardPointF_Click);
 			// 
@@ -530,90 +526,18 @@
 			// 
 			this.keyboardPointKN.AutoSize = true;
 			this.keyboardPointKN.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-			this.keyboardPointKN.Location = new System.Drawing.Point(8, 243);
+			this.keyboardPointKN.Location = new System.Drawing.Point(8, 141);
 			this.keyboardPointKN.Name = "keyboardPointKN";
 			this.keyboardPointKN.Size = new System.Drawing.Size(228, 38);
 			this.keyboardPointKN.TabIndex = 10;
-			this.keyboardPointKN.Text = "Key Point Normal [ F9 ]";
+			this.keyboardPointKN.Text = "Key Point Normal [ F5 ]";
 			this.keyboardPointKN.UseVisualStyleBackColor = true;
 			this.keyboardPointKN.Click += new System.EventHandler(this.KeyboardPointKN_Click);
-			// 
-			// keyboardSignalRemoveReplacement
-			// 
-			this.keyboardSignalRemoveReplacement.AutoSize = true;
-			this.keyboardSignalRemoveReplacement.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-			this.keyboardSignalRemoveReplacement.Location = new System.Drawing.Point(242, 199);
-			this.keyboardSignalRemoveReplacement.Name = "keyboardSignalRemoveReplacement";
-			this.keyboardSignalRemoveReplacement.Size = new System.Drawing.Size(228, 38);
-			this.keyboardSignalRemoveReplacement.TabIndex = 9;
-			this.keyboardSignalRemoveReplacement.Text = "Remove Replacement [ F8 ]";
-			this.keyboardSignalRemoveReplacement.UseVisualStyleBackColor = true;
-			this.keyboardSignalRemoveReplacement.Click += new System.EventHandler(this.KeyboardSigRemoveReplacement_Click);
-			// 
-			// keyboardSigReplacement
-			// 
-			this.keyboardSigReplacement.AutoSize = true;
-			this.keyboardSigReplacement.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-			this.keyboardSigReplacement.Location = new System.Drawing.Point(8, 199);
-			this.keyboardSigReplacement.Name = "keyboardSigReplacement";
-			this.keyboardSigReplacement.Size = new System.Drawing.Size(228, 38);
-			this.keyboardSigReplacement.TabIndex = 8;
-			this.keyboardSigReplacement.Text = "Signal Replacement [ F7 ]";
-			this.keyboardSigReplacement.UseVisualStyleBackColor = true;
-			this.keyboardSigReplacement.Click += new System.EventHandler(this.KeyboardSigReplacement_Click);
-			// 
-			// keyboardAutoCancel
-			// 
-			this.keyboardAutoCancel.AutoSize = true;
-			this.keyboardAutoCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-			this.keyboardAutoCancel.Location = new System.Drawing.Point(242, 155);
-			this.keyboardAutoCancel.Name = "keyboardAutoCancel";
-			this.keyboardAutoCancel.Size = new System.Drawing.Size(228, 38);
-			this.keyboardAutoCancel.TabIndex = 7;
-			this.keyboardAutoCancel.Text = "Auto Cancel [ F6 ]";
-			this.keyboardAutoCancel.UseVisualStyleBackColor = true;
-			this.keyboardAutoCancel.Click += new System.EventHandler(this.KeyboardAutoCancel_Click);
-			// 
-			// keyboardAutoSet
-			// 
-			this.keyboardAutoSet.AutoSize = true;
-			this.keyboardAutoSet.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-			this.keyboardAutoSet.Location = new System.Drawing.Point(8, 155);
-			this.keyboardAutoSet.Name = "keyboardAutoSet";
-			this.keyboardAutoSet.Size = new System.Drawing.Size(228, 38);
-			this.keyboardAutoSet.TabIndex = 6;
-			this.keyboardAutoSet.Text = "Auto Set [ F5 ]";
-			this.keyboardAutoSet.UseVisualStyleBackColor = true;
-			this.keyboardAutoSet.Click += new System.EventHandler(this.KeyboardAutoSet_Click);
-			// 
-			// keyboardRouteCancel
-			// 
-			this.keyboardRouteCancel.AutoSize = true;
-			this.keyboardRouteCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-			this.keyboardRouteCancel.Location = new System.Drawing.Point(242, 111);
-			this.keyboardRouteCancel.Name = "keyboardRouteCancel";
-			this.keyboardRouteCancel.Size = new System.Drawing.Size(228, 38);
-			this.keyboardRouteCancel.TabIndex = 5;
-			this.keyboardRouteCancel.Text = "Route Cancel [ F4 ]";
-			this.keyboardRouteCancel.UseVisualStyleBackColor = true;
-			this.keyboardRouteCancel.Click += new System.EventHandler(this.KeyboardRouteCancel_Click);
-			// 
-			// keyboardRouteSet
-			// 
-			this.keyboardRouteSet.AutoSize = true;
-			this.keyboardRouteSet.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-			this.keyboardRouteSet.Location = new System.Drawing.Point(8, 111);
-			this.keyboardRouteSet.Name = "keyboardRouteSet";
-			this.keyboardRouteSet.Size = new System.Drawing.Size(228, 38);
-			this.keyboardRouteSet.TabIndex = 4;
-			this.keyboardRouteSet.Text = "Route Set [ F3 ]";
-			this.keyboardRouteSet.UseVisualStyleBackColor = true;
-			this.keyboardRouteSet.Click += new System.EventHandler(this.KeyboardRouteSet_Click);
 			// 
 			// keyboardSendToSim
 			// 
 			this.keyboardSendToSim.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-			this.keyboardSendToSim.Location = new System.Drawing.Point(476, 67);
+			this.keyboardSendToSim.Location = new System.Drawing.Point(8, 97);
 			this.keyboardSendToSim.Name = "keyboardSendToSim";
 			this.keyboardSendToSim.Size = new System.Drawing.Size(228, 38);
 			this.keyboardSendToSim.TabIndex = 3;
@@ -621,30 +545,10 @@
 			this.keyboardSendToSim.UseVisualStyleBackColor = true;
 			this.keyboardSendToSim.Click += new System.EventHandler(this.SendToSim_Click);
 			// 
-			// keyboardTdCancel
-			// 
-			this.keyboardTdCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-			this.keyboardTdCancel.Location = new System.Drawing.Point(242, 67);
-			this.keyboardTdCancel.Name = "keyboardTdCancel";
-			this.keyboardTdCancel.Size = new System.Drawing.Size(228, 38);
-			this.keyboardTdCancel.TabIndex = 2;
-			this.keyboardTdCancel.Text = "TD Cancel [ F2 ]";
-			this.keyboardTdCancel.UseVisualStyleBackColor = true;
-			this.keyboardTdCancel.Click += new System.EventHandler(this.KeyboardTdCancel_Click);
-			// 
-			// keyboardInterpose
-			// 
-			this.keyboardInterpose.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-			this.keyboardInterpose.Location = new System.Drawing.Point(8, 67);
-			this.keyboardInterpose.Name = "keyboardInterpose";
-			this.keyboardInterpose.Size = new System.Drawing.Size(228, 38);
-			this.keyboardInterpose.TabIndex = 1;
-			this.keyboardInterpose.Text = "TD Interpose [ F1 ]";
-			this.keyboardInterpose.UseVisualStyleBackColor = true;
-			this.keyboardInterpose.Click += new System.EventHandler(this.KeyboardInterpose_Click);
-			// 
 			// userInputString
 			// 
+			this.userInputString.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.userInputString.BackColor = System.Drawing.SystemColors.InfoText;
 			this.userInputString.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
 			this.userInputString.Font = new System.Drawing.Font("Franklin Gothic Medium Cond", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -652,7 +556,7 @@
 			this.userInputString.Location = new System.Drawing.Point(7, 7);
 			this.userInputString.MinimumSize = new System.Drawing.Size(4, 25);
 			this.userInputString.Name = "userInputString";
-			this.userInputString.Size = new System.Drawing.Size(294, 25);
+			this.userInputString.Size = new System.Drawing.Size(575, 25);
 			this.userInputString.TabIndex = 0;
 			this.userInputString.KeyDown += new System.Windows.Forms.KeyEventHandler(this.UserInputString_KeyDown);
 			// 
@@ -795,17 +699,6 @@
 			this.notifyIcon1.Text = "notifyIcon1";
 			this.notifyIcon1.Visible = true;
 			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.ForeColor = System.Drawing.Color.Cyan;
-			this.label1.Location = new System.Drawing.Point(345, 7);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(224, 52);
-			this.label1.TabIndex = 13;
-			this.label1.Text = "Keys\r\n+          Interpose\r\nEnter   Route Set, Auto Set, Replacement Set\r\nDEL    " +
-    " Cancel\r\n";
-			// 
 			// MainMenu
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -884,21 +777,13 @@
 		private System.Windows.Forms.ToolStripMenuItem saveRawToolStripMenuItem;
 		private System.Windows.Forms.SaveFileDialog dataSave;
 		public System.Windows.Forms.TextBox userInputString;
-		private System.Windows.Forms.Button keyboardInterpose;
 		private System.Windows.Forms.TabPage debugTracks;
 		private System.Windows.Forms.DataGridView debugTrackView;
-		private System.Windows.Forms.Button keyboardTdCancel;
 		private System.Windows.Forms.TabPage debugCalls;
 		private System.Windows.Forms.Button keyboardSendToSim;
 		private System.Windows.Forms.TabPage phoneCalls;
 		private System.Windows.Forms.Button callRespond;
 		private System.Windows.Forms.ListBox callers;
-		private System.Windows.Forms.Button keyboardRouteSet;
-		private System.Windows.Forms.Button keyboardRouteCancel;
-		private System.Windows.Forms.Button keyboardAutoCancel;
-		private System.Windows.Forms.Button keyboardAutoSet;
-		private System.Windows.Forms.Button keyboardSignalRemoveReplacement;
-		private System.Windows.Forms.Button keyboardSigReplacement;
 		private System.Windows.Forms.Button keyboardPointKR;
 		private System.Windows.Forms.Button keyboardPointF;
 		private System.Windows.Forms.Button keyboardPointKN;

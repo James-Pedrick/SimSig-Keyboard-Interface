@@ -222,27 +222,48 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		{
 
 
-			if (e.KeyCode == Keys.Add) { DataProcess.KeyboardInterface.KeyboardTdInt(userInputString.Text); userInputString.Text = ""; return; }
+			if (e.KeyCode == Keys.F1) { DataProcess.KeyboardInterface.KeyboardTdInt(userInputString.Text); userInputString.Text = ""; return; }
 
-			if (e.KeyCode == Keys.Enter)
+			if (e.KeyCode == Keys.F2)
 			{
 				if (userInputString.Text.StartsWith("A")) { DataProcess.KeyboardInterface.KeyboardAutSet(userInputString.Text.Substring(1)); userInputString.Text = ""; return; }
 				if (userInputString.Text.StartsWith("R")) { DataProcess.KeyboardInterface.KeyboardRepSet(userInputString.Text.Substring(1)); userInputString.Text = ""; return; }
-				if (userInputString.Text.StartsWith("S")) { DataProcess.KeyboardInterface.KeyboardRouSet(userInputString.Text.Substring(1)); userInputString.Text = ""; return; }
+				if (userInputString.Text.StartsWith("S"))
+				{
+					if (userInputString.Text.Contains(' '))
+					{
+						string[] z = userInputString.Text.Split(' ');
+						DataProcess.KeyboardInterface.KeyboardRouSet(z[0].Substring(1), z[1].Substring(1));
+					}
+					userInputString.Text = "";
+					return;
+				}
 			}
 			if (e.KeyCode == Keys.Delete)
 			{
 				if (userInputString.Text.StartsWith("A")) { DataProcess.KeyboardInterface.KeyboardAutCan(userInputString.Text.Substring(1)); userInputString.Text = ""; return; }
-				if (userInputString.Text.StartsWith("B")) { DataProcess.KeyboardInterface.KeyboardTdCan(userInputString.Text.Substring(1)); userInputString.Text = ""; return; }
+				if (userInputString.Text.StartsWith("B")) { DataProcess.KeyboardInterface.KeyboardTdCan(userInputString.Text); userInputString.Text = ""; return; }
 				if (userInputString.Text.StartsWith("R")) { DataProcess.KeyboardInterface.KeyboardRepCan(userInputString.Text.Substring(1)); userInputString.Text = ""; return; }
 				if (userInputString.Text.StartsWith("S")) { DataProcess.KeyboardInterface.KeyboardRouCan(userInputString.Text.Substring(1)); userInputString.Text = ""; return; }
 			}
 
 
-			if (e.KeyCode == Keys.F5) { DataProcess.KeyboardInterface.KeyboardPointNorm(userInputString.Text); userInputString.Text = ""; return; }           //Key Point Normal
-			if (e.KeyCode == Keys.F6) { DataProcess.KeyboardInterface.KeyboardPointFree(userInputString.Text); userInputString.Text = ""; return; }           //Free Point
-			if (e.KeyCode == Keys.F7) { DataProcess.KeyboardInterface.KeyboardPointRev(userInputString.Text); userInputString.Text = ""; return; }           //Key Point Free
+			if (e.KeyCode == Keys.F5) { DataProcess.KeyboardInterface.KeyboardPointNorm(userInputString.Text.Substring(1)); userInputString.Text = ""; return; }           //Key Point Normal
+			if (e.KeyCode == Keys.F6) { DataProcess.KeyboardInterface.KeyboardPointFree(userInputString.Text.Substring(1)); userInputString.Text = ""; return; }           //Free Point
+			if (e.KeyCode == Keys.F7) { DataProcess.KeyboardInterface.KeyboardPointRev(userInputString.Text.Substring(1)); userInputString.Text = ""; return; }           //Key Point Free
 			if (e.KeyCode == Keys.F9) { Connection.SendData(userInputString.Text); userInputString.Text = ""; return; }           //Send direct to simulation.
+
+			if (e.KeyCode == Keys.F11)
+			{
+				string[] combo = userInputString.Text.Split(' ');
+				foreach (var x in combo)
+				{
+					var y = x.Substring(1);
+					DataProcess.KeyboardInterface.KeyboardRouCan(y);
+				}
+
+				userInputString.Text = "";
+			}
 
 			if (e.KeyCode == Keys.F12)
 			{
@@ -253,9 +274,11 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 				while (y != x)
 				{
-					DataProcess.KeyboardInterface.KeyboardRouSet(combo[y - 1] + ' ' + combo[y]);
+					DataProcess.KeyboardInterface.KeyboardRouSet(combo[y - 1].Substring(1), combo[y].Substring(1));
 					y++;
 				}
+
+				userInputString.Text = "";
 
 
 			}
@@ -273,8 +296,14 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		}
 		private void KeyboardRouteSet_Click(object sender, EventArgs e)
 		{
-			DataProcess.KeyboardInterface.KeyboardRouSet(userInputString.Text);
+
+			if (userInputString.Text.Contains(' '))
+			{
+				string[] z = userInputString.Text.Split(' ');
+				DataProcess.KeyboardInterface.KeyboardRouSet(z[0], z[1]);
+			}
 			userInputString.Text = "";
+
 		}
 		private void KeyboardRouteCancel_Click(object sender, EventArgs e)
 		{

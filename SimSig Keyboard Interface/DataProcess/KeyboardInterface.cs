@@ -17,11 +17,9 @@ namespace SimSig_Keyboard_Interface.DataProcess
 			Data.SendPrep.InterposeCancel(userInput[0]);
 		}
 
-		public static void KeyboardRouSet(string data)
+		public static void KeyboardRouSet(string entry, string exit)
 		{
-			if (data.Contains(' ') == false) return; //Not doing anything if the user has not enterd a space after the berth
-			string[] userInput = data.Split(' ');
-			Data.SendPrep.RouteSet(userInput[0], userInput[1]);
+			Data.SendPrep.RouteSet(entry, exit);
 		}
 
 		public static void KeyboardRouCan(string data)
