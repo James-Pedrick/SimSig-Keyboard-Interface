@@ -54,7 +54,6 @@ namespace SimSig_Keyboard_Interface.DataProcess.Signals
 		}
 		public string SignalIdLookup(string data)
 		{
-
 			data = 'S' + data.ToUpper();
 
 			if (SignalList.SingleOrDefault(b => b.Number == data) != null)

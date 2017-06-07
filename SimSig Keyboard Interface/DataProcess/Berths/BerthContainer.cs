@@ -46,7 +46,6 @@ namespace SimSig_Keyboard_Interface.DataProcess.Berths
 
 		public string BerthHIdLookup(string data)
 		{
-
 			data = 'B' + data.ToUpper();
 			
 			if (BerthList.SingleOrDefault(b => b.BerthId == data)!= null)

@@ -92,6 +92,7 @@
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.pageSetupDialog1 = new System.Windows.Forms.PageSetupDialog();
 			this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+			this.label1 = new System.Windows.Forms.Label();
 			this.menuStrip.SuspendLayout();
 			this.tabControl.SuspendLayout();
 			this.debug.SuspendLayout();
@@ -480,6 +481,7 @@
 			// keyboardInterface
 			// 
 			this.keyboardInterface.BackColor = System.Drawing.Color.Black;
+			this.keyboardInterface.Controls.Add(this.label1);
 			this.keyboardInterface.Controls.Add(this.keyboardPointKR);
 			this.keyboardInterface.Controls.Add(this.keyboardPointF);
 			this.keyboardInterface.Controls.Add(this.keyboardPointKN);
@@ -793,6 +795,17 @@
 			this.notifyIcon1.Text = "notifyIcon1";
 			this.notifyIcon1.Visible = true;
 			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.ForeColor = System.Drawing.Color.Cyan;
+			this.label1.Location = new System.Drawing.Point(345, 7);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(224, 52);
+			this.label1.TabIndex = 13;
+			this.label1.Text = "Keys\r\n+          Interpose\r\nEnter   Route Set, Auto Set, Replacement Set\r\nDEL    " +
+    " Cancel\r\n";
+			// 
 			// MainMenu
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -910,6 +923,7 @@
 		private System.Windows.Forms.NotifyIcon notifyIcon1;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
 		private System.Windows.Forms.ToolStripMenuItem requestDataToolStripMenuItem1;
+		private System.Windows.Forms.Label label1;
 	}
 }
 

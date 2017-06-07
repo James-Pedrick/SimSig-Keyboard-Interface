@@ -102,19 +102,14 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		private void TcpDataUpdate(Object sender, MsgEventArgs e)
 		{
 			string[] receivedStrings = e.Msg.Split('|');
-			string temp;
 
-			var z = receivedStrings.Length;
 
-			if (receivedStrings[z].EndsWith("|") == false)
-				temp = receivedStrings[z];
-			
+
 
 			foreach (string element in receivedStrings)
 			{
 				if (InvokeRequired)
 				{
-
 					Invoke(new MethodInvoker(delegate
 					{
 						debugRawTcpDisplay.Items.Insert(0, element);
@@ -122,7 +117,6 @@ namespace SimSig_Keyboard_Interface.User_Interface
 					}));
 					try
 					{
-
 						if (element.StartsWith("sB"))
 						{
 							if (InvokeRequired)
@@ -202,7 +196,6 @@ namespace SimSig_Keyboard_Interface.User_Interface
 							if (InvokeRequired)
 								Invoke(new MethodInvoker(delegate
 								{
-									Console.WriteLine(element.Substring(7));
 									_signals.AddSignalTcp(element.Substring(7));
 									Refresh();
 								}));
@@ -227,68 +220,31 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 		private void UserInputString_KeyDown(object sender, KeyEventArgs e)
 		{
-			if (e.KeyCode == Keys.F1)   //Interpose
-			{
-				DataProcess.KeyboardInterface.KeyboardTdInt(userInputString.Text);
-				userInputString.Text = "";
-			}
-			if (e.KeyCode == Keys.F2)   //Cancel
-			{
-				DataProcess.KeyboardInterface.KeyboardTdCan(userInputString.Text);
-				userInputString.Text = "";
-			}
-			if (e.KeyCode == Keys.F3)   //Route Set
-			{
-				DataProcess.KeyboardInterface.KeyboardRouSet(userInputString.Text);
-				userInputString.Text = "";
-			}
-			if (e.KeyCode == Keys.F4)   //Route Cancel
-			{
-				DataProcess.KeyboardInterface.KeyboardRouCan(userInputString.Text);
-				userInputString.Text = "";
-			}
-			if (e.KeyCode == Keys.F5)   //Signal Auto Set
-			{
-				DataProcess.KeyboardInterface.KeyboardAutSet(userInputString.Text);
-				userInputString.Text = "";
-			}
-			if (e.KeyCode == Keys.F6)
-			{
-				DataProcess.KeyboardInterface.KeyboardAutCan(userInputString.Text);
-				userInputString.Text = "";
-			}           //Signal Auto Cancel
-			if (e.KeyCode == Keys.F7)
-			{
-				DataProcess.KeyboardInterface.KeyboardRepSet(userInputString.Text);
-				userInputString.Text = "";
-			}           //Signal Replacement Set
-			if (e.KeyCode == Keys.F8)
-			{
-				DataProcess.KeyboardInterface.KeyboardRepCan(userInputString.Text);
-				userInputString.Text = "";
-			}           //Signal Replacement 
-			if (e.KeyCode == Keys.F9)
-			{
 
-				DataProcess.KeyboardInterface.KeyboardPointNorm(userInputString.Text);
-				userInputString.Text = "";
-			}           //Key Point Normal
-			if (e.KeyCode == Keys.F10)
-			{
-				DataProcess.KeyboardInterface.KeyboardPointFree(userInputString.Text);
-				userInputString.Text = "";
-			}           //Free Point
-			if (e.KeyCode == Keys.F11)
-			{
-				DataProcess.KeyboardInterface.KeyboardPointRev(userInputString.Text);
-				userInputString.Text = "";
-			}           //Key Point Free
-			if (e.KeyCode == Keys.F12)
-			{
-				Connection.SendData(userInputString.Text);  //Send direct to Sim
-			}           //Send direct to simulation.
+
+			if (e.KeyCode == Keys.Add) { DataProcess.KeyboardInterface.KeyboardTdInt(userInputString.Text); userInputString.Text = ""; return; }
 
 			if (e.KeyCode == Keys.Enter)
+			{
+				if (userInputString.Text.StartsWith("A")) { DataProcess.KeyboardInterface.KeyboardAutSet(userInputString.Text.Substring(1)); userInputString.Text = ""; return; }
+				if (userInputString.Text.StartsWith("R")) { DataProcess.KeyboardInterface.KeyboardRepSet(userInputString.Text.Substring(1)); userInputString.Text = ""; return; }
+				if (userInputString.Text.StartsWith("S")) { DataProcess.KeyboardInterface.KeyboardRouSet(userInputString.Text.Substring(1)); userInputString.Text = ""; return; }
+			}
+			if (e.KeyCode == Keys.Delete)
+			{
+				if (userInputString.Text.StartsWith("A")) { DataProcess.KeyboardInterface.KeyboardAutCan(userInputString.Text.Substring(1)); userInputString.Text = ""; return; }
+				if (userInputString.Text.StartsWith("B")) { DataProcess.KeyboardInterface.KeyboardTdCan(userInputString.Text.Substring(1)); userInputString.Text = ""; return; }
+				if (userInputString.Text.StartsWith("R")) { DataProcess.KeyboardInterface.KeyboardRepCan(userInputString.Text.Substring(1)); userInputString.Text = ""; return; }
+				if (userInputString.Text.StartsWith("S")) { DataProcess.KeyboardInterface.KeyboardRouCan(userInputString.Text.Substring(1)); userInputString.Text = ""; return; }
+			}
+
+
+			if (e.KeyCode == Keys.F5) { DataProcess.KeyboardInterface.KeyboardPointNorm(userInputString.Text); userInputString.Text = ""; return; }           //Key Point Normal
+			if (e.KeyCode == Keys.F6) { DataProcess.KeyboardInterface.KeyboardPointFree(userInputString.Text); userInputString.Text = ""; return; }           //Free Point
+			if (e.KeyCode == Keys.F7) { DataProcess.KeyboardInterface.KeyboardPointRev(userInputString.Text); userInputString.Text = ""; return; }           //Key Point Free
+			if (e.KeyCode == Keys.F9) { Connection.SendData(userInputString.Text); userInputString.Text = ""; return; }           //Send direct to simulation.
+
+			if (e.KeyCode == Keys.F12)
 			{
 				string[] combo = userInputString.Text.Split(' ');
 				var x = combo.Length;
@@ -303,10 +259,6 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 
 			}
-
-
-			Console.WriteLine(e.KeyCode);
-
 		}
 
 		private void KeyboardInterpose_Click(object sender, EventArgs e)
@@ -391,13 +343,11 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 			connectToolStripMenuItem.Enabled = false;
 			Thread tcpConnectThread = new Thread(() =>
-			{
-				TcpConnectForm.ShowDialog();
-
-
-				Connection.Connect(Settings.Default.ipAddress, Settings.Default.clientPort);
-
-			});
+				{
+					TcpConnectForm.ShowDialog();
+					Connection.Connect(Settings.Default.ipAddress, Settings.Default.clientPort);
+				}
+			);
 			tcpConnectThread.Start();
 		}
 

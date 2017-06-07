@@ -25,7 +25,7 @@ namespace SimSig_Keyboard_Interface.Comms.RS232
 				while (true)
 				{
 					string[] receivedData = receive.ReadTo("|").Split('-');
-					Console.WriteLine(receivedData[0] + " - " + receivedData[1]);
+					Console.WriteLine(receivedData[0] + @" - " + receivedData[1]);
 
 					if (receivedData[0].Contains("SS")) SerialSignalSet(receivedData[1]);               //Generic NX Button Press
 					if (receivedData[0].Contains("SC")) SendPrep.RouteCan(receivedData[1]);             //Route Cancel (Route Pull)

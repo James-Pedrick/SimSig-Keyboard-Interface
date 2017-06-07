@@ -39,7 +39,6 @@ namespace SimSig_Keyboard_Interface.DataProcess.Points
 		public string PointLookup(string data)
 		{
 
-
 			data = 'P' + data.ToUpper();
 
 			if (PointList.SingleOrDefault(b => b.Number == data) != null)

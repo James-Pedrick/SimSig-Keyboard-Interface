@@ -51,7 +51,10 @@ namespace SimSig_Keyboard_Interface.Comms.TCP
             private void OnDataReceived(object sender, MsgEventArgs e)
             {
                 var handler = DataReceived;
+				
                 if (handler != null)  DataReceived?.Invoke(this, e); // re-raise event
+
+				
                 
             }
             private NetworkStream _stream;
