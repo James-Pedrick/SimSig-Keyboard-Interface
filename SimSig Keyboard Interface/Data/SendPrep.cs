@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SimSig_Keyboard_Interface.User_Interface;
 using System.Threading;
 
@@ -17,13 +14,13 @@ namespace SimSig_Keyboard_Interface.Data
 		{
 			var berthHex = MainMenu._berths.BerthHIdLookup(berth);
 
-			MainMenu.Connection.SendData(@"BB" + berthHex + berth + "|");
+			MainMenu.Connection.SendData(@"BB" + berthHex + descrition + "|");
 		}
 
 		public static void InterposeCancel(string berth)
 		{
 			var berthHex = MainMenu._berths.BerthHIdLookup(berth);
-			MainMenu.Connection.SendData(@"BC" + berth + "|");
+			MainMenu.Connection.SendData(@"BC" + berthHex+ "|");
 		}
 
 		public static void RouteSet(string entry, string exit)

@@ -71,9 +71,7 @@ namespace SimSig_Keyboard_Interface.Comms.TCP
     {
         public string Msg { get; set; }
     }
-
-    public delegate void MsgEventHandler(Object sender, MsgEventArgs e);
-
+	
 
 
 

@@ -46,8 +46,7 @@ namespace SimSig_Keyboard_Interface.DataProcess.Berths
 
 		public string BerthHIdLookup(string data)
 		{
-
-			data = 'B' + data.ToUpper();
+			data =  data.ToUpper();
 			
 			if (BerthList.SingleOrDefault(b => b.BerthId == data)!= null)
 			{
@@ -56,6 +55,16 @@ namespace SimSig_Keyboard_Interface.DataProcess.Berths
 			}
 
 			return null;
+		}
+
+		public void BerthStatusRequest()
+		{
+			foreach (var x in BerthList)
+			{
+				var berthRequest = "iBB" + x.HexId + x.HexId + "|";
+
+				User_Interface.MainMenu.Connection.SendData(berthRequest);
+			}
 		}
 
 	}

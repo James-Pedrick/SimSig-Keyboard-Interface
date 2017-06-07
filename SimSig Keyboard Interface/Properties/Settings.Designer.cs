@@ -61,7 +61,7 @@ namespace SimSig_Keyboard_Interface.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("4.5.15.0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("4.6.3.0")]
         public string loadverVersion {
             get {
                 return ((string)(this["loadverVersion"]));

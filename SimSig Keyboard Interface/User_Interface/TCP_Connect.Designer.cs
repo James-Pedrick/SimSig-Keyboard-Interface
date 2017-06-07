@@ -249,6 +249,7 @@
 			this.MinimizeBox = false;
 			this.Name = "TcpConnect";
 			this.Text = "TCP_Connect";
+			this.TopMost = true;
 			this.Load += new System.EventHandler(this.TCP_Connect_Load);
 			((System.ComponentModel.ISupportInitialize)(this.port)).EndInit();
 			this.ResumeLayout(false);
