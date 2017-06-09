@@ -22,11 +22,11 @@ namespace SimSig_Keyboard_Interface.Comms.TCP
             {
                 try
                 {
-                    var buffer = new byte[30];
+                    var buffer = new byte[1024];
 
                     int bytesRead;
 
-                    var charBuffer = new char[30];
+                    var charBuffer = new char[1024];
 
                     string temp = "";
 					

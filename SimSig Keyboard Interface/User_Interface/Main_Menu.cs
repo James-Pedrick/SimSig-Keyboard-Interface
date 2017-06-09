@@ -240,7 +240,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 				keyboardSpecFunction.Text = "";
 			}
 
-			if (e.KeyCode == Keys.F12)      //Set
+			if (e.KeyCode == Keys.Enter)      //Set
 			{
 				if (userInputString.Text.StartsWith("A") && keyboardSpecFunction.Text == "")
 				{
