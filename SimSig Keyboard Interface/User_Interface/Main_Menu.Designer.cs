@@ -29,7 +29,6 @@
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenu));
 			this.menuStrip = new System.Windows.Forms.MenuStrip();
 			this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -68,6 +67,7 @@
 			this.debugRawTcpDisplay = new System.Windows.Forms.ListBox();
 			this.keyboardInterface = new System.Windows.Forms.TabPage();
 			this.keyboardSpecFunction = new System.Windows.Forms.TextBox();
+			this.label1 = new System.Windows.Forms.Label();
 			this.keyboardPointKR = new System.Windows.Forms.Button();
 			this.keyboardPointF = new System.Windows.Forms.Button();
 			this.keyboardPointKN = new System.Windows.Forms.Button();
@@ -86,7 +86,7 @@
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.pageSetupDialog1 = new System.Windows.Forms.PageSetupDialog();
 			this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-			this.label1 = new System.Windows.Forms.Label();
+			this.label2 = new System.Windows.Forms.Label();
 			this.menuStrip.SuspendLayout();
 			this.tabControl.SuspendLayout();
 			this.debug.SuspendLayout();
@@ -475,6 +475,7 @@
 			// keyboardInterface
 			// 
 			this.keyboardInterface.BackColor = System.Drawing.Color.Black;
+			this.keyboardInterface.Controls.Add(this.label2);
 			this.keyboardInterface.Controls.Add(this.keyboardSpecFunction);
 			this.keyboardInterface.Controls.Add(this.label1);
 			this.keyboardInterface.Controls.Add(this.keyboardPointKR);
@@ -503,6 +504,17 @@
 			this.keyboardSpecFunction.TabIndex = 14;
 			this.keyboardSpecFunction.TabStop = false;
 			this.keyboardSpecFunction.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.ForeColor = System.Drawing.Color.Cyan;
+			this.label1.Location = new System.Drawing.Point(242, 97);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(74, 130);
+			this.label1.TabIndex = 13;
+			this.label1.Text = "DEL - Cancel\r\nEnter - Set\r\n\r\nF1 - REM\r\nF2 - ISO\r\nF3 - OVR\r\n\r\nF5 - Key Norm\r\nF6 - " +
+    "Centre\r\nF7 - Key Rev";
 			// 
 			// keyboardPointKR
 			// 
@@ -702,15 +714,15 @@
 			this.notifyIcon1.Text = "notifyIcon1";
 			this.notifyIcon1.Visible = true;
 			// 
-			// label1
+			// label2
 			// 
-			this.label1.AutoSize = true;
-			this.label1.ForeColor = System.Drawing.Color.Cyan;
-			this.label1.Location = new System.Drawing.Point(242, 97);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(258, 338);
-			this.label1.TabIndex = 13;
-			this.label1.Text = resources.GetString("label1.Text");
+			this.label2.AutoSize = true;
+			this.label2.ForeColor = System.Drawing.Color.Cyan;
+			this.label2.Location = new System.Drawing.Point(360, 97);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(86, 65);
+			this.label2.TabIndex = 15;
+			this.label2.Text = "A - Auto\r\nB - Berth\r\nE - Replacement\r\nS - Signal\r\nP - Point";
 			// 
 			// MainMenu
 			// 
@@ -823,6 +835,7 @@
 		private System.Windows.Forms.ToolStripMenuItem requestDataToolStripMenuItem1;
 		private System.Windows.Forms.TextBox keyboardSpecFunction;
 		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Label label2;
 	}
 }
 

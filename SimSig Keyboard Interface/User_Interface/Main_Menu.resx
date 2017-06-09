@@ -171,41 +171,15 @@
   <metadata name="keyboardInterface.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <metadata name="label2.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <metadata name="keyboardSpecFunction.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <metadata name="label1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <data name="label1.Text" xml:space="preserve">
-    <value>FUNCTION	KEY	PREFIX	OPERATION	
-Norm	DEL	A	Auto Cancel	
-Norm	DEL	B	TD Cancel	
-Norm	DEL	R	Replacement Cancel	
-Norm	DEL	S	Route Cancel	
-REM	DEL	A	Remove Auto Reminder	
-REM	DEL	R	Remove Replacement Reminder	
-REM	DEL	S	Remove Signal Reminder	
-REM	DEL	P	Remove Points Reminder	
-ISO	DEL	A	Remove Auto Isolation	
-ISO	DEL	R	Remove Replacement Isolation	
-ISO	DEL	S	Remove Signal Isolation	
----	---	---	---	
-Norm	F12	A	Auto Activate	
-Norm	F12	R	Replacement Activate	
-Norm	F12	S	Route Set	
-REM	F12	A	Apply Reminder on Auto	
-REM	F12	R	Apply Reminder on Replacement	
-REM	F12	S	Apply Reminder on Signal	
-REM	F12	P	Apply Points Reminder	
-ISO	F12	A	Apply Isolation on Auto	
-ISO	F12	R	Apply Isolation on Replacement	
-ISO	F12	S	Apply Isolation on Signal	
-OVR	F12	S	Over Ride ISO / REM on Signals on Route	
----	---	---	---	
-Norm	F11	B	Interpose	
-</value>
-  </data>
   <metadata name="keyboardPointKR.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
