@@ -22,22 +22,41 @@ namespace SimSig_Keyboard_Interface.Comms.TCP
             {
                 try
                 {
-                    var buffer = new byte[2048];
+                    var buffer = new byte[30];
 
                     int bytesRead;
 
-                    var charBuffer = new char[2048];
+                    var charBuffer = new char[30];
 
-                
+                    string temp = "";
 					
                     while ((bytesRead = _stream.Read(buffer, 0, buffer.Length)) != 0)
                     {
                         var charsRead = Encoding.ASCII.GetChars(buffer, 0, bytesRead, charBuffer, 0);
 
                         string msg = new string(charBuffer, 0, charsRead);
-						
-                        MsgEventArgs m = new MsgEventArgs() { Msg = msg };
-                        OnDataReceived(this,m);
+                        if (temp != "")
+                        {
+                            msg = temp + msg;
+                            temp = "";
+                        }
+                        
+                        string[] receivedStrings = msg.Split('|');
+                        if (charBuffer[charsRead - 1] != '|')
+                        {
+                            temp = receivedStrings[receivedStrings.Length - 1];
+                            receivedStrings[receivedStrings.Length - 1] = null;
+                        }
+                        foreach (string element in receivedStrings)
+                        {
+                            
+                            if (element != null)
+                            {
+                                MsgEventArgs m = new MsgEventArgs() { Msg = element };
+                                OnDataReceived(this, m);
+
+                            }
+                        }
 
                         Thread.Sleep(20);
                     }
