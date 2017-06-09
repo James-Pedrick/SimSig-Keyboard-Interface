@@ -225,6 +225,15 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			if (e.KeyCode == Keys.F3) keyboardSpecFunction.Text = @"OVR";
 
 
+			if(e.KeyCode == Keys.F5)
+				DataProcess.KeyboardInterface.PointsKeyNorm(userInputString.Text);
+			if(e.KeyCode == Keys.F6)
+				DataProcess.KeyboardInterface.PointsCentre(userInputString.Text);
+			if(e.KeyCode == Keys.F7)
+				DataProcess.KeyboardInterface.PointsKeyReverse(userInputString.Text);
+
+
+
 
 			if (e.KeyCode == Keys.F11)      //Interpose
 			{
@@ -253,6 +262,13 @@ namespace SimSig_Keyboard_Interface.User_Interface
 					string[] z = userInputString.Text.Split(' ');
 					DataProcess.KeyboardInterface.SignalAutoIsolationSet(z[0].Substring(1));
 				}           //Auto Reminder Set
+
+				if(userInputString.Text.StartsWith("B"))
+				{
+					if (userInputString.Text.Contains(' ') == false) return;
+
+					DataProcess.KeyboardInterface.TdInterpose(userInputString.Text);
+				}
 
 
 				if (userInputString.Text.StartsWith("E") && keyboardSpecFunction.Text == "")
@@ -303,7 +319,6 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 				if (userInputString.Text.StartsWith("P") && keyboardSpecFunction.Text == @"REM")
 				{
-
 					string[] z = userInputString.Text.Split(' ');
 
 					DataProcess.KeyboardInterface.PointReminderApply(z[0].Substring(1));
@@ -390,22 +405,6 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 		}
 
-
-		private void KeyboardPointKN_Click(object sender, EventArgs e)
-		{
-			DataProcess.KeyboardInterface.KeyboardPointNorm(userInputString.Text);
-			userInputString.Text = "";
-		}
-		private void KeyboardPointKR_Click(object sender, EventArgs e)
-		{
-			DataProcess.KeyboardInterface.KeyboardPointRev(userInputString.Text);
-			userInputString.Text = "";
-		}
-		private void KeyboardPointF_Click(object sender, EventArgs e)
-		{
-			DataProcess.KeyboardInterface.KeyboardPointFree(userInputString.Text);
-			userInputString.Text = "";
-		}
 
 		#endregion
 
@@ -526,7 +525,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		private void requestDataToolStripMenuItem1_Click(object sender, EventArgs e)
 		{
 			_berths.BerthStatusRequest();
-			_points.PointStatusRequest();
+			_points.PointStatusConnectionRequest();
 			_signals.SignalStatusRequest();
 		}
 

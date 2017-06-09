@@ -514,7 +514,6 @@
 			this.keyboardPointKR.TabIndex = 12;
 			this.keyboardPointKR.Text = "Key Point Reverse [ F7 ]";
 			this.keyboardPointKR.UseVisualStyleBackColor = true;
-			this.keyboardPointKR.Click += new System.EventHandler(this.KeyboardPointKR_Click);
 			// 
 			// keyboardPointF
 			// 
@@ -526,7 +525,6 @@
 			this.keyboardPointF.TabIndex = 11;
 			this.keyboardPointF.Text = "Unlock Point [ F6 ]";
 			this.keyboardPointF.UseVisualStyleBackColor = true;
-			this.keyboardPointF.Click += new System.EventHandler(this.KeyboardPointF_Click);
 			// 
 			// keyboardPointKN
 			// 
@@ -538,7 +536,6 @@
 			this.keyboardPointKN.TabIndex = 10;
 			this.keyboardPointKN.Text = "Key Point Normal [ F5 ]";
 			this.keyboardPointKN.UseVisualStyleBackColor = true;
-			this.keyboardPointKN.Click += new System.EventHandler(this.KeyboardPointKN_Click);
 			// 
 			// keyboardSendToSim
 			// 

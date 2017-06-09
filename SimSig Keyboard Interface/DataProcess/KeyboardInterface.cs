@@ -1,5 +1,7 @@
 ﻿using System.Linq;
 using SimSig_Keyboard_Interface.User_Interface;
+using System.Threading;
+
 
 namespace SimSig_Keyboard_Interface.DataProcess
 {
@@ -193,22 +195,78 @@ namespace SimSig_Keyboard_Interface.DataProcess
 		#endregion
 
 
-		public static void KeyboardPointNorm(string data)
+		public static void PointsKeyNorm(string data)
 		{
-			string[] points = data.Split(' ');
-			Data.SendPrep.PointsKeyN(points[0].Substring(1));
+			string pointHex = MainMenu._points.PointLookup(data);
+
+			if (pointHex == "") return;
+
+			bool[] pointStates = MainMenu._points.PointStatusKeyRequest(data);
+
+			if (pointStates[0] == true || pointStates[7] == true)
+				return;
+
+			if (pointStates[1] == true && pointStates[8] == false)
+			{
+				MainMenu.Connection.SendData(@"PB" + pointHex + @"|");
+				return;
+			}
+			if (pointStates[2] == true && pointStates[8] == false)
+			{
+				MainMenu.Connection.SendData(@"PB" + pointHex + @"|");
+				return;
+			}
+			if (pointStates[8] == true)
+			{
+				MainMenu.Connection.SendData(@"PB" + pointHex + @"|" + @"PB" + pointHex + @"|");
+				return;
+			}
+
 		}
 
-		public static void KeyboardPointFree(string data)
+		public static void PointsCentre(string data)
 		{
-			string[] points = data.Split(' ');
-			Data.SendPrep.PointsKeyF(points[0].Substring(1));
+			string pointHex = MainMenu._points.PointLookup(data);
+
+			if (pointHex == "") return;
+
+			bool[] pointStates = MainMenu._points.PointStatusKeyRequest(data);
+
+
+			if (pointStates[0] == true) return;
+			if (pointStates[7] == false && pointStates[8] == false) return;
+
+
+			MainMenu.Connection.SendData(@"PC" + pointHex + @"|");
 		}
 
-		public static void KeyboardPointRev(string data)
+		public static void PointsKeyReverse(string data)
 		{
-			string[] points = data.Split(' ');
-			Data.SendPrep.PointsKeyR(points[0].Substring(1));
+			string pointHex = MainMenu._points.PointLookup(data);
+
+			if (pointHex == "") return;
+
+			bool[] pointStates = MainMenu._points.PointStatusKeyRequest(data);
+
+			if (pointStates[0] == true || pointStates[8] == true)
+				return;
+
+			if (pointStates[1] == true && pointStates[7] == false)
+			{
+				MainMenu.Connection.SendData(@"PC" + pointHex + @"|");
+				return;
+			}
+			if (pointStates[2] == true && pointStates[7] == false)
+			{
+				MainMenu.Connection.SendData(@"PC" + pointHex + @"|");
+				return;
+			}
+			if (pointStates[7] == true)
+			{
+				MainMenu.Connection.SendData(@"PC" + pointHex + @"|" + @"PC" + pointHex + @"|");
+				return;
+			}
+
 		}
 
 	}
