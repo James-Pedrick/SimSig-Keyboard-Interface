@@ -101,110 +101,105 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 		private void TcpDataUpdate(Object sender, MsgEventArgs e)
 		{
-			string[] receivedStrings = e.Msg.Split('|');
 
+            string element = e.Msg;
 
-
-
-			foreach (string element in receivedStrings)
+			if (InvokeRequired)
 			{
-				if (InvokeRequired)
+				Invoke(new MethodInvoker(delegate
 				{
-					Invoke(new MethodInvoker(delegate
+					debugRawTcpDisplay.Items.Insert(0, element);
+					if (element.StartsWith("sT")) Console.WriteLine(element);
+				}));
+				try
+				{
+					if (element.StartsWith("sB"))
 					{
-						debugRawTcpDisplay.Items.Insert(0, element);
-						if (element.StartsWith("sT")) Console.WriteLine(element);
-					}));
-					try
-					{
-						if (element.StartsWith("sB"))
-						{
-							if (InvokeRequired)
-								Invoke(new MethodInvoker(delegate
-								{
-									_berths.DataUpdateTcp(element.Substring(2, 8));
-									Refresh();
-								}));
-						}
-						if (element.StartsWith("sP"))
-						{
-							if (InvokeRequired)
-								Invoke(new MethodInvoker(delegate
-								{
-									_points.AddPointTcp(element.Substring(2, 7));
-									Refresh();
-								}));
-						}
-
-						if (element.StartsWith("sS"))
-						{
-							if (InvokeRequired)
-								Invoke(new MethodInvoker(delegate
-								{
-									_signals.AddSignalTcp(element.Substring(2, 13));
-									Refresh();
-								}));
-						}
-						if (element.StartsWith("sT"))
-						{
-							if (InvokeRequired)
-								Invoke(new MethodInvoker(delegate
-								{
-									_tracks.AddTrackTcp(element.Substring(2, 6));
-									Refresh();
-								}));
-						}
-						if (element.StartsWith("pM"))
-						{
-							if (InvokeRequired)
-								Invoke(new MethodInvoker(delegate
-								{
-									_calls.NewIncomingCall(element);
-									Refresh();
-								}));
-						}//New Phone Call
-						if (element.StartsWith("pO"))
-						{
-							if (InvokeRequired)
-								Invoke(new MethodInvoker(delegate
-								{
-									_calls.EndIncomingCall(element);
-									Refresh();
-								}));
-						}//End Phone Call
-
-						if (element.StartsWith("iCB"))
-						{
-							if (InvokeRequired)
-								Invoke(new MethodInvoker(delegate
-								{
-									_berths.AddBerthTcp(element.Substring(7, 4), element.Substring(11, 4));
-									Refresh();
-								}));
-						}//Berth Request State Feedback
-						if (element.StartsWith("iCP"))
-						{
-							if (InvokeRequired)
-								Invoke(new MethodInvoker(delegate
-								{
-									_points.AddPointTcp(element.Substring(7));
-									Refresh();
-								}));
-						}//Point Request State Feedback
-						if (element.StartsWith("iCS"))
-						{
-							if (InvokeRequired)
-								Invoke(new MethodInvoker(delegate
-								{
-									_signals.AddSignalTcp(element.Substring(7));
-									Refresh();
-								}));
-						}//Signal Request State Feedback
+						if (InvokeRequired)
+							Invoke(new MethodInvoker(delegate
+							{
+								_berths.DataUpdateTcp(element.Substring(2, 8));
+								Refresh();
+							}));
 					}
-					catch
+					if (element.StartsWith("sP"))
 					{
-						Console.WriteLine(@"A Unhandled String was Received - " + element);
+						if (InvokeRequired)
+							Invoke(new MethodInvoker(delegate
+							{
+								_points.AddPointTcp(element.Substring(2, 7));
+								Refresh();
+							}));
 					}
+
+					if (element.StartsWith("sS"))
+					{
+						if (InvokeRequired)
+							Invoke(new MethodInvoker(delegate
+							{
+								_signals.AddSignalTcp(element.Substring(2, 13));
+								Refresh();
+							}));
+					}
+					if (element.StartsWith("sT"))
+					{
+						if (InvokeRequired)
+							Invoke(new MethodInvoker(delegate
+							{
+								_tracks.AddTrackTcp(element.Substring(2, 6));
+								Refresh();
+							}));
+					}
+					if (element.StartsWith("pM"))
+					{
+						if (InvokeRequired)
+							Invoke(new MethodInvoker(delegate
+							{
+								_calls.NewIncomingCall(element);
+								Refresh();
+							}));
+					}//New Phone Call
+					if (element.StartsWith("pO"))
+					{
+						if (InvokeRequired)
+							Invoke(new MethodInvoker(delegate
+							{
+								_calls.EndIncomingCall(element);
+								Refresh();
+							}));
+					}//End Phone Call
+
+                    if (element.StartsWith("iCB"))
+					{
+						if (InvokeRequired)
+							Invoke(new MethodInvoker(delegate
+							{
+								_berths.AddBerthTcp(element.Substring(7, 4), element.Substring(11, 4));
+								Refresh();
+							}));
+					}//Berth Request State Feedback
+					if (element.StartsWith("iCP"))
+					{
+						if (InvokeRequired)
+							Invoke(new MethodInvoker(delegate
+							{
+								_points.AddPointTcp(element.Substring(7));
+								Refresh();
+							}));
+					}//Point Request State Feedback
+					if (element.StartsWith("iCS"))
+					{
+						if (InvokeRequired)
+							Invoke(new MethodInvoker(delegate
+							{
+								_signals.AddSignalTcp(element.Substring(7));
+								Refresh();
+							}));
+					}//Signal Request State Feedback
+				}
+				catch
+				{
+					Console.WriteLine(@"A Unhandled String was Received - " + element);
 				}
 			}
 		}
