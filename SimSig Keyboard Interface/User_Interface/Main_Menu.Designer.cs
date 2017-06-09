@@ -29,6 +29,7 @@
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenu));
 			this.menuStrip = new System.Windows.Forms.MenuStrip();
 			this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -66,7 +67,7 @@
 			this.debugTcpRaw = new System.Windows.Forms.TabPage();
 			this.debugRawTcpDisplay = new System.Windows.Forms.ListBox();
 			this.keyboardInterface = new System.Windows.Forms.TabPage();
-			this.label1 = new System.Windows.Forms.Label();
+			this.keyboardSpecFunction = new System.Windows.Forms.TextBox();
 			this.keyboardPointKR = new System.Windows.Forms.Button();
 			this.keyboardPointF = new System.Windows.Forms.Button();
 			this.keyboardPointKN = new System.Windows.Forms.Button();
@@ -85,6 +86,7 @@
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.pageSetupDialog1 = new System.Windows.Forms.PageSetupDialog();
 			this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+			this.label1 = new System.Windows.Forms.Label();
 			this.menuStrip.SuspendLayout();
 			this.tabControl.SuspendLayout();
 			this.debug.SuspendLayout();
@@ -473,6 +475,7 @@
 			// keyboardInterface
 			// 
 			this.keyboardInterface.BackColor = System.Drawing.Color.Black;
+			this.keyboardInterface.Controls.Add(this.keyboardSpecFunction);
 			this.keyboardInterface.Controls.Add(this.label1);
 			this.keyboardInterface.Controls.Add(this.keyboardPointKR);
 			this.keyboardInterface.Controls.Add(this.keyboardPointF);
@@ -486,17 +489,20 @@
 			this.keyboardInterface.TabIndex = 0;
 			this.keyboardInterface.Text = "Keyboard Interface";
 			// 
-			// label1
+			// keyboardSpecFunction
 			// 
-			this.label1.AutoSize = true;
-			this.label1.ForeColor = System.Drawing.Color.Cyan;
-			this.label1.Location = new System.Drawing.Point(242, 44);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(224, 91);
-			this.label1.TabIndex = 13;
-			this.label1.Text = "Keys\r\n+          Interpose\r\nEnter   Route Set, Auto Set, Replacement Set\r\nDEL    " +
-    " Cancel\r\nF5        Key Points N\r\nF6        Points Centre\r\nF7        Key Points R" +
-    "";
+			this.keyboardSpecFunction.BackColor = System.Drawing.Color.Black;
+			this.keyboardSpecFunction.Cursor = System.Windows.Forms.Cursors.Arrow;
+			this.keyboardSpecFunction.Font = new System.Drawing.Font("Franklin Gothic Medium Cond", 11.25F);
+			this.keyboardSpecFunction.ForeColor = System.Drawing.Color.Cyan;
+			this.keyboardSpecFunction.Location = new System.Drawing.Point(9, 16);
+			this.keyboardSpecFunction.MaxLength = 3;
+			this.keyboardSpecFunction.Name = "keyboardSpecFunction";
+			this.keyboardSpecFunction.ReadOnly = true;
+			this.keyboardSpecFunction.Size = new System.Drawing.Size(52, 25);
+			this.keyboardSpecFunction.TabIndex = 14;
+			this.keyboardSpecFunction.TabStop = false;
+			this.keyboardSpecFunction.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			// 
 			// keyboardPointKR
 			// 
@@ -553,10 +559,10 @@
 			this.userInputString.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
 			this.userInputString.Font = new System.Drawing.Font("Franklin Gothic Medium Cond", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.userInputString.ForeColor = System.Drawing.Color.Cyan;
-			this.userInputString.Location = new System.Drawing.Point(7, 7);
+			this.userInputString.Location = new System.Drawing.Point(67, 16);
 			this.userInputString.MinimumSize = new System.Drawing.Size(4, 25);
 			this.userInputString.Name = "userInputString";
-			this.userInputString.Size = new System.Drawing.Size(575, 25);
+			this.userInputString.Size = new System.Drawing.Size(515, 25);
 			this.userInputString.TabIndex = 0;
 			this.userInputString.KeyDown += new System.Windows.Forms.KeyEventHandler(this.UserInputString_KeyDown);
 			// 
@@ -699,6 +705,16 @@
 			this.notifyIcon1.Text = "notifyIcon1";
 			this.notifyIcon1.Visible = true;
 			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.ForeColor = System.Drawing.Color.Cyan;
+			this.label1.Location = new System.Drawing.Point(242, 97);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(258, 338);
+			this.label1.TabIndex = 13;
+			this.label1.Text = resources.GetString("label1.Text");
+			// 
 			// MainMenu
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -808,6 +824,7 @@
 		private System.Windows.Forms.NotifyIcon notifyIcon1;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
 		private System.Windows.Forms.ToolStripMenuItem requestDataToolStripMenuItem1;
+		private System.Windows.Forms.TextBox keyboardSpecFunction;
 		private System.Windows.Forms.Label label1;
 	}
 }

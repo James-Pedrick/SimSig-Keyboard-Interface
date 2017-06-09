@@ -220,116 +220,177 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 		private void UserInputString_KeyDown(object sender, KeyEventArgs e)
 		{
+			if (e.KeyCode == Keys.F1) keyboardSpecFunction.Text = @"REM";
+			if (e.KeyCode == Keys.F2) keyboardSpecFunction.Text = @"ISO";
+			if (e.KeyCode == Keys.F3) keyboardSpecFunction.Text = @"OVR";
 
 
-			if (e.KeyCode == Keys.F1) { DataProcess.KeyboardInterface.KeyboardTdInt(userInputString.Text); userInputString.Text = ""; return; }
 
-			if (e.KeyCode == Keys.F2)
+			if (e.KeyCode == Keys.F11)      //Interpose
 			{
-				if (userInputString.Text.StartsWith("A")) { DataProcess.KeyboardInterface.KeyboardAutSet(userInputString.Text.Substring(1)); userInputString.Text = ""; return; }
-				if (userInputString.Text.StartsWith("R")) { DataProcess.KeyboardInterface.KeyboardRepSet(userInputString.Text.Substring(1)); userInputString.Text = ""; return; }
-				if (userInputString.Text.StartsWith("S"))
-				{
-					if (userInputString.Text.Contains(' '))
-					{
-						string[] z = userInputString.Text.Split(' ');
-						DataProcess.KeyboardInterface.KeyboardRouSet(z[0].Substring(1), z[1].Substring(1));
-					}
-					userInputString.Text = "";
-					return;
-				}
-			}
-			if (e.KeyCode == Keys.Delete)
-			{
-				if (userInputString.Text.StartsWith("A")) { DataProcess.KeyboardInterface.KeyboardAutCan(userInputString.Text.Substring(1)); userInputString.Text = ""; return; }
-				if (userInputString.Text.StartsWith("B")) { DataProcess.KeyboardInterface.KeyboardTdCan(userInputString.Text); userInputString.Text = ""; return; }
-				if (userInputString.Text.StartsWith("R")) { DataProcess.KeyboardInterface.KeyboardRepCan(userInputString.Text.Substring(1)); userInputString.Text = ""; return; }
-				if (userInputString.Text.StartsWith("S")) { DataProcess.KeyboardInterface.KeyboardRouCan(userInputString.Text.Substring(1)); userInputString.Text = ""; return; }
-			}
+				if (userInputString.Text.Contains(' ') == false) return;
 
-
-			if (e.KeyCode == Keys.F5) { DataProcess.KeyboardInterface.KeyboardPointNorm(userInputString.Text.Substring(1)); userInputString.Text = ""; return; }           //Key Point Normal
-			if (e.KeyCode == Keys.F6) { DataProcess.KeyboardInterface.KeyboardPointFree(userInputString.Text.Substring(1)); userInputString.Text = ""; return; }           //Free Point
-			if (e.KeyCode == Keys.F7) { DataProcess.KeyboardInterface.KeyboardPointRev(userInputString.Text.Substring(1)); userInputString.Text = ""; return; }           //Key Point Free
-			if (e.KeyCode == Keys.F9) { Connection.SendData(userInputString.Text); userInputString.Text = ""; return; }           //Send direct to simulation.
-
-			if (e.KeyCode == Keys.F11)
-			{
-				string[] combo = userInputString.Text.Split(' ');
-				foreach (var x in combo)
-				{
-					var y = x.Substring(1);
-					DataProcess.KeyboardInterface.KeyboardRouCan(y);
-				}
+				DataProcess.KeyboardInterface.TdInterpose(userInputString.Text);
 
 				userInputString.Text = "";
+				keyboardSpecFunction.Text = "";
 			}
 
-			if (e.KeyCode == Keys.F12)
+			if (e.KeyCode == Keys.F12)      //Set
 			{
-				string[] combo = userInputString.Text.Split(' ');
-				var x = combo.Length;
-
-				int y = 1;
-
-				while (y != x)
+				if (userInputString.Text.StartsWith("A") && keyboardSpecFunction.Text == "")
 				{
-					DataProcess.KeyboardInterface.KeyboardRouSet(combo[y - 1].Substring(1), combo[y].Substring(1));
-					y++;
-				}
+					string[] z = userInputString.Text.Split(' ');
+					DataProcess.KeyboardInterface.SignalAutoSet(z[0].Substring(1));
+				}               //Auto Set
+				if (userInputString.Text.StartsWith("A") && keyboardSpecFunction.Text == @"REM")
+				{
+					string[] z = userInputString.Text.Split(' ');
+					DataProcess.KeyboardInterface.SignalAutoReminderSet(z[0].Substring(1));
+				}           //Auto Reminder Set
+				if (userInputString.Text.StartsWith("A") && keyboardSpecFunction.Text == @"ISO")
+				{
+					string[] z = userInputString.Text.Split(' ');
+					DataProcess.KeyboardInterface.SignalAutoIsolationSet(z[0].Substring(1));
+				}           //Auto Reminder Set
+
+
+				if (userInputString.Text.StartsWith("E") && keyboardSpecFunction.Text == "")
+				{
+					string[] z = userInputString.Text.Split(' ');
+					DataProcess.KeyboardInterface.SignalReplacementSet(z[0].Substring(1));
+				}               //Signal Replacement Set
+
+				if (userInputString.Text.StartsWith("E") && keyboardSpecFunction.Text == @"REM")
+				{
+					string[] z = userInputString.Text.Split(' ');
+					DataProcess.KeyboardInterface.SignalReplacementReminderSet(z[0].Substring(1));
+				}           //Signal Replacement Reminder Set
+				if (userInputString.Text.StartsWith("E") && keyboardSpecFunction.Text == @"ISO")
+				{
+					string[] z = userInputString.Text.Split(' ');
+					DataProcess.KeyboardInterface.SignalReplacementIsolationSet(z[0].Substring(1));
+				}           //Signal Replacement Isolation Set
+
+				if (userInputString.Text.StartsWith("S") && keyboardSpecFunction.Text == @"")
+				{
+					if (userInputString.Text.Contains(' ') == false) return;
+
+					string[] z = userInputString.Text.Split(' ');
+
+					DataProcess.KeyboardInterface.RouteSet(z[0].Substring(1), z[1].Substring(1), "");
+				}           //Route Set (No OverRide)
+				if (userInputString.Text.StartsWith("S") && keyboardSpecFunction.Text == @"OVR")
+				{
+					if (userInputString.Text.Contains(' ') == false) return;
+
+					string[] z = userInputString.Text.Split(' ');
+
+					DataProcess.KeyboardInterface.RouteSet(z[0].Substring(1), z[1].Substring(1), @"OVR");
+				}           //Route Set (With OverRide)
+				if (userInputString.Text.StartsWith("S") && keyboardSpecFunction.Text == @"REM")
+				{
+					string[] z = userInputString.Text.Split(' ');
+
+					DataProcess.KeyboardInterface.SignalReminderSet(z[0].Substring(1));
+				}           //Signal Reminder Set
+				if (userInputString.Text.StartsWith("S") && keyboardSpecFunction.Text == @"ISO")
+				{
+					string[] z = userInputString.Text.Split(' ');
+
+					DataProcess.KeyboardInterface.SignalIsolationSet(z[0].Substring(1));
+				}           //Signal Reminder Set
+
+				if (userInputString.Text.StartsWith("P") && keyboardSpecFunction.Text == @"REM")
+				{
+
+					string[] z = userInputString.Text.Split(' ');
+
+					DataProcess.KeyboardInterface.PointReminderApply(z[0].Substring(1));
+				}           //PointReminderApply
+
 
 				userInputString.Text = "";
-
-
+				keyboardSpecFunction.Text = "";
 			}
-		}
 
-		private void KeyboardInterpose_Click(object sender, EventArgs e)
-		{
-			DataProcess.KeyboardInterface.KeyboardTdInt(userInputString.Text);
-			userInputString.Text = "";
-		}
-		private void KeyboardTdCancel_Click(object sender, EventArgs e)
-		{
-			DataProcess.KeyboardInterface.KeyboardTdCan(userInputString.Text);
-			userInputString.Text = "";
-		}
-		private void KeyboardRouteSet_Click(object sender, EventArgs e)
-		{
 
-			if (userInputString.Text.Contains(' '))
+			if (e.KeyCode == Keys.Delete)   //CAN
 			{
-				string[] z = userInputString.Text.Split(' ');
-				DataProcess.KeyboardInterface.KeyboardRouSet(z[0], z[1]);
+
+
+				if (userInputString.Text.StartsWith("A") && keyboardSpecFunction.Text == "")
+				{
+					string[] z = userInputString.Text.Split(' ');
+					DataProcess.KeyboardInterface.SignalAutoCancel(z[0].Substring(1));
+				}           //Auto Cancel
+				if (userInputString.Text.StartsWith("A") && keyboardSpecFunction.Text == @"REM")
+				{
+					string[] z = userInputString.Text.Split(' ');
+					DataProcess.KeyboardInterface.SignalAutoReminderCancel(z[0].Substring(1));
+				}       //Auto Reminder Set
+				if (userInputString.Text.StartsWith("A") && keyboardSpecFunction.Text == @"ISO")
+				{
+					string[] z = userInputString.Text.Split(' ');
+					DataProcess.KeyboardInterface.SignalAutoIsolationCancel(z[0].Substring(1));
+				}       //Auto Reminder Set
+
+				if (userInputString.Text.StartsWith("B"))
+				{
+					DataProcess.KeyboardInterface.TdCancel(userInputString.Text);
+				}                                           //TD Cancel
+
+				if (userInputString.Text.StartsWith("E") && keyboardSpecFunction.Text == "")
+				{
+					string[] z = userInputString.Text.Split(' ');
+					DataProcess.KeyboardInterface.SignalReplacementcancel(z[0].Substring(1));
+				}           //Replacement Cancel
+				if (userInputString.Text.StartsWith("E") && keyboardSpecFunction.Text == @"REM")
+				{
+					string[] z = userInputString.Text.Split(' ');
+					DataProcess.KeyboardInterface.SignalReplacementReminderCancel(z[0].Substring(1));
+				}       //Reminder Cancel
+				if (userInputString.Text.StartsWith("E") && keyboardSpecFunction.Text == @"ISO")
+				{
+					string[] z = userInputString.Text.Split(' ');
+					DataProcess.KeyboardInterface.SignalReplacementIsolationCancel(z[0].Substring(1));
+				}       //Isolation Cancel
+
+				if (userInputString.Text.StartsWith("S") && keyboardSpecFunction.Text == "")
+				{
+					DataProcess.KeyboardInterface.RouteCancel(userInputString.Text.Substring(1));
+				}           //Route Cancel
+				if (userInputString.Text.StartsWith("S") && keyboardSpecFunction.Text == @"REM")
+				{
+					string[] z = userInputString.Text.Split(' ');
+
+					DataProcess.KeyboardInterface.SignalReminderCancel(z[0].Substring(1));
+				}       //Signal Reminder Set
+				if (userInputString.Text.StartsWith("S") && keyboardSpecFunction.Text == @"ISO")
+				{
+					string[] z = userInputString.Text.Split(' ');
+
+					DataProcess.KeyboardInterface.SignalIsolationCancel(z[0].Substring(1));
+				}
+
+				if (userInputString.Text.StartsWith("P") && keyboardSpecFunction.Text == @"REM")
+				{
+
+					string[] z = userInputString.Text.Split(' ');
+
+					DataProcess.KeyboardInterface.PointReminderCancel(z[0].Substring(1));
+				}           //PointReminderCancel
+
+				userInputString.Text = "";
+				keyboardSpecFunction.Text = "";
 			}
-			userInputString.Text = "";
+
+
+
 
 		}
-		private void KeyboardRouteCancel_Click(object sender, EventArgs e)
-		{
-			DataProcess.KeyboardInterface.KeyboardRouCan(userInputString.Text);
-			userInputString.Text = "";
-		}
-		private void KeyboardAutoSet_Click(object sender, EventArgs e)
-		{
-			DataProcess.KeyboardInterface.KeyboardAutSet(userInputString.Text);
-			userInputString.Text = "";
-		}
-		private void KeyboardAutoCancel_Click(object sender, EventArgs e)
-		{
-			DataProcess.KeyboardInterface.KeyboardAutCan(userInputString.Text);
-			userInputString.Text = "";
-		}
-		private void KeyboardSigRemoveReplacement_Click(object sender, EventArgs e)
-		{
-			DataProcess.KeyboardInterface.KeyboardAutCan(userInputString.Text);
-			userInputString.Text = "";
-		}
-		private void KeyboardSigReplacement_Click(object sender, EventArgs e)
-		{
-			DataProcess.KeyboardInterface.KeyboardRepSet(userInputString.Text);
-			userInputString.Text = "";
-		}
+
+
 		private void KeyboardPointKN_Click(object sender, EventArgs e)
 		{
 			DataProcess.KeyboardInterface.KeyboardPointNorm(userInputString.Text);
