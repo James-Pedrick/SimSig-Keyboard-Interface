@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SimSig_Keyboard_Interface.Client.Berths
+namespace SimSig_Keyboard_Interface.DataProcess.Berths
 {
 	public class BerthContainer 
 	{
-		public static BindingList<Berths> BerthList = new BindingList<Berths>();
+		public BindingList<Berths> BerthList = new BindingList<Berths>();
 
 
 
@@ -38,33 +33,39 @@ namespace SimSig_Keyboard_Interface.Client.Berths
 			}
 		}
 
-        public void DataUpdateXml(string data)
-        {
-            var hexId = data.Substring(0, 4);
-            var berthContent = data.Substring(4, 4);
-
-            AddBerthXml(hexId, berthContent);
-        }
-
-
         public void DataUpdateTcp(string data)
         {
             var hexId = data.Substring(0, 4);
             var berthContent = data.Substring(4, 4);
 
+
+
+
             AddBerthTcp(hexId, berthContent);
         }
 
-
-        public string PrintBerths()
+		public string BerthHIdLookup(string data)
 		{
-			string done = "";
+			data =  data.ToUpper();
+			
+			if (BerthList.SingleOrDefault(b => b.BerthId == data)!= null)
+			{
+				var berth = BerthList.Single(b => b.BerthId == data);
+				return berth.HexId;
+			}
 
-			foreach (Berths x in BerthList)
-				done = done + x.HexId.PadRight(6) + x.BerthId + @"\n";
-
-
-			return done;
+			return null;
 		}
+
+		public void BerthStatusRequest()
+		{
+			foreach (var x in BerthList)
+			{
+				var berthRequest = "iBB" + x.HexId + x.HexId + "|";
+
+				User_Interface.MainMenu.Connection.SendData(berthRequest);
+			}
+		}
+
 	}
 }

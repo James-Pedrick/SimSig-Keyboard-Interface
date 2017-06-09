@@ -1,10 +1,9 @@
 using System;
 using System.Net.Sockets;
-using System.Diagnostics;
-using System.Threading;
 using System.Text;
+using System.Threading;
 
-namespace SimSig_Keyboard_Interface.Client.TCP
+namespace SimSig_Keyboard_Interface.Comms.TCP
 {
     public sealed partial class TcpClient
     {
@@ -15,8 +14,8 @@ namespace SimSig_Keyboard_Interface.Client.TCP
 			internal Receiver(NetworkStream stream)
 			{
 				_stream = stream;
-				_thread = new Thread(Run);
-				_thread.Start();
+				var thread = new Thread(Run);
+				thread.Start();
 			}
 
             private void Run()
@@ -29,13 +28,13 @@ namespace SimSig_Keyboard_Interface.Client.TCP
 
                     var charBuffer = new char[2048];
 
-                    string msg = "";
+                
 					
                     while ((bytesRead = _stream.Read(buffer, 0, buffer.Length)) != 0)
                     {
                         var charsRead = Encoding.ASCII.GetChars(buffer, 0, bytesRead, charBuffer, 0);
 
-                        msg = new string(charBuffer, 0, charsRead);
+                        string msg = new string(charBuffer, 0, charsRead);
 						
                         MsgEventArgs m = new MsgEventArgs() { Msg = msg };
                         OnDataReceived(this,m);
@@ -44,18 +43,21 @@ namespace SimSig_Keyboard_Interface.Client.TCP
                     }
 					
                 }
-                catch
+                catch(Exception e)
                 {
-                    throw;
+                    Console.WriteLine(e);
                 }
             }
             private void OnDataReceived(object sender, MsgEventArgs e)
             {
                 var handler = DataReceived;
-                if (handler != null) DataReceived(this, e);  // re-raise event
+				
+                if (handler != null)  DataReceived?.Invoke(this, e); // re-raise event
+
+				
+                
             }
             private NetworkStream _stream;
-            private Thread _thread;
         }
 
 

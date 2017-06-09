@@ -195,6 +195,7 @@
 			// 
 			// cancel
 			// 
+			this.cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
 			this.cancel.Location = new System.Drawing.Point(8, 337);
 			this.cancel.Margin = new System.Windows.Forms.Padding(4);
@@ -219,10 +220,12 @@
 			// 
 			// TcpConnect
 			// 
+			this.AcceptButton = this.connect;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoSize = true;
 			this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+			this.CancelButton = this.cancel;
 			this.ClientSize = new System.Drawing.Size(481, 450);
 			this.Controls.Add(this.connect);
 			this.Controls.Add(this.cancel);
@@ -246,6 +249,7 @@
 			this.MinimizeBox = false;
 			this.Name = "TcpConnect";
 			this.Text = "TCP_Connect";
+			this.TopMost = true;
 			this.Load += new System.EventHandler(this.TCP_Connect_Load);
 			((System.ComponentModel.ISupportInitialize)(this.port)).EndInit();
 			this.ResumeLayout(false);
