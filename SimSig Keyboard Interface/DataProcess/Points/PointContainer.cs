@@ -20,7 +20,7 @@ namespace SimSig_Keyboard_Interface.DataProcess.Points
 			var pointStates = data.Substring(4, 3);
 
 			if (PointList.SingleOrDefault(p => p.HexId == hId) == null)
-				PointList.Add(new Points { HexId = hId });
+				PointList.Add(new Points {HexId = hId});
 
 			PointList.Single(p => p.HexId == hId).PointUpdate(pointStates);
 
@@ -30,7 +30,7 @@ namespace SimSig_Keyboard_Interface.DataProcess.Points
 		{
 
 			if (PointList.SingleOrDefault(b => b.HexId == hId) == null)
-				PointList.Add(new Points { HexId = hId, Number = pointId });
+				PointList.Add(new Points {HexId = hId, Number = pointId});
 			else
 				PointList.Single(b => b.HexId == hId).Number = pointId;
 
@@ -39,7 +39,7 @@ namespace SimSig_Keyboard_Interface.DataProcess.Points
 		public string PointLookup(string data)
 		{
 
-			data = 'P' + data.ToUpper();
+//			data = 'P' + data.ToUpper();
 
 			if (PointList.SingleOrDefault(b => b.Number == data) != null)
 			{
@@ -59,7 +59,7 @@ namespace SimSig_Keyboard_Interface.DataProcess.Points
 				return returnVal.Updated;
 
 			}
-			return true;            //This line should not be reachable
+			return true; //This line should not be reachable
 		}
 
 		public bool PointsKn(string data)
@@ -71,9 +71,10 @@ namespace SimSig_Keyboard_Interface.DataProcess.Points
 				return returnVal.Kn;
 
 			}
-			return true;            //This line should not be reachable
+			return true; //This line should not be reachable
 
 		}
+
 		public bool PointsKr(string data)
 		{
 			if (PointList.SingleOrDefault(p => p.HexId == data) != null)
@@ -83,20 +84,51 @@ namespace SimSig_Keyboard_Interface.DataProcess.Points
 				return returnVal.Kr;
 
 			}
-			return true;            //This line should not be reachable
+			return true; //This line should not be reachable
 
 		}
 
-		public void PointStatusRequest()
+		public void PointStatusConnectionRequest()
 		{
-
-
-
 			foreach (var x in PointList)
 			{
 				var pointRequest = "iBP" + x.HexId + x.HexId + "|";
 
 				User_Interface.MainMenu.Connection.SendData(pointRequest);
+			}
+		}
+
+		public bool[] PointStatusKeyRequest(string pointId)
+		{
+
+			{
+				if (PointList.SingleOrDefault(p => p.Number == pointId) != null)
+				{
+					var itemLookup = PointList.Single(p => p.Number == pointId);
+
+					bool[] returnval =
+					{
+						false,
+						itemLookup.Cn, //1
+						itemLookup.Cr, //2
+						itemLookup.Dn, //3
+						itemLookup.Dr, //4
+						itemLookup.Fn, //5
+						itemLookup.Fr, //6
+						itemLookup.Kn, //7
+						itemLookup.Kr, //8
+						itemLookup.Lock, //9
+						itemLookup.Iso //10
+					};
+
+					return returnval;
+
+
+
+				}
+
+				bool[] error = {true};
+				return error; //This line should not be reachable
 			}
 		}
 	}
