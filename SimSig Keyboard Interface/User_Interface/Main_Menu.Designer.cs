@@ -66,12 +66,9 @@
 			this.debugTcpRaw = new System.Windows.Forms.TabPage();
 			this.debugRawTcpDisplay = new System.Windows.Forms.ListBox();
 			this.keyboardInterface = new System.Windows.Forms.TabPage();
+			this.label2 = new System.Windows.Forms.Label();
 			this.keyboardSpecFunction = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
-			this.keyboardPointKR = new System.Windows.Forms.Button();
-			this.keyboardPointF = new System.Windows.Forms.Button();
-			this.keyboardPointKN = new System.Windows.Forms.Button();
-			this.keyboardSendToSim = new System.Windows.Forms.Button();
 			this.userInputString = new System.Windows.Forms.TextBox();
 			this.phoneCalls = new System.Windows.Forms.TabPage();
 			this.splitContainer2 = new System.Windows.Forms.SplitContainer();
@@ -86,7 +83,6 @@
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.pageSetupDialog1 = new System.Windows.Forms.PageSetupDialog();
 			this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-			this.label2 = new System.Windows.Forms.Label();
 			this.menuStrip.SuspendLayout();
 			this.tabControl.SuspendLayout();
 			this.debug.SuspendLayout();
@@ -293,7 +289,7 @@
 			this.tabControl.Multiline = true;
 			this.tabControl.Name = "tabControl";
 			this.tabControl.SelectedIndex = 0;
-			this.tabControl.Size = new System.Drawing.Size(598, 449);
+			this.tabControl.Size = new System.Drawing.Size(598, 503);
 			this.tabControl.TabIndex = 1;
 			// 
 			// debug
@@ -478,17 +474,23 @@
 			this.keyboardInterface.Controls.Add(this.label2);
 			this.keyboardInterface.Controls.Add(this.keyboardSpecFunction);
 			this.keyboardInterface.Controls.Add(this.label1);
-			this.keyboardInterface.Controls.Add(this.keyboardPointKR);
-			this.keyboardInterface.Controls.Add(this.keyboardPointF);
-			this.keyboardInterface.Controls.Add(this.keyboardPointKN);
-			this.keyboardInterface.Controls.Add(this.keyboardSendToSim);
 			this.keyboardInterface.Controls.Add(this.userInputString);
 			this.keyboardInterface.Location = new System.Drawing.Point(4, 22);
 			this.keyboardInterface.Name = "keyboardInterface";
 			this.keyboardInterface.Padding = new System.Windows.Forms.Padding(3);
-			this.keyboardInterface.Size = new System.Drawing.Size(590, 423);
+			this.keyboardInterface.Size = new System.Drawing.Size(590, 477);
 			this.keyboardInterface.TabIndex = 0;
 			this.keyboardInterface.Text = "Keyboard Interface";
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.ForeColor = System.Drawing.Color.Cyan;
+			this.label2.Location = new System.Drawing.Point(360, 97);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(86, 65);
+			this.label2.TabIndex = 15;
+			this.label2.Text = "A - Auto\r\nB - Berth\r\nE - Replacement\r\nS - Signal\r\nP - Point";
 			// 
 			// keyboardSpecFunction
 			// 
@@ -516,50 +518,6 @@
 			this.label1.Text = "DEL - Cancel\r\nEnter - Set\r\n\r\nF1 - REM\r\nF2 - ISO\r\nF3 - OVR\r\n\r\nF5 - Key Norm\r\nF6 - " +
     "Centre\r\nF7 - Key Rev";
 			// 
-			// keyboardPointKR
-			// 
-			this.keyboardPointKR.AutoSize = true;
-			this.keyboardPointKR.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-			this.keyboardPointKR.Location = new System.Drawing.Point(8, 229);
-			this.keyboardPointKR.Name = "keyboardPointKR";
-			this.keyboardPointKR.Size = new System.Drawing.Size(228, 38);
-			this.keyboardPointKR.TabIndex = 12;
-			this.keyboardPointKR.Text = "Key Point Reverse [ F7 ]";
-			this.keyboardPointKR.UseVisualStyleBackColor = true;
-			// 
-			// keyboardPointF
-			// 
-			this.keyboardPointF.AutoSize = true;
-			this.keyboardPointF.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-			this.keyboardPointF.Location = new System.Drawing.Point(6, 185);
-			this.keyboardPointF.Name = "keyboardPointF";
-			this.keyboardPointF.Size = new System.Drawing.Size(228, 38);
-			this.keyboardPointF.TabIndex = 11;
-			this.keyboardPointF.Text = "Unlock Point [ F6 ]";
-			this.keyboardPointF.UseVisualStyleBackColor = true;
-			// 
-			// keyboardPointKN
-			// 
-			this.keyboardPointKN.AutoSize = true;
-			this.keyboardPointKN.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-			this.keyboardPointKN.Location = new System.Drawing.Point(8, 141);
-			this.keyboardPointKN.Name = "keyboardPointKN";
-			this.keyboardPointKN.Size = new System.Drawing.Size(228, 38);
-			this.keyboardPointKN.TabIndex = 10;
-			this.keyboardPointKN.Text = "Key Point Normal [ F5 ]";
-			this.keyboardPointKN.UseVisualStyleBackColor = true;
-			// 
-			// keyboardSendToSim
-			// 
-			this.keyboardSendToSim.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-			this.keyboardSendToSim.Location = new System.Drawing.Point(8, 97);
-			this.keyboardSendToSim.Name = "keyboardSendToSim";
-			this.keyboardSendToSim.Size = new System.Drawing.Size(228, 38);
-			this.keyboardSendToSim.TabIndex = 3;
-			this.keyboardSendToSim.Text = "Send Direct to Sim [ F12 ]";
-			this.keyboardSendToSim.UseVisualStyleBackColor = true;
-			this.keyboardSendToSim.Click += new System.EventHandler(this.SendToSim_Click);
-			// 
 			// userInputString
 			// 
 			this.userInputString.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -581,7 +539,7 @@
 			this.phoneCalls.Controls.Add(this.splitContainer2);
 			this.phoneCalls.Location = new System.Drawing.Point(4, 22);
 			this.phoneCalls.Name = "phoneCalls";
-			this.phoneCalls.Size = new System.Drawing.Size(590, 423);
+			this.phoneCalls.Size = new System.Drawing.Size(590, 477);
 			this.phoneCalls.TabIndex = 2;
 			this.phoneCalls.Text = "Phone";
 			// 
@@ -601,7 +559,7 @@
 			// splitContainer2.Panel2
 			// 
 			this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
-			this.splitContainer2.Size = new System.Drawing.Size(590, 423);
+			this.splitContainer2.Size = new System.Drawing.Size(590, 477);
 			this.splitContainer2.SplitterDistance = 198;
 			this.splitContainer2.TabIndex = 8;
 			// 
@@ -620,8 +578,8 @@
 			// splitContainer4.Panel2
 			// 
 			this.splitContainer4.Panel2.Controls.Add(this.callRespond);
-			this.splitContainer4.Size = new System.Drawing.Size(194, 419);
-			this.splitContainer4.SplitterDistance = 353;
+			this.splitContainer4.Size = new System.Drawing.Size(194, 473);
+			this.splitContainer4.SplitterDistance = 444;
 			this.splitContainer4.TabIndex = 9;
 			// 
 			// callers
@@ -637,7 +595,7 @@
 			this.callers.Location = new System.Drawing.Point(0, 0);
 			this.callers.Margin = new System.Windows.Forms.Padding(0);
 			this.callers.Name = "callers";
-			this.callers.Size = new System.Drawing.Size(194, 353);
+			this.callers.Size = new System.Drawing.Size(194, 444);
 			this.callers.TabIndex = 4;
 			this.callers.SelectedIndexChanged += new System.EventHandler(this.Callers_SelectedIndexChanged_1);
 			// 
@@ -646,7 +604,7 @@
 			this.callRespond.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.callRespond.Location = new System.Drawing.Point(0, 0);
 			this.callRespond.Name = "callRespond";
-			this.callRespond.Size = new System.Drawing.Size(194, 62);
+			this.callRespond.Size = new System.Drawing.Size(194, 25);
 			this.callRespond.TabIndex = 5;
 			this.callRespond.Text = "Respond";
 			this.callRespond.UseVisualStyleBackColor = true;
@@ -668,7 +626,7 @@
 			// splitContainer3.Panel2
 			// 
 			this.splitContainer3.Panel2.Controls.Add(this.callResponses);
-			this.splitContainer3.Size = new System.Drawing.Size(384, 419);
+			this.splitContainer3.Size = new System.Drawing.Size(384, 473);
 			this.splitContainer3.SplitterDistance = 239;
 			this.splitContainer3.TabIndex = 0;
 			// 
@@ -694,7 +652,7 @@
 			this.callResponses.ItemHeight = 24;
 			this.callResponses.Location = new System.Drawing.Point(0, 0);
 			this.callResponses.Name = "callResponses";
-			this.callResponses.Size = new System.Drawing.Size(384, 176);
+			this.callResponses.Size = new System.Drawing.Size(384, 230);
 			this.callResponses.TabIndex = 0;
 			// 
 			// loadSaveGameXML
@@ -714,21 +672,11 @@
 			this.notifyIcon1.Text = "notifyIcon1";
 			this.notifyIcon1.Visible = true;
 			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.ForeColor = System.Drawing.Color.Cyan;
-			this.label2.Location = new System.Drawing.Point(360, 97);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(86, 65);
-			this.label2.TabIndex = 15;
-			this.label2.Text = "A - Auto\r\nB - Berth\r\nE - Replacement\r\nS - Signal\r\nP - Point";
-			// 
 			// MainMenu
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(598, 473);
+			this.ClientSize = new System.Drawing.Size(598, 527);
 			this.ControlBox = false;
 			this.Controls.Add(this.tabControl);
 			this.Controls.Add(this.menuStrip);
@@ -805,13 +753,9 @@
 		private System.Windows.Forms.TabPage debugTracks;
 		private System.Windows.Forms.DataGridView debugTrackView;
 		private System.Windows.Forms.TabPage debugCalls;
-		private System.Windows.Forms.Button keyboardSendToSim;
 		private System.Windows.Forms.TabPage phoneCalls;
 		private System.Windows.Forms.Button callRespond;
 		private System.Windows.Forms.ListBox callers;
-		private System.Windows.Forms.Button keyboardPointKR;
-		private System.Windows.Forms.Button keyboardPointF;
-		private System.Windows.Forms.Button keyboardPointKN;
 		private System.Windows.Forms.ToolStripMenuItem serialToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem connectToolStripMenuItem1;
 		private System.Windows.Forms.Label callMsg;
