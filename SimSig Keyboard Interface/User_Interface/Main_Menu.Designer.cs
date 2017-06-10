@@ -2,6 +2,7 @@
 {
 	partial class MainMenu
 	{
+        //random comment to unbreak git
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
