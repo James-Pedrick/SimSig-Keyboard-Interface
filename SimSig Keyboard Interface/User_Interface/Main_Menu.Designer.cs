@@ -66,9 +66,7 @@
 			this.debugTcpRaw = new System.Windows.Forms.TabPage();
 			this.debugRawTcpDisplay = new System.Windows.Forms.ListBox();
 			this.keyboardInterface = new System.Windows.Forms.TabPage();
-			this.label2 = new System.Windows.Forms.Label();
 			this.keyboardSpecFunction = new System.Windows.Forms.TextBox();
-			this.label1 = new System.Windows.Forms.Label();
 			this.userInputString = new System.Windows.Forms.TextBox();
 			this.phoneCalls = new System.Windows.Forms.TabPage();
 			this.splitContainer2 = new System.Windows.Forms.SplitContainer();
@@ -258,8 +256,9 @@
 			// savePointsToolStripMenuItem
 			// 
 			this.savePointsToolStripMenuItem.Name = "savePointsToolStripMenuItem";
-			this.savePointsToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+			this.savePointsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.savePointsToolStripMenuItem.Text = "Save Points";
+			this.savePointsToolStripMenuItem.Click += new System.EventHandler(this.savePointsToolStripMenuItem_Click);
 			// 
 			// saveSignalsToolStripMenuItem
 			// 
@@ -276,8 +275,9 @@
 			// saveRawToolStripMenuItem
 			// 
 			this.saveRawToolStripMenuItem.Name = "saveRawToolStripMenuItem";
-			this.saveRawToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+			this.saveRawToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.saveRawToolStripMenuItem.Text = "Save Raw";
+			this.saveRawToolStripMenuItem.Click += new System.EventHandler(this.saveRawToolStripMenuItem_Click);
 			// 
 			// tabControl
 			// 
@@ -455,7 +455,7 @@
 			this.debugTcpRaw.Controls.Add(this.debugRawTcpDisplay);
 			this.debugTcpRaw.Location = new System.Drawing.Point(4, 22);
 			this.debugTcpRaw.Name = "debugTcpRaw";
-			this.debugTcpRaw.Size = new System.Drawing.Size(582, 397);
+			this.debugTcpRaw.Size = new System.Drawing.Size(582, 451);
 			this.debugTcpRaw.TabIndex = 3;
 			this.debugTcpRaw.Text = "TCP Raw";
 			this.debugTcpRaw.UseVisualStyleBackColor = true;
@@ -466,16 +466,14 @@
 			this.debugRawTcpDisplay.FormattingEnabled = true;
 			this.debugRawTcpDisplay.Location = new System.Drawing.Point(0, 0);
 			this.debugRawTcpDisplay.Name = "debugRawTcpDisplay";
-			this.debugRawTcpDisplay.Size = new System.Drawing.Size(582, 397);
+			this.debugRawTcpDisplay.Size = new System.Drawing.Size(582, 451);
 			this.debugRawTcpDisplay.TabIndex = 4;
 			// 
 			// keyboardInterface
 			// 
 			this.keyboardInterface.BackColor = System.Drawing.Color.Black;
 			this.keyboardInterface.Controls.Add(this.ttDisplay);
-			this.keyboardInterface.Controls.Add(this.label2);
 			this.keyboardInterface.Controls.Add(this.keyboardSpecFunction);
-			this.keyboardInterface.Controls.Add(this.label1);
 			this.keyboardInterface.Controls.Add(this.userInputString);
 			this.keyboardInterface.Location = new System.Drawing.Point(4, 22);
 			this.keyboardInterface.Name = "keyboardInterface";
@@ -483,16 +481,6 @@
 			this.keyboardInterface.Size = new System.Drawing.Size(590, 477);
 			this.keyboardInterface.TabIndex = 0;
 			this.keyboardInterface.Text = "Keyboard Interface";
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.ForeColor = System.Drawing.Color.Cyan;
-			this.label2.Location = new System.Drawing.Point(19, 407);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(86, 65);
-			this.label2.TabIndex = 15;
-			this.label2.Text = "A - Auto\r\nB - Berth\r\nE - Replacement\r\nS - Signal\r\nP - Point";
 			// 
 			// keyboardSpecFunction
 			// 
@@ -509,21 +497,8 @@
 			this.keyboardSpecFunction.TabStop = false;
 			this.keyboardSpecFunction.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.ForeColor = System.Drawing.Color.Cyan;
-			this.label1.Location = new System.Drawing.Point(111, 342);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(74, 130);
-			this.label1.TabIndex = 13;
-			this.label1.Text = "DEL - Cancel\r\nEnter - Set\r\n\r\nF1 - REM\r\nF2 - ISO\r\nF3 - OVR\r\n\r\nF5 - Key Norm\r\nF6 - " +
-    "Centre\r\nF7 - Key Rev";
-			// 
 			// userInputString
 			// 
-			this.userInputString.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
 			this.userInputString.BackColor = System.Drawing.SystemColors.InfoText;
 			this.userInputString.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
 			this.userInputString.Font = new System.Drawing.Font("Franklin Gothic Medium Cond", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -677,13 +652,14 @@
 			// ttDisplay
 			// 
 			this.ttDisplay.BackColor = System.Drawing.SystemColors.WindowText;
+			this.ttDisplay.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.ttDisplay.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
 			this.ttDisplay.ForeColor = System.Drawing.Color.Cyan;
 			this.ttDisplay.FormattingEnabled = true;
 			this.ttDisplay.ItemHeight = 16;
-			this.ttDisplay.Location = new System.Drawing.Point(22, 75);
+			this.ttDisplay.Location = new System.Drawing.Point(3, 54);
 			this.ttDisplay.Name = "ttDisplay";
-			this.ttDisplay.Size = new System.Drawing.Size(536, 244);
+			this.ttDisplay.Size = new System.Drawing.Size(584, 420);
 			this.ttDisplay.TabIndex = 16;
 			// 
 			// MainMenu
@@ -792,8 +768,6 @@
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
 		private System.Windows.Forms.ToolStripMenuItem requestDataToolStripMenuItem1;
 		private System.Windows.Forms.TextBox keyboardSpecFunction;
-		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.ListBox ttDisplay;
 	}
 }

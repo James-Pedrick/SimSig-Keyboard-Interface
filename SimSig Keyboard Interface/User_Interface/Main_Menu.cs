@@ -114,6 +114,15 @@ namespace SimSig_Keyboard_Interface.User_Interface
 				}));
 				try
 				{
+					if (element.StartsWith("tE"))
+					{
+						if (InvokeRequired)
+							Invoke(new MethodInvoker(delegate
+							{
+								ttDisplay.Items.Clear();
+								ttDisplay.Items.Add(element.Substring(2));
+							}));
+					}
 					if (element.StartsWith("tL"))
 					{
 						if (InvokeRequired)
@@ -128,6 +137,8 @@ namespace SimSig_Keyboard_Interface.User_Interface
 							Invoke(new MethodInvoker(delegate
 							{
 								ttDisplay.Items.Add(element.Substring(2));
+								Console.WriteLine(element.Substring(2));
+							//	debug.Text = element.Substring(2);
 							}));
 					}
 					if (element.StartsWith("sB"))
@@ -377,7 +388,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 				}           //PointReminderApply
 
 
-				if (userInputString.Text.StartsWith("TT"))
+				if (userInputString.Text.StartsWith("TT") && userInputString.Text.Contains(" "))
 				{
 					string[] z = userInputString.Text.Split(' ');
 					Connection.SendData("tO " + z[1] + "|");
@@ -603,6 +614,16 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		}
 
 		private void MainMenu_Load(object sender, EventArgs e)
+		{
+
+		}
+
+		private void saveRawToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void savePointsToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 
 		}
