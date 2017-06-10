@@ -221,11 +221,24 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 
 			if(e.KeyCode == Keys.F5)
+
+			{
 				DataProcess.KeyboardInterface.PointsKeyNorm(userInputString.Text);
-			if(e.KeyCode == Keys.F6)
+				userInputString.Text = "";
+				keyboardSpecFunction.Text = "";
+			}
+			if (e.KeyCode == Keys.F6)
+			{
 				DataProcess.KeyboardInterface.PointsCentre(userInputString.Text);
-			if(e.KeyCode == Keys.F7)
+				userInputString.Text = "";
+				keyboardSpecFunction.Text = "";
+			}
+			if (e.KeyCode == Keys.F7)
+			{
 				DataProcess.KeyboardInterface.PointsKeyReverse(userInputString.Text);
+				userInputString.Text = "";
+				keyboardSpecFunction.Text = "";
+			}
 
 
 
@@ -238,6 +251,11 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 				userInputString.Text = "";
 				keyboardSpecFunction.Text = "";
+			}
+
+			if (e.KeyCode == Keys.F12)
+			{
+				Connection.SendData(userInputString.Text+"|");
 			}
 
 			if (e.KeyCode == Keys.Enter)      //Set
@@ -302,7 +320,8 @@ namespace SimSig_Keyboard_Interface.User_Interface
 					}
 
 
-				}		      //Route Set (No OverRide)
+
+				}             //Route Set (No OverRide)
 				if (userInputString.Text.StartsWith("S") && keyboardSpecFunction.Text == @"OVR")
 				{
 					if (userInputString.Text.Contains(' ') == false) return;
@@ -332,6 +351,13 @@ namespace SimSig_Keyboard_Interface.User_Interface
 				}           //PointReminderApply
 
 
+				if (userInputString.Text.StartsWith("TT"))
+				{
+					string[] z = userInputString.Text.Split(' ');
+					Connection.SendData("tO " + z[1] + "|");
+					userInputString.Text = "";
+					keyboardSpecFunction.Text = "";
+				}
 				userInputString.Text = "";
 				keyboardSpecFunction.Text = "";
 			}
@@ -402,6 +428,9 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 					DataProcess.KeyboardInterface.PointReminderCancel(z[0].Substring(1));
 				}           //PointReminderCancel
+
+
+
 
 				userInputString.Text = "";
 				keyboardSpecFunction.Text = "";
