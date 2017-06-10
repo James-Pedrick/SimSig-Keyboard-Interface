@@ -119,8 +119,6 @@ namespace SimSig_Keyboard_Interface.User_Interface
 						if (InvokeRequired)
 							Invoke(new MethodInvoker(delegate
 							{
-								ttDisplay.Items.Clear();
-								ttDisplay.Items.Add(element.Substring(2));
 							}));
 					}
 					if (element.StartsWith("tL"))
@@ -128,7 +126,6 @@ namespace SimSig_Keyboard_Interface.User_Interface
 						if (InvokeRequired)
 							Invoke(new MethodInvoker(delegate
 							{
-								ttDisplay.Items.Clear();
 							}));
 					}
 					if (element.StartsWith("tM"))
@@ -136,7 +133,6 @@ namespace SimSig_Keyboard_Interface.User_Interface
 						if (InvokeRequired)
 							Invoke(new MethodInvoker(delegate
 							{
-								ttDisplay.Items.Add(element.Substring(2));
 								Console.WriteLine(element.Substring(2));
 							//	debug.Text = element.Substring(2);
 							}));
