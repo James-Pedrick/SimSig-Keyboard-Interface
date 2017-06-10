@@ -14,6 +14,7 @@ using System.IO.Ports;
 using System.Runtime.CompilerServices;
 using SimSig_Keyboard_Interface.Comms.RS232;
 using SimSig_Keyboard_Interface.Data;
+using System.Text.RegularExpressions;
 
 // ************************************************************** Load Points config file ^^^
 
@@ -394,6 +395,17 @@ namespace SimSig_Keyboard_Interface.User_Interface
 					userInputString.Text = "";
 					keyboardSpecFunction.Text = "";
 				}
+
+
+                Regex ttrgx = new Regex(@"[0-9]+[A-Z]+[0-9]+[0-9]");
+
+                //Match headcode using regex and pull TT
+                if (ttrgx.IsMatch(userInputString.Text))
+                {
+                    Connection.SendData("tO " + userInputString.Text + "|");
+                    userInputString.Text = "";
+                    keyboardSpecFunction.Text = "";
+                }
 				userInputString.Text = "";
 				keyboardSpecFunction.Text = "";
 			}
