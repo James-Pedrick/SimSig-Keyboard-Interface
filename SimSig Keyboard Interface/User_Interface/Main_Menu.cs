@@ -542,6 +542,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			Connection.SendData("pN" + callId + '\\' + x + "|");
 
 			callResponses.Items.Clear();
+			callMsg.Text = "";
 			Refresh();
 		}
 
