@@ -285,12 +285,24 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 				if (userInputString.Text.StartsWith("S") && keyboardSpecFunction.Text == @"")
 				{
-					if (userInputString.Text.Contains(' ') == false) return;
+					//		if (userInputString.Text.Contains(' ') == false) return;
 
-					string[] z = userInputString.Text.Split(' ');
+					//		string[] z = userInputString.Text.Split(' ');
 
-					DataProcess.KeyboardInterface.RouteSet(z[0].Substring(1), z[1].Substring(1), "");
-				}           //Route Set (No OverRide)
+					//		DataProcess.KeyboardInterface.RouteSet(z[0].Substring(1), z[1].Substring(1), "");
+
+					string[] combo = userInputString.Text.Split(' ');
+					var x = combo.Length;
+					var y = 1;
+
+					while (y != x)
+					{
+						DataProcess.KeyboardInterface.RouteSet(combo[y - 1].Substring(1), combo[y].Substring(1), "");
+						y++;
+					}
+
+
+				}		      //Route Set (No OverRide)
 				if (userInputString.Text.StartsWith("S") && keyboardSpecFunction.Text == @"OVR")
 				{
 					if (userInputString.Text.Contains(' ') == false) return;
