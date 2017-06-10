@@ -113,6 +113,31 @@ namespace SimSig_Keyboard_Interface.User_Interface
 				}));
 				try
 				{
+					if (element.StartsWith("tL"))
+					{
+						if (InvokeRequired)
+							Invoke(new MethodInvoker(delegate
+							{
+								ttDisplay.Items.Clear();
+							}));
+					}
+					if (element.StartsWith("tM"))
+					{
+						if (InvokeRequired)
+							Invoke(new MethodInvoker(delegate
+							{
+								ttDisplay.Items.Add(element.Substring(2));
+							}));
+					}
+					if (element.StartsWith("sB"))
+					{
+						if (InvokeRequired)
+							Invoke(new MethodInvoker(delegate
+							{
+								_berths.DataUpdateTcp(element.Substring(2, 8));
+								Refresh();
+							}));
+					}
 					if (element.StartsWith("sB"))
 					{
 						if (InvokeRequired)

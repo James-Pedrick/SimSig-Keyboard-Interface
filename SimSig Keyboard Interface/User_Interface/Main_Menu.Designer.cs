@@ -83,6 +83,7 @@
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.pageSetupDialog1 = new System.Windows.Forms.PageSetupDialog();
 			this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+			this.ttDisplay = new System.Windows.Forms.ListBox();
 			this.menuStrip.SuspendLayout();
 			this.tabControl.SuspendLayout();
 			this.debug.SuspendLayout();
@@ -297,7 +298,7 @@
 			this.debug.Controls.Add(this.debugTabs);
 			this.debug.Location = new System.Drawing.Point(4, 22);
 			this.debug.Name = "debug";
-			this.debug.Size = new System.Drawing.Size(590, 423);
+			this.debug.Size = new System.Drawing.Size(590, 477);
 			this.debug.TabIndex = 1;
 			this.debug.Text = "Debug";
 			this.debug.UseVisualStyleBackColor = true;
@@ -315,7 +316,7 @@
 			this.debugTabs.Multiline = true;
 			this.debugTabs.Name = "debugTabs";
 			this.debugTabs.SelectedIndex = 0;
-			this.debugTabs.Size = new System.Drawing.Size(590, 423);
+			this.debugTabs.Size = new System.Drawing.Size(590, 477);
 			this.debugTabs.TabIndex = 0;
 			// 
 			// debugBerths
@@ -323,7 +324,7 @@
 			this.debugBerths.Controls.Add(this.debugBerthView);
 			this.debugBerths.Location = new System.Drawing.Point(4, 22);
 			this.debugBerths.Name = "debugBerths";
-			this.debugBerths.Size = new System.Drawing.Size(582, 397);
+			this.debugBerths.Size = new System.Drawing.Size(582, 451);
 			this.debugBerths.TabIndex = 2;
 			this.debugBerths.Text = "Berths";
 			this.debugBerths.UseVisualStyleBackColor = true;
@@ -341,7 +342,7 @@
 			this.debugBerthView.Location = new System.Drawing.Point(0, 0);
 			this.debugBerthView.Name = "debugBerthView";
 			this.debugBerthView.ReadOnly = true;
-			this.debugBerthView.Size = new System.Drawing.Size(582, 397);
+			this.debugBerthView.Size = new System.Drawing.Size(582, 451);
 			this.debugBerthView.TabIndex = 3;
 			// 
 			// debugCalls
@@ -471,6 +472,7 @@
 			// keyboardInterface
 			// 
 			this.keyboardInterface.BackColor = System.Drawing.Color.Black;
+			this.keyboardInterface.Controls.Add(this.ttDisplay);
 			this.keyboardInterface.Controls.Add(this.label2);
 			this.keyboardInterface.Controls.Add(this.keyboardSpecFunction);
 			this.keyboardInterface.Controls.Add(this.label1);
@@ -486,7 +488,7 @@
 			// 
 			this.label2.AutoSize = true;
 			this.label2.ForeColor = System.Drawing.Color.Cyan;
-			this.label2.Location = new System.Drawing.Point(360, 97);
+			this.label2.Location = new System.Drawing.Point(19, 407);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(86, 65);
 			this.label2.TabIndex = 15;
@@ -511,7 +513,7 @@
 			// 
 			this.label1.AutoSize = true;
 			this.label1.ForeColor = System.Drawing.Color.Cyan;
-			this.label1.Location = new System.Drawing.Point(242, 97);
+			this.label1.Location = new System.Drawing.Point(111, 342);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(74, 130);
 			this.label1.TabIndex = 13;
@@ -672,6 +674,18 @@
 			this.notifyIcon1.Text = "notifyIcon1";
 			this.notifyIcon1.Visible = true;
 			// 
+			// ttDisplay
+			// 
+			this.ttDisplay.BackColor = System.Drawing.SystemColors.WindowText;
+			this.ttDisplay.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+			this.ttDisplay.ForeColor = System.Drawing.Color.Cyan;
+			this.ttDisplay.FormattingEnabled = true;
+			this.ttDisplay.ItemHeight = 16;
+			this.ttDisplay.Location = new System.Drawing.Point(22, 75);
+			this.ttDisplay.Name = "ttDisplay";
+			this.ttDisplay.Size = new System.Drawing.Size(536, 244);
+			this.ttDisplay.TabIndex = 16;
+			// 
 			// MainMenu
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -780,6 +794,7 @@
 		private System.Windows.Forms.TextBox keyboardSpecFunction;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.ListBox ttDisplay;
 	}
 }
 
