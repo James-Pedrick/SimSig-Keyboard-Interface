@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SimSig_Keyboard_Interface.Properties;
 using System.IO;
-using SimSig_Keyboard_Interface.Client.Berths;
-using SimSig_Keyboard_Interface.Client.Points;
-using SimSig_Keyboard_Interface.Client.Signals;
+using SimSig_Keyboard_Interface.DataProcess.Berths;
+using SimSig_Keyboard_Interface.DataProcess.Points;
+using SimSig_Keyboard_Interface.DataProcess.Signals;
+using SimSig_Keyboard_Interface.DataProcess.Track;
 
 // ************************************************************** Load Points config file ^^^
 
@@ -20,9 +17,10 @@ namespace SimSig_Keyboard_Interface.Data
 		private static int _pointsDecimal;
 		private static int _signalDecimal;
 		private static int _berthsDecimal;
+		private static int _tracksDecimal;
 
 
-		public static void Parse(ref BerthContainer berths, ref PointContainer points, ref SignalContainer signals) // ******************************************  brings points container ref
+		public static void Parse(ref BerthContainer berths, ref PointContainer points, ref SignalContainer signals, ref TrackContainer tracks) // ******************************************  brings points container ref
 		{
 
 
@@ -35,7 +33,7 @@ namespace SimSig_Keyboard_Interface.Data
 				_pointsDecimal = 0;
 				_signalDecimal = 0;
 				_berthsDecimal = 0;
-
+				_tracksDecimal = 0;
 
 
 				StreamReader xmlData = new StreamReader(Settings.Default.wi);
@@ -44,9 +42,13 @@ namespace SimSig_Keyboard_Interface.Data
 				{
 					if (itemId.Contains("TBER ID=")) Berths_Parse(ref berths, itemId);					//Berths
 					if (itemId.Contains("TPTS ID=")) Points_Parse(ref points, itemId);		//Points ******************** also passes container ref
-					if (itemId.Contains("TSIG ID=")) Signal_Parse(ref signals, itemId);		//Signals
+					if (itemId.Contains("TSIG ID=")) Signal_Parse(ref signals, itemId);     //Signals
+					if (itemId.Contains("TTCS ID="))
+						Track_Parse(ref tracks, itemId);     //Signals
+
+
 				}
-				
+
 
 			}
 			catch (Exception e)
@@ -77,13 +79,12 @@ namespace SimSig_Keyboard_Interface.Data
 
 			Console.WriteLine(itemId.PadRight(11, ' ') + pointsHex + _pointsDecimal);
 			
-			points.AddPoint(pointsHex, itemId);
+
+			points.AddPointXml(pointsHex, itemId);
 
 			_pointsDecimal++;
 		}
-
 		private static void Signal_Parse(ref SignalContainer signals, string itemId)
-			/*Want to take the specific item ID only, without the	*/
 		{
 			string signalHex = _signalDecimal.ToString("X").PadLeft(4, '0');
 
@@ -99,7 +100,7 @@ namespace SimSig_Keyboard_Interface.Data
 
 			Console.WriteLine(itemId.PadRight(11, ' ') + signalHex + _signalDecimal);
 			
-			signals.AddSignal(signalHex, itemId);
+			signals.AddSignalXml(signalHex, itemId);
 
 			_signalDecimal++;
 		}
@@ -125,5 +126,18 @@ namespace SimSig_Keyboard_Interface.Data
 			_berthsDecimal++;
 		}
 
+		private static void Track_Parse(ref TrackContainer tracks,string itemId)
+		{
+			string trackHex = _tracksDecimal.ToString("X").PadLeft(4, '0');
+
+			itemId = itemId.TrimStart(' ');
+			itemId = itemId.Remove(0, 10);
+			itemId = itemId.TrimEnd('>');
+			itemId = itemId.TrimEnd('"');
+
+			tracks.AddTrackXml(trackHex,itemId);
+
+			_tracksDecimal++;
+		}
 	}
 }

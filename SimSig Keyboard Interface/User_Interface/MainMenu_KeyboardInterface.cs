@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimSig_Keyboard_Interface.Client.TCP
+namespace SimSig_Keyboard_Interface.User_Interface
 {
-	class TcpMain
+	class Class1
 	{
 	}
 }
