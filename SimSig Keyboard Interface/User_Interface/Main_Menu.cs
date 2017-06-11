@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
@@ -631,7 +632,10 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 		private void saveRawToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			
+			using (FileStream S = File.Open("RawTCP.log", FileMode.OpenOrCreate))
+			using (StreamWriter st = new StreamWriter(S))
+				foreach(string aa in debugRawTcpDisplay.Items)
+					st.WriteLine(debugRawTcpDisplay.Items);
 		}
 
 		private void savePointsToolStripMenuItem_Click(object sender, EventArgs e)
