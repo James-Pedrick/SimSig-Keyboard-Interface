@@ -402,7 +402,17 @@ namespace SimSig_Keyboard_Interface.User_Interface
                 //Match headcode using regex and pull TT
                 if (ttrgx.IsMatch(userInputString.Text))
                 {
-                    Connection.SendData("tO " + userInputString.Text + "|");
+                    string[] substrings = userInputString.Text.Split(' ');
+
+                    foreach (string match in substrings)
+                    {
+                        if (ttrgx.IsMatch(match)){
+                            Connection.SendData("tO " + match + "|");
+                        }
+                        
+                    }
+
+                    //Connection.SendData("tO " + userInputString.Text + "|");
                     userInputString.Text = "";
                     keyboardSpecFunction.Text = "";
                 }
