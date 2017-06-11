@@ -134,7 +134,7 @@
 			this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.exitToolStripMenuItem});
 			this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-			this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+			this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 19);
 			this.fileToolStripMenuItem.Text = "File";
 			// 
 			// exitToolStripMenuItem
@@ -154,7 +154,7 @@
             this.signalListResetToolStripMenuItem,
             this.pointsListResetToolStripMenuItem});
 			this.dataToolStripMenuItem.Name = "dataToolStripMenuItem";
-			this.dataToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
+			this.dataToolStripMenuItem.Size = new System.Drawing.Size(43, 19);
 			this.dataToolStripMenuItem.Text = "Data";
 			// 
 			// loadSaveXML
@@ -203,7 +203,7 @@
             this.clientToolStripMenuItem,
             this.serialToolStripMenuItem});
 			this.networkToolStripMenuItem.Name = "networkToolStripMenuItem";
-			this.networkToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
+			this.networkToolStripMenuItem.Size = new System.Drawing.Size(64, 19);
 			this.networkToolStripMenuItem.Text = "Network";
 			// 
 			// clientToolStripMenuItem
@@ -251,7 +251,7 @@
             this.saveBerthsToolStripMenuItem,
             this.saveRawToolStripMenuItem});
 			this.logsToolStripMenuItem.Name = "logsToolStripMenuItem";
-			this.logsToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+			this.logsToolStripMenuItem.Size = new System.Drawing.Size(44, 19);
 			this.logsToolStripMenuItem.Text = "Logs";
 			// 
 			// savePointsToolStripMenuItem
@@ -289,7 +289,7 @@
 			this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tabControl.Font = new System.Drawing.Font("Consolas", 9F);
 			this.tabControl.Location = new System.Drawing.Point(0, 25);
-			this.tabControl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.tabControl.Margin = new System.Windows.Forms.Padding(4);
 			this.tabControl.Multiline = true;
 			this.tabControl.Name = "tabControl";
 			this.tabControl.SelectedIndex = 0;
@@ -299,10 +299,10 @@
 			// debug
 			// 
 			this.debug.Controls.Add(this.debugTabs);
-			this.debug.Location = new System.Drawing.Point(4, 27);
-			this.debug.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.debug.Location = new System.Drawing.Point(4, 23);
+			this.debug.Margin = new System.Windows.Forms.Padding(4);
 			this.debug.Name = "debug";
-			this.debug.Size = new System.Drawing.Size(789, 674);
+			this.debug.Size = new System.Drawing.Size(789, 678);
 			this.debug.TabIndex = 1;
 			this.debug.Text = "Debug";
 			this.debug.UseVisualStyleBackColor = true;
@@ -317,20 +317,20 @@
 			this.debugTabs.Controls.Add(this.debugTcpRaw);
 			this.debugTabs.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.debugTabs.Location = new System.Drawing.Point(0, 0);
-			this.debugTabs.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.debugTabs.Margin = new System.Windows.Forms.Padding(4);
 			this.debugTabs.Multiline = true;
 			this.debugTabs.Name = "debugTabs";
 			this.debugTabs.SelectedIndex = 0;
-			this.debugTabs.Size = new System.Drawing.Size(789, 674);
+			this.debugTabs.Size = new System.Drawing.Size(789, 678);
 			this.debugTabs.TabIndex = 0;
 			// 
 			// debugBerths
 			// 
 			this.debugBerths.Controls.Add(this.debugBerthView);
-			this.debugBerths.Location = new System.Drawing.Point(4, 27);
-			this.debugBerths.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.debugBerths.Location = new System.Drawing.Point(4, 23);
+			this.debugBerths.Margin = new System.Windows.Forms.Padding(4);
 			this.debugBerths.Name = "debugBerths";
-			this.debugBerths.Size = new System.Drawing.Size(781, 643);
+			this.debugBerths.Size = new System.Drawing.Size(781, 651);
 			this.debugBerths.TabIndex = 2;
 			this.debugBerths.Text = "Berths";
 			this.debugBerths.UseVisualStyleBackColor = true;
@@ -346,19 +346,19 @@
 			this.debugBerthView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.debugBerthView.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.debugBerthView.Location = new System.Drawing.Point(0, 0);
-			this.debugBerthView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.debugBerthView.Margin = new System.Windows.Forms.Padding(4);
 			this.debugBerthView.Name = "debugBerthView";
 			this.debugBerthView.ReadOnly = true;
-			this.debugBerthView.Size = new System.Drawing.Size(781, 643);
+			this.debugBerthView.Size = new System.Drawing.Size(781, 651);
 			this.debugBerthView.TabIndex = 3;
 			// 
 			// debugCalls
 			// 
 			this.debugCalls.Controls.Add(this.debugCallView);
-			this.debugCalls.Location = new System.Drawing.Point(4, 22);
-			this.debugCalls.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.debugCalls.Location = new System.Drawing.Point(4, 23);
+			this.debugCalls.Margin = new System.Windows.Forms.Padding(4);
 			this.debugCalls.Name = "debugCalls";
-			this.debugCalls.Size = new System.Drawing.Size(779, 634);
+			this.debugCalls.Size = new System.Drawing.Size(781, 647);
 			this.debugCalls.TabIndex = 5;
 			this.debugCalls.Text = "Calls";
 			this.debugCalls.UseVisualStyleBackColor = true;
@@ -374,20 +374,20 @@
 			this.debugCallView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.debugCallView.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.debugCallView.Location = new System.Drawing.Point(0, 0);
-			this.debugCallView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.debugCallView.Margin = new System.Windows.Forms.Padding(4);
 			this.debugCallView.Name = "debugCallView";
 			this.debugCallView.ReadOnly = true;
-			this.debugCallView.Size = new System.Drawing.Size(779, 634);
+			this.debugCallView.Size = new System.Drawing.Size(781, 647);
 			this.debugCallView.TabIndex = 3;
 			// 
 			// debugPoints
 			// 
 			this.debugPoints.Controls.Add(this.debugPointView);
-			this.debugPoints.Location = new System.Drawing.Point(4, 27);
-			this.debugPoints.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.debugPoints.Location = new System.Drawing.Point(4, 23);
+			this.debugPoints.Margin = new System.Windows.Forms.Padding(4);
 			this.debugPoints.Name = "debugPoints";
-			this.debugPoints.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-			this.debugPoints.Size = new System.Drawing.Size(781, 643);
+			this.debugPoints.Padding = new System.Windows.Forms.Padding(4);
+			this.debugPoints.Size = new System.Drawing.Size(781, 647);
 			this.debugPoints.TabIndex = 0;
 			this.debugPoints.Text = "Points";
 			this.debugPoints.UseVisualStyleBackColor = true;
@@ -403,19 +403,19 @@
 			this.debugPointView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.debugPointView.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.debugPointView.Location = new System.Drawing.Point(4, 4);
-			this.debugPointView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.debugPointView.Margin = new System.Windows.Forms.Padding(4);
 			this.debugPointView.Name = "debugPointView";
 			this.debugPointView.ReadOnly = true;
-			this.debugPointView.Size = new System.Drawing.Size(773, 635);
+			this.debugPointView.Size = new System.Drawing.Size(773, 639);
 			this.debugPointView.TabIndex = 3;
 			// 
 			// debugSignals
 			// 
 			this.debugSignals.Controls.Add(this.debugSignalView);
-			this.debugSignals.Location = new System.Drawing.Point(4, 27);
-			this.debugSignals.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.debugSignals.Location = new System.Drawing.Point(4, 23);
+			this.debugSignals.Margin = new System.Windows.Forms.Padding(4);
 			this.debugSignals.Name = "debugSignals";
-			this.debugSignals.Size = new System.Drawing.Size(781, 643);
+			this.debugSignals.Size = new System.Drawing.Size(781, 651);
 			this.debugSignals.TabIndex = 1;
 			this.debugSignals.Text = "Signals";
 			this.debugSignals.UseVisualStyleBackColor = true;
@@ -431,19 +431,19 @@
 			this.debugSignalView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.debugSignalView.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.debugSignalView.Location = new System.Drawing.Point(0, 0);
-			this.debugSignalView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.debugSignalView.Margin = new System.Windows.Forms.Padding(4);
 			this.debugSignalView.Name = "debugSignalView";
 			this.debugSignalView.ReadOnly = true;
-			this.debugSignalView.Size = new System.Drawing.Size(781, 643);
+			this.debugSignalView.Size = new System.Drawing.Size(781, 651);
 			this.debugSignalView.TabIndex = 3;
 			// 
 			// debugTracks
 			// 
 			this.debugTracks.Controls.Add(this.debugTrackView);
-			this.debugTracks.Location = new System.Drawing.Point(4, 27);
-			this.debugTracks.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.debugTracks.Location = new System.Drawing.Point(4, 23);
+			this.debugTracks.Margin = new System.Windows.Forms.Padding(4);
 			this.debugTracks.Name = "debugTracks";
-			this.debugTracks.Size = new System.Drawing.Size(781, 643);
+			this.debugTracks.Size = new System.Drawing.Size(781, 647);
 			this.debugTracks.TabIndex = 4;
 			this.debugTracks.Text = "Tracks";
 			this.debugTracks.UseVisualStyleBackColor = true;
@@ -459,17 +459,17 @@
 			this.debugTrackView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.debugTrackView.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.debugTrackView.Location = new System.Drawing.Point(0, 0);
-			this.debugTrackView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.debugTrackView.Margin = new System.Windows.Forms.Padding(4);
 			this.debugTrackView.Name = "debugTrackView";
 			this.debugTrackView.ReadOnly = true;
-			this.debugTrackView.Size = new System.Drawing.Size(781, 643);
+			this.debugTrackView.Size = new System.Drawing.Size(781, 647);
 			this.debugTrackView.TabIndex = 2;
 			// 
 			// debugTcpRaw
 			// 
 			this.debugTcpRaw.Controls.Add(this.debugRawTcpDisplay);
 			this.debugTcpRaw.Location = new System.Drawing.Point(4, 23);
-			this.debugTcpRaw.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.debugTcpRaw.Margin = new System.Windows.Forms.Padding(4);
 			this.debugTcpRaw.Name = "debugTcpRaw";
 			this.debugTcpRaw.Size = new System.Drawing.Size(781, 647);
 			this.debugTcpRaw.TabIndex = 3;
@@ -482,7 +482,7 @@
 			this.debugRawTcpDisplay.FormattingEnabled = true;
 			this.debugRawTcpDisplay.ItemHeight = 14;
 			this.debugRawTcpDisplay.Location = new System.Drawing.Point(0, 0);
-			this.debugRawTcpDisplay.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.debugRawTcpDisplay.Margin = new System.Windows.Forms.Padding(4);
 			this.debugRawTcpDisplay.Name = "debugRawTcpDisplay";
 			this.debugRawTcpDisplay.Size = new System.Drawing.Size(781, 647);
 			this.debugRawTcpDisplay.TabIndex = 4;
@@ -494,9 +494,9 @@
 			this.keyboardInterface.Controls.Add(this.keyboardSpecFunction);
 			this.keyboardInterface.Controls.Add(this.userInputString);
 			this.keyboardInterface.Location = new System.Drawing.Point(4, 23);
-			this.keyboardInterface.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.keyboardInterface.Margin = new System.Windows.Forms.Padding(4);
 			this.keyboardInterface.Name = "keyboardInterface";
-			this.keyboardInterface.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.keyboardInterface.Padding = new System.Windows.Forms.Padding(4);
 			this.keyboardInterface.Size = new System.Drawing.Size(789, 678);
 			this.keyboardInterface.TabIndex = 0;
 			this.keyboardInterface.Text = "Keyboard Interface";
@@ -511,10 +511,10 @@
 			this.ttDisplay.ForeColor = System.Drawing.Color.Cyan;
 			this.ttDisplay.FormattingEnabled = true;
 			this.ttDisplay.ItemHeight = 18;
-			this.ttDisplay.Location = new System.Drawing.Point(4, 78);
-			this.ttDisplay.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.ttDisplay.Location = new System.Drawing.Point(4, 60);
+			this.ttDisplay.Margin = new System.Windows.Forms.Padding(4);
 			this.ttDisplay.Name = "ttDisplay";
-			this.ttDisplay.Size = new System.Drawing.Size(777, 580);
+			this.ttDisplay.Size = new System.Drawing.Size(777, 598);
 			this.ttDisplay.TabIndex = 16;
 			// 
 			// keyboardSpecFunction
@@ -523,8 +523,8 @@
 			this.keyboardSpecFunction.Cursor = System.Windows.Forms.Cursors.Arrow;
 			this.keyboardSpecFunction.Font = new System.Drawing.Font("Consolas", 11F);
 			this.keyboardSpecFunction.ForeColor = System.Drawing.Color.Cyan;
-			this.keyboardSpecFunction.Location = new System.Drawing.Point(12, 22);
-			this.keyboardSpecFunction.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.keyboardSpecFunction.Location = new System.Drawing.Point(12, 16);
+			this.keyboardSpecFunction.Margin = new System.Windows.Forms.Padding(4);
 			this.keyboardSpecFunction.MaxLength = 3;
 			this.keyboardSpecFunction.Name = "keyboardSpecFunction";
 			this.keyboardSpecFunction.ReadOnly = true;
@@ -535,12 +535,14 @@
 			// 
 			// userInputString
 			// 
+			this.userInputString.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.userInputString.BackColor = System.Drawing.SystemColors.InfoText;
 			this.userInputString.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
 			this.userInputString.Font = new System.Drawing.Font("Consolas", 11F);
 			this.userInputString.ForeColor = System.Drawing.Color.Cyan;
-			this.userInputString.Location = new System.Drawing.Point(89, 22);
-			this.userInputString.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.userInputString.Location = new System.Drawing.Point(88, 16);
+			this.userInputString.Margin = new System.Windows.Forms.Padding(4);
 			this.userInputString.MinimumSize = new System.Drawing.Size(4, 25);
 			this.userInputString.Name = "userInputString";
 			this.userInputString.Size = new System.Drawing.Size(685, 25);
@@ -551,10 +553,10 @@
 			// 
 			this.phoneCalls.BackColor = System.Drawing.Color.Black;
 			this.phoneCalls.Controls.Add(this.splitContainer2);
-			this.phoneCalls.Location = new System.Drawing.Point(4, 22);
-			this.phoneCalls.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.phoneCalls.Location = new System.Drawing.Point(4, 23);
+			this.phoneCalls.Margin = new System.Windows.Forms.Padding(4);
 			this.phoneCalls.Name = "phoneCalls";
-			this.phoneCalls.Size = new System.Drawing.Size(789, 670);
+			this.phoneCalls.Size = new System.Drawing.Size(789, 678);
 			this.phoneCalls.TabIndex = 2;
 			this.phoneCalls.Text = "Phone";
 			// 
@@ -565,7 +567,7 @@
 			this.splitContainer2.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
 			this.splitContainer2.IsSplitterFixed = true;
 			this.splitContainer2.Location = new System.Drawing.Point(0, 0);
-			this.splitContainer2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.splitContainer2.Margin = new System.Windows.Forms.Padding(4);
 			this.splitContainer2.Name = "splitContainer2";
 			// 
 			// splitContainer2.Panel1
@@ -575,7 +577,7 @@
 			// splitContainer2.Panel2
 			// 
 			this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
-			this.splitContainer2.Size = new System.Drawing.Size(789, 670);
+			this.splitContainer2.Size = new System.Drawing.Size(789, 678);
 			this.splitContainer2.SplitterDistance = 198;
 			this.splitContainer2.SplitterWidth = 5;
 			this.splitContainer2.TabIndex = 8;
@@ -585,7 +587,7 @@
 			this.splitContainer4.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.splitContainer4.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
 			this.splitContainer4.Location = new System.Drawing.Point(0, 0);
-			this.splitContainer4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.splitContainer4.Margin = new System.Windows.Forms.Padding(4);
 			this.splitContainer4.Name = "splitContainer4";
 			this.splitContainer4.Orientation = System.Windows.Forms.Orientation.Horizontal;
 			// 
@@ -596,8 +598,8 @@
 			// splitContainer4.Panel2
 			// 
 			this.splitContainer4.Panel2.Controls.Add(this.callRespond);
-			this.splitContainer4.Size = new System.Drawing.Size(194, 666);
-			this.splitContainer4.SplitterDistance = 588;
+			this.splitContainer4.Size = new System.Drawing.Size(194, 674);
+			this.splitContainer4.SplitterDistance = 594;
 			this.splitContainer4.SplitterWidth = 6;
 			this.splitContainer4.TabIndex = 9;
 			// 
@@ -614,7 +616,7 @@
 			this.callers.Location = new System.Drawing.Point(0, 0);
 			this.callers.Margin = new System.Windows.Forms.Padding(0);
 			this.callers.Name = "callers";
-			this.callers.Size = new System.Drawing.Size(194, 588);
+			this.callers.Size = new System.Drawing.Size(194, 594);
 			this.callers.TabIndex = 4;
 			this.callers.SelectedIndexChanged += new System.EventHandler(this.Callers_SelectedIndexChanged_1);
 			// 
@@ -623,9 +625,9 @@
 			this.callRespond.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.callRespond.Font = new System.Drawing.Font("Consolas", 13F);
 			this.callRespond.Location = new System.Drawing.Point(0, 0);
-			this.callRespond.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.callRespond.Margin = new System.Windows.Forms.Padding(4);
 			this.callRespond.Name = "callRespond";
-			this.callRespond.Size = new System.Drawing.Size(194, 72);
+			this.callRespond.Size = new System.Drawing.Size(194, 74);
 			this.callRespond.TabIndex = 5;
 			this.callRespond.Text = "Respond";
 			this.callRespond.UseVisualStyleBackColor = true;
@@ -637,7 +639,7 @@
 			this.splitContainer3.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
 			this.splitContainer3.IsSplitterFixed = true;
 			this.splitContainer3.Location = new System.Drawing.Point(0, 0);
-			this.splitContainer3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.splitContainer3.Margin = new System.Windows.Forms.Padding(4);
 			this.splitContainer3.Name = "splitContainer3";
 			this.splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
 			// 
@@ -648,7 +650,7 @@
 			// splitContainer3.Panel2
 			// 
 			this.splitContainer3.Panel2.Controls.Add(this.callResponses);
-			this.splitContainer3.Size = new System.Drawing.Size(582, 666);
+			this.splitContainer3.Size = new System.Drawing.Size(582, 674);
 			this.splitContainer3.SplitterDistance = 239;
 			this.splitContainer3.SplitterWidth = 6;
 			this.splitContainer3.TabIndex = 0;
@@ -675,9 +677,9 @@
 			this.callResponses.FormattingEnabled = true;
 			this.callResponses.ItemHeight = 20;
 			this.callResponses.Location = new System.Drawing.Point(0, 0);
-			this.callResponses.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.callResponses.Margin = new System.Windows.Forms.Padding(4);
 			this.callResponses.Name = "callResponses";
-			this.callResponses.Size = new System.Drawing.Size(582, 421);
+			this.callResponses.Size = new System.Drawing.Size(582, 429);
 			this.callResponses.TabIndex = 0;
 			// 
 			// loadSaveGameXML
@@ -708,7 +710,7 @@
 			this.Font = new System.Drawing.Font("Consolas", 11F);
 			this.KeyPreview = true;
 			this.MainMenuStrip = this.menuStrip;
-			this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.Margin = new System.Windows.Forms.Padding(4);
 			this.Name = "MainMenu";
 			this.Text = "SimSig Keyboard Interface";
 			this.Load += new System.EventHandler(this.MainMenu_Load);
