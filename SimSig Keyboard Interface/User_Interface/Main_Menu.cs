@@ -532,10 +532,19 @@ namespace SimSig_Keyboard_Interface.User_Interface
 				}
 			);
 			tcpConnectThread.Start();
-		}
+            disconnectToolStripMenuItem.Enabled = true;
+        }
 
+        private void DisconnectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
 
-		private void SendToSim_Click(object sender, EventArgs e)
+            connectToolStripMenuItem.Enabled = true;
+            Connection.Disconnect();
+            disconnectToolStripMenuItem.Enabled = false;
+
+        }
+
+        private void SendToSim_Click(object sender, EventArgs e)
 		{
 			Connection.SendData(userInputString.Text);
 		}

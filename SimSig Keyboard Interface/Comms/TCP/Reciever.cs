@@ -14,14 +14,17 @@ namespace SimSig_Keyboard_Interface.Comms.TCP
 			internal Receiver(NetworkStream stream)
 			{
 				_stream = stream;
-				var thread = new Thread(Run);
+				thread = new Thread(Run);
 				thread.Start();
 			}
 
             private void Run()
             {
+                bool running = true;
+
                 try
                 {
+
                     var buffer = new byte[1024];
 
                     int bytesRead;
@@ -29,43 +32,59 @@ namespace SimSig_Keyboard_Interface.Comms.TCP
                     var charBuffer = new char[1024];
 
                     string temp = "";
-					
-                    while ((bytesRead = _stream.Read(buffer, 0, buffer.Length)) != 0)
+
+                    while (running)
                     {
-                        var charsRead = Encoding.ASCII.GetChars(buffer, 0, bytesRead, charBuffer, 0);
+                        if ((bytesRead = _stream.Read(buffer, 0, buffer.Length)) == 0)
+                        { Thread.Sleep(20); }
+                        else
+                        {
 
-                        string msg = new string(charBuffer, 0, charsRead);
-                        if (temp != "")
-                        {
-                            msg = temp + msg;
-                            temp = "";
-                        }
-                        
-                        string[] receivedStrings = msg.Split('|');
-                        if (charBuffer[charsRead - 1] != '|')
-                        {
-                            temp = receivedStrings[receivedStrings.Length - 1];
-                            receivedStrings[receivedStrings.Length - 1] = null;
-                        }
-                        foreach (string element in receivedStrings)
-                        {
-                            
-                            if (element != null)
+
+                            var charsRead = Encoding.ASCII.GetChars(buffer, 0, bytesRead, charBuffer, 0);
+
+                            string msg = new string(charBuffer, 0, charsRead);
+                            if (temp != "")
                             {
-                                MsgEventArgs m = new MsgEventArgs() { Msg = element };
-                                OnDataReceived(this, m);
-
+                                msg = temp + msg;
+                                temp = "";
                             }
-                        }
 
-                        Thread.Sleep(20);
+                            string[] receivedStrings = msg.Split('|');
+                            if (charBuffer[charsRead - 1] != '|')
+                            {
+                                temp = receivedStrings[receivedStrings.Length - 1];
+                                receivedStrings[receivedStrings.Length - 1] = null;
+                            }
+                            foreach (string element in receivedStrings)
+                            {
+
+                                if (element != null)
+                                {
+                                    MsgEventArgs m = new MsgEventArgs() { Msg = element };
+                                    OnDataReceived(this, m);
+
+                                }
+                            }
+
+                            Thread.Sleep(20);
+                        }
                     }
-					
+
                 }
-                catch(Exception e)
+                catch (ThreadInterruptedException)
+                {
+                    running = false;
+                }
+                catch (ThreadAbortException)
+                {
+                    running = false;
+                }
+                catch (Exception e)
                 {
                     Console.WriteLine(e);
                 }
+
             }
             private void OnDataReceived(object sender, MsgEventArgs e)
             {
@@ -77,6 +96,20 @@ namespace SimSig_Keyboard_Interface.Comms.TCP
                 
             }
             private NetworkStream _stream;
+            private Thread thread;
+            public void Close()
+            {
+                thread.Interrupt();
+                if(thread.Join(TimeSpan.FromSeconds(5)))
+                {
+                    Console.WriteLine("Closing correctly");
+                }
+                else
+                {
+                    thread.Abort();
+                    Console.WriteLine("Force Closed");
+                }
+            }
         }
 
 

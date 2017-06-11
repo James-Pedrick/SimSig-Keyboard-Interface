@@ -61,6 +61,12 @@ namespace SimSig_Keyboard_Interface.Comms.TCP
 
 		}
 
+        public void Disconnect()
+        {
+            _receiver.Close();
+            _stream.Close();
+            _client.Close();
+        }
 
 		private System.Net.Sockets.TcpClient _client;
 		private NetworkStream _stream;
