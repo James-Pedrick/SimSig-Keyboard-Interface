@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{4AD45A6E-A948-4F05-A02B-62D1C1059640}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>SimSig_Keyboard_Interface</RootNamespace>
     <AssemblyName>SimSig Keyboard Interface</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
@@ -96,6 +96,10 @@
     <Compile Include="DataProcess\Calls\CallContainer.cs" />
     <Compile Include="DataProcess\Calls\Calls.cs" />
     <Compile Include="DataProcess\DataReceived.cs" />
+    <Compile Include="DataProcess\Flags\FlagContainer.cs" />
+    <Compile Include="DataProcess\Flags\Flags.cs" />
+    <Compile Include="DataProcess\GroundFrames\FrameContainer.cs" />
+    <Compile Include="DataProcess\GroundFrames\Frames.cs" />
     <Compile Include="DataProcess\KeyboardInterface.cs" />
     <Compile Include="DataProcess\Points\PointContainer.cs" />
     <Compile Include="DataProcess\Points\Points.cs" />
@@ -104,6 +108,8 @@
     <Compile Include="Comms\TCP\TCP_Client.cs" />
     <Compile Include="Comms\TCP\Reciever.cs" />
     <Compile Include="Comms\TCP\Sender.cs" />
+    <Compile Include="DataProcess\Slots\SlotContainer.cs" />
+    <Compile Include="DataProcess\Slots\Slots.cs" />
     <Compile Include="DataProcess\Track\Tracks.cs" />
     <Compile Include="DataProcess\Track\TrackContainer.cs" />
     <Compile Include="Data\SaveGameParser.cs" />
