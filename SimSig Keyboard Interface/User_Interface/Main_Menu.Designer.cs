@@ -215,59 +215,59 @@
 			this.networkToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.clientToolStripMenuItem,
             this.serialToolStripMenuItem});
-			this.networkToolStripMenuItem.Name = "networkToolStripMenuItem";
-			this.networkToolStripMenuItem.Size = new System.Drawing.Size(64, 19);
-			this.networkToolStripMenuItem.Text = "Network";
-			// 
-			// clientToolStripMenuItem
-			// 
-			this.clientToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.networkToolStripMenuItem.Name = "networkToolStripMenuItem";
+            this.networkToolStripMenuItem.Size = new System.Drawing.Size(64, 19);
+            this.networkToolStripMenuItem.Text = "Network";
+            // 
+            // clientToolStripMenuItem
+            // 
+            this.clientToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.connectToolStripMenuItem,
             this.requestDataToolStripMenuItem,
             this.disconnectToolStripMenuItem});
-			this.clientToolStripMenuItem.Name = "clientToolStripMenuItem";
-			this.clientToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
-			this.clientToolStripMenuItem.Text = "Client";
-			// 
-			// connectToolStripMenuItem
-			// 
-			this.connectToolStripMenuItem.Name = "connectToolStripMenuItem";
-			this.connectToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
-			this.connectToolStripMenuItem.Text = "Connect";
-			this.connectToolStripMenuItem.Click += new System.EventHandler(this.ConnectToolStripMenuItem_Click);
-			// 
-			// requestDataToolStripMenuItem
-			// 
-			this.requestDataToolStripMenuItem.Name = "requestDataToolStripMenuItem";
-			this.requestDataToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
-			this.requestDataToolStripMenuItem.Text = "Request Data";
-			// 
-			// disconnectToolStripMenuItem
-			// 
-			this.disconnectToolStripMenuItem.Enabled = false;
-			this.disconnectToolStripMenuItem.Name = "disconnectToolStripMenuItem";
-			this.disconnectToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
-			this.disconnectToolStripMenuItem.Text = "Disconnect";
-			this.disconnectToolStripMenuItem.Click += new System.EventHandler(this.DisconnectToolStripMenuItem_Click);
-			// 
-			// serialToolStripMenuItem
-			// 
-			this.serialToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.clientToolStripMenuItem.Name = "clientToolStripMenuItem";
+            this.clientToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
+            this.clientToolStripMenuItem.Text = "Client";
+            // 
+            // connectToolStripMenuItem
+            // 
+            this.connectToolStripMenuItem.Name = "connectToolStripMenuItem";
+            this.connectToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.connectToolStripMenuItem.Text = "Connect";
+            this.connectToolStripMenuItem.Click += new System.EventHandler(this.ConnectToolStripMenuItem_Click);
+            // 
+            // requestDataToolStripMenuItem
+            // 
+            this.requestDataToolStripMenuItem.Name = "requestDataToolStripMenuItem";
+            this.requestDataToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.requestDataToolStripMenuItem.Text = "Request Data";
+            // 
+            // disconnectToolStripMenuItem
+            // 
+            this.disconnectToolStripMenuItem.Enabled = false;
+            this.disconnectToolStripMenuItem.Name = "disconnectToolStripMenuItem";
+            this.disconnectToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.disconnectToolStripMenuItem.Text = "Disconnect";
+            this.disconnectToolStripMenuItem.Click += new System.EventHandler(this.DisconnectToolStripMenuItem_Click);
+            // 
+            // serialToolStripMenuItem
+            // 
+            this.serialToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.connectToolStripMenuItem1});
-			this.serialToolStripMenuItem.Name = "serialToolStripMenuItem";
-			this.serialToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
-			this.serialToolStripMenuItem.Text = "Serial";
-			// 
-			// connectToolStripMenuItem1
-			// 
-			this.connectToolStripMenuItem1.Name = "connectToolStripMenuItem1";
-			this.connectToolStripMenuItem1.Size = new System.Drawing.Size(119, 22);
-			this.connectToolStripMenuItem1.Text = "Connect";
-			this.connectToolStripMenuItem1.Click += new System.EventHandler(this.ConnectToolStripMenuItem1_Click);
-			// 
-			// logsToolStripMenuItem
-			// 
-			this.logsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.serialToolStripMenuItem.Name = "serialToolStripMenuItem";
+            this.serialToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
+            this.serialToolStripMenuItem.Text = "Serial";
+            // 
+            // connectToolStripMenuItem1
+            // 
+            this.connectToolStripMenuItem1.Name = "connectToolStripMenuItem1";
+            this.connectToolStripMenuItem1.Size = new System.Drawing.Size(119, 22);
+            this.connectToolStripMenuItem1.Text = "Connect";
+            this.connectToolStripMenuItem1.Click += new System.EventHandler(this.ConnectToolStripMenuItem1_Click);
+            // 
+            // logsToolStripMenuItem
+            // 
+            this.logsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.savePointsToolStripMenuItem,
             this.saveSignalsToolStripMenuItem,
             this.saveBerthsToolStripMenuItem,
