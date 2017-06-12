@@ -315,7 +315,7 @@
 			this.tabControl.Multiline = true;
 			this.tabControl.Name = "tabControl";
 			this.tabControl.SelectedIndex = 0;
-			this.tabControl.Size = new System.Drawing.Size(797, 705);
+			this.tabControl.Size = new System.Drawing.Size(797, 351);
 			this.tabControl.TabIndex = 1;
 			// 
 			// debug
@@ -324,7 +324,7 @@
 			this.debug.Location = new System.Drawing.Point(4, 23);
 			this.debug.Margin = new System.Windows.Forms.Padding(4);
 			this.debug.Name = "debug";
-			this.debug.Size = new System.Drawing.Size(789, 678);
+			this.debug.Size = new System.Drawing.Size(789, 324);
 			this.debug.TabIndex = 1;
 			this.debug.Text = "Debug";
 			this.debug.UseVisualStyleBackColor = true;
@@ -346,7 +346,7 @@
 			this.debugTabs.Multiline = true;
 			this.debugTabs.Name = "debugTabs";
 			this.debugTabs.SelectedIndex = 0;
-			this.debugTabs.Size = new System.Drawing.Size(789, 678);
+			this.debugTabs.Size = new System.Drawing.Size(789, 324);
 			this.debugTabs.TabIndex = 0;
 			// 
 			// debugBerths
@@ -355,7 +355,7 @@
 			this.debugBerths.Location = new System.Drawing.Point(4, 23);
 			this.debugBerths.Margin = new System.Windows.Forms.Padding(4);
 			this.debugBerths.Name = "debugBerths";
-			this.debugBerths.Size = new System.Drawing.Size(781, 651);
+			this.debugBerths.Size = new System.Drawing.Size(781, 297);
 			this.debugBerths.TabIndex = 2;
 			this.debugBerths.Text = "Berths";
 			this.debugBerths.UseVisualStyleBackColor = true;
@@ -367,14 +367,14 @@
 			this.debugBerthView.AllowUserToOrderColumns = true;
 			this.debugBerthView.AllowUserToResizeColumns = false;
 			this.debugBerthView.AllowUserToResizeRows = false;
-			this.debugBerthView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+			this.debugBerthView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
 			this.debugBerthView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.debugBerthView.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.debugBerthView.Location = new System.Drawing.Point(0, 0);
 			this.debugBerthView.Margin = new System.Windows.Forms.Padding(4);
 			this.debugBerthView.Name = "debugBerthView";
 			this.debugBerthView.ReadOnly = true;
-			this.debugBerthView.Size = new System.Drawing.Size(781, 651);
+			this.debugBerthView.Size = new System.Drawing.Size(781, 297);
 			this.debugBerthView.TabIndex = 3;
 			// 
 			// debugGroundFrames
@@ -395,7 +395,7 @@
 			this.debugCallView.AllowUserToOrderColumns = true;
 			this.debugCallView.AllowUserToResizeColumns = false;
 			this.debugCallView.AllowUserToResizeRows = false;
-			this.debugCallView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+			this.debugCallView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
 			this.debugCallView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.debugCallView.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.debugCallView.Location = new System.Drawing.Point(0, 0);
@@ -424,7 +424,7 @@
 			this.debugPointView.AllowUserToOrderColumns = true;
 			this.debugPointView.AllowUserToResizeColumns = false;
 			this.debugPointView.AllowUserToResizeRows = false;
-			this.debugPointView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+			this.debugPointView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
 			this.debugPointView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.debugPointView.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.debugPointView.Location = new System.Drawing.Point(4, 4);
@@ -452,7 +452,7 @@
 			this.debugSignalView.AllowUserToOrderColumns = true;
 			this.debugSignalView.AllowUserToResizeColumns = false;
 			this.debugSignalView.AllowUserToResizeRows = false;
-			this.debugSignalView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+			this.debugSignalView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
 			this.debugSignalView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.debugSignalView.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.debugSignalView.Location = new System.Drawing.Point(0, 0);
@@ -480,7 +480,7 @@
 			this.debugTrackView.AllowUserToOrderColumns = true;
 			this.debugTrackView.AllowUserToResizeColumns = false;
 			this.debugTrackView.AllowUserToResizeRows = false;
-			this.debugTrackView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+			this.debugTrackView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
 			this.debugTrackView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.debugTrackView.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.debugTrackView.Location = new System.Drawing.Point(0, 0);
@@ -529,7 +529,7 @@
 			this.debugSlotView.AllowUserToOrderColumns = true;
 			this.debugSlotView.AllowUserToResizeColumns = false;
 			this.debugSlotView.AllowUserToResizeRows = false;
-			this.debugSlotView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+			this.debugSlotView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
 			this.debugSlotView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.debugSlotView.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.debugSlotView.Location = new System.Drawing.Point(0, 0);
@@ -556,7 +556,7 @@
 			this.debugFrameView.AllowUserToOrderColumns = true;
 			this.debugFrameView.AllowUserToResizeColumns = false;
 			this.debugFrameView.AllowUserToResizeRows = false;
-			this.debugFrameView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+			this.debugFrameView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
 			this.debugFrameView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.debugFrameView.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.debugFrameView.Location = new System.Drawing.Point(0, 0);
@@ -576,7 +576,7 @@
 			this.keyboardInterface.Margin = new System.Windows.Forms.Padding(4);
 			this.keyboardInterface.Name = "keyboardInterface";
 			this.keyboardInterface.Padding = new System.Windows.Forms.Padding(4);
-			this.keyboardInterface.Size = new System.Drawing.Size(789, 678);
+			this.keyboardInterface.Size = new System.Drawing.Size(789, 324);
 			this.keyboardInterface.TabIndex = 0;
 			this.keyboardInterface.Text = "Keyboard Interface";
 			// 
@@ -593,7 +593,7 @@
 			this.ttDisplay.Location = new System.Drawing.Point(4, 60);
 			this.ttDisplay.Margin = new System.Windows.Forms.Padding(4);
 			this.ttDisplay.Name = "ttDisplay";
-			this.ttDisplay.Size = new System.Drawing.Size(777, 598);
+			this.ttDisplay.Size = new System.Drawing.Size(777, 238);
 			this.ttDisplay.TabIndex = 16;
 			// 
 			// keyboardSpecFunction
@@ -626,6 +626,7 @@
 			this.userInputString.Name = "userInputString";
 			this.userInputString.Size = new System.Drawing.Size(685, 25);
 			this.userInputString.TabIndex = 0;
+			this.userInputString.TextChanged += new System.EventHandler(this.userInputString_TextChanged);
 			this.userInputString.KeyDown += new System.Windows.Forms.KeyEventHandler(this.UserInputString_KeyDown);
 			// 
 			// phoneCalls
@@ -795,7 +796,8 @@
 			this.debugFlagView.AllowUserToOrderColumns = true;
 			this.debugFlagView.AllowUserToResizeColumns = false;
 			this.debugFlagView.AllowUserToResizeRows = false;
-			this.debugFlagView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+			this.debugFlagView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+			this.debugFlagView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
 			this.debugFlagView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.debugFlagView.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.debugFlagView.Location = new System.Drawing.Point(0, 0);
@@ -809,7 +811,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(797, 730);
+			this.ClientSize = new System.Drawing.Size(797, 376);
 			this.ControlBox = false;
 			this.Controls.Add(this.tabControl);
 			this.Controls.Add(this.menuStrip);

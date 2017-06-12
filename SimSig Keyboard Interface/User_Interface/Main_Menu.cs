@@ -172,6 +172,15 @@ namespace SimSig_Keyboard_Interface.User_Interface
 								Refresh();
 							}));
 					}
+					if (element.StartsWith("sL"))
+					{
+						if (InvokeRequired)
+							Invoke(new MethodInvoker(delegate
+							{
+								_flags.AddFlagTcp(element.Substring(2));
+								Refresh();
+							}));
+					}
 					if (element.StartsWith("sP"))
 					{
 						if (InvokeRequired)
@@ -660,6 +669,11 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		}
 
 		private void savePointsToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void userInputString_TextChanged(object sender, EventArgs e)
 		{
 
 		}
