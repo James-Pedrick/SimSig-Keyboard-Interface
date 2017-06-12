@@ -16,6 +16,7 @@ using System.Runtime.CompilerServices;
 using SimSig_Keyboard_Interface.Comms.RS232;
 using SimSig_Keyboard_Interface.Data;
 using System.Text.RegularExpressions;
+using SimSig_Keyboard_Interface.DataProcess.Flags;
 using SimSig_Keyboard_Interface.DataProcess.GroundFrames;
 using SimSig_Keyboard_Interface.DataProcess.Slots;
 
@@ -43,6 +44,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 
 		public static BerthContainer _berths = new BerthContainer();
+		public static FlagContainer _flags = new FlagContainer();
 		public static FrameContainer _frames = new FrameContainer();
 		public static PointContainer _points = new PointContainer();
 		public static SignalContainer _signals = new SignalContainer();
@@ -64,6 +66,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 			debugBerthView.DataSource = _berths.BerthList;
 			debugCallView.DataSource = _calls.CallList;
+			debugFlagView.DataSource = _flags.FlagList;
 			debugFrameView.DataSource = _frames.FrameList;
 			debugPointView.DataSource = _points.PointList;
 			debugSignalView.DataSource = _signals.SignalList;
@@ -102,7 +105,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 				if (loadSaveGameXML.ShowDialog() == DialogResult.OK)
 					Settings.Default.wi = loadSaveGameXML.InitialDirectory + loadSaveGameXML.FileName;
 				SaveGameParser.Parse(ref _berths, ref _points, ref _signals,
-					ref _tracks, ref _slots, ref _frames); //Parse load with ref to points container
+					ref _tracks, ref _slots, ref _frames, ref _flags); //Parse load with ref to points container
 
 			}
 			Refresh();

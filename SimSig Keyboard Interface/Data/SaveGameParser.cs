@@ -2,6 +2,7 @@
 using SimSig_Keyboard_Interface.Properties;
 using System.IO;
 using SimSig_Keyboard_Interface.DataProcess.Berths;
+using SimSig_Keyboard_Interface.DataProcess.Flags;
 using SimSig_Keyboard_Interface.DataProcess.GroundFrames;
 using SimSig_Keyboard_Interface.DataProcess.Points;
 using SimSig_Keyboard_Interface.DataProcess.Signals;
@@ -22,6 +23,7 @@ namespace SimSig_Keyboard_Interface.Data
 		private static int _signalDecimal;
 		private static int _slotDecimal;
 		private static int _tracksDecimal;
+		private static int _flagHex;
 
 
 		public static void Parse(
@@ -30,7 +32,8 @@ namespace SimSig_Keyboard_Interface.Data
 			ref SignalContainer signals,
 			ref TrackContainer tracks,
 			ref SlotContainer slots,
-			ref FrameContainer frames)
+			ref FrameContainer frames,
+			ref FlagContainer flags)
 		// ******************************************  brings points container ref
 		{
 
@@ -55,7 +58,8 @@ namespace SimSig_Keyboard_Interface.Data
 				while ((itemId = xmlData.ReadLine()) != null)
 				{
 					if (itemId.Contains("TBER ID=")) Berths_Parse(ref berths, itemId);      //Berths
-					if (itemId.Contains("TFRM ID=")) Frame_Parse(ref frames, itemId);		//Ground Frames
+					if (itemId.Contains("TFLG ID=")) Flag_Parse(ref flags, itemId);			//Flags
+					if (itemId.Contains("TFRM ID=")) Frame_Parse(ref frames, itemId);       //Ground Frames
 					if (itemId.Contains("TPTS ID=")) Points_Parse(ref points, itemId);      //Points ******************** also passes container ref
 					if (itemId.Contains("TSIG ID=")) Signal_Parse(ref signals, itemId);     //Signals
 					if (itemId.Contains("TSlot ID=")) Slot_Parse(ref slots, itemId);        //Slots 
@@ -175,6 +179,18 @@ namespace SimSig_Keyboard_Interface.Data
 			itemId = itemId.TrimEnd('"');
 
 			frame.AddFrameXml(frameHex, itemId);
+			_frameDecimal++;
+		}
+		private static void Flag_Parse(ref FlagContainer flag, string itemId)
+		{
+			string flagHex = _frameDecimal.ToString("X").PadLeft(4, '0');
+
+			itemId = itemId.TrimStart(' ');
+			itemId = itemId.Remove(0, 11);
+
+			itemId = itemId.Substring(0, itemId.Length - 3);
+
+			flag.AddFlagXml(flagHex, itemId);
 			_frameDecimal++;
 		}
 	}

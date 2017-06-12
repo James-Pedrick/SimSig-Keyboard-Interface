@@ -96,6 +96,8 @@
     <Compile Include="DataProcess\Calls\CallContainer.cs" />
     <Compile Include="DataProcess\Calls\Calls.cs" />
     <Compile Include="DataProcess\DataReceived.cs" />
+    <Compile Include="DataProcess\Flags\FlagContainer.cs" />
+    <Compile Include="DataProcess\Flags\Flags.cs" />
     <Compile Include="DataProcess\GroundFrames\FrameContainer.cs" />
     <Compile Include="DataProcess\GroundFrames\Frames.cs" />
     <Compile Include="DataProcess\KeyboardInterface.cs" />
