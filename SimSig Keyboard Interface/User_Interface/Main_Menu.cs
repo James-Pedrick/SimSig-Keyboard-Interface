@@ -16,6 +16,8 @@ using System.Runtime.CompilerServices;
 using SimSig_Keyboard_Interface.Comms.RS232;
 using SimSig_Keyboard_Interface.Data;
 using System.Text.RegularExpressions;
+using SimSig_Keyboard_Interface.DataProcess.GroundFrames;
+using SimSig_Keyboard_Interface.DataProcess.Slots;
 
 // ************************************************************** Load Points config file ^^^
 
@@ -41,10 +43,13 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 
 		public static BerthContainer _berths = new BerthContainer();
+		public static FrameContainer _frames = new FrameContainer();
 		public static PointContainer _points = new PointContainer();
 		public static SignalContainer _signals = new SignalContainer();
+		public static SlotContainer _slots = new SlotContainer();
 		public static TrackContainer _tracks = new TrackContainer();
 		private static CallContainer _calls = new CallContainer();
+		
 
 
 
@@ -55,11 +60,15 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		{
 			InitializeComponent();
 
+
+
 			debugBerthView.DataSource = _berths.BerthList;
+			debugCallView.DataSource = _calls.CallList;
+			debugFrameView.DataSource = _frames.FrameList;
 			debugPointView.DataSource = _points.PointList;
 			debugSignalView.DataSource = _signals.SignalList;
+			debugSlotView.DataSource = _slots.SlotList;
 			debugTrackView.DataSource = _tracks.TrackList;
-			debugCallView.DataSource = _calls.CallList;
 
 
 			Connection.DataReceived += TcpDataUpdate;
@@ -93,7 +102,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 				if (loadSaveGameXML.ShowDialog() == DialogResult.OK)
 					Settings.Default.wi = loadSaveGameXML.InitialDirectory + loadSaveGameXML.FileName;
 				SaveGameParser.Parse(ref _berths, ref _points, ref _signals,
-					ref _tracks); //Parse load with ref to points container
+					ref _tracks, ref _slots, ref _frames); //Parse load with ref to points container
 
 			}
 			Refresh();

@@ -2,8 +2,10 @@
 using SimSig_Keyboard_Interface.Properties;
 using System.IO;
 using SimSig_Keyboard_Interface.DataProcess.Berths;
+using SimSig_Keyboard_Interface.DataProcess.GroundFrames;
 using SimSig_Keyboard_Interface.DataProcess.Points;
 using SimSig_Keyboard_Interface.DataProcess.Signals;
+using SimSig_Keyboard_Interface.DataProcess.Slots;
 using SimSig_Keyboard_Interface.DataProcess.Track;
 
 // ************************************************************** Load Points config file ^^^
@@ -14,13 +16,22 @@ namespace SimSig_Keyboard_Interface.Data
 	public class SaveGameParser
 	{
 
+		private static int _berthsDecimal;
+		private static int _frameDecimal;
 		private static int _pointsDecimal;
 		private static int _signalDecimal;
-		private static int _berthsDecimal;
+		private static int _slotDecimal;
 		private static int _tracksDecimal;
 
 
-		public static void Parse(ref BerthContainer berths, ref PointContainer points, ref SignalContainer signals, ref TrackContainer tracks) // ******************************************  brings points container ref
+		public static void Parse(
+			ref BerthContainer berths,
+			ref PointContainer points,
+			ref SignalContainer signals,
+			ref TrackContainer tracks,
+			ref SlotContainer slots,
+			ref FrameContainer frames)
+		// ******************************************  brings points container ref
 		{
 
 
@@ -30,8 +41,11 @@ namespace SimSig_Keyboard_Interface.Data
 			{
 				string itemId;
 
+				_frameDecimal = 0;
 				_pointsDecimal = 0;
 				_signalDecimal = 0;
+				_slotDecimal = 0;
+
 				_berthsDecimal = 0;
 				_tracksDecimal = 0;
 
@@ -40,12 +54,12 @@ namespace SimSig_Keyboard_Interface.Data
 
 				while ((itemId = xmlData.ReadLine()) != null)
 				{
-					if (itemId.Contains("TBER ID=")) Berths_Parse(ref berths, itemId);					//Berths
-					if (itemId.Contains("TPTS ID=")) Points_Parse(ref points, itemId);		//Points ******************** also passes container ref
+					if (itemId.Contains("TBER ID=")) Berths_Parse(ref berths, itemId);      //Berths
+					if (itemId.Contains("TFRM ID=")) Frame_Parse(ref frames, itemId);		//Ground Frames
+					if (itemId.Contains("TPTS ID=")) Points_Parse(ref points, itemId);      //Points ******************** also passes container ref
 					if (itemId.Contains("TSIG ID=")) Signal_Parse(ref signals, itemId);     //Signals
-					if (itemId.Contains("TTCS ID="))
-						Track_Parse(ref tracks, itemId);     //Signals
-
+					if (itemId.Contains("TSlot ID=")) Slot_Parse(ref slots, itemId);        //Slots 
+					if (itemId.Contains("TTCS ID=")) Track_Parse(ref tracks, itemId);       //Track
 
 				}
 
@@ -78,7 +92,7 @@ namespace SimSig_Keyboard_Interface.Data
 
 
 			Console.WriteLine(itemId.PadRight(11, ' ') + pointsHex + _pointsDecimal);
-			
+
 
 			points.AddPointXml(pointsHex, itemId);
 
@@ -99,7 +113,7 @@ namespace SimSig_Keyboard_Interface.Data
 
 
 			Console.WriteLine(itemId.PadRight(11, ' ') + signalHex + _signalDecimal);
-			
+
 			signals.AddSignalXml(signalHex, itemId);
 
 			_signalDecimal++;
@@ -120,13 +134,13 @@ namespace SimSig_Keyboard_Interface.Data
 
 			Console.WriteLine(itemId.PadRight(11, ' ') + berthsHex + _berthsDecimal);
 
-			
+
 			berths.AddBerthXml(berthsHex, itemId);
 
 			_berthsDecimal++;
 		}
 
-		private static void Track_Parse(ref TrackContainer tracks,string itemId)
+		private static void Track_Parse(ref TrackContainer tracks, string itemId)
 		{
 			string trackHex = _tracksDecimal.ToString("X").PadLeft(4, '0');
 
@@ -135,9 +149,33 @@ namespace SimSig_Keyboard_Interface.Data
 			itemId = itemId.TrimEnd('>');
 			itemId = itemId.TrimEnd('"');
 
-			tracks.AddTrackXml(trackHex,itemId);
+			tracks.AddTrackXml(trackHex, itemId);
 
 			_tracksDecimal++;
+		}
+		private static void Slot_Parse(ref SlotContainer slot, string itemId)
+		{
+			string slotHex = _slotDecimal.ToString("X").PadLeft(4, '0');
+
+			itemId = itemId.TrimStart(' ');
+			itemId = itemId.Remove(0, 11);
+			itemId = itemId.TrimEnd('>');
+			itemId = itemId.TrimEnd('"');
+
+			slot.AddSlotXml(slotHex, itemId);
+			_slotDecimal++;
+		}
+		private static void Frame_Parse(ref FrameContainer frame, string itemId)
+		{
+			string frameHex = _frameDecimal.ToString("X").PadLeft(4, '0');
+
+			itemId = itemId.TrimStart(' ');
+			itemId = itemId.Remove(0, 11);
+			itemId = itemId.TrimEnd('>');
+			itemId = itemId.TrimEnd('"');
+
+			frame.AddFrameXml(frameHex, itemId);
+			_frameDecimal++;
 		}
 	}
 }
