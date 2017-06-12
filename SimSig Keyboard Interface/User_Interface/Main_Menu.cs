@@ -51,6 +51,8 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		public static SlotContainer _slots = new SlotContainer();
 		public static TrackContainer _tracks = new TrackContainer();
 		private static CallContainer _calls = new CallContainer();
+
+        public string trustString;
 		
 
 
@@ -268,6 +270,15 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
                         foreach(XmlNode trainInSimplfier in listOfHeadcodes)
                         {
+                            if (InvokeRequired)
+                                Invoke(new MethodInvoker(delegate
+                                {
+                                    ttDisplay.Items.Clear();
+                                    ttDisplay.Items.Add(trustString);
+                                    ttDisplay.Items.Add(" ");
+                                    ttDisplay.Items.Add(" ");
+                                    ttDisplay.Items.Add("TRAIN ARR    DEP  PLT LIN PTH  DELAY");                                   
+                                }));
 
                             headcode = null;
                             platform = "   ";
@@ -346,17 +357,32 @@ namespace SimSig_Keyboard_Interface.User_Interface
                                 }
                             }
 
-                            String simplifierString = arrival + " " + departure +  " " + headcode + " "  + platform + " " + line + " " + path + " " + delay;
+                            if(departure == "--:-- ")
+                            {
+                                departure = arrival;
+                            }
+
+                            String simplifierString = departure + " " + arrival + " "  + headcode + " "  + platform + " " + line + " " + path + " " + delay;
                             Console.WriteLine(simplifierString);
                             simplfierList.Add(simplifierString);
 
                         }
 
                         //The simplfier needs to be sorted
+                        Console.WriteLine("*************************");
 
+                        simplfierList.Sort();
                         foreach(string train in simplfierList)
                         {
-                            Console.WriteLine(train.ToString());
+                            //Console.WriteLine(train.ToString());
+
+                            Console.WriteLine(train.ToString().Substring(14, 4) + train.ToString().Substring(6, 8) + train.ToString().Substring(0, 6) + train.ToString().Substring(18)) ;
+                            if (InvokeRequired)
+                                Invoke(new MethodInvoker(delegate
+                                {
+                                    ttDisplay.Items.Add(train.ToString().Substring(14, 4) + train.ToString().Substring(6, 8) + train.ToString().Substring(0, 6) + train.ToString().Substring(18));
+                                }));
+                            
                         }
 
 
@@ -545,12 +571,27 @@ namespace SimSig_Keyboard_Interface.User_Interface
                     userInputString.Text = "";
                     keyboardSpecFunction.Text = "";
                 }
-				userInputString.Text = "";
+
+                if (userInputString.Text.StartsWith("TRJA"))
+                {
+                    string[] z = userInputString.Text.Split(' ');
+                    trustString = ("TRUST LineUP for " + z[1] + " at " + z[2]);
+
+                    
+                    Connection.SendData("<?xml version=\"1.0\" encoding=\"utf-8\"?><SimSig><platformDataRequest userTag=\"1\"><id>" + z[1] + "</id><platformCodes>(all)</platformCodes><time>" + z[2] + "</time></platformDataRequest></SimSig>|");//WORK HERE
+                    userInputString.Text = "";
+                    keyboardSpecFunction.Text = "";
+                }
+
+                userInputString.Text = "";
 				keyboardSpecFunction.Text = "";
+
 			}
 
 
-			if (e.KeyCode == Keys.Delete)   //CAN
+
+
+            if (e.KeyCode == Keys.Delete)   //CAN
 			{
 
 
