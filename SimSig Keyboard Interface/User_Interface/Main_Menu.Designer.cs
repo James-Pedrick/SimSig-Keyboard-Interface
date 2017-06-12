@@ -138,7 +138,7 @@
 			this.menuStrip.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip.Name = "menuStrip";
 			this.menuStrip.Padding = new System.Windows.Forms.Padding(8, 3, 0, 3);
-			this.menuStrip.Size = new System.Drawing.Size(797, 25);
+			this.menuStrip.Size = new System.Drawing.Size(715, 25);
 			this.menuStrip.TabIndex = 0;
 			this.menuStrip.Text = "Menu Strip";
 			// 
@@ -155,7 +155,7 @@
 			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
 			this.exitToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
 			this.exitToolStripMenuItem.Text = "Exit";
-			this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
+			this.exitToolStripMenuItem.Click += new System.EventHandler(this.ProgramExit);
 			// 
 			// dataToolStripMenuItem
 			// 
@@ -194,7 +194,7 @@
 			this.berthListResetToolStripMenuItem.Name = "berthListResetToolStripMenuItem";
 			this.berthListResetToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
 			this.berthListResetToolStripMenuItem.Text = "Berth List Reset";
-			this.berthListResetToolStripMenuItem.Click += new System.EventHandler(this.berthListResetToolStripMenuItem_Click);
+			this.berthListResetToolStripMenuItem.Click += new System.EventHandler(this.BerthListReset);
 			// 
 			// signalListResetToolStripMenuItem
 			// 
@@ -208,7 +208,7 @@
 			this.pointsListResetToolStripMenuItem.Name = "pointsListResetToolStripMenuItem";
 			this.pointsListResetToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
 			this.pointsListResetToolStripMenuItem.Text = "Points List Reset";
-			this.pointsListResetToolStripMenuItem.Click += new System.EventHandler(this.pointsListResetToolStripMenuItem_Click);
+			this.pointsListResetToolStripMenuItem.Click += new System.EventHandler(this.PointListRest);
 			// 
 			// networkToolStripMenuItem
 			// 
@@ -281,7 +281,6 @@
 			this.savePointsToolStripMenuItem.Name = "savePointsToolStripMenuItem";
 			this.savePointsToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
 			this.savePointsToolStripMenuItem.Text = "Save Points";
-			this.savePointsToolStripMenuItem.Click += new System.EventHandler(this.savePointsToolStripMenuItem_Click);
 			// 
 			// saveSignalsToolStripMenuItem
 			// 
@@ -315,7 +314,7 @@
 			this.tabControl.Multiline = true;
 			this.tabControl.Name = "tabControl";
 			this.tabControl.SelectedIndex = 0;
-			this.tabControl.Size = new System.Drawing.Size(797, 351);
+			this.tabControl.Size = new System.Drawing.Size(715, 458);
 			this.tabControl.TabIndex = 1;
 			// 
 			// debug
@@ -576,7 +575,7 @@
 			this.keyboardInterface.Margin = new System.Windows.Forms.Padding(4);
 			this.keyboardInterface.Name = "keyboardInterface";
 			this.keyboardInterface.Padding = new System.Windows.Forms.Padding(4);
-			this.keyboardInterface.Size = new System.Drawing.Size(789, 324);
+			this.keyboardInterface.Size = new System.Drawing.Size(707, 431);
 			this.keyboardInterface.TabIndex = 0;
 			this.keyboardInterface.Text = "Keyboard Interface";
 			// 
@@ -593,7 +592,7 @@
 			this.ttDisplay.Location = new System.Drawing.Point(4, 60);
 			this.ttDisplay.Margin = new System.Windows.Forms.Padding(4);
 			this.ttDisplay.Name = "ttDisplay";
-			this.ttDisplay.Size = new System.Drawing.Size(777, 238);
+			this.ttDisplay.Size = new System.Drawing.Size(695, 346);
 			this.ttDisplay.TabIndex = 16;
 			// 
 			// keyboardSpecFunction
@@ -624,9 +623,8 @@
 			this.userInputString.Margin = new System.Windows.Forms.Padding(4);
 			this.userInputString.MinimumSize = new System.Drawing.Size(4, 25);
 			this.userInputString.Name = "userInputString";
-			this.userInputString.Size = new System.Drawing.Size(685, 25);
+			this.userInputString.Size = new System.Drawing.Size(603, 25);
 			this.userInputString.TabIndex = 0;
-			this.userInputString.TextChanged += new System.EventHandler(this.userInputString_TextChanged);
 			this.userInputString.KeyDown += new System.Windows.Forms.KeyEventHandler(this.UserInputString_KeyDown);
 			// 
 			// phoneCalls
@@ -811,7 +809,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(797, 376);
+			this.ClientSize = new System.Drawing.Size(715, 483);
 			this.ControlBox = false;
 			this.Controls.Add(this.tabControl);
 			this.Controls.Add(this.menuStrip);
@@ -821,7 +819,6 @@
 			this.Margin = new System.Windows.Forms.Padding(4);
 			this.Name = "MainMenu";
 			this.Text = "SimSig Keyboard Interface";
-			this.Load += new System.EventHandler(this.MainMenu_Load);
 			this.menuStrip.ResumeLayout(false);
 			this.menuStrip.PerformLayout();
 			this.tabControl.ResumeLayout(false);

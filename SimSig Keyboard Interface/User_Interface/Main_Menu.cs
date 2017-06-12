@@ -51,9 +51,6 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		public static SlotContainer _slots = new SlotContainer();
 		public static TrackContainer _tracks = new TrackContainer();
 		private static CallContainer _calls = new CallContainer();
-		
-
-
 
 
 
@@ -116,7 +113,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		private void TcpDataUpdate(Object sender, MsgEventArgs e)
 		{
 
-            string element = e.Msg;
+			string element = e.Msg;
 
 			if (InvokeRequired)
 			{
@@ -127,33 +124,6 @@ namespace SimSig_Keyboard_Interface.User_Interface
 				}));
 				try
 				{
-					if (element.StartsWith("tE"))
-					{
-						if (InvokeRequired)
-							Invoke(new MethodInvoker(delegate
-							{
-								ttDisplay.Items.Clear();
-								ttDisplay.Items.Add(element.Substring(2));
-							}));
-					}
-					if (element.StartsWith("tL"))
-					{
-						if (InvokeRequired)
-							Invoke(new MethodInvoker(delegate
-							{
-								ttDisplay.Items.Clear();
-							}));
-					}
-					if (element.StartsWith("tM"))
-					{
-						if (InvokeRequired)
-							Invoke(new MethodInvoker(delegate
-							{
-								ttDisplay.Items.Add(element.Substring(2));
-								Console.WriteLine(element.Substring(2));
-							//	debug.Text = element.Substring(2);
-							}));
-					}
 					if (element.StartsWith("sB"))
 					{
 						if (InvokeRequired)
@@ -181,34 +151,6 @@ namespace SimSig_Keyboard_Interface.User_Interface
 								Refresh();
 							}));
 					}
-					if (element.StartsWith("sP"))
-					{
-						if (InvokeRequired)
-							Invoke(new MethodInvoker(delegate
-							{
-								_points.AddPointTcp(element.Substring(2, 7));
-								Refresh();
-							}));
-					}
-
-					if (element.StartsWith("sS"))
-					{
-						if (InvokeRequired)
-							Invoke(new MethodInvoker(delegate
-							{
-								_signals.AddSignalTcp(element.Substring(2, 13));
-								Refresh();
-							}));
-					}
-					if (element.StartsWith("sT"))
-					{
-						if (InvokeRequired)
-							Invoke(new MethodInvoker(delegate
-							{
-								_tracks.AddTrackTcp(element.Substring(2, 6));
-								Refresh();
-							}));
-					}
 					if (element.StartsWith("pM"))
 					{
 						if (InvokeRequired)
@@ -227,8 +169,64 @@ namespace SimSig_Keyboard_Interface.User_Interface
 								Refresh();
 							}));
 					}//End Phone Call
+					if (element.StartsWith("sP"))
+					{
+						if (InvokeRequired)
+							Invoke(new MethodInvoker(delegate
+							{
+								_points.AddPointTcp(element.Substring(2, 7));
+								Refresh();
+							}));
+					}
+					if (element.StartsWith("sS"))
+					{
+						if (InvokeRequired)
+							Invoke(new MethodInvoker(delegate
+							{
+								_signals.AddSignalTcp(element.Substring(2, 13));
+								Refresh();
+							}));
+					}
+					if (element.StartsWith("sT"))
+					{
+						if (InvokeRequired)
+							Invoke(new MethodInvoker(delegate
+							{
+								_tracks.AddTrackTcp(element.Substring(2, 6));
+								Refresh();
+							}));
+					}
 
-                    if (element.StartsWith("iCB"))
+					if (element.StartsWith("tE"))
+					{
+						if (InvokeRequired)
+							Invoke(new MethodInvoker(delegate
+							{
+								ttDisplay.Items.Clear();
+								ttDisplay.Items.Add(element.Substring(2));
+							}));
+					}
+					if (element.StartsWith("tL"))
+					{
+						if (InvokeRequired)
+							Invoke(new MethodInvoker(delegate
+							{
+								ttDisplay.Items.Clear();
+							}));
+					}
+					if (element.StartsWith("tM"))
+					{
+						if (InvokeRequired)
+							Invoke(new MethodInvoker(delegate
+							{
+								ttDisplay.Items.Add(element.Substring(2));
+								Console.WriteLine(element.Substring(2));
+								//	debug.Text = element.Substring(2);
+							}));
+					}
+
+
+					if (element.StartsWith("iCB"))
 					{
 						if (InvokeRequired)
 							Invoke(new MethodInvoker(delegate
@@ -269,9 +267,6 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		}
 
 
-
-		#region Keyboard Interface Controls
-
 		private void UserInputString_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.F1) keyboardSpecFunction.Text = @"REM";
@@ -279,7 +274,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			if (e.KeyCode == Keys.F3) keyboardSpecFunction.Text = @"OVR";
 
 
-			if(e.KeyCode == Keys.F5)
+			if (e.KeyCode == Keys.F5)
 
 			{
 				DataProcess.KeyboardInterface.PointsKeyNorm(userInputString.Text);
@@ -299,9 +294,6 @@ namespace SimSig_Keyboard_Interface.User_Interface
 				keyboardSpecFunction.Text = "";
 			}
 
-
-
-
 			if (e.KeyCode == Keys.F11)      //Interpose
 			{
 				if (userInputString.Text.Contains(' ') == false) return;
@@ -314,7 +306,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 			if (e.KeyCode == Keys.F12)
 			{
-				Connection.SendData(userInputString.Text+"|");
+				Connection.SendData(userInputString.Text + "|");
 			}
 
 			if (e.KeyCode == Keys.Enter)      //Set
@@ -335,7 +327,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 					DataProcess.KeyboardInterface.SignalAutoIsolationSet(z[0].Substring(1));
 				}           //Auto Reminder Set
 
-				if(userInputString.Text.StartsWith("B"))
+				if (userInputString.Text.StartsWith("B"))
 				{
 					if (userInputString.Text.Contains(' ') == false) return;
 
@@ -362,11 +354,6 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 				if (userInputString.Text.StartsWith("S") && keyboardSpecFunction.Text == @"")
 				{
-					//		if (userInputString.Text.Contains(' ') == false) return;
-
-					//		string[] z = userInputString.Text.Split(' ');
-
-					//		DataProcess.KeyboardInterface.RouteSet(z[0].Substring(1), z[1].Substring(1), "");
 
 					string[] combo = userInputString.Text.Split(' ');
 					var x = combo.Length;
@@ -419,25 +406,26 @@ namespace SimSig_Keyboard_Interface.User_Interface
 				}
 
 
-                Regex ttrgx = new Regex(@"[0-9]+[A-Z]+[0-9]+[0-9]");
+				Regex ttrgx = new Regex(@"[0-9]+[A-Z]+[0-9]+[0-9]");
 
-                //Match headcode using regex and pull TT
-                if (ttrgx.IsMatch(userInputString.Text))
-                {
-                    string[] substrings = userInputString.Text.Split(' ');
+				//Match headcode using regex and pull TT
+				if (ttrgx.IsMatch(userInputString.Text))
+				{
+					string[] substrings = userInputString.Text.Split(' ');
 
-                    foreach (string match in substrings)
-                    {
-                        if (ttrgx.IsMatch(match)){
-                            Connection.SendData("tO " + match + "|");
-                        }
-                        
-                    }
+					foreach (string match in substrings)
+					{
+						if (ttrgx.IsMatch(match))
+						{
+							Connection.SendData("tO " + match + "|");
+						}
 
-                    //Connection.SendData("tO " + userInputString.Text + "|");
-                    userInputString.Text = "";
-                    keyboardSpecFunction.Text = "";
-                }
+					}
+
+					//Connection.SendData("tO " + userInputString.Text + "|");
+					userInputString.Text = "";
+					keyboardSpecFunction.Text = "";
+				}
 				userInputString.Text = "";
 				keyboardSpecFunction.Text = "";
 			}
@@ -517,32 +505,22 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			}
 
 
-
-
 		}
-
-
-		#endregion
 
 		#region Misc Menu Items
 
-		private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
+		private void ProgramExit(object sender, EventArgs e)
 		{
 			Environment.Exit(1);
 		}
-
 		private void Point_List_Reset(object sender, EventArgs e)
 		{
 			_points.PointList.Clear();
 		}
-
-
 		private void SignalListReset(object sender, EventArgs e)
 		{
 			_signals.SignalList.Clear();
 		}
-
-
 		private void ConnectToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 
@@ -554,29 +532,23 @@ namespace SimSig_Keyboard_Interface.User_Interface
 				}
 			);
 			tcpConnectThread.Start();
-            disconnectToolStripMenuItem.Enabled = true;
-        }
+			disconnectToolStripMenuItem.Enabled = true;
+		}
+		private void DisconnectToolStripMenuItem_Click(object sender, EventArgs e)
+		{
 
-        private void DisconnectToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+			connectToolStripMenuItem.Enabled = true;
+			Connection.Disconnect();
+			disconnectToolStripMenuItem.Enabled = false;
 
-            connectToolStripMenuItem.Enabled = true;
-            Connection.Disconnect();
-            disconnectToolStripMenuItem.Enabled = false;
-
-        }
-
-        private void SendToSim_Click(object sender, EventArgs e)
+		}
+		private void SendToSim_Click(object sender, EventArgs e)
 		{
 			Connection.SendData(userInputString.Text);
 		}
-
-
 		private void CallRespond_Click(object sender, EventArgs e)
 		{
 			string x = callResponses.SelectedIndex.ToString();
-
-			//"pN" + callid[0] + '\\' + callResponses.SelectedIndex;
 
 			string callId = _calls.CallList.Single(c => c.CallNumber == callers.SelectedValue.ToString()).CallNumber;
 
@@ -630,19 +602,17 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 
 
-		private void berthListResetToolStripMenuItem_Click(object sender, EventArgs e)
+		private void BerthListReset(object sender, EventArgs e)
 		{
-			_berths.BerthList.Clear();
-
+			_berths.BerthList.Clear(); 
 		}
 
 		private void signalListResetToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			_signals.SignalList.Clear();
-
 		}
 
-		private void pointsListResetToolStripMenuItem_Click(object sender, EventArgs e)
+		private void PointListRest(object sender, EventArgs e)
 		{
 			_points.PointList.Clear();
 
@@ -655,28 +625,15 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			_signals.SignalStatusRequest();
 		}
 
-		private void MainMenu_Load(object sender, EventArgs e)
-		{
-			 
-		}
-
 		private void saveRawToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			using (FileStream S = File.Open("RawTCP.log", FileMode.OpenOrCreate))
 			using (StreamWriter st = new StreamWriter(S))
-				foreach(string aa in debugRawTcpDisplay.Items)
+				foreach (string aa in debugRawTcpDisplay.Items)
 					st.WriteLine(debugRawTcpDisplay.Items);
 		}
 
-		private void savePointsToolStripMenuItem_Click(object sender, EventArgs e)
-		{
 
-		}
-
-		private void userInputString_TextChanged(object sender, EventArgs e)
-		{
-
-		}
 	}
 }
 
