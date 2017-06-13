@@ -281,7 +281,6 @@ namespace SimSig_Keyboard_Interface.User_Interface
                                     ttDisplay.Items.Clear();
                                     ttDisplay.Items.Add(trustString);
                                     ttDisplay.Items.Add(" ");
-                                    ttDisplay.Items.Add(" ");
                                     ttDisplay.Items.Add("TRAIN ARR    DEP  PLT LIN PTH  DELAY");                                   
                                 }));
 
@@ -315,7 +314,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
                             if (trainInSimplfier.SelectSingleNode("delay") != null)
                             {
                                 if (trainInSimplfier.SelectSingleNode("delay").InnerText != "RT"){
-                                    delay = trainInSimplfier.SelectSingleNode("delay").InnerText + "LATE";
+                                    delay = trainInSimplfier.SelectSingleNode("delay").InnerText.Replace("L", "") + " LATE";
                                 }
                                 else
                                 {
