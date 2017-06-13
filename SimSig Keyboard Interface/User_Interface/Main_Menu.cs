@@ -113,6 +113,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		{
 
 			string element = e.Msg;
+            Console.WriteLine(e.Msg);
 
 			if (InvokeRequired)
 			{
@@ -273,16 +274,18 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
                         XmlNodeList listOfHeadcodes = simplifier.SelectNodes("/SimSig/platformDataResponse/headcode");
 
-                        foreach(XmlNode trainInSimplfier in listOfHeadcodes)
+                        if (InvokeRequired)
+                            Invoke(new MethodInvoker(delegate
+                            {
+                                ttDisplay.Items.Clear();
+                                ttDisplay.Items.Add(trustString);
+                                ttDisplay.Items.Add(" ");
+                                ttDisplay.Items.Add("TRAIN ARR    DEP  PLT LIN PTH  DELAY");
+                            }));
+
+                        foreach (XmlNode trainInSimplfier in listOfHeadcodes)
                         {
-                            if (InvokeRequired)
-                                Invoke(new MethodInvoker(delegate
-                                {
-                                    ttDisplay.Items.Clear();
-                                    ttDisplay.Items.Add(trustString);
-                                    ttDisplay.Items.Add(" ");
-                                    ttDisplay.Items.Add("TRAIN ARR    DEP  PLT LIN PTH  DELAY");                                   
-                                }));
+
 
                             headcode = null;
                             platform = "   ";
@@ -296,25 +299,32 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
                             headcode = trainInSimplfier.Attributes["id"].Value;
                             platform = trainInSimplfier.SelectSingleNode("platform").InnerText;
-                            do
+                            while (platform.Length != 3)
                             {
                                 platform = platform + " ";
-                            } while (platform.Length != 3);
+                            } 
                             line = trainInSimplfier.SelectSingleNode("line").InnerText;
-                            do
+                            while (line.Length != 3)
                             {
                                 line = line + " ";
-                            } while (line.Length != 3);
+                            } 
                             path = trainInSimplfier.SelectSingleNode("path").InnerText;
-                            do
+                            while (path.Length != 3)
                             {
                                 path = path + " ";
-                            } while (path.Length != 3);
+                            } 
                             description = trainInSimplfier.SelectSingleNode("description").InnerText;
                             if (trainInSimplfier.SelectSingleNode("delay") != null)
                             {
                                 if (trainInSimplfier.SelectSingleNode("delay").InnerText != "RT"){
-                                    delay = trainInSimplfier.SelectSingleNode("delay").InnerText.Replace("L", "") + " LATE";
+                                    if (trainInSimplfier.SelectSingleNode("delay").InnerText.Contains("E"))
+                                    {
+                                        delay = trainInSimplfier.SelectSingleNode("delay").InnerText.Replace("E", "") + " EARLY";
+                                    }
+                                    else
+                                    {
+                                        delay = trainInSimplfier.SelectSingleNode("delay").InnerText.Replace("L", "") + " LATE";
+                                    }
                                 }
                                 else
                                 {
@@ -391,7 +401,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 
 
-    }
+                    }
 				}
 				catch
 				{
