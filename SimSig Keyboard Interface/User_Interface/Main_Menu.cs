@@ -42,7 +42,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		public static TcpClient Connection = new TcpClient();
 
 		public static TcpConnect TcpConnectForm = new TcpConnect();
-		public static PhoneUi PhoneUserIngerface = new PhoneUi();
+
 
 
 
