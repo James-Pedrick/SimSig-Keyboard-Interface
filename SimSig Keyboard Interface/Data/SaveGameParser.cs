@@ -23,7 +23,7 @@ namespace SimSig_Keyboard_Interface.Data
 		private static int _signalDecimal;
 		private static int _slotDecimal;
 		private static int _tracksDecimal;
-		private static int _flagHex;
+		private static int _flagDecimal;
 
 
 		public static void Parse(
@@ -45,6 +45,7 @@ namespace SimSig_Keyboard_Interface.Data
 				string itemId;
 
 				_frameDecimal = 0;
+				_flagDecimal = 0;
 				_pointsDecimal = 0;
 				_signalDecimal = 0;
 				_slotDecimal = 0;
@@ -183,15 +184,15 @@ namespace SimSig_Keyboard_Interface.Data
 		}
 		private static void Flag_Parse(ref FlagContainer flag, string itemId)
 		{
-			string flagHex = _frameDecimal.ToString("X").PadLeft(4, '0');
+			string flagHex = _flagDecimal.ToString("X").PadLeft(4, '0');
 
 			itemId = itemId.TrimStart(' ');
-			itemId = itemId.Remove(0, 11);
+			itemId = itemId.Remove(0, 10);
 
 			itemId = itemId.Substring(0, itemId.Length - 3);
 
 			flag.AddFlagXml(flagHex, itemId);
-			_frameDecimal++;
+			_flagDecimal++;
 		}
 	}
 }
