@@ -96,6 +96,10 @@
     <Compile Include="DataProcess\Calls\CallContainer.cs" />
     <Compile Include="DataProcess\Calls\Calls.cs" />
     <Compile Include="DataProcess\DataReceived.cs" />
+    <Compile Include="DataProcess\Flags\FlagContainer.cs" />
+    <Compile Include="DataProcess\Flags\Flags.cs" />
+    <Compile Include="DataProcess\GroundFrames\FrameContainer.cs" />
+    <Compile Include="DataProcess\GroundFrames\Frames.cs" />
     <Compile Include="DataProcess\KeyboardInterface.cs" />
     <Compile Include="DataProcess\Points\PointContainer.cs" />
     <Compile Include="DataProcess\Points\Points.cs" />
@@ -104,6 +108,8 @@
     <Compile Include="Comms\TCP\TCP_Client.cs" />
     <Compile Include="Comms\TCP\Reciever.cs" />
     <Compile Include="Comms\TCP\Sender.cs" />
+    <Compile Include="DataProcess\Slots\SlotContainer.cs" />
+    <Compile Include="DataProcess\Slots\Slots.cs" />
     <Compile Include="DataProcess\Track\Tracks.cs" />
     <Compile Include="DataProcess\Track\TrackContainer.cs" />
     <Compile Include="Data\SaveGameParser.cs" />
@@ -117,17 +123,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User_Interface\PhoneUi.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User_Interface\PhoneUi.Designer.cs">
+      <DependentUpon>PhoneUi.cs</DependentUpon>
+    </Compile>
     <Compile Include="User_Interface\TCP_Connect.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="User_Interface\TCP_Connect.Designer.cs">
       <DependentUpon>TCP_Connect.cs</DependentUpon>
-    </Compile>
-    <Compile Include="User_Interface\Temp.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="User_Interface\Temp.Designer.cs">
-      <DependentUpon>Temp.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="User_Interface\Main_Menu.resx">
       <DependentUpon>Main_Menu.cs</DependentUpon>
@@ -141,11 +147,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="User_Interface\PhoneUi.resx">
+      <DependentUpon>PhoneUi.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="User_Interface\TCP_Connect.resx">
       <DependentUpon>TCP_Connect.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="User_Interface\Temp.resx">
-      <DependentUpon>Temp.cs</DependentUpon>
     </EmbeddedResource>
     <None Include=".dockerignore">
       <DependentUpon>Dockerfile</DependentUpon>

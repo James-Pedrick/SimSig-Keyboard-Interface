@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace SimSig_Keyboard_Interface.DataProcess.Calls
 {
-	class CallContainer
+	public class CallContainer
 	{
 		public BindingList<Calls> CallList = new BindingList<Calls>();
 

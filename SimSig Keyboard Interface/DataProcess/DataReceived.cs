@@ -21,8 +21,11 @@ namespace SimSig_Keyboard_Interface.DataProcess
 					MainMenu._signals.AddSignalTcp(element.Substring(2, 13));
 				if (element.StartsWith("sT"))
 					MainMenu._tracks.AddTrackTcp(element.Substring(2, 6));
+				if (element.StartsWith("sL"))
+					MainMenu._flags.AddFlagTcp(element.Substring(2));
 
-				if(element.StartsWith("iCP"))
+
+				if (element.StartsWith("iCP"))
 					MainMenu._points.AddPointTcp(element.Substring(2, 7));
 			}
 			catch

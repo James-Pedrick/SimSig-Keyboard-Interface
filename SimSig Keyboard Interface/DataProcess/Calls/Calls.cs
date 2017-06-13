@@ -1,7 +1,7 @@
 ﻿
 namespace SimSig_Keyboard_Interface.DataProcess.Calls
 {
-	class Calls
+	public class Calls
 	{
 		public string CallNumber { get; set; }
 		public bool CallActive { get; set; }
