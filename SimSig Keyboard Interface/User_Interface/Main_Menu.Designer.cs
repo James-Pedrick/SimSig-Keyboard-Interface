@@ -686,7 +686,6 @@
 			this.Margin = new System.Windows.Forms.Padding(4);
 			this.Name = "MainMenu";
 			this.Text = "SimSig Keyboard Interface";
-			this.Load += new System.EventHandler(this.MainMenu_Load);
 			this.menuStrip.ResumeLayout(false);
 			this.menuStrip.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
