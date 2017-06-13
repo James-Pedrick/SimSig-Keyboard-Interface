@@ -115,6 +115,12 @@
     <Compile Include="Data\SaveGameParser.cs" />
     <Compile Include="Data\SendPrep.cs" />
     <Compile Include="Properties\Settings.cs" />
+    <Compile Include="User_Interface\DebugUc.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User_Interface\DebugUc.Designer.cs">
+      <DependentUpon>DebugUc.cs</DependentUpon>
+    </Compile>
     <Compile Include="User_Interface\Main_Menu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,6 +141,9 @@
     <Compile Include="User_Interface\TCP_Connect.Designer.cs">
       <DependentUpon>TCP_Connect.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="User_Interface\DebugUc.resx">
+      <DependentUpon>DebugUc.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="User_Interface\Main_Menu.resx">
       <DependentUpon>Main_Menu.cs</DependentUpon>
     </EmbeddedResource>
