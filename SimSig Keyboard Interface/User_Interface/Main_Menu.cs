@@ -20,6 +20,7 @@ using SimSig_Keyboard_Interface.DataProcess.Flags;
 using SimSig_Keyboard_Interface.DataProcess.GroundFrames;
 using SimSig_Keyboard_Interface.DataProcess.Slots;
 
+
 // ************************************************************** Load Points config file ^^^
 
 
@@ -50,7 +51,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		public static SignalContainer _signals = new SignalContainer();
 		public static SlotContainer _slots = new SlotContainer();
 		public static TrackContainer _tracks = new TrackContainer();
-		private static CallContainer _calls = new CallContainer();
+		public static CallContainer _calls = new CallContainer();
 
 
 
@@ -72,20 +73,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 
 			Connection.DataReceived += TcpDataUpdate;
-
-			callers.Items.Clear();
-
-
-
-			callers.DisplayMember = "CallerName";
-			callers.ValueMember = "CallNumber";
-
-
-			callers.DataSource = _calls.CallList;
-
-
-			callMsg.Text = "";
-			callResponses.Items.Clear();
+			
 
 		}
 
@@ -546,42 +534,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		{
 			Connection.SendData(userInputString.Text);
 		}
-		private void CallRespond_Click(object sender, EventArgs e)
-		{
-			string x = callResponses.SelectedIndex.ToString();
-
-			string callId = _calls.CallList.Single(c => c.CallNumber == callers.SelectedValue.ToString()).CallNumber;
-
-			Connection.SendData("pN" + callId + '\\' + x + "|");
-
-			callResponses.Items.Clear();
-			callMsg.Text = "";
-			Refresh();
-		}
-
-		private void Callers_SelectedIndexChanged_1(object sender, EventArgs e)
-		{
-
-			callResponses.Items.Clear();
-			try
-			{
-				string[] x = _calls.CallList.Single(c => c.CallNumber == callers.SelectedValue.ToString()).CallResponses;
-
-				foreach (var i in x)
-					if (i != null)
-						callResponses.Items.Add(i.Substring(8).TrimEnd('\\'));
-
-
-				callMsg.Text = _calls.CallList.Single(c => c.CallNumber == callers.SelectedValue.ToString()).CallerMessage;
-
-			}
-			catch
-			{
-				callResponses.Items.Clear();
-			}
-
-
-		}
+	
 
 
 		#endregion
@@ -604,7 +557,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 		private void BerthListReset(object sender, EventArgs e)
 		{
-			_berths.BerthList.Clear(); 
+			_berths.BerthList.Clear();
 		}
 
 		private void signalListResetToolStripMenuItem_Click(object sender, EventArgs e)
@@ -633,7 +586,32 @@ namespace SimSig_Keyboard_Interface.User_Interface
 					st.WriteLine(debugRawTcpDisplay.Items);
 		}
 
+		private void callMsg_Click(object sender, EventArgs e)
+		{
 
+		}
+
+		private void callResponses_SelectedIndexChanged(object sender, EventArgs e)
+		{
+
+		}
+
+		private void newPhoneUIToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			/*
+				var myForm = new Form1();
+				myForm.Show();
+			*/
+
+			var myform = new PhoneUi();
+			myform.Show();
+
+		}
+
+		private void MainMenu_Load(object sender, EventArgs e)
+		{
+
+		}
 	}
 }
 
