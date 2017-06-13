@@ -71,18 +71,6 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		{
 			InitializeComponent();
 
-
-
-			debugBerthView.DataSource = _berths.BerthList;
-			debugCallView.DataSource = _calls.CallList;
-			debugFlagView.DataSource = _flags.FlagList;
-			debugFrameView.DataSource = _frames.FrameList;
-			debugPointView.DataSource = _points.PointList;
-			debugSignalView.DataSource = _signals.SignalList;
-			debugSlotView.DataSource = _slots.SlotList;
-			debugTrackView.DataSource = _tracks.TrackList;
-
-
 			Connection.DataReceived += TcpDataUpdate;
 			
 
@@ -116,11 +104,11 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 			if (InvokeRequired)
 			{
-				Invoke(new MethodInvoker(delegate
+		/*		Invoke(new MethodInvoker(delegate
 				{
 					debugRawTcpDisplay.Items.Insert(0, element);
 					if (element.StartsWith("sT")) Console.WriteLine(element);
-				}));
+				}));*/
 				try
 				{
 					if (element.StartsWith("sB"))
@@ -748,13 +736,13 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 		private void saveRawToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			using (FileStream S = File.Open("RawTCP.log", FileMode.OpenOrCreate))
-			using (StreamWriter st = new StreamWriter(S))
-				foreach (string aa in debugRawTcpDisplay.Items)
-					st.WriteLine(debugRawTcpDisplay.Items);
+
 		}
 
+		private void MainMenu_Load(object sender, EventArgs e)
+		{
 
+		}
 	}
 }
 

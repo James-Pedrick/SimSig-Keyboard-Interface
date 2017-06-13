@@ -88,7 +88,7 @@
 			// 
 			this.splitContainer4.Panel2.Controls.Add(this.callRespond);
 			this.splitContainer4.Size = new System.Drawing.Size(194, 691);
-			this.splitContainer4.SplitterDistance = 621;
+			this.splitContainer4.SplitterDistance = 619;
 			this.splitContainer4.SplitterWidth = 6;
 			this.splitContainer4.TabIndex = 9;
 			// 
@@ -105,7 +105,7 @@
 			this.callers.Location = new System.Drawing.Point(0, 0);
 			this.callers.Margin = new System.Windows.Forms.Padding(0);
 			this.callers.Name = "callers";
-			this.callers.Size = new System.Drawing.Size(194, 621);
+			this.callers.Size = new System.Drawing.Size(194, 619);
 			this.callers.TabIndex = 4;
 			this.callers.SelectedIndexChanged += new System.EventHandler(this.callers_SelectedIndexChanged);
 			// 
@@ -116,7 +116,7 @@
 			this.callRespond.Location = new System.Drawing.Point(0, 0);
 			this.callRespond.Margin = new System.Windows.Forms.Padding(4);
 			this.callRespond.Name = "callRespond";
-			this.callRespond.Size = new System.Drawing.Size(194, 64);
+			this.callRespond.Size = new System.Drawing.Size(194, 66);
 			this.callRespond.TabIndex = 5;
 			this.callRespond.Text = "Respond";
 			this.callRespond.UseVisualStyleBackColor = true;
@@ -157,6 +157,7 @@
 			this.callMsg.Size = new System.Drawing.Size(879, 239);
 			this.callMsg.TabIndex = 7;
 			this.callMsg.Text = "callMsg";
+			this.callMsg.Click += new System.EventHandler(this.callMsg_Click);
 			// 
 			// callResponses
 			// 
