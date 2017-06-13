@@ -36,15 +36,19 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 		private void callRespond_Click(object sender, EventArgs e)
 		{
-			string x = callResponses.SelectedIndex.ToString();
+			if (MainMenu.TcpConnected == true)
+			{
+				var x = callResponses.SelectedIndex.ToString();
 
-			string callId = MainMenu._calls.CallList.Single(c => c.CallNumber == callers.SelectedValue.ToString()).CallNumber;
+				var callId = MainMenu._calls.CallList.Single(c => c.CallNumber == callers.SelectedValue.ToString()).CallNumber;
 
-			MainMenu.Connection.SendData("pN" + callId + '\\' + x + "|");
+				MainMenu.Connection.SendData("pN" + callId + '\\' + x + "|");
 
-			callResponses.Items.Clear();
-			callMsg.Text = "";
-			Refresh();
+				callResponses.Items.Clear();
+				callMsg.Text = "";
+				Refresh();
+			}
+
 		}
 
 		private void callers_SelectedIndexChanged(object sender, EventArgs e)
@@ -53,7 +57,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			callResponses.Items.Clear();
 			try
 			{
-				string[] x = MainMenu._calls.CallList.Single(c => c.CallNumber == callers.SelectedValue.ToString()).CallResponses;
+				var x = MainMenu._calls.CallList.Single(c => c.CallNumber == callers.SelectedValue.ToString()).CallResponses;
 
 				foreach (var i in x)
 					if (i != null)
@@ -67,11 +71,6 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			{
 				callResponses.Items.Clear();
 			}
-
-		}
-
-		private void callMsg_Click(object sender, EventArgs e)
-		{
 
 		}
 	}

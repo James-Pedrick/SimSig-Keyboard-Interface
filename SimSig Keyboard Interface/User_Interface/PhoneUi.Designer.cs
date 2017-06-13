@@ -32,7 +32,7 @@
 			this.splitContainer4 = new System.Windows.Forms.SplitContainer();
 			this.callers = new System.Windows.Forms.ListBox();
 			this.callRespond = new System.Windows.Forms.Button();
-			this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+			this.callMsg_callResponses = new System.Windows.Forms.SplitContainer();
 			this.callMsg = new System.Windows.Forms.Label();
 			this.callResponses = new System.Windows.Forms.ListBox();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
@@ -43,10 +43,10 @@
 			this.splitContainer4.Panel1.SuspendLayout();
 			this.splitContainer4.Panel2.SuspendLayout();
 			this.splitContainer4.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
-			this.splitContainer3.Panel1.SuspendLayout();
-			this.splitContainer3.Panel2.SuspendLayout();
-			this.splitContainer3.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.callMsg_callResponses)).BeginInit();
+			this.callMsg_callResponses.Panel1.SuspendLayout();
+			this.callMsg_callResponses.Panel2.SuspendLayout();
+			this.callMsg_callResponses.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// splitContainer2
@@ -65,7 +65,7 @@
 			// 
 			// splitContainer2.Panel2
 			// 
-			this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
+			this.splitContainer2.Panel2.Controls.Add(this.callMsg_callResponses);
 			this.splitContainer2.Size = new System.Drawing.Size(1086, 695);
 			this.splitContainer2.SplitterDistance = 198;
 			this.splitContainer2.SplitterWidth = 5;
@@ -88,7 +88,7 @@
 			// 
 			this.splitContainer4.Panel2.Controls.Add(this.callRespond);
 			this.splitContainer4.Size = new System.Drawing.Size(194, 691);
-			this.splitContainer4.SplitterDistance = 599;
+			this.splitContainer4.SplitterDistance = 621;
 			this.splitContainer4.SplitterWidth = 6;
 			this.splitContainer4.TabIndex = 9;
 			// 
@@ -105,7 +105,7 @@
 			this.callers.Location = new System.Drawing.Point(0, 0);
 			this.callers.Margin = new System.Windows.Forms.Padding(0);
 			this.callers.Name = "callers";
-			this.callers.Size = new System.Drawing.Size(194, 599);
+			this.callers.Size = new System.Drawing.Size(194, 621);
 			this.callers.TabIndex = 4;
 			this.callers.SelectedIndexChanged += new System.EventHandler(this.callers_SelectedIndexChanged);
 			// 
@@ -116,33 +116,33 @@
 			this.callRespond.Location = new System.Drawing.Point(0, 0);
 			this.callRespond.Margin = new System.Windows.Forms.Padding(4);
 			this.callRespond.Name = "callRespond";
-			this.callRespond.Size = new System.Drawing.Size(194, 86);
+			this.callRespond.Size = new System.Drawing.Size(194, 64);
 			this.callRespond.TabIndex = 5;
 			this.callRespond.Text = "Respond";
 			this.callRespond.UseVisualStyleBackColor = true;
 			this.callRespond.Click += new System.EventHandler(this.callRespond_Click);
 			// 
-			// splitContainer3
+			// callMsg_callResponses
 			// 
-			this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.splitContainer3.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-			this.splitContainer3.IsSplitterFixed = true;
-			this.splitContainer3.Location = new System.Drawing.Point(0, 0);
-			this.splitContainer3.Margin = new System.Windows.Forms.Padding(4);
-			this.splitContainer3.Name = "splitContainer3";
-			this.splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
+			this.callMsg_callResponses.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.callMsg_callResponses.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+			this.callMsg_callResponses.IsSplitterFixed = true;
+			this.callMsg_callResponses.Location = new System.Drawing.Point(0, 0);
+			this.callMsg_callResponses.Margin = new System.Windows.Forms.Padding(4);
+			this.callMsg_callResponses.Name = "callMsg_callResponses";
+			this.callMsg_callResponses.Orientation = System.Windows.Forms.Orientation.Horizontal;
 			// 
-			// splitContainer3.Panel1
+			// callMsg_callResponses.Panel1
 			// 
-			this.splitContainer3.Panel1.Controls.Add(this.callMsg);
+			this.callMsg_callResponses.Panel1.Controls.Add(this.callMsg);
 			// 
-			// splitContainer3.Panel2
+			// callMsg_callResponses.Panel2
 			// 
-			this.splitContainer3.Panel2.Controls.Add(this.callResponses);
-			this.splitContainer3.Size = new System.Drawing.Size(879, 691);
-			this.splitContainer3.SplitterDistance = 239;
-			this.splitContainer3.SplitterWidth = 6;
-			this.splitContainer3.TabIndex = 0;
+			this.callMsg_callResponses.Panel2.Controls.Add(this.callResponses);
+			this.callMsg_callResponses.Size = new System.Drawing.Size(879, 691);
+			this.callMsg_callResponses.SplitterDistance = 239;
+			this.callMsg_callResponses.SplitterWidth = 6;
+			this.callMsg_callResponses.TabIndex = 0;
 			// 
 			// callMsg
 			// 
@@ -157,7 +157,6 @@
 			this.callMsg.Size = new System.Drawing.Size(879, 239);
 			this.callMsg.TabIndex = 7;
 			this.callMsg.Text = "callMsg";
-			this.callMsg.Click += new System.EventHandler(this.callMsg_Click);
 			// 
 			// callResponses
 			// 
@@ -188,10 +187,10 @@
 			this.splitContainer4.Panel2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
 			this.splitContainer4.ResumeLayout(false);
-			this.splitContainer3.Panel1.ResumeLayout(false);
-			this.splitContainer3.Panel2.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
-			this.splitContainer3.ResumeLayout(false);
+			this.callMsg_callResponses.Panel1.ResumeLayout(false);
+			this.callMsg_callResponses.Panel2.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.callMsg_callResponses)).EndInit();
+			this.callMsg_callResponses.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -202,7 +201,7 @@
 		private System.Windows.Forms.SplitContainer splitContainer4;
 		private System.Windows.Forms.ListBox callers;
 		private System.Windows.Forms.Button callRespond;
-		private System.Windows.Forms.SplitContainer splitContainer3;
+		private System.Windows.Forms.SplitContainer callMsg_callResponses;
 		private System.Windows.Forms.Label callMsg;
 		private System.Windows.Forms.ListBox callResponses;
 	}

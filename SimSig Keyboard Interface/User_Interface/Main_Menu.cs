@@ -42,6 +42,9 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		public static TcpClient Connection = new TcpClient();
 
 		public static TcpConnect TcpConnectForm = new TcpConnect();
+		public static PhoneUi PhoneUserIngerface = new PhoneUi();
+
+
 
 		public static SerialPort ComReceiver = new SerialPort();
 
@@ -55,10 +58,13 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		public static TrackContainer _tracks = new TrackContainer();
 		public static CallContainer _calls = new CallContainer();
 
+
+
         public string trustString;
-		
 
 
+
+		public static bool TcpConnected = false;
 
 
 		public MainMenu()
@@ -682,6 +688,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			);
 			tcpConnectThread.Start();
 			disconnectToolStripMenuItem.Enabled = true;
+			TcpConnected = true;
 		}
 		private void DisconnectToolStripMenuItem_Click(object sender, EventArgs e)
 		{
@@ -689,6 +696,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			connectToolStripMenuItem.Enabled = true;
 			Connection.Disconnect();
 			disconnectToolStripMenuItem.Enabled = false;
+			TcpConnected = false;
 
 		}
 		private void SendToSim_Click(object sender, EventArgs e)
@@ -747,32 +755,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 					st.WriteLine(debugRawTcpDisplay.Items);
 		}
 
-		private void callMsg_Click(object sender, EventArgs e)
-		{
 
-		}
-
-		private void callResponses_SelectedIndexChanged(object sender, EventArgs e)
-		{
-
-		}
-
-		private void newPhoneUIToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			/*
-				var myForm = new Form1();
-				myForm.Show();
-			*/
-
-			var myform = new PhoneUi();
-			myform.Show();
-
-		}
-
-		private void MainMenu_Load(object sender, EventArgs e)
-		{
-
-		}
 	}
 }
 
