@@ -319,6 +319,9 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 
 			clock.Text = simTime.ToString().Substring(0,5);
+
+			if(element.EndsWith("1")) clock.ForeColor = Color.Magenta;
+			else clock.ForeColor = Color.Cyan;
 		}
 
 		private void Trja(string element)

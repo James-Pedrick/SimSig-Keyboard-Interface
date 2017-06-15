@@ -140,8 +140,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 						if (element.StartsWith("sB"))
 						{
-							if (InvokeRequired)
-								Invoke(new MethodInvoker(delegate
+							if (InvokeRequired) Invoke(new MethodInvoker(delegate
 								{
 									_berths.DataUpdateTcp(element.Substring(2, 8));
 									Refresh();

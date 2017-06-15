@@ -31,8 +31,8 @@
 			this.Header = new System.Windows.Forms.TableLayoutPanel();
 			this.keyboardSpecFunction = new System.Windows.Forms.TextBox();
 			this.userInputString = new System.Windows.Forms.TextBox();
-			this.ttDisplay = new System.Windows.Forms.ListBox();
 			this.clock = new System.Windows.Forms.TextBox();
+			this.ttDisplay = new System.Windows.Forms.ListBox();
 			this.Header.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -87,6 +87,19 @@
 			this.userInputString.TabIndex = 1;
 			this.userInputString.KeyDown += new System.Windows.Forms.KeyEventHandler(this.userInputString_KeyDown);
 			// 
+			// clock
+			// 
+			this.clock.BackColor = System.Drawing.Color.Black;
+			this.clock.Cursor = System.Windows.Forms.Cursors.Arrow;
+			this.clock.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.clock.Font = new System.Drawing.Font("Consolas", 11F);
+			this.clock.ForeColor = System.Drawing.Color.Cyan;
+			this.clock.Location = new System.Drawing.Point(510, 3);
+			this.clock.Name = "clock";
+			this.clock.Size = new System.Drawing.Size(69, 25);
+			this.clock.TabIndex = 16;
+			this.clock.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			// 
 			// ttDisplay
 			// 
 			this.ttDisplay.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -103,19 +116,6 @@
 			this.ttDisplay.Name = "ttDisplay";
 			this.ttDisplay.Size = new System.Drawing.Size(574, 436);
 			this.ttDisplay.TabIndex = 17;
-			// 
-			// clock
-			// 
-			this.clock.BackColor = System.Drawing.Color.Black;
-			this.clock.Cursor = System.Windows.Forms.Cursors.Arrow;
-			this.clock.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.clock.Font = new System.Drawing.Font("Consolas", 11F);
-			this.clock.ForeColor = System.Drawing.Color.Cyan;
-			this.clock.Location = new System.Drawing.Point(510, 3);
-			this.clock.Name = "clock";
-			this.clock.Size = new System.Drawing.Size(69, 25);
-			this.clock.TabIndex = 16;
-			this.clock.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			// 
 			// KeyboardInterface
 			// 
