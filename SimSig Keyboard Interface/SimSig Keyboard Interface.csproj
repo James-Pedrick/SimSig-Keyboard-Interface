@@ -76,6 +76,7 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -121,6 +122,12 @@
     <Compile Include="User_Interface\DebugUc.Designer.cs">
       <DependentUpon>DebugUc.cs</DependentUpon>
     </Compile>
+    <Compile Include="User_Interface\KeyboardInterface.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User_Interface\KeyboardInterface.Designer.cs">
+      <DependentUpon>KeyboardInterface.cs</DependentUpon>
+    </Compile>
     <Compile Include="User_Interface\Main_Menu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,6 +150,9 @@
     </Compile>
     <EmbeddedResource Include="User_Interface\DebugUc.resx">
       <DependentUpon>DebugUc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User_Interface\KeyboardInterface.resx">
+      <DependentUpon>KeyboardInterface.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="User_Interface\Main_Menu.resx">
       <DependentUpon>Main_Menu.cs</DependentUpon>

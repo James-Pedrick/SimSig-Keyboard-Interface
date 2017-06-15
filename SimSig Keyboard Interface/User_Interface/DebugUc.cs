@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using SimSig_Keyboard_Interface.Comms.TCP;
 
 namespace SimSig_Keyboard_Interface.User_Interface
 {
 	public partial class DebugUc : UserControl
 	{
+
+
 		public DebugUc()
 		{
 			InitializeComponent();
@@ -23,11 +19,30 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			debugSignalView.DataSource = MainMenu._signals.SignalList;
 			debugSlotView.DataSource = MainMenu._slots.SlotList;
 			debugTrackView.DataSource = MainMenu._tracks.TrackList;
+
+			MainMenu.DebugTcpDataReceived += DebugTcpUpdate;
+
+
+			//		this.Controls.Add(debugTcpRaw);
 		}
 
-		private void debugBerthView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+		private void DebugTcpUpdate(Object sender, MsgEventArgs e)
 		{
+			string element = e.Msg;
+			if (InvokeRequired)
+			{
+				Invoke(new MethodInvoker(delegate
+				{
+					if (element != null)
+					{
+						Console.WriteLine(element);
 
+						debugRawTcpDisplay.Items.Insert(0, element);
+					}
+				}));
+				
+			}
 		}
+
 	}
 }
