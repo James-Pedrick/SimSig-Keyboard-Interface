@@ -16,7 +16,6 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		public string trustString;
 		
 
-
 		public KeyboardInterface()
 		{
 			InitializeComponent();
