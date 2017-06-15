@@ -114,7 +114,6 @@
 			this.debugBerthView.ReadOnly = true;
 			this.debugBerthView.Size = new System.Drawing.Size(529, 455);
 			this.debugBerthView.TabIndex = 3;
-			this.debugBerthView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.debugBerthView_CellContentClick);
 			// 
 			// debugGroundFrames
 			// 
@@ -122,7 +121,7 @@
 			this.debugGroundFrames.Location = new System.Drawing.Point(4, 22);
 			this.debugGroundFrames.Margin = new System.Windows.Forms.Padding(4);
 			this.debugGroundFrames.Name = "debugGroundFrames";
-			this.debugGroundFrames.Size = new System.Drawing.Size(778, 458);
+			this.debugGroundFrames.Size = new System.Drawing.Size(529, 455);
 			this.debugGroundFrames.TabIndex = 5;
 			this.debugGroundFrames.Text = "Calls";
 			this.debugGroundFrames.UseVisualStyleBackColor = true;
@@ -141,7 +140,7 @@
 			this.debugCallView.Margin = new System.Windows.Forms.Padding(4);
 			this.debugCallView.Name = "debugCallView";
 			this.debugCallView.ReadOnly = true;
-			this.debugCallView.Size = new System.Drawing.Size(778, 458);
+			this.debugCallView.Size = new System.Drawing.Size(529, 455);
 			this.debugCallView.TabIndex = 3;
 			// 
 			// debugPoints
@@ -151,7 +150,7 @@
 			this.debugPoints.Margin = new System.Windows.Forms.Padding(4);
 			this.debugPoints.Name = "debugPoints";
 			this.debugPoints.Padding = new System.Windows.Forms.Padding(4);
-			this.debugPoints.Size = new System.Drawing.Size(778, 458);
+			this.debugPoints.Size = new System.Drawing.Size(529, 455);
 			this.debugPoints.TabIndex = 0;
 			this.debugPoints.Text = "Points";
 			this.debugPoints.UseVisualStyleBackColor = true;
@@ -170,7 +169,7 @@
 			this.debugPointView.Margin = new System.Windows.Forms.Padding(4);
 			this.debugPointView.Name = "debugPointView";
 			this.debugPointView.ReadOnly = true;
-			this.debugPointView.Size = new System.Drawing.Size(770, 450);
+			this.debugPointView.Size = new System.Drawing.Size(521, 447);
 			this.debugPointView.TabIndex = 3;
 			// 
 			// debugSignals
@@ -179,7 +178,7 @@
 			this.debugSignals.Location = new System.Drawing.Point(4, 22);
 			this.debugSignals.Margin = new System.Windows.Forms.Padding(4);
 			this.debugSignals.Name = "debugSignals";
-			this.debugSignals.Size = new System.Drawing.Size(778, 458);
+			this.debugSignals.Size = new System.Drawing.Size(529, 455);
 			this.debugSignals.TabIndex = 1;
 			this.debugSignals.Text = "Signals";
 			this.debugSignals.UseVisualStyleBackColor = true;
@@ -198,7 +197,7 @@
 			this.debugSignalView.Margin = new System.Windows.Forms.Padding(4);
 			this.debugSignalView.Name = "debugSignalView";
 			this.debugSignalView.ReadOnly = true;
-			this.debugSignalView.Size = new System.Drawing.Size(778, 458);
+			this.debugSignalView.Size = new System.Drawing.Size(529, 455);
 			this.debugSignalView.TabIndex = 3;
 			// 
 			// debugTracks
@@ -207,7 +206,7 @@
 			this.debugTracks.Location = new System.Drawing.Point(4, 22);
 			this.debugTracks.Margin = new System.Windows.Forms.Padding(4);
 			this.debugTracks.Name = "debugTracks";
-			this.debugTracks.Size = new System.Drawing.Size(778, 458);
+			this.debugTracks.Size = new System.Drawing.Size(529, 455);
 			this.debugTracks.TabIndex = 4;
 			this.debugTracks.Text = "Tracks";
 			this.debugTracks.UseVisualStyleBackColor = true;
@@ -226,7 +225,7 @@
 			this.debugTrackView.Margin = new System.Windows.Forms.Padding(4);
 			this.debugTrackView.Name = "debugTrackView";
 			this.debugTrackView.ReadOnly = true;
-			this.debugTrackView.Size = new System.Drawing.Size(778, 458);
+			this.debugTrackView.Size = new System.Drawing.Size(529, 455);
 			this.debugTrackView.TabIndex = 2;
 			// 
 			// debugSlots
@@ -234,7 +233,7 @@
 			this.debugSlots.Controls.Add(this.debugSlotView);
 			this.debugSlots.Location = new System.Drawing.Point(4, 22);
 			this.debugSlots.Name = "debugSlots";
-			this.debugSlots.Size = new System.Drawing.Size(778, 458);
+			this.debugSlots.Size = new System.Drawing.Size(529, 455);
 			this.debugSlots.TabIndex = 6;
 			this.debugSlots.Text = "Slots";
 			this.debugSlots.UseVisualStyleBackColor = true;
@@ -253,7 +252,7 @@
 			this.debugSlotView.Margin = new System.Windows.Forms.Padding(4);
 			this.debugSlotView.Name = "debugSlotView";
 			this.debugSlotView.ReadOnly = true;
-			this.debugSlotView.Size = new System.Drawing.Size(778, 458);
+			this.debugSlotView.Size = new System.Drawing.Size(529, 455);
 			this.debugSlotView.TabIndex = 3;
 			// 
 			// debugFrames
@@ -261,7 +260,7 @@
 			this.debugFrames.Controls.Add(this.debugFrameView);
 			this.debugFrames.Location = new System.Drawing.Point(4, 22);
 			this.debugFrames.Name = "debugFrames";
-			this.debugFrames.Size = new System.Drawing.Size(778, 458);
+			this.debugFrames.Size = new System.Drawing.Size(529, 455);
 			this.debugFrames.TabIndex = 7;
 			this.debugFrames.Text = "Ground Frames";
 			this.debugFrames.UseVisualStyleBackColor = true;
@@ -280,7 +279,7 @@
 			this.debugFrameView.Margin = new System.Windows.Forms.Padding(4);
 			this.debugFrameView.Name = "debugFrameView";
 			this.debugFrameView.ReadOnly = true;
-			this.debugFrameView.Size = new System.Drawing.Size(778, 458);
+			this.debugFrameView.Size = new System.Drawing.Size(529, 455);
 			this.debugFrameView.TabIndex = 4;
 			// 
 			// debugFlags
@@ -288,7 +287,7 @@
 			this.debugFlags.Controls.Add(this.debugFlagView);
 			this.debugFlags.Location = new System.Drawing.Point(4, 22);
 			this.debugFlags.Name = "debugFlags";
-			this.debugFlags.Size = new System.Drawing.Size(778, 458);
+			this.debugFlags.Size = new System.Drawing.Size(529, 455);
 			this.debugFlags.TabIndex = 8;
 			this.debugFlags.Text = "Flags";
 			this.debugFlags.UseVisualStyleBackColor = true;
@@ -308,7 +307,7 @@
 			this.debugFlagView.Margin = new System.Windows.Forms.Padding(4);
 			this.debugFlagView.Name = "debugFlagView";
 			this.debugFlagView.ReadOnly = true;
-			this.debugFlagView.Size = new System.Drawing.Size(778, 458);
+			this.debugFlagView.Size = new System.Drawing.Size(529, 455);
 			this.debugFlagView.TabIndex = 4;
 			// 
 			// debugTcpRaw
@@ -317,7 +316,7 @@
 			this.debugTcpRaw.Location = new System.Drawing.Point(4, 22);
 			this.debugTcpRaw.Margin = new System.Windows.Forms.Padding(4);
 			this.debugTcpRaw.Name = "debugTcpRaw";
-			this.debugTcpRaw.Size = new System.Drawing.Size(778, 458);
+			this.debugTcpRaw.Size = new System.Drawing.Size(529, 455);
 			this.debugTcpRaw.TabIndex = 3;
 			this.debugTcpRaw.Text = "TCP Raw";
 			this.debugTcpRaw.UseVisualStyleBackColor = true;
@@ -329,15 +328,16 @@
 			this.debugRawTcpDisplay.Location = new System.Drawing.Point(0, 0);
 			this.debugRawTcpDisplay.Margin = new System.Windows.Forms.Padding(4);
 			this.debugRawTcpDisplay.Name = "debugRawTcpDisplay";
-			this.debugRawTcpDisplay.Size = new System.Drawing.Size(778, 458);
+			this.debugRawTcpDisplay.SelectionMode = System.Windows.Forms.SelectionMode.None;
+			this.debugRawTcpDisplay.Size = new System.Drawing.Size(529, 455);
 			this.debugRawTcpDisplay.TabIndex = 4;
 			// 
-			// Debug
+			// DebugUc
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.debugTabs);
-			this.Name = "Debug";
+			this.Name = "DebugUc";
 			this.Size = new System.Drawing.Size(537, 481);
 			this.debugTabs.ResumeLayout(false);
 			this.debugBerths.ResumeLayout(false);

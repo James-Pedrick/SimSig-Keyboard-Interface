@@ -9,7 +9,7 @@ namespace SimSig_Keyboard_Interface.DataProcess
 	{
 
 
-		#region New Shit
+
 
 		public static void RouteSet(string entry, string exit, string function)
 		{
@@ -191,8 +191,7 @@ namespace SimSig_Keyboard_Interface.DataProcess
 			MainMenu.Connection.SendData(toSend);
 		}
 
-
-		#endregion
+		
 
 
 		public static void PointsKeyNorm(string data)

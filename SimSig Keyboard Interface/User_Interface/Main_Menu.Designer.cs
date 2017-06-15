@@ -59,12 +59,14 @@
 			this.phone = new System.Windows.Forms.TabPage();
 			this.phoneUi = new SimSig_Keyboard_Interface.User_Interface.PhoneUi();
 			this.keyboardInterface = new System.Windows.Forms.TabPage();
-			this.userInputString = new System.Windows.Forms.TextBox();
-			this.keyboardSpecFunction = new System.Windows.Forms.TextBox();
 			this.ttDisplay = new System.Windows.Forms.ListBox();
+			this.keyboardSpecFunction = new System.Windows.Forms.TextBox();
+			this.userInputString = new System.Windows.Forms.TextBox();
 			this.debug = new System.Windows.Forms.TabPage();
 			this.debugUc1 = new SimSig_Keyboard_Interface.User_Interface.DebugUc();
 			this.tabControl = new System.Windows.Forms.TabControl();
+			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.keyboardInterface1 = new SimSig_Keyboard_Interface.User_Interface.KeyboardInterface();
 			this.menuStrip.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.SuspendLayout();
@@ -72,6 +74,7 @@
 			this.keyboardInterface.SuspendLayout();
 			this.debug.SuspendLayout();
 			this.tabControl.SuspendLayout();
+			this.tabPage1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// menuStrip
@@ -296,21 +299,21 @@
 			this.keyboardInterface.TabIndex = 0;
 			this.keyboardInterface.Text = "Keyboard Interface";
 			// 
-			// userInputString
+			// ttDisplay
 			// 
-			this.userInputString.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.ttDisplay.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.userInputString.BackColor = System.Drawing.SystemColors.InfoText;
-			this.userInputString.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-			this.userInputString.Font = new System.Drawing.Font("Consolas", 11F);
-			this.userInputString.ForeColor = System.Drawing.Color.Cyan;
-			this.userInputString.Location = new System.Drawing.Point(88, 16);
-			this.userInputString.Margin = new System.Windows.Forms.Padding(4);
-			this.userInputString.MinimumSize = new System.Drawing.Size(4, 25);
-			this.userInputString.Name = "userInputString";
-			this.userInputString.Size = new System.Drawing.Size(682, 25);
-			this.userInputString.TabIndex = 0;
-			this.userInputString.KeyDown += new System.Windows.Forms.KeyEventHandler(this.UserInputString_KeyDown);
+			this.ttDisplay.BackColor = System.Drawing.SystemColors.WindowText;
+			this.ttDisplay.Font = new System.Drawing.Font("Consolas", 11F);
+			this.ttDisplay.ForeColor = System.Drawing.Color.Cyan;
+			this.ttDisplay.FormattingEnabled = true;
+			this.ttDisplay.ItemHeight = 18;
+			this.ttDisplay.Location = new System.Drawing.Point(4, 60);
+			this.ttDisplay.Margin = new System.Windows.Forms.Padding(4);
+			this.ttDisplay.Name = "ttDisplay";
+			this.ttDisplay.Size = new System.Drawing.Size(774, 382);
+			this.ttDisplay.TabIndex = 16;
 			// 
 			// keyboardSpecFunction
 			// 
@@ -328,21 +331,21 @@
 			this.keyboardSpecFunction.TabStop = false;
 			this.keyboardSpecFunction.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			// 
-			// ttDisplay
+			// userInputString
 			// 
-			this.ttDisplay.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+			this.userInputString.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.ttDisplay.BackColor = System.Drawing.SystemColors.WindowText;
-			this.ttDisplay.Font = new System.Drawing.Font("Consolas", 11F);
-			this.ttDisplay.ForeColor = System.Drawing.Color.Cyan;
-			this.ttDisplay.FormattingEnabled = true;
-			this.ttDisplay.ItemHeight = 18;
-			this.ttDisplay.Location = new System.Drawing.Point(4, 60);
-			this.ttDisplay.Margin = new System.Windows.Forms.Padding(4);
-			this.ttDisplay.Name = "ttDisplay";
-			this.ttDisplay.Size = new System.Drawing.Size(774, 382);
-			this.ttDisplay.TabIndex = 16;
+			this.userInputString.BackColor = System.Drawing.SystemColors.InfoText;
+			this.userInputString.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+			this.userInputString.Font = new System.Drawing.Font("Consolas", 11F);
+			this.userInputString.ForeColor = System.Drawing.Color.Cyan;
+			this.userInputString.Location = new System.Drawing.Point(88, 16);
+			this.userInputString.Margin = new System.Windows.Forms.Padding(4);
+			this.userInputString.MinimumSize = new System.Drawing.Size(4, 25);
+			this.userInputString.Name = "userInputString";
+			this.userInputString.Size = new System.Drawing.Size(682, 25);
+			this.userInputString.TabIndex = 0;
+			this.userInputString.KeyDown += new System.Windows.Forms.KeyEventHandler(this.UserInputString_KeyDown);
 			// 
 			// debug
 			// 
@@ -362,12 +365,14 @@
 			this.debugUc1.Name = "debugUc1";
 			this.debugUc1.Size = new System.Drawing.Size(786, 484);
 			this.debugUc1.TabIndex = 0;
+			this.debugUc1.Load += new System.EventHandler(this.debugUc1_Load);
 			// 
 			// tabControl
 			// 
 			this.tabControl.Controls.Add(this.debug);
 			this.tabControl.Controls.Add(this.keyboardInterface);
 			this.tabControl.Controls.Add(this.phone);
+			this.tabControl.Controls.Add(this.tabPage1);
 			this.tabControl.Cursor = System.Windows.Forms.Cursors.Default;
 			this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tabControl.Font = new System.Drawing.Font("Consolas", 9F);
@@ -378,6 +383,27 @@
 			this.tabControl.SelectedIndex = 0;
 			this.tabControl.Size = new System.Drawing.Size(794, 511);
 			this.tabControl.TabIndex = 1;
+			// 
+			// tabPage1
+			// 
+			this.tabPage1.Controls.Add(this.keyboardInterface1);
+			this.tabPage1.Location = new System.Drawing.Point(4, 23);
+			this.tabPage1.Name = "tabPage1";
+			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage1.Size = new System.Drawing.Size(786, 484);
+			this.tabPage1.TabIndex = 4;
+			this.tabPage1.Text = "tabPage1";
+			this.tabPage1.UseVisualStyleBackColor = true;
+			// 
+			// keyboardInterface1
+			// 
+			this.keyboardInterface1.BackColor = System.Drawing.Color.Black;
+			this.keyboardInterface1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.keyboardInterface1.ForeColor = System.Drawing.Color.Cyan;
+			this.keyboardInterface1.Location = new System.Drawing.Point(3, 3);
+			this.keyboardInterface1.Name = "keyboardInterface1";
+			this.keyboardInterface1.Size = new System.Drawing.Size(780, 478);
+			this.keyboardInterface1.TabIndex = 0;
 			// 
 			// MainMenu
 			// 
@@ -403,6 +429,7 @@
 			this.keyboardInterface.PerformLayout();
 			this.debug.ResumeLayout(false);
 			this.tabControl.ResumeLayout(false);
+			this.tabPage1.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -447,6 +474,8 @@
 		private System.Windows.Forms.TabPage debug;
 		private DebugUc debugUc1;
 		private System.Windows.Forms.TabControl tabControl;
+		private System.Windows.Forms.TabPage tabPage1;
+		private KeyboardInterface keyboardInterface1;
 	}
 }
 
