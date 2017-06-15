@@ -98,154 +98,135 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		private void TcpDataUpdate(Object sender, MsgEventArgs e)
 		{
 			string element = e.Msg;
-			if (element != null)
-
-			{
-				if (InvokeRequired)
+			if (element != null && InvokeRequired)
+				try
 				{
-					try
 					{
-						{
+						MsgEventArgs m = new MsgEventArgs() {Msg = element};
 
-							MsgEventArgs m = new MsgEventArgs() { Msg = element };
+						var handler = DebugTcpDataReceived;
+						if (handler != null) DebugTcpDataReceived?.Invoke(this, m);
+					}
 
-							var handler = DebugTcpDataReceived;
-							if (handler != null) DebugTcpDataReceived?.Invoke(this, m);
+					if (element.StartsWith("pM"))
+					{
+						if (InvokeRequired)
+							Invoke(new MethodInvoker(delegate
+							{
+								_calls.NewIncomingCall(element);
+								Refresh();
+							}));
+					} //New Phone Call
+					if (element.StartsWith("pO"))
+					{
+						if (InvokeRequired)
+							Invoke(new MethodInvoker(delegate
+							{
+								_calls.EndIncomingCall(element);
+								Refresh();
+							}));
+					} //End Phone Call
 
-						}
+					if (element.StartsWith("sB"))
+					{
+						if (InvokeRequired)
+							Invoke(new MethodInvoker(delegate
+							{
+								_berths.DataUpdateTcp(element.Substring(2, 8));
+								Refresh();
+							}));
+					}
+					if (element.StartsWith("sL"))
+					{
+						if (InvokeRequired)
+							Invoke(new MethodInvoker(delegate
+							{
+								_flags.AddFlagTcp(element.Substring(2));
+								Refresh();
+							}));
+					}
+					if (element.StartsWith("sP"))
+					{
+						if (InvokeRequired)
+							Invoke(new MethodInvoker(delegate
+							{
+								_points.AddPointTcp(element.Substring(2, 7));
+								Refresh();
+							}));
+					}
+					if (element.StartsWith("sS"))
+					{
+						if (InvokeRequired)
+							Invoke(new MethodInvoker(delegate
+							{
+								_signals.AddSignalTcp(element.Substring(2, 13));
+								Refresh();
+							}));
+					}
+					if (element.StartsWith("sT"))
+					{
+						if (InvokeRequired)
+							Invoke(new MethodInvoker(delegate
+							{
+								_tracks.AddTrackTcp(element.Substring(2, 6));
+								Refresh();
+							}));
+					}
 
-						if (element.StartsWith("pM"))
-						{
-							if (InvokeRequired)
-								Invoke(new MethodInvoker(delegate
-								{
-									_calls.NewIncomingCall(element);
-									Refresh();
-								}));
-						} //New Phone Call
-						if (element.StartsWith("pO"))
-						{
-							if (InvokeRequired)
-								Invoke(new MethodInvoker(delegate
-								{
-									_calls.EndIncomingCall(element);
-									Refresh();
-								}));
-						} //End Phone Call
+					if (element.StartsWith("tE") || element.StartsWith("tL") || element.StartsWith("tM"))
+					{
+						MsgEventArgs m = new MsgEventArgs() {Msg = element};
 
-						if (element.StartsWith("sB"))
-						{
-							if (InvokeRequired) Invoke(new MethodInvoker(delegate
-								{
-									_berths.DataUpdateTcp(element.Substring(2, 8));
-									Refresh();
-								}));
-						}
-						if (element.StartsWith("sL"))
-						{
-							if (InvokeRequired)
-								Invoke(new MethodInvoker(delegate
-								{
-									_flags.AddFlagTcp(element.Substring(2));
-									Refresh();
-								}));
-						}
-						if (element.StartsWith("sP"))
-						{
-							if (InvokeRequired)
-								Invoke(new MethodInvoker(delegate
-								{
-									_points.AddPointTcp(element.Substring(2, 7));
-									Refresh();
-								}));
-						}
-						if (element.StartsWith("sS"))
-						{
-							if (InvokeRequired)
-								Invoke(new MethodInvoker(delegate
-								{
-									_signals.AddSignalTcp(element.Substring(2, 13));
-									Refresh();
-								}));
-						}
-						if (element.StartsWith("sT"))
-						{
-							if (InvokeRequired)
-								Invoke(new MethodInvoker(delegate
-								{
-									_tracks.AddTrackTcp(element.Substring(2, 6));
-									Refresh();
-								}));
-						}
+						var handler = KeyboardTcpDataReceived;
+						if (handler != null) KeyboardTcpDataReceived?.Invoke(this, m);
+					}
+					if (element.StartsWith("zA"))
+					{
+						MsgEventArgs m = new MsgEventArgs() {Msg = element};
 
-						if (element.StartsWith("tE"))
-						{
-							MsgEventArgs m = new MsgEventArgs() { Msg = element };
+						var handler = KeyboardTcpDataReceived;
+						if (handler != null) KeyboardTcpDataReceived?.Invoke(this, m);
+					}
 
-							var handler = KeyboardTcpDataReceived;
-							if (handler != null) KeyboardTcpDataReceived?.Invoke(this, m);
-						}
-						if (element.StartsWith("tL"))
-						{
-							MsgEventArgs m = new MsgEventArgs() { Msg = element };
+					if (element.StartsWith("iCB"))
+					{
+						if (InvokeRequired)
+							Invoke(new MethodInvoker(delegate
+							{
+								_berths.AddBerthTcp(element.Substring(7, 4), element.Substring(11, 4));
+								Refresh();
+							}));
+					} //Berth Request State Feedback
+					if (element.StartsWith("iCP"))
+					{
+						if (InvokeRequired)
+							Invoke(new MethodInvoker(delegate
+							{
+								_points.AddPointTcp(element.Substring(7));
+								Refresh();
+							}));
+					} //Point Request State Feedback
+					if (element.StartsWith("iCS"))
+					{
+						if (InvokeRequired)
+							Invoke(new MethodInvoker(delegate
+							{
+								_signals.AddSignalTcp(element.Substring(7));
+								Refresh();
+							}));
+					} //Signal Request State Feedback
 
-							var handler = KeyboardTcpDataReceived;
-							if (handler != null) KeyboardTcpDataReceived?.Invoke(this, m);
-						}
-						if (element.StartsWith("tM"))
-						{
-							MsgEventArgs m = new MsgEventArgs() { Msg = element };
+					if (element.Contains("<platformDataResponse"))
+					{
+						MsgEventArgs m = new MsgEventArgs() {Msg = element};
 
-							var handler = KeyboardTcpDataReceived;
-							if (handler != null) KeyboardTcpDataReceived?.Invoke(this, m);
-						}
+						var handler = KeyboardTcpDataReceived;
+						if (handler != null) KeyboardTcpDataReceived?.Invoke(this, m);
+					}
 
-						if (element.StartsWith("zA"))
-						{
-							MsgEventArgs m = new MsgEventArgs() { Msg = element };
+					#region PlatformDataResponse Main
 
-							var handler = KeyboardTcpDataReceived;
-							if (handler != null) KeyboardTcpDataReceived?.Invoke(this, m);
-						}
-
-						if (element.StartsWith("iCB"))
-						{
-							if (InvokeRequired)
-								Invoke(new MethodInvoker(delegate
-								{
-									_berths.AddBerthTcp(element.Substring(7, 4), element.Substring(11, 4));
-									Refresh();
-								}));
-						} //Berth Request State Feedback
-						if (element.StartsWith("iCP"))
-						{
-							if (InvokeRequired)
-								Invoke(new MethodInvoker(delegate
-								{
-									_points.AddPointTcp(element.Substring(7));
-									Refresh();
-								}));
-						} //Point Request State Feedback
-						if (element.StartsWith("iCS"))
-						{
-							if (InvokeRequired)
-								Invoke(new MethodInvoker(delegate
-								{
-									_signals.AddSignalTcp(element.Substring(7));
-									Refresh();
-								}));
-						} //Signal Request State Feedback
-
-						if (element.Contains("<platformDataResponse"))
-						{
-							MsgEventArgs m = new MsgEventArgs() { Msg = element };
-
-							var handler = KeyboardTcpDataReceived;
-							if (handler != null) KeyboardTcpDataReceived?.Invoke(this, m);
-						}
-
-						#region PlatformDataResponse Main
-						/*
+					/*
 						if (element.Contains("<platformDataResponse"))
 						{
 	
@@ -389,14 +370,13 @@ namespace SimSig_Keyboard_Interface.User_Interface
 						}
 						
 	*/
-						#endregion
-					}
-					catch
-					{
-						Console.WriteLine(@"A Unhandled String was Received - " + element);
-					}
+
+					#endregion
 				}
-			}
+				catch
+				{
+					Console.WriteLine(@"A Unhandled String was Received - " + element);
+				}
 		}
 
 		private void SerialDataReceived()
@@ -724,7 +704,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			_berths.BerthList.Clear();
 		}
 
-		private void signalListResetToolStripMenuItem_Click(object sender, EventArgs e)
+		private void SignalListResetToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			_signals.SignalList.Clear();
 		}
@@ -735,26 +715,21 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 		}
 
-		private void requestDataToolStripMenuItem1_Click(object sender, EventArgs e)
+		private void RequestDataToolStripMenuItem1_Click(object sender, EventArgs e)
 		{
 			_berths.BerthStatusRequest();
 			_points.PointStatusConnectionRequest();
 			_signals.SignalStatusRequest();
 		}
 
-		private void saveRawToolStripMenuItem_Click(object sender, EventArgs e)
+		private void SaveRawToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 
 		}
 
-		private void MainMenu_Load(object sender, EventArgs e)
+		private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-
-		}
-
-		private void debugUc1_Load(object sender, EventArgs e)
-		{
-
+			
 		}
 	}
 }

@@ -67,6 +67,8 @@
 			this.tabControl = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.keyboardInterface1 = new SimSig_Keyboard_Interface.User_Interface.KeyboardInterface();
+			this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.SuspendLayout();
@@ -83,7 +85,8 @@
             this.fileToolStripMenuItem,
             this.dataToolStripMenuItem,
             this.networkToolStripMenuItem,
-            this.logsToolStripMenuItem});
+            this.logsToolStripMenuItem,
+            this.helpToolStripMenuItem});
 			this.menuStrip.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip.Name = "menuStrip";
 			this.menuStrip.Padding = new System.Windows.Forms.Padding(8, 3, 0, 3);
@@ -131,7 +134,7 @@
 			this.requestDataToolStripMenuItem1.Name = "requestDataToolStripMenuItem1";
 			this.requestDataToolStripMenuItem1.Size = new System.Drawing.Size(188, 22);
 			this.requestDataToolStripMenuItem1.Text = "Request Data";
-			this.requestDataToolStripMenuItem1.Click += new System.EventHandler(this.requestDataToolStripMenuItem1_Click);
+			this.requestDataToolStripMenuItem1.Click += new System.EventHandler(this.RequestDataToolStripMenuItem1_Click);
 			// 
 			// toolStripSeparator1
 			// 
@@ -150,7 +153,7 @@
 			this.signalListResetToolStripMenuItem.Name = "signalListResetToolStripMenuItem";
 			this.signalListResetToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
 			this.signalListResetToolStripMenuItem.Text = "Signal List Reset";
-			this.signalListResetToolStripMenuItem.Click += new System.EventHandler(this.signalListResetToolStripMenuItem_Click);
+			this.signalListResetToolStripMenuItem.Click += new System.EventHandler(this.SignalListResetToolStripMenuItem_Click);
 			// 
 			// pointsListResetToolStripMenuItem
 			// 
@@ -248,7 +251,7 @@
 			this.saveRawToolStripMenuItem.Name = "saveRawToolStripMenuItem";
 			this.saveRawToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
 			this.saveRawToolStripMenuItem.Text = "Save Raw";
-			this.saveRawToolStripMenuItem.Click += new System.EventHandler(this.saveRawToolStripMenuItem_Click);
+			this.saveRawToolStripMenuItem.Click += new System.EventHandler(this.SaveRawToolStripMenuItem_Click);
 			// 
 			// loadSaveGameXML
 			// 
@@ -365,7 +368,6 @@
 			this.debugUc1.Name = "debugUc1";
 			this.debugUc1.Size = new System.Drawing.Size(786, 484);
 			this.debugUc1.TabIndex = 0;
-			this.debugUc1.Load += new System.EventHandler(this.debugUc1_Load);
 			// 
 			// tabControl
 			// 
@@ -405,6 +407,21 @@
 			this.keyboardInterface1.Size = new System.Drawing.Size(780, 478);
 			this.keyboardInterface1.TabIndex = 0;
 			// 
+			// helpToolStripMenuItem
+			// 
+			this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutToolStripMenuItem});
+			this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+			this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 19);
+			this.helpToolStripMenuItem.Text = "Help";
+			// 
+			// aboutToolStripMenuItem
+			// 
+			this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+			this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.aboutToolStripMenuItem.Text = "About";
+			this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+			// 
 			// MainMenu
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
@@ -419,7 +436,6 @@
 			this.Margin = new System.Windows.Forms.Padding(4);
 			this.Name = "MainMenu";
 			this.Text = "SimSig Keyboard Interface";
-			this.Load += new System.EventHandler(this.MainMenu_Load);
 			this.menuStrip.ResumeLayout(false);
 			this.menuStrip.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -476,6 +492,8 @@
 		private System.Windows.Forms.TabControl tabControl;
 		private System.Windows.Forms.TabPage tabPage1;
 		private KeyboardInterface keyboardInterface1;
+		private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
 	}
 }
 

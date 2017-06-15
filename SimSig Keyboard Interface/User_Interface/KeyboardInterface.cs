@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
@@ -14,15 +15,15 @@ namespace SimSig_Keyboard_Interface.User_Interface
 	public partial class KeyboardInterface : UserControl
 	{
 		public string trustString;
-		
 
+		
 		public KeyboardInterface()
 		{
 			InitializeComponent();
 			MainMenu.KeyboardTcpDataReceived += TcpDataReceived;
 		}
 		
-		private void userInputString_KeyDown(object sender, KeyEventArgs e)
+		private void UserInputString_KeyDown(object sender, KeyEventArgs e)
 		{
 
 			if (e.KeyCode == Keys.F1) keyboardSpecFunction.Text = @"REM";
@@ -67,6 +68,8 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 			if (e.KeyCode == Keys.Enter)      //Set
 			{
+				if (userInputString.Text.Equals("COMMANDS")) CommandList();
+				if(userInputString.Text.Equals("CLS")) ttDisplay.Items.Clear();
 				if (userInputString.Text.StartsWith("A") && keyboardSpecFunction.Text == "")
 				{
 					string[] z = userInputString.Text.Split(' ');
@@ -194,12 +197,13 @@ namespace SimSig_Keyboard_Interface.User_Interface
 					keyboardSpecFunction.Text = "";
 				}
 
+				
+
 				userInputString.Text = "";
 				keyboardSpecFunction.Text = "";
 
 			}
-
-
+			
 
 			if (e.KeyCode == Keys.Delete)   //CAN
 			{
@@ -463,7 +467,6 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 
 			}
-
 		}
 
 		private void TeMessage(string element)
@@ -472,8 +475,49 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			ttDisplay.Items.Add(element.Substring(2));
 		}
 
-		private void ttDisplay_SelectedIndexChanged(object sender, EventArgs e)
+		private void TtDisplay_SelectedIndexChanged(object sender, EventArgs e)
 		{
+
+		}
+
+		private void userInputString_TextChanged(object sender, EventArgs e)
+		{
+
+		}
+
+		private void CommandList()
+		{
+			ttDisplay.Items.Clear();
+
+			ttDisplay.Items.Add("A   - Auto");
+			ttDisplay.Items.Add("B   - Berth");
+			ttDisplay.Items.Add("E   - Replacement");
+			ttDisplay.Items.Add("S   - Signal");
+			ttDisplay.Items.Add("P   - Points");
+
+			ttDisplay.Items.Add("");
+			ttDisplay.Items.Add("");
+
+			ttDisplay.Items.Add("F1  - Rem");
+			ttDisplay.Items.Add("F2  - Iso");
+			ttDisplay.Items.Add("F3  - Override");
+			ttDisplay.Items.Add("");
+			ttDisplay.Items.Add("F5  - Key Points Normal");
+			ttDisplay.Items.Add("F6  - Points Centre");
+			ttDisplay.Items.Add("F7  - Key Points Reverse");
+
+
+			ttDisplay.Items.Add("");
+			ttDisplay.Items.Add("");
+
+			ttDisplay.Items.Add("DEL - Cancel");
+			ttDisplay.Items.Add("ENT - Set");
+
+
+			ttDisplay.Items.Add("");
+			ttDisplay.Items.Add("");
+
+			ttDisplay.Items.Add("TRJA - Location Query");
 
 		}
 	}
