@@ -389,7 +389,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 							delay = "RT TIME";
 						}
 					}
-					stock = trainInSimplfier.SelectSingleNode("stock").InnerText;
+					//stock = trainInSimplfier.SelectSingleNode("stock").InnerText;
 
 					XmlNodeList listOfTimes = trainInSimplfier.SelectNodes("time");
 
