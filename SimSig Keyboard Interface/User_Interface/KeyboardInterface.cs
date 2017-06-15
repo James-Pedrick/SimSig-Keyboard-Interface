@@ -14,18 +14,15 @@ namespace SimSig_Keyboard_Interface.User_Interface
 	public partial class KeyboardInterface : UserControl
 	{
 		public string trustString;
+		
+
 
 		public KeyboardInterface()
 		{
 			InitializeComponent();
 			MainMenu.KeyboardTcpDataReceived += TcpDataReceived;
 		}
-
-		private void Header_Paint(object sender, PaintEventArgs e)
-		{
-
-		}
-
+		
 		private void userInputString_KeyDown(object sender, KeyEventArgs e)
 		{
 
