@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
@@ -10,17 +9,13 @@ using SimSig_Keyboard_Interface.DataProcess.Points;
 using SimSig_Keyboard_Interface.DataProcess.Signals;
 using SimSig_Keyboard_Interface.DataProcess.Track;
 using SimSig_Keyboard_Interface.Properties;
-using SimSig_Keyboard_Interface.Comms.RS2323;
 using System.IO.Ports;
-using System.Runtime.CompilerServices;
 using SimSig_Keyboard_Interface.Comms.RS232;
 using SimSig_Keyboard_Interface.Data;
 using System.Text.RegularExpressions;
 using SimSig_Keyboard_Interface.DataProcess.Flags;
 using SimSig_Keyboard_Interface.DataProcess.GroundFrames;
 using SimSig_Keyboard_Interface.DataProcess.Slots;
-using System.Xml;
-using System.Collections.Generic;
 
 
 // ************************************************************** Load Points config file ^^^
@@ -185,30 +180,24 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 						if (element.StartsWith("tE"))
 						{
-							if (InvokeRequired)
-								Invoke(new MethodInvoker(delegate
-								{
-									ttDisplay.Items.Clear();
-									ttDisplay.Items.Add(element.Substring(2));
-								}));
+							MsgEventArgs m = new MsgEventArgs() { Msg = element };
+
+							var handler = KeyboardTcpDataReceived;
+							if (handler != null) KeyboardTcpDataReceived?.Invoke(this, m);
 						}
 						if (element.StartsWith("tL"))
 						{
-							if (InvokeRequired)
-								Invoke(new MethodInvoker(delegate
-								{
-									ttDisplay.Items.Clear();
-								}));
+							MsgEventArgs m = new MsgEventArgs() { Msg = element };
+
+							var handler = KeyboardTcpDataReceived;
+							if (handler != null) KeyboardTcpDataReceived?.Invoke(this, m);
 						}
 						if (element.StartsWith("tM"))
 						{
-							if (InvokeRequired)
-								Invoke(new MethodInvoker(delegate
-								{
-									ttDisplay.Items.Add(element.Substring(2));
-									Console.WriteLine(element.Substring(2));
-									//	debug.Text = element.Substring(2);
-								}));
+							MsgEventArgs m = new MsgEventArgs() { Msg = element };
+
+							var handler = KeyboardTcpDataReceived;
+							if (handler != null) KeyboardTcpDataReceived?.Invoke(this, m);
 						}
 
 						if (element.StartsWith("zA"))
@@ -253,9 +242,6 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 							var handler = KeyboardTcpDataReceived;
 							if (handler != null) KeyboardTcpDataReceived?.Invoke(this, m);
-
-
-							//_keyboard.Trja(element);
 						}
 
 						#region PlatformDataResponse Main

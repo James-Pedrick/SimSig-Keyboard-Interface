@@ -116,6 +116,7 @@
 			this.ttDisplay.Name = "ttDisplay";
 			this.ttDisplay.Size = new System.Drawing.Size(574, 436);
 			this.ttDisplay.TabIndex = 17;
+			this.ttDisplay.SelectedIndexChanged += new System.EventHandler(this.ttDisplay_SelectedIndexChanged);
 			// 
 			// KeyboardInterface
 			// 

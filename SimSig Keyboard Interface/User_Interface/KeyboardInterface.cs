@@ -1,19 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using SimSig_Keyboard_Interface.Comms.RS232;
-using SimSig_Keyboard_Interface.Data;
 using System.Text.RegularExpressions;
-using SimSig_Keyboard_Interface.DataProcess.Flags;
-using SimSig_Keyboard_Interface.DataProcess.GroundFrames;
-using SimSig_Keyboard_Interface.DataProcess.Slots;
 using System.Xml;
 using SimSig_Keyboard_Interface.Comms.TCP;
 
@@ -299,10 +290,11 @@ namespace SimSig_Keyboard_Interface.User_Interface
 				{
 					if (element != null)
 					{
-						if (element.Contains("<platformDataResponse"))
-							Trja(element);
-						if(element.Contains("zA"))
-							TimeUpdate(element);
+						if (element.Contains("<platformDataResponse")) Trja(element);
+						if(element.StartsWith("tE")) TeMessage(element);
+						if (element.StartsWith("tL")) ttDisplay.Items.Clear();
+						if (element.StartsWith("tM")) ttDisplay.Items.Add(element.Substring(2));
+						if(element.Contains("zA")) TimeUpdate(element);
 
 					}
 				}));
@@ -311,7 +303,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 		private void TimeUpdate(string element)
 		{
-			var timeString = element.Substring(6, 4);
+			var timeString = element.Substring(2, 8);
 
 			var timeSeconds = int.Parse(timeString, NumberStyles.HexNumber);
 
@@ -320,8 +312,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 			clock.Text = simTime.ToString().Substring(0,5);
 
-			if(element.EndsWith("1")) clock.ForeColor = Color.Magenta;
-			else clock.ForeColor = Color.Cyan;
+			clock.ForeColor = element.EndsWith("1") ? Color.Magenta : Color.Cyan;
 		}
 
 		private void Trja(string element)
@@ -479,6 +470,16 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 		}
 
+		private void TeMessage(string element)
+		{
+			ttDisplay.Items.Clear();
+			ttDisplay.Items.Add(element.Substring(2));
+		}
+
+		private void ttDisplay_SelectedIndexChanged(object sender, EventArgs e)
+		{
+
+		}
 	}
 }
 
