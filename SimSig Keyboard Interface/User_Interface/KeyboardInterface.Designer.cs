@@ -87,7 +87,7 @@
 			this.userInputString.Name = "userInputString";
 			this.userInputString.Size = new System.Drawing.Size(424, 25);
 			this.userInputString.TabIndex = 1;
-			this.userInputString.TextChanged += new System.EventHandler(this.userInputString_TextChanged);
+			this.userInputString.TextChanged += new System.EventHandler(this.UserInputString_TextChanged);
 			this.userInputString.KeyDown += new System.Windows.Forms.KeyEventHandler(this.UserInputString_KeyDown);
 			// 
 			// clock

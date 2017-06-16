@@ -51,6 +51,8 @@
 			this.saveSignalsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.saveBerthsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.saveRawToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.loadSaveGameXML = new System.Windows.Forms.OpenFileDialog();
 			this.dataSave = new System.Windows.Forms.SaveFileDialog();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -59,16 +61,11 @@
 			this.phone = new System.Windows.Forms.TabPage();
 			this.phoneUi = new SimSig_Keyboard_Interface.User_Interface.PhoneUi();
 			this.keyboardInterface = new System.Windows.Forms.TabPage();
-			this.ttDisplay = new System.Windows.Forms.ListBox();
-			this.keyboardSpecFunction = new System.Windows.Forms.TextBox();
-			this.userInputString = new System.Windows.Forms.TextBox();
 			this.debug = new System.Windows.Forms.TabPage();
 			this.debugUc1 = new SimSig_Keyboard_Interface.User_Interface.DebugUc();
 			this.tabControl = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
-			this.keyboardInterface1 = new SimSig_Keyboard_Interface.User_Interface.KeyboardInterface();
-			this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.keyboardInterface2 = new SimSig_Keyboard_Interface.User_Interface.KeyboardInterface();
 			this.menuStrip.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.SuspendLayout();
@@ -76,7 +73,6 @@
 			this.keyboardInterface.SuspendLayout();
 			this.debug.SuspendLayout();
 			this.tabControl.SuspendLayout();
-			this.tabPage1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// menuStrip
@@ -251,7 +247,20 @@
 			this.saveRawToolStripMenuItem.Name = "saveRawToolStripMenuItem";
 			this.saveRawToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
 			this.saveRawToolStripMenuItem.Text = "Save Raw";
-			this.saveRawToolStripMenuItem.Click += new System.EventHandler(this.SaveRawToolStripMenuItem_Click);
+			// 
+			// helpToolStripMenuItem
+			// 
+			this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutToolStripMenuItem});
+			this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+			this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 19);
+			this.helpToolStripMenuItem.Text = "Help";
+			// 
+			// aboutToolStripMenuItem
+			// 
+			this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+			this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+			this.aboutToolStripMenuItem.Text = "About";
 			// 
 			// loadSaveGameXML
 			// 
@@ -291,9 +300,7 @@
 			// keyboardInterface
 			// 
 			this.keyboardInterface.BackColor = System.Drawing.Color.Black;
-			this.keyboardInterface.Controls.Add(this.ttDisplay);
-			this.keyboardInterface.Controls.Add(this.keyboardSpecFunction);
-			this.keyboardInterface.Controls.Add(this.userInputString);
+			this.keyboardInterface.Controls.Add(this.keyboardInterface2);
 			this.keyboardInterface.Location = new System.Drawing.Point(4, 23);
 			this.keyboardInterface.Margin = new System.Windows.Forms.Padding(4);
 			this.keyboardInterface.Name = "keyboardInterface";
@@ -301,54 +308,6 @@
 			this.keyboardInterface.Size = new System.Drawing.Size(786, 484);
 			this.keyboardInterface.TabIndex = 0;
 			this.keyboardInterface.Text = "Keyboard Interface";
-			// 
-			// ttDisplay
-			// 
-			this.ttDisplay.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.ttDisplay.BackColor = System.Drawing.SystemColors.WindowText;
-			this.ttDisplay.Font = new System.Drawing.Font("Consolas", 11F);
-			this.ttDisplay.ForeColor = System.Drawing.Color.Cyan;
-			this.ttDisplay.FormattingEnabled = true;
-			this.ttDisplay.ItemHeight = 18;
-			this.ttDisplay.Location = new System.Drawing.Point(4, 60);
-			this.ttDisplay.Margin = new System.Windows.Forms.Padding(4);
-			this.ttDisplay.Name = "ttDisplay";
-			this.ttDisplay.Size = new System.Drawing.Size(774, 382);
-			this.ttDisplay.TabIndex = 16;
-			// 
-			// keyboardSpecFunction
-			// 
-			this.keyboardSpecFunction.BackColor = System.Drawing.Color.Black;
-			this.keyboardSpecFunction.Cursor = System.Windows.Forms.Cursors.Arrow;
-			this.keyboardSpecFunction.Font = new System.Drawing.Font("Consolas", 11F);
-			this.keyboardSpecFunction.ForeColor = System.Drawing.Color.Cyan;
-			this.keyboardSpecFunction.Location = new System.Drawing.Point(12, 16);
-			this.keyboardSpecFunction.Margin = new System.Windows.Forms.Padding(4);
-			this.keyboardSpecFunction.MaxLength = 3;
-			this.keyboardSpecFunction.Name = "keyboardSpecFunction";
-			this.keyboardSpecFunction.ReadOnly = true;
-			this.keyboardSpecFunction.Size = new System.Drawing.Size(68, 25);
-			this.keyboardSpecFunction.TabIndex = 14;
-			this.keyboardSpecFunction.TabStop = false;
-			this.keyboardSpecFunction.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			// 
-			// userInputString
-			// 
-			this.userInputString.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.userInputString.BackColor = System.Drawing.SystemColors.InfoText;
-			this.userInputString.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-			this.userInputString.Font = new System.Drawing.Font("Consolas", 11F);
-			this.userInputString.ForeColor = System.Drawing.Color.Cyan;
-			this.userInputString.Location = new System.Drawing.Point(88, 16);
-			this.userInputString.Margin = new System.Windows.Forms.Padding(4);
-			this.userInputString.MinimumSize = new System.Drawing.Size(4, 25);
-			this.userInputString.Name = "userInputString";
-			this.userInputString.Size = new System.Drawing.Size(682, 25);
-			this.userInputString.TabIndex = 0;
-			this.userInputString.KeyDown += new System.Windows.Forms.KeyEventHandler(this.UserInputString_KeyDown);
 			// 
 			// debug
 			// 
@@ -388,7 +347,6 @@
 			// 
 			// tabPage1
 			// 
-			this.tabPage1.Controls.Add(this.keyboardInterface1);
 			this.tabPage1.Location = new System.Drawing.Point(4, 23);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -397,30 +355,15 @@
 			this.tabPage1.Text = "tabPage1";
 			this.tabPage1.UseVisualStyleBackColor = true;
 			// 
-			// keyboardInterface1
+			// keyboardInterface2
 			// 
-			this.keyboardInterface1.BackColor = System.Drawing.Color.Black;
-			this.keyboardInterface1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.keyboardInterface1.ForeColor = System.Drawing.Color.Cyan;
-			this.keyboardInterface1.Location = new System.Drawing.Point(3, 3);
-			this.keyboardInterface1.Name = "keyboardInterface1";
-			this.keyboardInterface1.Size = new System.Drawing.Size(780, 478);
-			this.keyboardInterface1.TabIndex = 0;
-			// 
-			// helpToolStripMenuItem
-			// 
-			this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aboutToolStripMenuItem});
-			this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-			this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 19);
-			this.helpToolStripMenuItem.Text = "Help";
-			// 
-			// aboutToolStripMenuItem
-			// 
-			this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-			this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-			this.aboutToolStripMenuItem.Text = "About";
-			this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+			this.keyboardInterface2.BackColor = System.Drawing.Color.Black;
+			this.keyboardInterface2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.keyboardInterface2.ForeColor = System.Drawing.Color.Cyan;
+			this.keyboardInterface2.Location = new System.Drawing.Point(4, 4);
+			this.keyboardInterface2.Name = "keyboardInterface2";
+			this.keyboardInterface2.Size = new System.Drawing.Size(778, 476);
+			this.keyboardInterface2.TabIndex = 1;
 			// 
 			// MainMenu
 			// 
@@ -442,10 +385,8 @@
 			this.splitContainer1.ResumeLayout(false);
 			this.phone.ResumeLayout(false);
 			this.keyboardInterface.ResumeLayout(false);
-			this.keyboardInterface.PerformLayout();
 			this.debug.ResumeLayout(false);
 			this.tabControl.ResumeLayout(false);
-			this.tabPage1.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -484,16 +425,13 @@
 		private System.Windows.Forms.TabPage phone;
 		private PhoneUi phoneUi;
 		private System.Windows.Forms.TabPage keyboardInterface;
-		private System.Windows.Forms.ListBox ttDisplay;
-		private System.Windows.Forms.TextBox keyboardSpecFunction;
-		public System.Windows.Forms.TextBox userInputString;
 		private System.Windows.Forms.TabPage debug;
 		private DebugUc debugUc1;
 		private System.Windows.Forms.TabControl tabControl;
 		private System.Windows.Forms.TabPage tabPage1;
-		private KeyboardInterface keyboardInterface1;
 		private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+		private KeyboardInterface keyboardInterface2;
 	}
 }
 

@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using System.Windows.Shapes;
 using System.Xml;
 using SimSig_Keyboard_Interface.Comms.TCP;
 
@@ -14,7 +16,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 {
 	public partial class KeyboardInterface : UserControl
 	{
-		public string trustString;
+		private string trustString;
 
 		
 		public KeyboardInterface()
@@ -449,11 +451,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 					//Console.WriteLine(train.ToString());
 
 					Console.WriteLine(train.ToString().Substring(14, 4) + train.ToString().Substring(6, 8) + train.ToString().Substring(0, 6) + train.ToString().Substring(18));
-					/*		if (InvokeRequired)
-								Invoke(new MethodInvoker(delegate
-								{
-									consoleWindow.Items.Add(train.ToString().Substring(14, 4) + train.ToString().Substring(6, 8) + train.ToString().Substring(0, 6) + train.ToString().Substring(18));
-								}));*/
+
 
 
 						ttDisplay.Items.Add(train.ToString().Substring(14, 4) + train.ToString().Substring(6, 8) +
@@ -480,7 +478,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 		}
 
-		private void userInputString_TextChanged(object sender, EventArgs e)
+		private void UserInputString_TextChanged(object sender, EventArgs e)
 		{
 
 		}
@@ -489,36 +487,10 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		{
 			ttDisplay.Items.Clear();
 
-			ttDisplay.Items.Add("A   - Auto");
-			ttDisplay.Items.Add("B   - Berth");
-			ttDisplay.Items.Add("E   - Replacement");
-			ttDisplay.Items.Add("S   - Signal");
-			ttDisplay.Items.Add("P   - Points");
+			string[] lines = File.ReadAllLines(@"Notes/Commands.txt");
 
-			ttDisplay.Items.Add("");
-			ttDisplay.Items.Add("");
-
-			ttDisplay.Items.Add("F1  - Rem");
-			ttDisplay.Items.Add("F2  - Iso");
-			ttDisplay.Items.Add("F3  - Override");
-			ttDisplay.Items.Add("");
-			ttDisplay.Items.Add("F5  - Key Points Normal");
-			ttDisplay.Items.Add("F6  - Points Centre");
-			ttDisplay.Items.Add("F7  - Key Points Reverse");
-
-
-			ttDisplay.Items.Add("");
-			ttDisplay.Items.Add("");
-
-			ttDisplay.Items.Add("DEL - Cancel");
-			ttDisplay.Items.Add("ENT - Set");
-
-
-			ttDisplay.Items.Add("");
-			ttDisplay.Items.Add("");
-
-			ttDisplay.Items.Add("TRJA - Location Query");
-
+			foreach (string line in lines)
+				ttDisplay.Items.Add(line);
 		}
 	}
 }
