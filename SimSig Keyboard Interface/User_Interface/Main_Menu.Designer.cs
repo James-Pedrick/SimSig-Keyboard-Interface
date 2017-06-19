@@ -65,7 +65,7 @@
 			this.debug = new System.Windows.Forms.TabPage();
 			this.debugUc1 = new SimSig_Keyboard_Interface.User_Interface.DebugUc();
 			this.tabControl = new System.Windows.Forms.TabControl();
-			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.berthWatch = new System.Windows.Forms.TabPage();
 			this.berthWatch1 = new SimSig_Keyboard_Interface.User_Interface.BerthWatch();
 			this.menuStrip.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -74,7 +74,7 @@
 			this.keyboardInterface.SuspendLayout();
 			this.debug.SuspendLayout();
 			this.tabControl.SuspendLayout();
-			this.tabPage1.SuspendLayout();
+			this.berthWatch.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// menuStrip
@@ -346,7 +346,7 @@
 			this.tabControl.Controls.Add(this.debug);
 			this.tabControl.Controls.Add(this.keyboardInterface);
 			this.tabControl.Controls.Add(this.phone);
-			this.tabControl.Controls.Add(this.tabPage1);
+			this.tabControl.Controls.Add(this.berthWatch);
 			this.tabControl.Cursor = System.Windows.Forms.Cursors.Default;
 			this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tabControl.Font = new System.Drawing.Font("Consolas", 9F);
@@ -358,16 +358,16 @@
 			this.tabControl.Size = new System.Drawing.Size(794, 511);
 			this.tabControl.TabIndex = 1;
 			// 
-			// tabPage1
+			// berthWatch
 			// 
-			this.tabPage1.Controls.Add(this.berthWatch1);
-			this.tabPage1.Location = new System.Drawing.Point(4, 23);
-			this.tabPage1.Name = "tabPage1";
-			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(786, 484);
-			this.tabPage1.TabIndex = 4;
-			this.tabPage1.Text = "tabPage1";
-			this.tabPage1.UseVisualStyleBackColor = true;
+			this.berthWatch.Controls.Add(this.berthWatch1);
+			this.berthWatch.Location = new System.Drawing.Point(4, 23);
+			this.berthWatch.Name = "berthWatch";
+			this.berthWatch.Padding = new System.Windows.Forms.Padding(3);
+			this.berthWatch.Size = new System.Drawing.Size(786, 484);
+			this.berthWatch.TabIndex = 4;
+			this.berthWatch.Text = "Berth Watch";
+			this.berthWatch.UseVisualStyleBackColor = true;
 			// 
 			// berthWatch1
 			// 
@@ -399,7 +399,7 @@
 			this.keyboardInterface.ResumeLayout(false);
 			this.debug.ResumeLayout(false);
 			this.tabControl.ResumeLayout(false);
-			this.tabPage1.ResumeLayout(false);
+			this.berthWatch.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -441,7 +441,7 @@
 		private System.Windows.Forms.TabPage debug;
 		private DebugUc debugUc1;
 		private System.Windows.Forms.TabControl tabControl;
-		private System.Windows.Forms.TabPage tabPage1;
+		private System.Windows.Forms.TabPage berthWatch;
 		private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
 		private KeyboardInterface keyboardInterface2;
