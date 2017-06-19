@@ -8,9 +8,6 @@ namespace SimSig_Keyboard_Interface.DataProcess.Signals
 {
 	public class SignalContainer
 	{
-
-
-
 		public BindingList<Signals> SignalList = new BindingList<Signals>();
 
 

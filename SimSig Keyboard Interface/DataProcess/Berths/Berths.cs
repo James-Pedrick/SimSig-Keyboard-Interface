@@ -6,6 +6,7 @@ namespace SimSig_Keyboard_Interface.DataProcess.Berths
 		public string HexId { get; set; }
 		public string BerthId { get; set; }
 		public string BerthContent { get; set; }
+		public bool WatchBerth { get; set; }
 
 
 

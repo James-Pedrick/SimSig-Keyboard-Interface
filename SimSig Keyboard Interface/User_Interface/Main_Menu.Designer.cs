@@ -61,11 +61,12 @@
 			this.phone = new System.Windows.Forms.TabPage();
 			this.phoneUi = new SimSig_Keyboard_Interface.User_Interface.PhoneUi();
 			this.keyboardInterface = new System.Windows.Forms.TabPage();
+			this.keyboardInterface2 = new SimSig_Keyboard_Interface.User_Interface.KeyboardInterface();
 			this.debug = new System.Windows.Forms.TabPage();
 			this.debugUc1 = new SimSig_Keyboard_Interface.User_Interface.DebugUc();
 			this.tabControl = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
-			this.keyboardInterface2 = new SimSig_Keyboard_Interface.User_Interface.KeyboardInterface();
+			this.berthWatch1 = new SimSig_Keyboard_Interface.User_Interface.BerthWatch();
 			this.menuStrip.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.SuspendLayout();
@@ -73,6 +74,7 @@
 			this.keyboardInterface.SuspendLayout();
 			this.debug.SuspendLayout();
 			this.tabControl.SuspendLayout();
+			this.tabPage1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// menuStrip
@@ -309,6 +311,16 @@
 			this.keyboardInterface.TabIndex = 0;
 			this.keyboardInterface.Text = "Keyboard Interface";
 			// 
+			// keyboardInterface2
+			// 
+			this.keyboardInterface2.BackColor = System.Drawing.Color.Black;
+			this.keyboardInterface2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.keyboardInterface2.ForeColor = System.Drawing.Color.Cyan;
+			this.keyboardInterface2.Location = new System.Drawing.Point(4, 4);
+			this.keyboardInterface2.Name = "keyboardInterface2";
+			this.keyboardInterface2.Size = new System.Drawing.Size(778, 476);
+			this.keyboardInterface2.TabIndex = 1;
+			// 
 			// debug
 			// 
 			this.debug.Controls.Add(this.debugUc1);
@@ -347,6 +359,7 @@
 			// 
 			// tabPage1
 			// 
+			this.tabPage1.Controls.Add(this.berthWatch1);
 			this.tabPage1.Location = new System.Drawing.Point(4, 23);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -355,15 +368,12 @@
 			this.tabPage1.Text = "tabPage1";
 			this.tabPage1.UseVisualStyleBackColor = true;
 			// 
-			// keyboardInterface2
+			// berthWatch1
 			// 
-			this.keyboardInterface2.BackColor = System.Drawing.Color.Black;
-			this.keyboardInterface2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.keyboardInterface2.ForeColor = System.Drawing.Color.Cyan;
-			this.keyboardInterface2.Location = new System.Drawing.Point(4, 4);
-			this.keyboardInterface2.Name = "keyboardInterface2";
-			this.keyboardInterface2.Size = new System.Drawing.Size(778, 476);
-			this.keyboardInterface2.TabIndex = 1;
+			this.berthWatch1.Location = new System.Drawing.Point(27, 25);
+			this.berthWatch1.Name = "berthWatch1";
+			this.berthWatch1.Size = new System.Drawing.Size(742, 440);
+			this.berthWatch1.TabIndex = 0;
 			// 
 			// MainMenu
 			// 
@@ -387,6 +397,7 @@
 			this.keyboardInterface.ResumeLayout(false);
 			this.debug.ResumeLayout(false);
 			this.tabControl.ResumeLayout(false);
+			this.tabPage1.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -432,6 +443,7 @@
 		private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
 		private KeyboardInterface keyboardInterface2;
+		private BerthWatch berthWatch1;
 	}
 }
 

@@ -365,7 +365,6 @@
 
 		private System.Windows.Forms.TabControl debugTabs;
 		private System.Windows.Forms.TabPage debugBerths;
-		private System.Windows.Forms.DataGridView debugBerthView;
 		private System.Windows.Forms.TabPage debugGroundFrames;
 		private System.Windows.Forms.DataGridView debugCallView;
 		private System.Windows.Forms.TabPage debugPoints;
@@ -382,5 +381,6 @@
 		private System.Windows.Forms.DataGridView debugFlagView;
 		private System.Windows.Forms.TabPage debugTcpRaw;
 		public System.Windows.Forms.ListBox debugRawTcpDisplay;
+		public System.Windows.Forms.DataGridView debugBerthView;
 	}
 }

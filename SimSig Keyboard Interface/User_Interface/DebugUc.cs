@@ -35,8 +35,6 @@ namespace SimSig_Keyboard_Interface.User_Interface
 				{
 					if (element != null)
 					{
-						Console.WriteLine(element);
-
 						debugRawTcpDisplay.Items.Insert(0, element);
 					}
 				}));

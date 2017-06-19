@@ -96,7 +96,7 @@ namespace SimSig_Keyboard_Interface.Data
 			}
 
 
-			Console.WriteLine(itemId.PadRight(11, ' ') + pointsHex + _pointsDecimal);
+			Console.WriteLine(itemId.PadRight(11, ' ') + pointsHex);
 
 
 			points.AddPointXml(pointsHex, itemId);

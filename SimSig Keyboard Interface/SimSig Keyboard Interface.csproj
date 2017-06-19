@@ -116,6 +116,12 @@
     <Compile Include="Data\SaveGameParser.cs" />
     <Compile Include="Data\SendPrep.cs" />
     <Compile Include="Properties\Settings.cs" />
+    <Compile Include="User_Interface\BerthWatch.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User_Interface\BerthWatch.Designer.cs">
+      <DependentUpon>BerthWatch.cs</DependentUpon>
+    </Compile>
     <Compile Include="User_Interface\DebugUc.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -148,6 +154,9 @@
     <Compile Include="User_Interface\TCP_Connect.Designer.cs">
       <DependentUpon>TCP_Connect.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="User_Interface\BerthWatch.resx">
+      <DependentUpon>BerthWatch.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="User_Interface\DebugUc.resx">
       <DependentUpon>DebugUc.cs</DependentUpon>
     </EmbeddedResource>

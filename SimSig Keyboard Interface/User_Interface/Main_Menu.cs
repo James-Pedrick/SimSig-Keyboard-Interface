@@ -58,6 +58,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 		public static event EventHandler<MsgEventArgs> DebugTcpDataReceived;
 		public static event EventHandler<MsgEventArgs> KeyboardTcpDataReceived;
+		public static event EventHandler<MsgEventArgs> BerthWatch;
 
 
 
@@ -100,7 +101,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 				try
 				{
 					{
-						MsgEventArgs m = new MsgEventArgs() {Msg = element};
+						MsgEventArgs m = new MsgEventArgs() { Msg = element };
 
 						var handler = DebugTcpDataReceived;
 						if (handler != null) DebugTcpDataReceived?.Invoke(this, m);
@@ -173,17 +174,24 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 					if (element.StartsWith("tE") || element.StartsWith("tL") || element.StartsWith("tM"))
 					{
-						MsgEventArgs m = new MsgEventArgs() {Msg = element};
+						MsgEventArgs m = new MsgEventArgs() { Msg = element };
 
 						var handler = KeyboardTcpDataReceived;
 						if (handler != null) KeyboardTcpDataReceived?.Invoke(this, m);
 					}
 					if (element.StartsWith("zA"))
 					{
-						MsgEventArgs m = new MsgEventArgs() {Msg = element};
+						MsgEventArgs m = new MsgEventArgs() { Msg = element };
 
 						var handler = KeyboardTcpDataReceived;
 						if (handler != null) KeyboardTcpDataReceived?.Invoke(this, m);
+
+						handler = BerthWatch;
+						if (handler != null) BerthWatch?.Invoke(this, m);
+
+
+
+
 					}
 
 					if (element.StartsWith("iCB"))
@@ -216,7 +224,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 					if (element.Contains("<platformDataResponse"))
 					{
-						MsgEventArgs m = new MsgEventArgs() {Msg = element};
+						MsgEventArgs m = new MsgEventArgs() { Msg = element };
 
 						var handler = KeyboardTcpDataReceived;
 						if (handler != null) KeyboardTcpDataReceived?.Invoke(this, m);
