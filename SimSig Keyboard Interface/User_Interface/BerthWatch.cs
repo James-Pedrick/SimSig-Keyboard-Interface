@@ -34,12 +34,8 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 			MainMenu._berths.BerthWatch(z[0], true);
 
-			watchList.Items.Add(z[0]);
-
-
-
-
-
+			if (watchList.Items.Contains(z[0]) == false)
+				watchList.Items.Add(z[0]);
 		}
 
 		private void BerthWatchChange(Object sender, MsgEventArgs e)
@@ -51,18 +47,18 @@ namespace SimSig_Keyboard_Interface.User_Interface
 				Invoke(new MethodInvoker(delegate
 				{
 					var berthHex = element.Substring(2, 4);
-
-
-					//
-					//		if (SignalList.SingleOrDefault(s => s.HexId == hId) == null)
-					//			SignalList.Add(new Signals {HexId = hId});
-
-
-
-
 				}));
 			}
 		}
 
+		private void removeWatch_Click(object sender, EventArgs e)
+		{
+			var z = watchList.SelectedItem;
+			
+
+			MainMenu._berths.BerthWatch(z.ToString(), false);
+			watchList.Items.Remove(z);
+
+		}
 	}
 }

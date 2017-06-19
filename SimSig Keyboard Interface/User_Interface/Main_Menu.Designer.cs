@@ -280,6 +280,7 @@
 			// 
 			this.notifyIcon1.Text = "notifyIcon1";
 			this.notifyIcon1.Visible = true;
+			this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
 			// 
 			// phone
 			// 
@@ -370,9 +371,10 @@
 			// 
 			// berthWatch1
 			// 
-			this.berthWatch1.Location = new System.Drawing.Point(27, 25);
+			this.berthWatch1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.berthWatch1.Location = new System.Drawing.Point(3, 3);
 			this.berthWatch1.Name = "berthWatch1";
-			this.berthWatch1.Size = new System.Drawing.Size(742, 440);
+			this.berthWatch1.Size = new System.Drawing.Size(780, 478);
 			this.berthWatch1.TabIndex = 0;
 			// 
 			// MainMenu

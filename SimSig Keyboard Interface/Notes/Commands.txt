@@ -20,3 +20,8 @@ ENT  - Set
 
 
 TRJA - Location Query
+
+
+ON BERTH WATCH
+To Add    - Type berth number and Add Watch
+To Remove - Select berth number to remove, and select Remove.

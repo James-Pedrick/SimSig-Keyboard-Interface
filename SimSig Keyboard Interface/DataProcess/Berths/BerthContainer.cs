@@ -49,10 +49,7 @@ namespace SimSig_Keyboard_Interface.DataProcess.Berths
 		{
 			var hexId = data.Substring(0, 4);
 			var berthContent = data.Substring(4, 4);
-
-
-
-
+			
 			AddBerthTcp(hexId, berthContent);
 		}
 
@@ -78,8 +75,6 @@ namespace SimSig_Keyboard_Interface.DataProcess.Berths
 				User_Interface.MainMenu.Connection.SendData(berthRequest);
 			}
 		}
-
-
 
 	}
 }

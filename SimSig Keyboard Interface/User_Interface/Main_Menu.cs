@@ -229,6 +229,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 						var handler = KeyboardTcpDataReceived;
 						if (handler != null) KeyboardTcpDataReceived?.Invoke(this, m);
 					}
+					
 
 					#region PlatformDataResponse Main
 
@@ -468,6 +469,11 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			_berths.BerthStatusRequest();
 			_points.PointStatusConnectionRequest();
 			_signals.SignalStatusRequest();
+		}
+
+		private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+		{
+
 		}
 	}
 }
