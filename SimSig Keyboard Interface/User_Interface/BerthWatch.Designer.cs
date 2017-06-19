@@ -32,8 +32,8 @@
 			this.watchList = new System.Windows.Forms.ListBox();
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-			this.addWatch = new System.Windows.Forms.Button();
 			this.removeWatch = new System.Windows.Forms.Button();
+			this.addWatch = new System.Windows.Forms.Button();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.tableLayoutPanel2.SuspendLayout();
 			this.SuspendLayout();
@@ -91,17 +91,6 @@
 			this.tableLayoutPanel2.Size = new System.Drawing.Size(359, 34);
 			this.tableLayoutPanel2.TabIndex = 4;
 			// 
-			// addWatch
-			// 
-			this.addWatch.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.addWatch.Font = new System.Drawing.Font("Consolas", 9F);
-			this.addWatch.Location = new System.Drawing.Point(3, 3);
-			this.addWatch.Name = "addWatch";
-			this.addWatch.Size = new System.Drawing.Size(173, 28);
-			this.addWatch.TabIndex = 9;
-			this.addWatch.Text = "Add Watch Berth";
-			this.addWatch.UseVisualStyleBackColor = true;
-			// 
 			// removeWatch
 			// 
 			this.removeWatch.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -112,6 +101,18 @@
 			this.removeWatch.TabIndex = 10;
 			this.removeWatch.Text = "Remove Watch Berth";
 			this.removeWatch.UseVisualStyleBackColor = true;
+			// 
+			// addWatch
+			// 
+			this.addWatch.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.addWatch.Font = new System.Drawing.Font("Consolas", 9F);
+			this.addWatch.Location = new System.Drawing.Point(3, 3);
+			this.addWatch.Name = "addWatch";
+			this.addWatch.Size = new System.Drawing.Size(173, 28);
+			this.addWatch.TabIndex = 9;
+			this.addWatch.Text = "Add Watch Berth";
+			this.addWatch.UseVisualStyleBackColor = true;
+			this.addWatch.Click += new System.EventHandler(this.addWatch_Click_1);
 			// 
 			// BerthWatch
 			// 

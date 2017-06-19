@@ -443,7 +443,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 				}
 
 				//The simplfier needs to be sorted
-				Console.WriteLine("*************************");
+				Console.WriteLine(@"*************************");
 
 				simplfierList.Sort();
 				foreach (string train in simplfierList)

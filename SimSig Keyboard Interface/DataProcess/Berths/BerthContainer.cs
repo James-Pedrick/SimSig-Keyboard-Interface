@@ -1,14 +1,12 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Linq;
-using System.Windows.Markup;
 using SimSig_Keyboard_Interface.User_Interface;
 
 namespace SimSig_Keyboard_Interface.DataProcess.Berths
 {
 	public class BerthContainer
 	{
-		public BindingList<Berths> BerthList = new BindingList<Berths>();
+		public readonly BindingList<Berths> BerthList = new BindingList<Berths>();
 
 
 
@@ -32,9 +30,9 @@ namespace SimSig_Keyboard_Interface.DataProcess.Berths
 				BerthList.Single(b => b.HexId == hId).BerthContent = bContent;
 
 
-			if (BerthList.SingleOrDefault(b => b.HexId == hId && b.WatchBerth == true) == null) return;
+			if (BerthList.SingleOrDefault(b => b.HexId == hId && b.WatchBerth) == null) return;
 
-			var z = BerthList.Single(B => B.HexId == hId).BerthContent;
+			var z = BerthList.Single(b => b.HexId == hId).BerthContent;
 			if (z != "    ")
 				MainMenu.Connection.SendData("tO " + z + "|");
 		}
@@ -72,7 +70,7 @@ namespace SimSig_Keyboard_Interface.DataProcess.Berths
 			{
 				var berthRequest = "iBB" + x.HexId + x.HexId + "|";
 
-				User_Interface.MainMenu.Connection.SendData(berthRequest);
+				MainMenu.Connection.SendData(berthRequest);
 			}
 		}
 

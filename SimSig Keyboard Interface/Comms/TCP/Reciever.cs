@@ -33,7 +33,7 @@ namespace SimSig_Keyboard_Interface.Comms.TCP
 
                     string temp = "";
 
-                    while (running)
+                    while (true)
                     {
                         if ((bytesRead = _stream.Read(buffer, 0, buffer.Length)) == 0)
                         { Thread.Sleep(20); }

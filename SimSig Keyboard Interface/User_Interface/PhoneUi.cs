@@ -19,7 +19,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			callers.ValueMember = "CallNumber";
 
 
-			callers.DataSource = MainMenu._calls.CallList;
+			callers.DataSource = MainMenu.Calls.CallList;
 
 
 			callMsg.Text = "";
@@ -34,7 +34,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			{
 				var x = callResponses.SelectedIndex.ToString();
 
-				var callId = MainMenu._calls.CallList.Single(c => c.CallNumber == callers.SelectedValue.ToString()).CallNumber;
+				var callId = MainMenu.Calls.CallList.Single(c => c.CallNumber == callers.SelectedValue.ToString()).CallNumber;
 
 				MainMenu.Connection.SendData("pN" + callId + '\\' + x + "|");
 
@@ -51,14 +51,14 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			callResponses.Items.Clear();
 			try
 			{
-				var x = MainMenu._calls.CallList.Single(c => c.CallNumber == callers.SelectedValue.ToString()).CallResponses;
+				var x = MainMenu.Calls.CallList.Single(c => c.CallNumber == callers.SelectedValue.ToString()).CallResponses;
 
 				foreach (var i in x)
 					if (i != null)
 						callResponses.Items.Add(i.Substring(8).TrimEnd('\\'));
 
 
-				callMsg.Text = MainMenu._calls.CallList.Single(c => c.CallNumber == callers.SelectedValue.ToString()).CallerMessage;
+				callMsg.Text = MainMenu.Calls.CallList.Single(c => c.CallNumber == callers.SelectedValue.ToString()).CallerMessage;
 
 			}
 			catch

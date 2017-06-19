@@ -6,27 +6,27 @@ using System.Threading;
 namespace SimSig_Keyboard_Interface.Data
 {
 
-	class SendPrep
+	public static class SendPrep
 	{
 
 
 		public static void Interpose(string berth, string descrition)
 		{
-			var berthHex = MainMenu._berths.BerthHIdLookup(berth);
+			var berthHex = MainMenu.Berths.BerthHIdLookup(berth);
 
 			MainMenu.Connection.SendData(@"BB" + berthHex + descrition + "|");
 		}
 
 		public static void InterposeCancel(string berth)
 		{
-			var berthHex = MainMenu._berths.BerthHIdLookup(berth);
+			var berthHex = MainMenu.Berths.BerthHIdLookup(berth);
 			MainMenu.Connection.SendData(@"BC" + berthHex+ "|");
 		}
 
 		public static void RouteSet(string entry, string exit)
 		{
-			var entrySigHex = MainMenu._signals.SignalIdLookup(entry);
-			var exitSigHex = MainMenu._signals.SignalIdLookup(exit);
+			var entrySigHex = MainMenu.Signals.SignalIdLookup(entry);
+			var exitSigHex = MainMenu.Signals.SignalIdLookup(exit);
 
 			if (entrySigHex == null || exitSigHex == null) return;
 
@@ -36,32 +36,32 @@ namespace SimSig_Keyboard_Interface.Data
 
 		public static void RouteCan(string entry)
 		{
-			var entrySigHex = MainMenu._signals.SignalIdLookup(entry);
+			var entrySigHex = MainMenu.Signals.SignalIdLookup(entry);
 			MainMenu.Connection.SendData(@"zD" + entrySigHex + "|");
 
 		}
 
 		public static void SigAutoSet(string entry)
 		{
-			var entrySigHex = MainMenu._signals.SignalIdLookup(entry);
+			var entrySigHex = MainMenu.Signals.SignalIdLookup(entry);
 			MainMenu.Connection.SendData(@"SF" + entrySigHex + "|");
 		}
 
 		public static void SigAutoCan(string entry)
 		{
-			var entrySigHex = MainMenu._signals.SignalIdLookup(entry);
+			var entrySigHex = MainMenu.Signals.SignalIdLookup(entry);
 			MainMenu.Connection.SendData(@"SG" + entrySigHex + "|");
 		}
 
 		public static void SigReplacementCan(string entry)
 		{
-			var entrySigHex = MainMenu._signals.SignalIdLookup(entry);
+			var entrySigHex = MainMenu.Signals.SignalIdLookup(entry);
 			MainMenu.Connection.SendData(@"SP" + entrySigHex + "|");
 		}
 
 		public static void SigReplacementSet(string entry)
 		{
-			var entrySigHex = MainMenu._signals.SignalIdLookup(entry);
+			var entrySigHex = MainMenu.Signals.SignalIdLookup(entry);
 			MainMenu.Connection.SendData(@"SQ" + entrySigHex + "|");
 		}
 
@@ -70,26 +70,26 @@ namespace SimSig_Keyboard_Interface.Data
 			Thread keyPointsNormal = new Thread(() =>
 				{
 
-					string pointId = MainMenu._points.PointLookup(points);
+					string pointId = MainMenu.Points.PointLookup(points);
 					if (pointId == null) return;
 
-					if (MainMenu._points.PointList.SingleOrDefault(p => p.HexId == pointId) == null) return;
+					if (MainMenu.Points.PointList.SingleOrDefault(p => p.HexId == pointId) == null) return;
 
 					//(PointList.SingleOrDefault(b => b.Number == data) != null
 
-					while (MainMenu._points.PointsKn(pointId) == false)
+					while (MainMenu.Points.PointsKn(pointId) == false)
 					{
-						while (MainMenu._points.PointUpdated(pointId) == false)
+						while (MainMenu.Points.PointUpdated(pointId) == false)
 							Thread.Sleep(10);
 						Thread.Sleep(10);
-						if (MainMenu._points.PointsKn(pointId))
+						if (MainMenu.Points.PointsKn(pointId))
 							return;
 
-						if (MainMenu._points.PointsKn(pointId) == false && MainMenu._points.PointUpdated(pointId))
+						if (MainMenu.Points.PointsKn(pointId) == false && MainMenu.Points.PointUpdated(pointId))
 						{
 							MainMenu.Connection.SendData(@"PB" + pointId + @"|");
 
-							MainMenu._points.PointList.Single(b => b.HexId == pointId).Updated = false;
+							MainMenu.Points.PointList.Single(b => b.HexId == pointId).Updated = false;
 						}
 					}
 				}
@@ -103,26 +103,26 @@ namespace SimSig_Keyboard_Interface.Data
 			Thread keyPointsReverse = new Thread(() =>
 				{
 
-					string pointId = MainMenu._points.PointLookup(points);
+					string pointId = MainMenu.Points.PointLookup(points);
 					if (pointId == null) return;
 
-					if (MainMenu._points.PointList.SingleOrDefault(p => p.HexId == pointId) == null) return;
+					if (MainMenu.Points.PointList.SingleOrDefault(p => p.HexId == pointId) == null) return;
 
 					//(PointList.SingleOrDefault(b => b.Number == data) != null
 
-					while (MainMenu._points.PointsKr(pointId) == false)
+					while (MainMenu.Points.PointsKr(pointId) == false)
 					{
-						while (MainMenu._points.PointUpdated(pointId) == false)
+						while (MainMenu.Points.PointUpdated(pointId) == false)
 							Thread.Sleep(10);
 						Thread.Sleep(10);
-						if (MainMenu._points.PointsKr(pointId))
+						if (MainMenu.Points.PointsKr(pointId))
 							return;
 
-						if (MainMenu._points.PointsKr(pointId) == false && MainMenu._points.PointUpdated(pointId))
+						if (MainMenu.Points.PointsKr(pointId) == false && MainMenu.Points.PointUpdated(pointId))
 						{
 							MainMenu.Connection.SendData(@"PC" + pointId + @"|");
 
-							MainMenu._points.PointList.Single(b => b.HexId == pointId).Updated = false;
+							MainMenu.Points.PointList.Single(b => b.HexId == pointId).Updated = false;
 						}
 					}
 				}
@@ -135,30 +135,30 @@ namespace SimSig_Keyboard_Interface.Data
 			Thread keyPointsFree = new Thread(() =>
 				{
 
-					string pointId = MainMenu._points.PointLookup(points);
+					string pointId = MainMenu.Points.PointLookup(points);
 					if (pointId == null) return;
 
 
 
 
-					if (MainMenu._points.PointList.SingleOrDefault(p => p.HexId == pointId) == null) return;
+					if (MainMenu.Points.PointList.SingleOrDefault(p => p.HexId == pointId) == null) return;
 
 					//(PointList.SingleOrDefault(b => b.Number == data) != null
 
-					while (MainMenu._points.PointsKn(pointId) || MainMenu._points.PointsKr(pointId))
+					while (MainMenu.Points.PointsKn(pointId) || MainMenu.Points.PointsKr(pointId))
 					{
-						while (MainMenu._points.PointUpdated(pointId) == false)
+						while (MainMenu.Points.PointUpdated(pointId) == false)
 							Thread.Sleep(10);
 						Thread.Sleep(10);
-						if (MainMenu._points.PointsKn(pointId) == false && MainMenu._points.PointsKr(pointId) == false)
+						if (MainMenu.Points.PointsKn(pointId) == false && MainMenu.Points.PointsKr(pointId) == false)
 							return;
 
-						if ((MainMenu._points.PointsKn(pointId) || MainMenu._points.PointsKr(pointId)) &&
-						    MainMenu._points.PointUpdated(pointId))
+						if ((MainMenu.Points.PointsKn(pointId) || MainMenu.Points.PointsKr(pointId)) &&
+						    MainMenu.Points.PointUpdated(pointId))
 						{
 							MainMenu.Connection.SendData(@"PB" + pointId + @"|");
 
-							MainMenu._points.PointList.Single(b => b.HexId == pointId).Updated = false;
+							MainMenu.Points.PointList.Single(b => b.HexId == pointId).Updated = false;
 						}
 					}
 				}

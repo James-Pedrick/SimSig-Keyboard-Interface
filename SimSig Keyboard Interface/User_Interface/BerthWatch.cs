@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using SimSig_Keyboard_Interface.Comms.TCP;
 
@@ -19,23 +12,6 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			InitializeComponent();
 
 			MainMenu.BerthWatch += BerthWatchChange;
-		}
-
-
-		private void AddWatch_Click(object sender, EventArgs e)
-		{
-			if (userInput.Text.StartsWith("B") == false) return;
-
-			string[] z = userInput.Text.Split(' ');
-
-			var y = MainMenu._berths.BerthHIdLookup(z[0]);
-			if (y == null) return;
-
-
-			MainMenu._berths.BerthWatch(z[0], true);
-
-			if (watchList.Items.Contains(z[0]) == false)
-				watchList.Items.Add(z[0]);
 		}
 
 		private void BerthWatchChange(Object sender, MsgEventArgs e)
@@ -54,11 +30,27 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		private void removeWatch_Click(object sender, EventArgs e)
 		{
 			var z = watchList.SelectedItem;
-			
 
-			MainMenu._berths.BerthWatch(z.ToString(), false);
+
+			MainMenu.Berths.BerthWatch(z.ToString(), false);
 			watchList.Items.Remove(z);
 
+		}
+
+		private void addWatch_Click_1(object sender, EventArgs e)
+		{
+			if (userInput.Text.StartsWith("B") == false) return;
+
+			string[] z = userInput.Text.Split(' ');
+
+			var y = MainMenu.Berths.BerthHIdLookup(z[0]);
+			if (y == null) return;
+
+
+			MainMenu.Berths.BerthWatch(z[0], true);
+
+			if (watchList.Items.Contains(z[0]) == false)
+				watchList.Items.Add(z[0]);
 		}
 	}
 }

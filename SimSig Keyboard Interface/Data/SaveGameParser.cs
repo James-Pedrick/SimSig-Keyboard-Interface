@@ -14,7 +14,7 @@ using SimSig_Keyboard_Interface.DataProcess.Track;
 
 namespace SimSig_Keyboard_Interface.Data
 {
-	public class SaveGameParser
+	public static class SaveGameParser
 	{
 
 		private static int _berthsDecimal;

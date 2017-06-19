@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Linq;
+
 using System.Threading;
 using System.Windows.Forms;
 using SimSig_Keyboard_Interface.Comms.TCP;
@@ -12,7 +12,6 @@ using SimSig_Keyboard_Interface.Properties;
 using System.IO.Ports;
 using SimSig_Keyboard_Interface.Comms.RS232;
 using SimSig_Keyboard_Interface.Data;
-using System.Text.RegularExpressions;
 using SimSig_Keyboard_Interface.DataProcess.Flags;
 using SimSig_Keyboard_Interface.DataProcess.GroundFrames;
 using SimSig_Keyboard_Interface.DataProcess.Slots;
@@ -38,19 +37,18 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 		public static SerialPort ComReceiver = new SerialPort();
 
-		public static BerthContainer _berths = new BerthContainer();
-		public static FlagContainer _flags = new FlagContainer();
-		public static FrameContainer _frames = new FrameContainer();
-		public static PointContainer _points = new PointContainer();
-		public static SignalContainer _signals = new SignalContainer();
-		public static SlotContainer _slots = new SlotContainer();
-		public static TrackContainer _tracks = new TrackContainer();
-		public static CallContainer _calls = new CallContainer();
+		public static BerthContainer Berths = new BerthContainer();
+		public static FlagContainer Flags = new FlagContainer();
+		public static FrameContainer Frames = new FrameContainer();
+		public static PointContainer Points = new PointContainer();
+		public static SignalContainer Signals = new SignalContainer();
+		public static SlotContainer Slots = new SlotContainer();
+		public static TrackContainer Tracks = new TrackContainer();
+		public static readonly CallContainer Calls = new CallContainer();
 
-		public static DebugUc _debug = new DebugUc();
-		public static KeyboardInterface _keyboard = new KeyboardInterface();
-
-		public string trustString;
+		public static DebugUc Debug = new DebugUc();
+		public static KeyboardInterface Keyboard = new KeyboardInterface();
+		
 
 		/*******************************/
 		/* Creating Events             */
@@ -85,8 +83,8 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 				if (loadSaveGameXML.ShowDialog() == DialogResult.OK)
 					Settings.Default.wi = loadSaveGameXML.InitialDirectory + loadSaveGameXML.FileName;
-				SaveGameParser.Parse(ref _berths, ref _points, ref _signals,
-					ref _tracks, ref _slots, ref _frames, ref _flags); //Parse load with ref to points container
+				SaveGameParser.Parse(ref Berths, ref Points, ref Signals,
+					ref Tracks, ref Slots, ref Frames, ref Flags); //Parse load with ref to points container
 
 			}
 			Refresh();
@@ -112,7 +110,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 						if (InvokeRequired)
 							Invoke(new MethodInvoker(delegate
 							{
-								_calls.NewIncomingCall(element);
+								Calls.NewIncomingCall(element);
 								Refresh();
 							}));
 					} //New Phone Call
@@ -121,7 +119,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 						if (InvokeRequired)
 							Invoke(new MethodInvoker(delegate
 							{
-								_calls.EndIncomingCall(element);
+								Calls.EndIncomingCall(element);
 								Refresh();
 							}));
 					} //End Phone Call
@@ -131,7 +129,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 						if (InvokeRequired)
 							Invoke(new MethodInvoker(delegate
 							{
-								_berths.DataUpdateTcp(element.Substring(2, 8));
+								Berths.DataUpdateTcp(element.Substring(2, 8));
 								Refresh();
 							}));
 					}
@@ -140,7 +138,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 						if (InvokeRequired)
 							Invoke(new MethodInvoker(delegate
 							{
-								_flags.AddFlagTcp(element.Substring(2));
+								Flags.AddFlagTcp(element.Substring(2));
 								Refresh();
 							}));
 					}
@@ -149,7 +147,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 						if (InvokeRequired)
 							Invoke(new MethodInvoker(delegate
 							{
-								_points.AddPointTcp(element.Substring(2, 7));
+								Points.AddPointTcp(element.Substring(2, 7));
 								Refresh();
 							}));
 					}
@@ -158,7 +156,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 						if (InvokeRequired)
 							Invoke(new MethodInvoker(delegate
 							{
-								_signals.AddSignalTcp(element.Substring(2, 13));
+								Signals.AddSignalTcp(element.Substring(2, 13));
 								Refresh();
 							}));
 					}
@@ -167,7 +165,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 						if (InvokeRequired)
 							Invoke(new MethodInvoker(delegate
 							{
-								_tracks.AddTrackTcp(element.Substring(2, 6));
+								Tracks.AddTrackTcp(element.Substring(2, 6));
 								Refresh();
 							}));
 					}
@@ -199,7 +197,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 						if (InvokeRequired)
 							Invoke(new MethodInvoker(delegate
 							{
-								_berths.AddBerthTcp(element.Substring(7, 4), element.Substring(11, 4));
+								Berths.AddBerthTcp(element.Substring(7, 4), element.Substring(11, 4));
 								Refresh();
 							}));
 					} //Berth Request State Feedback
@@ -208,7 +206,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 						if (InvokeRequired)
 							Invoke(new MethodInvoker(delegate
 							{
-								_points.AddPointTcp(element.Substring(7));
+								Points.AddPointTcp(element.Substring(7));
 								Refresh();
 							}));
 					} //Point Request State Feedback
@@ -217,7 +215,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 						if (InvokeRequired)
 							Invoke(new MethodInvoker(delegate
 							{
-								_signals.AddSignalTcp(element.Substring(7));
+								Signals.AddSignalTcp(element.Substring(7));
 								Refresh();
 							}));
 					} //Signal Request State Feedback
@@ -230,155 +228,8 @@ namespace SimSig_Keyboard_Interface.User_Interface
 						if (handler != null) KeyboardTcpDataReceived?.Invoke(this, m);
 					}
 					
-
-					#region PlatformDataResponse Main
-
-					/*
-						if (element.Contains("<platformDataResponse"))
-						{
-	
-							string headcode = null;
-							string platform = "   ";
-							string line = "   ";
-							string path = "   ";
-							string description = null;
-							string arrival = "--:-- ";
-							string departure = "--:-- ";
-							string delay = "       ";
-							string stock = null;
-	
-							List<string> simplfierList = new List<string>();
-	
-							XmlDocument simplifier = new XmlDocument();
-	
-							simplifier.LoadXml(element.ToString());
-	
-							XmlNodeList listOfHeadcodes = simplifier.SelectNodes("/SimSig/platformDataResponse/headcode");
-	
-							foreach (XmlNode trainInSimplfier in listOfHeadcodes)
-							{
-								if (InvokeRequired)
-									Invoke(new MethodInvoker(delegate
-									{
-										ttDisplay.Items.Clear();
-										ttDisplay.Items.Add(trustString);
-										ttDisplay.Items.Add(" ");
-										ttDisplay.Items.Add("TRAIN ARR    DEP  PLT LIN PTH  DELAY");
-									}));
-	
-								headcode = null;
-								platform = "   ";
-								line = "   ";
-								path = "   ";
-								description = null;
-								arrival = "--:-- ";
-								departure = "--:-- ";
-								delay = "       ";
-								stock = null;
-	
-								headcode = trainInSimplfier.Attributes["id"].Value;
-								platform = trainInSimplfier.SelectSingleNode("platform").InnerText;
-								do
-								{
-									platform = platform + " ";
-								} while (platform.Length != 3);
-								line = trainInSimplfier.SelectSingleNode("line").InnerText;
-								do
-								{
-									line = line + " ";
-								} while (line.Length != 3);
-								path = trainInSimplfier.SelectSingleNode("path").InnerText;
-								do
-								{
-									path = path + " ";
-								} while (path.Length != 3);
-								description = trainInSimplfier.SelectSingleNode("description").InnerText;
-								if (trainInSimplfier.SelectSingleNode("delay") != null)
-								{
-									if (trainInSimplfier.SelectSingleNode("delay").InnerText != "RT")
-									{
-										delay = trainInSimplfier.SelectSingleNode("delay").InnerText.Replace("L", "") + " LATE";
-									}
-									else
-									{
-										delay = "RT TIME";
-									}
-								}
-								stock = trainInSimplfier.SelectSingleNode("stock").InnerText;
-	
-								XmlNodeList listOfTimes = trainInSimplfier.SelectNodes("time");
-	
-								foreach (XmlNode time in listOfTimes)
-								{
-									if (time.Attributes != null)
-									{
-										if (time.Attributes["timeType"] != null)
-										{
-											if (time.Attributes["timeType"].Value == "arrival")
-											{
-												arrival = time.InnerText;
-												if (arrival.Length != 6)
-												{
-													arrival = arrival + " ";
-												}
-											}
-											else if (time.Attributes["timeType"].Value == "departure")
-											{
-												departure = time.InnerText;
-												if (departure.Length != 6)
-												{
-													departure = departure + " ";
-												}
-											}
-											else if (time.Attributes["timeType"].Value == "passing")
-											{
-												departure = time.InnerText;
-												arrival = "PASS  ";
-												departure = time.InnerText;
-												if (departure.Length != 6)
-												{
-													departure = departure + " ";
-												}
-											}
-										}
-									}
-								}
-	
-								if (departure == "--:-- ")
-								{
-									departure = arrival;
-								}
-	
-								String simplifierString = departure + " " + arrival + " " + headcode + " " + platform + " " + line + " " + path + " " + delay;
-								Console.WriteLine(simplifierString);
-								simplfierList.Add(simplifierString);
-	
-							}
-	
-							//The simplfier needs to be sorted
-							Console.WriteLine("*************************");
-	
-							simplfierList.Sort();
-							foreach (string train in simplfierList)
-							{
-								//Console.WriteLine(train.ToString());
-	
-								Console.WriteLine(train.ToString().Substring(14, 4) + train.ToString().Substring(6, 8) + train.ToString().Substring(0, 6) + train.ToString().Substring(18));
-								if (InvokeRequired)
-									Invoke(new MethodInvoker(delegate
-									{
-										ttDisplay.Items.Add(train.ToString().Substring(14, 4) + train.ToString().Substring(6, 8) + train.ToString().Substring(0, 6) + train.ToString().Substring(18));
-									}));
-	
-							}
-	
-	
-	
-						}
-						
-	*/
-
-					#endregion
+					
+					
 				}
 				catch
 				{
@@ -401,11 +252,11 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		}
 		private void Point_List_Reset(object sender, EventArgs e)
 		{
-			_points.PointList.Clear();
+			Points.PointList.Clear();
 		}
 		private void SignalListReset(object sender, EventArgs e)
 		{
-			_signals.SignalList.Clear();
+			Signals.SignalList.Clear();
 		}
 		private void ConnectToolStripMenuItem_Click(object sender, EventArgs e)
 		{
@@ -450,25 +301,25 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 		private void BerthListReset(object sender, EventArgs e)
 		{
-			_berths.BerthList.Clear();
+			Berths.BerthList.Clear();
 		}
 
 		private void SignalListResetToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			_signals.SignalList.Clear();
+			Signals.SignalList.Clear();
 		}
 
 		private void PointListRest(object sender, EventArgs e)
 		{
-			_points.PointList.Clear();
+			Points.PointList.Clear();
 
 		}
 
 		private void RequestDataToolStripMenuItem1_Click(object sender, EventArgs e)
 		{
-			_berths.BerthStatusRequest();
-			_points.PointStatusConnectionRequest();
-			_signals.SignalStatusRequest();
+			Berths.BerthStatusRequest();
+			Points.PointStatusConnectionRequest();
+			Signals.SignalStatusRequest();
 		}
 
 		private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
