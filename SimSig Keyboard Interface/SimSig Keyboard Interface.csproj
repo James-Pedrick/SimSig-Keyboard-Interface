@@ -121,6 +121,12 @@
     <Compile Include="User_Interface\BerthWatch.Designer.cs">
       <DependentUpon>BerthWatch.cs</DependentUpon>
     </Compile>
+    <Compile Include="User_Interface\ComConnect.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User_Interface\ComConnect.Designer.cs">
+      <DependentUpon>ComConnect.cs</DependentUpon>
+    </Compile>
     <Compile Include="User_Interface\DebugUc.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -155,6 +161,9 @@
     </Compile>
     <EmbeddedResource Include="User_Interface\BerthWatch.resx">
       <DependentUpon>BerthWatch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User_Interface\ComConnect.resx">
+      <DependentUpon>ComConnect.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="User_Interface\DebugUc.resx">
       <DependentUpon>DebugUc.cs</DependentUpon>

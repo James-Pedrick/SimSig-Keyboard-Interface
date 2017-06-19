@@ -67,6 +67,8 @@
 			this.tabControl = new System.Windows.Forms.TabControl();
 			this.berthWatch = new System.Windows.Forms.TabPage();
 			this.berthWatch1 = new SimSig_Keyboard_Interface.User_Interface.BerthWatch();
+			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.comConnect1 = new SimSig_Keyboard_Interface.User_Interface.ComConnect();
 			this.menuStrip.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.SuspendLayout();
@@ -75,6 +77,7 @@
 			this.debug.SuspendLayout();
 			this.tabControl.SuspendLayout();
 			this.berthWatch.SuspendLayout();
+			this.tabPage1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// menuStrip
@@ -347,6 +350,7 @@
 			this.tabControl.Controls.Add(this.keyboardInterface);
 			this.tabControl.Controls.Add(this.phone);
 			this.tabControl.Controls.Add(this.berthWatch);
+			this.tabControl.Controls.Add(this.tabPage1);
 			this.tabControl.Cursor = System.Windows.Forms.Cursors.Default;
 			this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tabControl.Font = new System.Drawing.Font("Consolas", 9F);
@@ -377,6 +381,23 @@
 			this.berthWatch1.Size = new System.Drawing.Size(780, 478);
 			this.berthWatch1.TabIndex = 0;
 			// 
+			// tabPage1
+			// 
+			this.tabPage1.Controls.Add(this.comConnect1);
+			this.tabPage1.Location = new System.Drawing.Point(4, 23);
+			this.tabPage1.Name = "tabPage1";
+			this.tabPage1.Size = new System.Drawing.Size(786, 484);
+			this.tabPage1.TabIndex = 5;
+			this.tabPage1.Text = "tabPage1";
+			this.tabPage1.UseVisualStyleBackColor = true;
+			// 
+			// comConnect1
+			// 
+			this.comConnect1.Location = new System.Drawing.Point(101, 63);
+			this.comConnect1.Name = "comConnect1";
+			this.comConnect1.Size = new System.Drawing.Size(433, 298);
+			this.comConnect1.TabIndex = 0;
+			// 
 			// MainMenu
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
@@ -400,6 +421,7 @@
 			this.debug.ResumeLayout(false);
 			this.tabControl.ResumeLayout(false);
 			this.berthWatch.ResumeLayout(false);
+			this.tabPage1.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -446,6 +468,8 @@
 		private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
 		private KeyboardInterface keyboardInterface2;
 		private BerthWatch berthWatch1;
+		private System.Windows.Forms.TabPage tabPage1;
+		private ComConnect comConnect1;
 	}
 }
 

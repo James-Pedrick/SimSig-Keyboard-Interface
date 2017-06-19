@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Drawing.Text;
 using System.Globalization;
 using System.IO;
+using System.IO.Ports;
 using System.Linq;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
@@ -198,6 +199,8 @@ namespace SimSig_Keyboard_Interface.User_Interface
 					userInputString.Text = "";
 					keyboardSpecFunction.Text = "";
 				}
+
+				
 
 				
 
