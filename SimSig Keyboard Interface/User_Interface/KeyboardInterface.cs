@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Globalization;
+using System.IO;
+using System.IO.Ports;
 using System.Linq;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using System.Windows.Shapes;
 using System.Xml;
 using SimSig_Keyboard_Interface.Comms.TCP;
 
@@ -14,7 +17,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 {
 	public partial class KeyboardInterface : UserControl
 	{
-		public string trustString;
+		private string trustString;
 
 		
 		public KeyboardInterface()
@@ -199,6 +202,8 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 				
 
+				
+
 				userInputString.Text = "";
 				keyboardSpecFunction.Text = "";
 
@@ -317,157 +322,165 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 		private void Trja(string element)
 		{
-			if (element.Contains("<platformDataResponse"))
-			{
-				ttDisplay.Items.Clear();
+            if (element.Contains("<platformDataResponse"))
+            {
+
+                string headcode = null;
+                string platform = "   ";
+                string line = "   ";
+                string path = "   ";
+                string description = null;
+                string arrival = "--:-- ";
+                string departure = "--:-- ";
+                string delay = "       ";
+                string stock = null;
+
+                List<string> simplfierList = new List<string>();
+
+                XmlDocument simplifier = new XmlDocument();
+
+                simplifier.LoadXml(element.ToString());
+
+                XmlNodeList listOfHeadcodes = simplifier.SelectNodes("/SimSig/platformDataResponse/headcode");
+
+                ttDisplay.Items.Clear();
+                ttDisplay.Items.Add(trustString);
+                ttDisplay.Items.Add(" ");
+                ttDisplay.Items.Add("TRAIN ARR    DEP  PLT LIN PTH  DELAY");
+
+                if (InvokeRequired)
+                    Invoke(new MethodInvoker(delegate
+                    {
+                        ttDisplay.Items.Clear();
+                        ttDisplay.Items.Add(trustString);
+                        ttDisplay.Items.Add(" ");
+                        ttDisplay.Items.Add("TRAIN ARR    DEP  PLT LIN PTH  DELAY");
+                    }));
+
+                foreach (XmlNode trainInSimplfier in listOfHeadcodes)
+                {
 
 
-				string headcode = null;
-				string platform = "   ";
-				string line = "   ";
-				string path = "   ";
-				string description = null;
-				string arrival = "--:-- ";
-				string departure = "--:-- ";
-				string delay = "       ";
-				string stock = null;
+                    headcode = null;
+                    platform = "   ";
+                    line = "   ";
+                    path = "   ";
+                    description = null;
+                    arrival = "--:-- ";
+                    departure = "--:-- ";
+                    delay = "       ";
+                    stock = null;
 
-				List<string> simplfierList = new List<string>();
+                    headcode = trainInSimplfier.Attributes["id"].Value;
+                    platform = trainInSimplfier.SelectSingleNode("platform").InnerText;
+                    while (platform.Length != 3)
+                    {
+                        platform = platform + " ";
+                    }
+                    line = trainInSimplfier.SelectSingleNode("line").InnerText;
+                    while (line.Length != 3)
+                    {
+                        line = line + " ";
+                    }
+                    path = trainInSimplfier.SelectSingleNode("path").InnerText;
+                    while (path.Length != 3)
+                    {
+                        path = path + " ";
+                    }
+                    description = trainInSimplfier.SelectSingleNode("description").InnerText;
+                    if (trainInSimplfier.SelectSingleNode("delay") != null)
+                    {
+                        if (trainInSimplfier.SelectSingleNode("delay").InnerText != "RT")
+                        {
+                            if (trainInSimplfier.SelectSingleNode("delay").InnerText.Contains("E"))
+                            {
+                                delay = trainInSimplfier.SelectSingleNode("delay").InnerText.Replace("E", "") + " EARLY";
+                            }
+                            else
+                            {
+                                delay = trainInSimplfier.SelectSingleNode("delay").InnerText.Replace("L", "") + " LATE";
+                            }
+                        }
+                        else
+                        {
+                            delay = "RT TIME";
+                        }
+                    }
+                    //stock = trainInSimplfier.SelectSingleNode("stock").InnerText;
 
-				XmlDocument simplifier = new XmlDocument();
+                    //Check if all of these are null!?
 
-				simplifier.LoadXml(element.ToString());
+                    XmlNodeList listOfTimes = trainInSimplfier.SelectNodes("time");
 
-				XmlNodeList listOfHeadcodes = simplifier.SelectNodes("/SimSig/platformDataResponse/headcode");
+                    foreach (XmlNode time in listOfTimes)
+                    {
+                        if (time.Attributes != null)
+                        {
+                            if (time.Attributes["timeType"] != null)
+                            {
+                                if (time.Attributes["timeType"].Value == "arrival")
+                                {
+                                    arrival = time.InnerText;
+                                    if (arrival.Length != 6)
+                                    {
+                                        arrival = arrival + " ";
+                                    }
+                                }
+                                else if (time.Attributes["timeType"].Value == "departure")
+                                {
+                                    departure = time.InnerText;
+                                    if (departure.Length != 6)
+                                    {
+                                        departure = departure + " ";
+                                    }
+                                }
+                                else if (time.Attributes["timeType"].Value == "passing")
+                                {
+                                    departure = time.InnerText;
+                                    arrival = "PASS  ";
+                                    departure = time.InnerText;
+                                    if (departure.Length != 6)
+                                    {
+                                        departure = departure + " ";
+                                    }
+                                }
+                            }
+                        }
+                    }
 
-				foreach (XmlNode trainInSimplfier in listOfHeadcodes)
-				{
-					if (InvokeRequired)
-						Invoke(new MethodInvoker(delegate
-						{
-							ttDisplay.Items.Clear();
-							ttDisplay.Items.Add(trustString);
-							ttDisplay.Items.Add(" ");
-							ttDisplay.Items.Add("TRAIN ARR    DEP  PLT LIN PTH  DELAY");
-						}));
+                    if (departure == "--:-- ")
+                    {
+                        departure = arrival;
+                    }
 
-					headcode = null;
-					platform = "   ";
-					line = "   ";
-					path = "   ";
-					description = null;
-					arrival = "--:-- ";
-					departure = "--:-- ";
-					delay = "       ";
-					stock = null;
+                    String simplifierString = departure + " " + arrival + " " + headcode + " " + platform + " " + line + " " + path + " " + delay;
+                    Console.WriteLine(simplifierString);
+                    simplfierList.Add(simplifierString);
 
-					headcode = trainInSimplfier.Attributes["id"].Value;
-					platform = trainInSimplfier.SelectSingleNode("platform").InnerText;
-					do
-					{
-						platform = platform + " ";
-					} while (platform.Length != 3);
-					line = trainInSimplfier.SelectSingleNode("line").InnerText;
-					do
-					{
-						line = line + " ";
-					} while (line.Length != 3);
-					path = trainInSimplfier.SelectSingleNode("path").InnerText;
-					do
-					{
-						path = path + " ";
-					} while (path.Length != 3);
-					description = trainInSimplfier.SelectSingleNode("description").InnerText;
-					if (trainInSimplfier.SelectSingleNode("delay") != null)
-					{
-						if (trainInSimplfier.SelectSingleNode("delay").InnerText != "RT")
-						{
-							delay = trainInSimplfier.SelectSingleNode("delay").InnerText.Replace("L", "") + " LATE";
-						}
-						else
-						{
-							delay = "RT TIME";
-						}
-					}
-					//stock = trainInSimplfier.SelectSingleNode("stock").InnerText;
+                }
 
-					XmlNodeList listOfTimes = trainInSimplfier.SelectNodes("time");
+                //The simplfier needs to be sorted
+                Console.WriteLine("*************************");
 
-					foreach (XmlNode time in listOfTimes)
-					{
-						if (time.Attributes != null)
-						{
-							if (time.Attributes["timeType"] != null)
-							{
-								if (time.Attributes["timeType"].Value == "arrival")
-								{
-									arrival = time.InnerText;
-									if (arrival.Length != 6)
-									{
-										arrival = arrival + " ";
-									}
-								}
-								else if (time.Attributes["timeType"].Value == "departure")
-								{
-									departure = time.InnerText;
-									if (departure.Length != 6)
-									{
-										departure = departure + " ";
-									}
-								}
-								else if (time.Attributes["timeType"].Value == "passing")
-								{
-									departure = time.InnerText;
-									arrival = "PASS  ";
-									departure = time.InnerText;
-									if (departure.Length != 6)
-									{
-										departure = departure + " ";
-									}
-								}
-							}
-						}
-					}
+                simplfierList.Sort();
+                foreach (string train in simplfierList)
+                {
+                    //Console.WriteLine(train.ToString());
 
-					if (departure == "--:-- ")
-					{
-						departure = arrival;
-					}
+                    Console.WriteLine(train.ToString().Substring(14, 4) + train.ToString().Substring(6, 8) + train.ToString().Substring(0, 6) + train.ToString().Substring(18));
+                    ttDisplay.Items.Add(train.ToString().Substring(14, 4) + train.ToString().Substring(6, 8) + train.ToString().Substring(0, 6) + train.ToString().Substring(18));
+                    if (InvokeRequired)
+                        Invoke(new MethodInvoker(delegate
+                        {
+                            ttDisplay.Items.Add(train.ToString().Substring(14, 4) + train.ToString().Substring(6, 8) + train.ToString().Substring(0, 6) + train.ToString().Substring(18));
+                        }));
 
-					String simplifierString = departure + " " + arrival + " " + headcode + " " + platform + " " + line + " " + path + " " + delay;
-					Console.WriteLine(simplifierString);
-					simplfierList.Add(simplifierString);
-
-				}
-
-				//The simplfier needs to be sorted
-				Console.WriteLine("*************************");
-
-				simplfierList.Sort();
-				foreach (string train in simplfierList)
-				{
-					//Console.WriteLine(train.ToString());
-
-					Console.WriteLine(train.ToString().Substring(14, 4) + train.ToString().Substring(6, 8) + train.ToString().Substring(0, 6) + train.ToString().Substring(18));
-					/*		if (InvokeRequired)
-								Invoke(new MethodInvoker(delegate
-								{
-									consoleWindow.Items.Add(train.ToString().Substring(14, 4) + train.ToString().Substring(6, 8) + train.ToString().Substring(0, 6) + train.ToString().Substring(18));
-								}));*/
-
-
-						ttDisplay.Items.Add(train.ToString().Substring(14, 4) + train.ToString().Substring(6, 8) +
-						                        train.ToString().Substring(0, 6) + train.ToString().Substring(18));
-
-
-				}
-
-				ttDisplay.Refresh();
+                }
 
 
 
-			}
-		}
+            }
+        }
 
 		private void TeMessage(string element)
 		{
@@ -480,7 +493,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 		}
 
-		private void userInputString_TextChanged(object sender, EventArgs e)
+		private void UserInputString_TextChanged(object sender, EventArgs e)
 		{
 
 		}
@@ -489,36 +502,10 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		{
 			ttDisplay.Items.Clear();
 
-			ttDisplay.Items.Add("A   - Auto");
-			ttDisplay.Items.Add("B   - Berth");
-			ttDisplay.Items.Add("E   - Replacement");
-			ttDisplay.Items.Add("S   - Signal");
-			ttDisplay.Items.Add("P   - Points");
+			string[] lines = File.ReadAllLines(@"Notes/Commands.txt");
 
-			ttDisplay.Items.Add("");
-			ttDisplay.Items.Add("");
-
-			ttDisplay.Items.Add("F1  - Rem");
-			ttDisplay.Items.Add("F2  - Iso");
-			ttDisplay.Items.Add("F3  - Override");
-			ttDisplay.Items.Add("");
-			ttDisplay.Items.Add("F5  - Key Points Normal");
-			ttDisplay.Items.Add("F6  - Points Centre");
-			ttDisplay.Items.Add("F7  - Key Points Reverse");
-
-
-			ttDisplay.Items.Add("");
-			ttDisplay.Items.Add("");
-
-			ttDisplay.Items.Add("DEL - Cancel");
-			ttDisplay.Items.Add("ENT - Set");
-
-
-			ttDisplay.Items.Add("");
-			ttDisplay.Items.Add("");
-
-			ttDisplay.Items.Add("TRJA - Location Query");
-
+			foreach (string line in lines)
+				ttDisplay.Items.Add(line);
 		}
 	}
 }

@@ -1,16 +1,11 @@
 ﻿using System;
-using System.CodeDom;
 using System.ComponentModel;
 using System.Linq;
-using System.Linq.Expressions;
 
 namespace SimSig_Keyboard_Interface.DataProcess.Signals
 {
 	public class SignalContainer
 	{
-
-
-
 		public BindingList<Signals> SignalList = new BindingList<Signals>();
 
 

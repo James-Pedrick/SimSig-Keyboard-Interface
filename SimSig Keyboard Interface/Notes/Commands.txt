@@ -1,0 +1,27 @@
+﻿COMMAND LIST
+
+A    - Auto
+B    - Berth
+E    - Replacement
+S    - Signal
+P    - Points
+
+
+F1   - Rem
+F2   - Iso
+F3   - Override
+
+F5   - Key Points Normal
+F6   - Points Centre
+F7   - Key Points Reverse
+
+DEL  - Cancel
+ENT  - Set
+
+
+TRJA - Location Query
+
+
+ON BERTH WATCH
+To Add    - Type berth number and Add Watch
+To Remove - Select berth number to remove, and select Remove.

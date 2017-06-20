@@ -14,7 +14,7 @@ using SimSig_Keyboard_Interface.DataProcess.Track;
 
 namespace SimSig_Keyboard_Interface.Data
 {
-	public class SaveGameParser
+	public static class SaveGameParser
 	{
 
 		private static int _berthsDecimal;
@@ -96,7 +96,7 @@ namespace SimSig_Keyboard_Interface.Data
 			}
 
 
-			Console.WriteLine(itemId.PadRight(11, ' ') + pointsHex + _pointsDecimal);
+			Console.WriteLine(itemId.PadRight(11, ' ') + pointsHex);
 
 
 			points.AddPointXml(pointsHex, itemId);

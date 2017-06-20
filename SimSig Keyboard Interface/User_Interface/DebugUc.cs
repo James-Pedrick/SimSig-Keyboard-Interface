@@ -11,14 +11,14 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		public DebugUc()
 		{
 			InitializeComponent();
-			debugBerthView.DataSource = MainMenu._berths.BerthList;
-			debugCallView.DataSource = MainMenu._calls.CallList;
-			debugFlagView.DataSource = MainMenu._flags.FlagList;
-			debugFrameView.DataSource = MainMenu._frames.FrameList;
-			debugPointView.DataSource = MainMenu._points.PointList;
-			debugSignalView.DataSource = MainMenu._signals.SignalList;
-			debugSlotView.DataSource = MainMenu._slots.SlotList;
-			debugTrackView.DataSource = MainMenu._tracks.TrackList;
+			debugBerthView.DataSource = MainMenu.Berths.BerthList;
+			debugCallView.DataSource = MainMenu.Calls.CallList;
+			debugFlagView.DataSource = MainMenu.Flags.FlagList;
+			debugFrameView.DataSource = MainMenu.Frames.FrameList;
+			debugPointView.DataSource = MainMenu.Points.PointList;
+			debugSignalView.DataSource = MainMenu.Signals.SignalList;
+			debugSlotView.DataSource = MainMenu.Slots.SlotList;
+			debugTrackView.DataSource = MainMenu.Tracks.TrackList;
 
 			MainMenu.DebugTcpDataReceived += DebugTcpUpdate;
 
@@ -35,8 +35,6 @@ namespace SimSig_Keyboard_Interface.User_Interface
 				{
 					if (element != null)
 					{
-						Console.WriteLine(element);
-
 						debugRawTcpDisplay.Items.Insert(0, element);
 					}
 				}));
