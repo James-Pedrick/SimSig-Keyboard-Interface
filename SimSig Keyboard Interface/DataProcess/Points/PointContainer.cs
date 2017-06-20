@@ -94,7 +94,7 @@ namespace SimSig_Keyboard_Interface.DataProcess.Points
 			{
 				var pointRequest = "iBP" + x.HexId + x.HexId + "|";
 
-				User_Interface.MainMenu.Connection.SendData(pointRequest);
+				User_Interface.MainMenu.TcpConnection.SendData(pointRequest);
 			}
 		}
 

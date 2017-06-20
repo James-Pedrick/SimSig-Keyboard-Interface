@@ -36,7 +36,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 				var callId = MainMenu.Calls.CallList.Single(c => c.CallNumber == callers.SelectedValue.ToString()).CallNumber;
 
-				MainMenu.Connection.SendData("pN" + callId + '\\' + x + "|");
+				MainMenu.TcpConnection.SendData("pN" + callId + '\\' + x + "|");
 
 				callResponses.Items.Clear();
 				callMsg.Text = "";

@@ -31,7 +31,8 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		/*************************/
 		/*Creating containers    */
 		/*************************/
-		public static TcpClient Connection = new TcpClient();
+		public static TcpClient TcpConnection = new TcpClient();
+		public static Receiver Rs232Connection = new Receiver();
 
 		public static TcpConnect TcpConnectForm = new TcpConnect();
 
@@ -61,14 +62,14 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 
 
-
+		public static bool ComConnected = false;
 		public static bool TcpConnected = false;
 
 		public MainMenu()
 		{
 			InitializeComponent();
 
-			Connection.DataReceived += TcpDataUpdate;
+			TcpConnection.DataReceived += TcpDataUpdate;
 		}
 
 		private void MenuLoadSaveXml(object sender, EventArgs e)
@@ -265,7 +266,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			Thread tcpConnectThread = new Thread(() =>
 				{
 					TcpConnectForm.ShowDialog();
-					Connection.Connect(Settings.Default.ipAddress, Settings.Default.clientPort);
+					TcpConnection.Connect(Settings.Default.ipAddress, Settings.Default.clientPort);
 				}
 			);
 			tcpConnectThread.Start();
@@ -276,7 +277,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		{
 
 			connectToolStripMenuItem.Enabled = true;
-			Connection.Disconnect();
+			TcpConnection.Disconnect();
 			disconnectToolStripMenuItem.Enabled = false;
 			TcpConnected = false;
 

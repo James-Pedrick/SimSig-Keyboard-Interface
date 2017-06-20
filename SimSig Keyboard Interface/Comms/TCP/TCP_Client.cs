@@ -10,8 +10,7 @@ namespace SimSig_Keyboard_Interface.Comms.TCP
 		// Called by producers to send data over the socket.
 		public void SendData(string data)
 		{
-			if (MainMenu.TcpConnected
-				)
+			if (MainMenu.TcpConnected)
 				_sender.SendData(data);
 		}
 

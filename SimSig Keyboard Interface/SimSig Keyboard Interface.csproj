@@ -90,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Comms\RS232\Receiver.cs" />
+    <Compile Include="Comms\RS232\Rs232.cs" />
     <Compile Include="Comms\RS232\RS232Main.cs" />
     <Compile Include="Comms\RS232\Sender.cs" />
     <Compile Include="DataProcess\Berths\BerthContainer.cs" />

@@ -23,5 +23,17 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			foreach (string port in ports)
 				portSelect.Items.Add(port);
 		}
+
+		private void comListRefresh_Click(object sender, EventArgs e)
+		{
+			portSelect.Items.Clear();
+
+			string[] ports = SerialPort.GetPortNames();
+
+
+			foreach (string port in ports)
+				portSelect.Items.Add(port);
+
+		}
 	}
 }

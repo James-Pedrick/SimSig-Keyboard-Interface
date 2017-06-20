@@ -70,7 +70,7 @@ namespace SimSig_Keyboard_Interface.DataProcess.Signals
 				signalRequest = signalRequest + "iBS" + x.HexId + x.HexId + "|";
 
 			}
-			User_Interface.MainMenu.Connection.SendData(signalRequest);
+			User_Interface.MainMenu.TcpConnection.SendData(signalRequest);
 		}
 	}
 }

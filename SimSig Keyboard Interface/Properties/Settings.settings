@@ -23,5 +23,14 @@
     <Setting Name="clientName" Type="System.String" Scope="User">
       <Value Profile="(Default)">NAME</Value>
     </Setting>
+    <Setting Name="comPortName" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="comBaudRate" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">9600</Value>
+    </Setting>
+    <Setting Name="comDataBits" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">8</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

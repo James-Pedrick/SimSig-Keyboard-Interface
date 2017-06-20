@@ -106,5 +106,41 @@ namespace SimSig_Keyboard_Interface.Properties {
                 this["clientName"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string comPortName {
+            get {
+                return ((string)(this["comPortName"]));
+            }
+            set {
+                this["comPortName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("9600")]
+        public int comBaudRate {
+            get {
+                return ((int)(this["comBaudRate"]));
+            }
+            set {
+                this["comBaudRate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("8")]
+        public int comDataBits {
+            get {
+                return ((int)(this["comDataBits"]));
+            }
+            set {
+                this["comDataBits"] = value;
+            }
+        }
     }
 }
