@@ -109,7 +109,7 @@ namespace SimSig_Keyboard_Interface.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("COM2")]
         public string comPortName {
             get {
                 return ((string)(this["comPortName"]));

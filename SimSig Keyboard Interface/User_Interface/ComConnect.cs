@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SimSig_Keyboard_Interface.Properties;
 
 namespace SimSig_Keyboard_Interface.User_Interface
 {
@@ -34,6 +35,13 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			foreach (string port in ports)
 				portSelect.Items.Add(port);
 
+		}
+
+		private void connect_Click(object sender, EventArgs e)
+		{
+			Settings.Default.comDataBits = Convert.ToInt32(comDataBits.Value);
+			Settings.Default.comBaudRate = Convert.ToInt32(baudRate.Value);
+			Settings.Default.comPortName = portSelect.Text;
 		}
 	}
 }

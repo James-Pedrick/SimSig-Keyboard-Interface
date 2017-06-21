@@ -24,7 +24,7 @@
       <Value Profile="(Default)">NAME</Value>
     </Setting>
     <Setting Name="comPortName" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">COM2</Value>
     </Setting>
     <Setting Name="comBaudRate" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">9600</Value>

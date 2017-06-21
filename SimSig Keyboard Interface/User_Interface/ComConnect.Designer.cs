@@ -35,7 +35,10 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.connect = new System.Windows.Forms.Button();
 			this.cancel = new System.Windows.Forms.Button();
+			this.label3 = new System.Windows.Forms.Label();
+			this.comDataBits = new System.Windows.Forms.NumericUpDown();
 			((System.ComponentModel.ISupportInitialize)(this.baudRate)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.comDataBits)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// portSelect
@@ -105,6 +108,7 @@
 			this.connect.TabIndex = 5;
 			this.connect.Text = "Connect";
 			this.connect.UseVisualStyleBackColor = true;
+			this.connect.Click += new System.EventHandler(this.connect_Click);
 			// 
 			// cancel
 			// 
@@ -115,10 +119,40 @@
 			this.cancel.Text = "Cancel";
 			this.cancel.UseVisualStyleBackColor = true;
 			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Font = new System.Drawing.Font("Consolas", 11F);
+			this.label3.Location = new System.Drawing.Point(10, 74);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(80, 18);
+			this.label3.TabIndex = 8;
+			this.label3.Text = "Data Bits";
+			// 
+			// comDataBits
+			// 
+			this.comDataBits.Font = new System.Drawing.Font("Consolas", 11F);
+			this.comDataBits.Location = new System.Drawing.Point(109, 72);
+			this.comDataBits.Maximum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+			this.comDataBits.Name = "comDataBits";
+			this.comDataBits.Size = new System.Drawing.Size(120, 25);
+			this.comDataBits.TabIndex = 7;
+			this.comDataBits.Value = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+			// 
 			// ComConnect
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.label3);
+			this.Controls.Add(this.comDataBits);
 			this.Controls.Add(this.cancel);
 			this.Controls.Add(this.connect);
 			this.Controls.Add(this.label2);
@@ -129,6 +163,7 @@
 			this.Name = "ComConnect";
 			this.Size = new System.Drawing.Size(322, 186);
 			((System.ComponentModel.ISupportInitialize)(this.baudRate)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.comDataBits)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -143,5 +178,7 @@
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Button connect;
 		private System.Windows.Forms.Button cancel;
+		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.NumericUpDown comDataBits;
 	}
 }

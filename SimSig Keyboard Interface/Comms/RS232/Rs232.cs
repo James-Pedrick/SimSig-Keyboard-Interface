@@ -46,8 +46,14 @@ namespace SimSig_Keyboard_Interface.Comms.RS232
 			ComPort.PortName = Settings.Default.comPortName;
 			ComPort.DataBits = Settings.Default.comDataBits;
 
-			ComPort.Open();
-
+			try
+			{
+				ComPort.Open();
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e);
+			}
 
 			_receiver = new Receiver(ComPort);
 
