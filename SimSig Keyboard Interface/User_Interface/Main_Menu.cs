@@ -319,6 +319,13 @@ namespace SimSig_Keyboard_Interface.User_Interface
             SerialConnected = true;
         }
 
+        private void DisconnectToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            connectToolStripMenuItem1.Enabled = true;
+            Rs232Connection.Disconnect();
+            disconnectToolStripMenuItem1.Enabled = false;
+            SerialConnected = false;
+        }
 
         private void BerthListReset(object sender, EventArgs e)
 		{
