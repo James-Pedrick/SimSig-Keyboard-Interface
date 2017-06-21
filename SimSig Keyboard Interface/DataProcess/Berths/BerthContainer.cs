@@ -34,7 +34,7 @@ namespace SimSig_Keyboard_Interface.DataProcess.Berths
 
 			var z = BerthList.Single(b => b.HexId == hId).BerthContent;
 			if (z != "    ")
-				MainMenu.Connection.SendData("tO " + z + "|");
+				MainMenu.TcpConnection.SendData("tO " + z + "|");
 		}
 
 		public void BerthWatch(string berthId, bool watchState)
@@ -70,7 +70,7 @@ namespace SimSig_Keyboard_Interface.DataProcess.Berths
 			{
 				var berthRequest = "iBB" + x.HexId + x.HexId + "|";
 
-				MainMenu.Connection.SendData(berthRequest);
+				MainMenu.TcpConnection.SendData(berthRequest);
 			}
 		}
 

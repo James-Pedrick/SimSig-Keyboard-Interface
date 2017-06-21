@@ -66,7 +66,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 			if (e.KeyCode == Keys.F12)
 			{
-				MainMenu.Connection.SendData(userInputString.Text + "|");
+				MainMenu.TcpConnection.SendData(userInputString.Text + "|");
 			}
 
 			if (e.KeyCode == Keys.Enter)      //Set
@@ -162,7 +162,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 				if (userInputString.Text.StartsWith("TT") && userInputString.Text.Contains(" "))
 				{
 					string[] z = userInputString.Text.Split(' ');
-					MainMenu.Connection.SendData("tO " + z[1] + "|");
+					MainMenu.TcpConnection.SendData("tO " + z[1] + "|");
 					userInputString.Text = "";
 					keyboardSpecFunction.Text = "";
 				}
@@ -179,7 +179,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 					{
 						if (ttrgx.IsMatch(match))
 						{
-							MainMenu.Connection.SendData("tO " + match + "|");
+							MainMenu.TcpConnection.SendData("tO " + match + "|");
 						}
 
 						//Connection.SendData("tO " + userInputString.Text + "|");
@@ -195,7 +195,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 					trustString = ("TRUST LineUP for " + z[1] + " at " + z[2]);
 
 
-					MainMenu.Connection.SendData("<?xml version=\"1.0\" encoding=\"utf-8\"?><SimSig><platformDataRequest userTag=\"1\"><id>" + z[1] + "</id><platformCodes>(all)</platformCodes><time>" + z[2] + "</time></platformDataRequest></SimSig>|");//WORK HERE
+					MainMenu.TcpConnection.SendData("<?xml version=\"1.0\" encoding=\"utf-8\"?><SimSig><platformDataRequest userTag=\"1\"><id>" + z[1] + "</id><platformCodes>(all)</platformCodes><time>" + z[2] + "</time></platformDataRequest></SimSig>|");//WORK HERE
 					userInputString.Text = "";
 					keyboardSpecFunction.Text = "";
 				}

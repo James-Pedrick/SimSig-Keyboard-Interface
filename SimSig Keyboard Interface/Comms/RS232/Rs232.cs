@@ -11,24 +11,26 @@ using SimSig_Keyboard_Interface.Properties;
 
 namespace SimSig_Keyboard_Interface.Comms.RS232
 {
-	public sealed partial class Receiver : IDisposable
+	public sealed partial class SerialClient : IDisposable
 	{
 		private Receiver _receiver;
+        private SerialPort ComPort;
+
 		public void SendData(string data)
 		{
-			if (MainMenu.ComConnected)
-				_sender.SendData(data);
+            if (MainMenu.SerialConnected)
+                ComPort.WriteLine(data);
 		}
 
-		public event EventHandler<MsgEventArgs> ComDataReceived;
+		public event EventHandler<MsgEventArgs> DataReceived;
 
-		public Receiver() { }
+		public SerialClient() { }
 
 
 		private void OnDataReceived(object sender, MsgEventArgs e)
 		{
-			var handler = ComDataReceived;
-			if (handler != null) ComDataReceived?.Invoke(this, e);		//ReRaise Event
+			var handler = DataReceived;
+			if (handler != null) DataReceived?.Invoke(this, e);		//ReRaise Event
 		}
 
 		public void Dispose()
@@ -38,7 +40,7 @@ namespace SimSig_Keyboard_Interface.Comms.RS232
 
 		public void Connect()
 		{
-			SerialPort ComPort = new SerialPort();
+			ComPort = new SerialPort();
 
 			ComPort.BaudRate = Settings.Default.comBaudRate;
 			ComPort.PortName = Settings.Default.comPortName;
@@ -47,9 +49,15 @@ namespace SimSig_Keyboard_Interface.Comms.RS232
 			ComPort.Open();
 
 
-			_receiver = new Receiver(_stream);
+			_receiver = new Receiver(ComPort);
 
 
 		}
+
+        public void Disconnect()
+        {
+            _receiver.Close();
+            ComPort.Close();
+        }
 	}
 }

@@ -32,11 +32,10 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		/*Creating containers    */
 		/*************************/
 		public static TcpClient TcpConnection = new TcpClient();
-		public static Receiver Rs232Connection = new Receiver();
+		public static SerialClient Rs232Connection = new SerialClient();
 
 		public static TcpConnect TcpConnectForm = new TcpConnect();
 
-		public static SerialPort ComReceiver = new SerialPort();
 
 		public static BerthContainer Berths = new BerthContainer();
 		public static FlagContainer Flags = new FlagContainer();
@@ -61,18 +60,19 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 
 
+        public static bool TcpConnected = false;
+        public static bool SerialConnected = false;
 
-		public static bool ComConnected = false;
-		public static bool TcpConnected = false;
+        public MainMenu()
+        {
+            InitializeComponent();
 
-		public MainMenu()
-		{
-			InitializeComponent();
+            TcpConnection.DataReceived += TcpDataUpdate;
+            Rs232Connection.DataReceived += SerialDataUpdate;
+        }
 
-			TcpConnection.DataReceived += TcpDataUpdate;
-		}
 
-		private void MenuLoadSaveXml(object sender, EventArgs e)
+        private void MenuLoadSaveXml(object sender, EventArgs e)
 		{
 
 
@@ -91,9 +91,27 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			Refresh();
 
 		}
+        private void SerialDataUpdate(Object sender, MsgEventArgs e)
+        {
+            string element = e.Msg;
+            if (element != null && InvokeRequired)
+                try
+                {
+                    {
+                        MsgEventArgs m = new MsgEventArgs() { Msg = element };
+
+                        var handler = DebugTcpDataReceived;
+                        if (handler != null) DebugTcpDataReceived?.Invoke(this, m);
+                    }
+                }
+                catch
+                {
+                    Console.WriteLine(@"A Unhandled String was Received - " + element);
+                }
+        }
 
 
-		private void TcpDataUpdate(Object sender, MsgEventArgs e)
+        private void TcpDataUpdate(Object sender, MsgEventArgs e)
 		{
 			string element = e.Msg;
 			if (element != null && InvokeRequired)
@@ -285,22 +303,24 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 
 
-		#endregion
+        #endregion
 
-		private void ConnectToolStripMenuItem1_Click(object sender, EventArgs e)
-		{
-			connectToolStripMenuItem.Enabled = false;
-			Thread serialReceiver = new Thread(() =>
-			{
+        private void ConnectToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            connectToolStripMenuItem1.Enabled = false;
+            Thread serialReceiver = new Thread(() =>
+            {
 
-				Rs232Main.Rs232Receiver();
+                Rs232Connection.Connect();
 
-			});
-			serialReceiver.Start();
-		}
+            });
+            serialReceiver.Start();
+            disconnectToolStripMenuItem1.Enabled = true;
+            SerialConnected = true;
+        }
 
 
-		private void BerthListReset(object sender, EventArgs e)
+        private void BerthListReset(object sender, EventArgs e)
 		{
 			Berths.BerthList.Clear();
 		}
