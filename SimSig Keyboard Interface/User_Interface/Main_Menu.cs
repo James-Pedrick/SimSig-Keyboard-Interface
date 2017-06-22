@@ -15,7 +15,7 @@ using SimSig_Keyboard_Interface.Data;
 using SimSig_Keyboard_Interface.DataProcess.Flags;
 using SimSig_Keyboard_Interface.DataProcess.GroundFrames;
 using SimSig_Keyboard_Interface.DataProcess.Slots;
-
+using SimSig_Keyboard_Interface.User_Interface;
 
 // ************************************************************** Load Points config file ^^^
 
@@ -48,6 +48,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 		public static DebugUc Debug = new DebugUc();
 		public static KeyboardInterface Keyboard = new KeyboardInterface();
+		public static IndependentPhoneDisplay NewPhoneDisplay = new IndependentPhoneDisplay();
 
 
 		/*******************************/
@@ -346,6 +347,16 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			Berths.BerthStatusRequest();
 			Points.PointStatusConnectionRequest();
 			Signals.SignalStatusRequest();
+		}
+
+		private void newPhoneToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			Thread additionalPhone = new Thread(() =>
+			{
+				NewPhoneDisplay.ShowDialog();
+			});
+			additionalPhone.Start();
+
 		}
 	}
 }
