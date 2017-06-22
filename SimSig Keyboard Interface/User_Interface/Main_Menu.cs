@@ -69,7 +69,8 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			InitializeComponent();
 
 			TcpConnection.DataReceived += TcpDataUpdate;
-			ComConnection.DataReceived += SerialDataUpdate;
+			ComConnection.DataReceived += ComDataUpdate;
+			
 		}
 
 
@@ -92,13 +93,13 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			Refresh();
 
 		}
-		private void SerialDataUpdate(Object sender, MsgEventArgs e)
+		private void ComDataUpdate(object sender, MsgEventArgs e)
 		{
 			string element = e.Msg;
-			if (element != null && InvokeRequired)
+		/*	if (element != null && InvokeRequired)
 				try
 				{
-					{
+					{ 
 						MsgEventArgs m = new MsgEventArgs() { Msg = element };
 						Console.WriteLine(element);
 						var handler = DebugComDataReceived;
@@ -108,11 +109,13 @@ namespace SimSig_Keyboard_Interface.User_Interface
 				catch
 				{
 					Console.WriteLine(@"A Unhandled String was Received - " + element);
-				}
+				}*/
+
+			Console.WriteLine(element);
 		}
 
 
-		private void TcpDataUpdate(Object sender, MsgEventArgs e)
+		private void TcpDataUpdate(object sender, MsgEventArgs e)
 		{
 			string element = e.Msg;
 			if (element != null && InvokeRequired)
@@ -257,10 +260,6 @@ namespace SimSig_Keyboard_Interface.User_Interface
 				}
 		}
 
-		private void SerialDataReceived()
-		{
-
-		}
 
 
 
@@ -349,11 +348,6 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			Berths.BerthStatusRequest();
 			Points.PointStatusConnectionRequest();
 			Signals.SignalStatusRequest();
-		}
-
-		private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
-		{
-
 		}
 	}
 }

@@ -9,7 +9,7 @@ namespace SimSig_Keyboard_Interface.Comms.RS232
 	{
         private sealed class Receiver
         {
-            internal event EventHandler<MsgEventArgs> SerialDataReceived;
+            internal event EventHandler<MsgEventArgs> DataReceived;
 
             private SerialPort _stream;
             private Thread thread;
@@ -31,7 +31,7 @@ namespace SimSig_Keyboard_Interface.Comms.RS232
                 {
                     try
                     {
-                        string message = _stream.ReadLine();
+                        string message = _stream.ReadTo("|");
                         MsgEventArgs m = new MsgEventArgs() { Msg = message };
                         OnDataReceived(this, m);
                     }
@@ -57,9 +57,9 @@ namespace SimSig_Keyboard_Interface.Comms.RS232
 
             private void OnDataReceived(object sender, MsgEventArgs e)
             {
-                var handler = SerialDataReceived;
+                var handler = DataReceived;
 
-                if (handler != null) SerialDataReceived?.Invoke(this, e); // re-raise event
+                if (handler != null) DataReceived?.Invoke(this, e); // re-raise event
 
             }
 
