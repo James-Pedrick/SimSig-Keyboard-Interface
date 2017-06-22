@@ -24,9 +24,11 @@ namespace SimSig_Keyboard_Interface.Comms.RS232
 
 		public event EventHandler<MsgEventArgs> DataReceived;
 
-		public SerialClient() { }
+		public SerialClient()
+        {
 
-
+        }
+        
 		private void OnDataReceived(object sender, MsgEventArgs e)
 		{
 			var handler = DataReceived;
@@ -56,7 +58,7 @@ namespace SimSig_Keyboard_Interface.Comms.RS232
 			}
 
 			_receiver = new Receiver(ComPort);
-
+            _receiver.DataReceived += OnDataReceived;
 
 		}
 
