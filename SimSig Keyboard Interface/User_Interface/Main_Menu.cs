@@ -96,12 +96,11 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		private void ComDataUpdate(object sender, MsgEventArgs e)
 		{
 			string element = e.Msg;
-		/*	if (element != null && InvokeRequired)
+			if (element != null && InvokeRequired)
 				try
 				{
 					{ 
 						MsgEventArgs m = new MsgEventArgs() { Msg = element };
-						Console.WriteLine(element);
 						var handler = DebugComDataReceived;
 						if (handler != null) DebugComDataReceived?.Invoke(this, m);
 					}
@@ -109,9 +108,8 @@ namespace SimSig_Keyboard_Interface.User_Interface
 				catch
 				{
 					Console.WriteLine(@"A Unhandled String was Received - " + element);
-				}*/
+				}
 
-			Console.WriteLine(element);
 		}
 
 
