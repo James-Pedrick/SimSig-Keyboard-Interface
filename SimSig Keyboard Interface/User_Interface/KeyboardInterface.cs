@@ -248,6 +248,11 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 				XmlNodeList listOfHeadcodes = simplifier.SelectNodes("/SimSig/platformDataResponse/headcode");
 
+
+
+				if (trustString == null) return;
+
+
 				ttDisplay.Items.Clear();
 				ttDisplay.Items.Add(trustString);
 				ttDisplay.Items.Add(" ");

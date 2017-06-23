@@ -369,7 +369,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		{
 			Thread additionalKeyboard = new Thread(() =>
 			{
-keyboardInterface2.SuspendLayout();				
+				
 
 				if (InvokeRequired)
 					Invoke(new MethodInvoker(delegate
