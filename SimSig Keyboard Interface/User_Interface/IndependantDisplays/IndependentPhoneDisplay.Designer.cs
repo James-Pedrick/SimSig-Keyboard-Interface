@@ -36,14 +36,15 @@
 			this.phoneUi.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.phoneUi.Location = new System.Drawing.Point(0, 0);
 			this.phoneUi.Name = "phoneUi";
-			this.phoneUi.Size = new System.Drawing.Size(782, 547);
+			this.phoneUi.Size = new System.Drawing.Size(784, 561);
 			this.phoneUi.TabIndex = 0;
 			// 
 			// IndependentPhoneDisplay
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(782, 547);
+			this.BackColor = System.Drawing.Color.Black;
+			this.ClientSize = new System.Drawing.Size(784, 561);
 			this.Controls.Add(this.phoneUi);
 			this.Name = "IndependentPhoneDisplay";
 			this.Text = "IndependentPhoneDisplay";

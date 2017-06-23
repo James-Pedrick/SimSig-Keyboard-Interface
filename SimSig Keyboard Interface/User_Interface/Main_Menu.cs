@@ -16,6 +16,7 @@ using SimSig_Keyboard_Interface.DataProcess.Flags;
 using SimSig_Keyboard_Interface.DataProcess.GroundFrames;
 using SimSig_Keyboard_Interface.DataProcess.Slots;
 using SimSig_Keyboard_Interface.User_Interface;
+using SimSig_Keyboard_Interface.User_Interface.IndependantDisplays;
 
 // ************************************************************** Load Points config file ^^^
 
@@ -48,7 +49,8 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 		public static DebugUc Debug = new DebugUc();
 		public static KeyboardInterface Keyboard = new KeyboardInterface();
-		public static IndependentPhoneDisplay NewPhoneDisplay = new IndependentPhoneDisplay();
+		public static IndependentPhoneDisplay PhoneDisplayExternal = new IndependentPhoneDisplay();
+		public static IndependentKeyboardInterface KeyboardInterfaceExternal = new IndependentKeyboardInterface();
 
 
 		/*******************************/
@@ -71,7 +73,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 			TcpConnection.DataReceived += TcpDataUpdate;
 			ComConnection.DataReceived += ComDataUpdate;
-			
+
 		}
 
 
@@ -100,7 +102,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			if (element != null && InvokeRequired)
 				try
 				{
-					{ 
+					{
 						MsgEventArgs m = new MsgEventArgs() { Msg = element };
 						var handler = DebugComDataReceived;
 						if (handler != null) DebugComDataReceived?.Invoke(this, m);
@@ -349,13 +351,33 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			Signals.SignalStatusRequest();
 		}
 
-		private void newPhoneToolStripMenuItem_Click(object sender, EventArgs e)
+		private void MainMenu_NewPhone(object sender, EventArgs e)
 		{
 			Thread additionalPhone = new Thread(() =>
 			{
-				NewPhoneDisplay.ShowDialog();
+				if (InvokeRequired)
+					Invoke(new MethodInvoker(delegate
+					{
+						PhoneDisplayExternal.Show();
+					}));
 			});
 			additionalPhone.Start();
+
+		}
+
+		private void MainMenu_NewKeyboard(object sender, EventArgs e)
+		{
+			Thread additionalKeyboard = new Thread(() =>
+			{
+keyboardInterface2.SuspendLayout();				
+
+				if (InvokeRequired)
+					Invoke(new MethodInvoker(delegate
+					{
+						KeyboardInterfaceExternal.Show();
+					}));
+			});
+				additionalKeyboard.Start();
 
 		}
 	}

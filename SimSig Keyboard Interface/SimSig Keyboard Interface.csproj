@@ -133,10 +133,16 @@
     <Compile Include="User_Interface\DebugUc.Designer.cs">
       <DependentUpon>DebugUc.cs</DependentUpon>
     </Compile>
-    <Compile Include="User_Interface\IndependentPhoneDisplay.cs">
+    <Compile Include="User_Interface\IndependantDisplays\IndependentKeyboardInterface.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="User_Interface\IndependentPhoneDisplay.Designer.cs">
+    <Compile Include="User_Interface\IndependantDisplays\IndependentKeyboardInterface.Designer.cs">
+      <DependentUpon>IndependentKeyboardInterface.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User_Interface\IndependantDisplays\IndependentPhoneDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="User_Interface\IndependantDisplays\IndependentPhoneDisplay.Designer.cs">
       <DependentUpon>IndependentPhoneDisplay.cs</DependentUpon>
     </Compile>
     <Compile Include="User_Interface\KeyboardInterface.cs">
@@ -174,7 +180,10 @@
     <EmbeddedResource Include="User_Interface\DebugUc.resx">
       <DependentUpon>DebugUc.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="User_Interface\IndependentPhoneDisplay.resx">
+    <EmbeddedResource Include="User_Interface\IndependantDisplays\IndependentKeyboardInterface.resx">
+      <DependentUpon>IndependentKeyboardInterface.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User_Interface\IndependantDisplays\IndependentPhoneDisplay.resx">
       <DependentUpon>IndependentPhoneDisplay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="User_Interface\KeyboardInterface.resx">
