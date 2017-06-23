@@ -115,82 +115,82 @@
     <Compile Include="Data\SaveGameParser.cs" />
     <Compile Include="Data\SendPrep.cs" />
     <Compile Include="Properties\Settings.cs" />
-    <Compile Include="User_Interface\BerthWatch.cs">
+    <Compile Include="User_Interface\User Controls\BerthWatch.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="User_Interface\BerthWatch.Designer.cs">
+    <Compile Include="User_Interface\User Controls\BerthWatch.Designer.cs">
       <DependentUpon>BerthWatch.cs</DependentUpon>
     </Compile>
-    <Compile Include="User_Interface\ComConnect.cs">
+    <Compile Include="User_Interface\User Controls\ComConnect.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="User_Interface\ComConnect.Designer.cs">
+    <Compile Include="User_Interface\User Controls\ComConnect.Designer.cs">
       <DependentUpon>ComConnect.cs</DependentUpon>
     </Compile>
-    <Compile Include="User_Interface\DebugUc.cs">
+    <Compile Include="User_Interface\User Controls\DebugUc.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="User_Interface\DebugUc.Designer.cs">
+    <Compile Include="User_Interface\User Controls\DebugUc.Designer.cs">
       <DependentUpon>DebugUc.cs</DependentUpon>
     </Compile>
-    <Compile Include="User_Interface\IndependantDisplays\IndependentKeyboardInterface.cs">
+    <Compile Include="User_Interface\MainDisplays\IndependentKeyboardInterface.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="User_Interface\IndependantDisplays\IndependentKeyboardInterface.Designer.cs">
+    <Compile Include="User_Interface\MainDisplays\IndependentKeyboardInterface.Designer.cs">
       <DependentUpon>IndependentKeyboardInterface.cs</DependentUpon>
     </Compile>
-    <Compile Include="User_Interface\IndependantDisplays\IndependentPhoneDisplay.cs">
+    <Compile Include="User_Interface\MainDisplays\IndependentPhoneDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="User_Interface\IndependantDisplays\IndependentPhoneDisplay.Designer.cs">
+    <Compile Include="User_Interface\MainDisplays\IndependentPhoneDisplay.Designer.cs">
       <DependentUpon>IndependentPhoneDisplay.cs</DependentUpon>
     </Compile>
-    <Compile Include="User_Interface\KeyboardInterface.cs">
+    <Compile Include="User_Interface\User Controls\KeyboardInterface.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="User_Interface\KeyboardInterface.Designer.cs">
+    <Compile Include="User_Interface\User Controls\KeyboardInterface.Designer.cs">
       <DependentUpon>KeyboardInterface.cs</DependentUpon>
     </Compile>
-    <Compile Include="User_Interface\Main_Menu.cs">
+    <Compile Include="User_Interface\MainDisplays\MainMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="User_Interface\Main_Menu.Designer.cs">
-      <DependentUpon>Main_Menu.cs</DependentUpon>
+    <Compile Include="User_Interface\MainDisplays\MainMenu.Designer.cs">
+      <DependentUpon>MainMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="User_Interface\PhoneUi.cs">
+    <Compile Include="User_Interface\User Controls\PhoneUi.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="User_Interface\PhoneUi.Designer.cs">
+    <Compile Include="User_Interface\User Controls\PhoneUi.Designer.cs">
       <DependentUpon>PhoneUi.cs</DependentUpon>
     </Compile>
-    <Compile Include="User_Interface\TCP_Connect.cs">
+    <Compile Include="User_Interface\MainDisplays\TcpConnect.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="User_Interface\TCP_Connect.Designer.cs">
-      <DependentUpon>TCP_Connect.cs</DependentUpon>
+    <Compile Include="User_Interface\MainDisplays\TcpConnect.Designer.cs">
+      <DependentUpon>TcpConnect.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="User_Interface\BerthWatch.resx">
+    <EmbeddedResource Include="User_Interface\User Controls\BerthWatch.resx">
       <DependentUpon>BerthWatch.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="User_Interface\ComConnect.resx">
+    <EmbeddedResource Include="User_Interface\User Controls\ComConnect.resx">
       <DependentUpon>ComConnect.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="User_Interface\DebugUc.resx">
+    <EmbeddedResource Include="User_Interface\User Controls\DebugUc.resx">
       <DependentUpon>DebugUc.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="User_Interface\IndependantDisplays\IndependentKeyboardInterface.resx">
+    <EmbeddedResource Include="User_Interface\MainDisplays\IndependentKeyboardInterface.resx">
       <DependentUpon>IndependentKeyboardInterface.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="User_Interface\IndependantDisplays\IndependentPhoneDisplay.resx">
+    <EmbeddedResource Include="User_Interface\MainDisplays\IndependentPhoneDisplay.resx">
       <DependentUpon>IndependentPhoneDisplay.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="User_Interface\KeyboardInterface.resx">
+    <EmbeddedResource Include="User_Interface\User Controls\KeyboardInterface.resx">
       <DependentUpon>KeyboardInterface.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="User_Interface\Main_Menu.resx">
-      <DependentUpon>Main_Menu.cs</DependentUpon>
+    <EmbeddedResource Include="User_Interface\MainDisplays\MainMenu.resx">
+      <DependentUpon>MainMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -201,11 +201,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="User_Interface\PhoneUi.resx">
+    <EmbeddedResource Include="User_Interface\User Controls\PhoneUi.resx">
       <DependentUpon>PhoneUi.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="User_Interface\TCP_Connect.resx">
-      <DependentUpon>TCP_Connect.cs</DependentUpon>
+    <EmbeddedResource Include="User_Interface\MainDisplays\TcpConnect.resx">
+      <DependentUpon>TcpConnect.cs</DependentUpon>
     </EmbeddedResource>
     <None Include=".dockerignore">
       <DependentUpon>Dockerfile</DependentUpon>
