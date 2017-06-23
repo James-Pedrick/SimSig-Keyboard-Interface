@@ -1,0 +1,14 @@
+﻿SS - Signal Route Set (N or X Push)
+SC - Route Cancel
+SN - Entry Button / Switch
+SX - Exit Button Press
+
+SA - Auto Button Set
+SB - Auto Button Pull
+
+SR - Signal Replacement Set
+SP - Signal Replacement Cancel
+
+PF - Free Points
+PN - Key Points Normal
+PR - Key Points Reverse

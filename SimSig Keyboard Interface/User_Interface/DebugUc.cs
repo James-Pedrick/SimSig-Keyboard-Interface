@@ -21,7 +21,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			debugTrackView.DataSource = MainMenu.Tracks.TrackList;
 
 			MainMenu.DebugTcpDataReceived += DebugTcpUpdate;
-
+			MainMenu.DebugComDataReceived += DebugComUpdate;
 
 			//		this.Controls.Add(debugTcpRaw);
 		}
@@ -42,5 +42,18 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			}
 		}
 
+		private void DebugComUpdate(object sender, MsgEventArgs e)
+		{
+			string element = e.Msg;
+
+			if (InvokeRequired)
+			{
+				Invoke(new MethodInvoker(delegate
+				{
+					if (element != null)
+						debugRawComDisplay.Items.Insert(0, element);
+				}));
+			}
+		}
 	}
 }

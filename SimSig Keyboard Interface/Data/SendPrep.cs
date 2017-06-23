@@ -14,13 +14,13 @@ namespace SimSig_Keyboard_Interface.Data
 		{
 			var berthHex = MainMenu.Berths.BerthHIdLookup(berth);
 
-			MainMenu.Connection.SendData(@"BB" + berthHex + descrition + "|");
+			MainMenu.TcpConnection.SendData(@"BB" + berthHex + descrition + "|");
 		}
 
 		public static void InterposeCancel(string berth)
 		{
 			var berthHex = MainMenu.Berths.BerthHIdLookup(berth);
-			MainMenu.Connection.SendData(@"BC" + berthHex+ "|");
+			MainMenu.TcpConnection.SendData(@"BC" + berthHex+ "|");
 		}
 
 		public static void RouteSet(string entry, string exit)
@@ -30,39 +30,39 @@ namespace SimSig_Keyboard_Interface.Data
 
 			if (entrySigHex == null || exitSigHex == null) return;
 
-			MainMenu.Connection.SendData(@"SA" + entrySigHex + exitSigHex + @"00" + entrySigHex + @"----|");
+			MainMenu.TcpConnection.SendData(@"SA" + entrySigHex + exitSigHex + @"00" + entrySigHex + @"----|");
 
 		}
 
 		public static void RouteCan(string entry)
 		{
 			var entrySigHex = MainMenu.Signals.SignalIdLookup(entry);
-			MainMenu.Connection.SendData(@"zD" + entrySigHex + "|");
+			MainMenu.TcpConnection.SendData(@"zD" + entrySigHex + "|");
 
 		}
 
 		public static void SigAutoSet(string entry)
 		{
 			var entrySigHex = MainMenu.Signals.SignalIdLookup(entry);
-			MainMenu.Connection.SendData(@"SF" + entrySigHex + "|");
+			MainMenu.TcpConnection.SendData(@"SF" + entrySigHex + "|");
 		}
 
 		public static void SigAutoCan(string entry)
 		{
 			var entrySigHex = MainMenu.Signals.SignalIdLookup(entry);
-			MainMenu.Connection.SendData(@"SG" + entrySigHex + "|");
+			MainMenu.TcpConnection.SendData(@"SG" + entrySigHex + "|");
 		}
 
 		public static void SigReplacementCan(string entry)
 		{
 			var entrySigHex = MainMenu.Signals.SignalIdLookup(entry);
-			MainMenu.Connection.SendData(@"SP" + entrySigHex + "|");
+			MainMenu.TcpConnection.SendData(@"SP" + entrySigHex + "|");
 		}
 
 		public static void SigReplacementSet(string entry)
 		{
 			var entrySigHex = MainMenu.Signals.SignalIdLookup(entry);
-			MainMenu.Connection.SendData(@"SQ" + entrySigHex + "|");
+			MainMenu.TcpConnection.SendData(@"SQ" + entrySigHex + "|");
 		}
 
 		public static void PointsKeyN(string points)
@@ -87,7 +87,7 @@ namespace SimSig_Keyboard_Interface.Data
 
 						if (MainMenu.Points.PointsKn(pointId) == false && MainMenu.Points.PointUpdated(pointId))
 						{
-							MainMenu.Connection.SendData(@"PB" + pointId + @"|");
+							MainMenu.TcpConnection.SendData(@"PB" + pointId + @"|");
 
 							MainMenu.Points.PointList.Single(b => b.HexId == pointId).Updated = false;
 						}
@@ -120,7 +120,7 @@ namespace SimSig_Keyboard_Interface.Data
 
 						if (MainMenu.Points.PointsKr(pointId) == false && MainMenu.Points.PointUpdated(pointId))
 						{
-							MainMenu.Connection.SendData(@"PC" + pointId + @"|");
+							MainMenu.TcpConnection.SendData(@"PC" + pointId + @"|");
 
 							MainMenu.Points.PointList.Single(b => b.HexId == pointId).Updated = false;
 						}
@@ -156,7 +156,7 @@ namespace SimSig_Keyboard_Interface.Data
 						if ((MainMenu.Points.PointsKn(pointId) || MainMenu.Points.PointsKr(pointId)) &&
 						    MainMenu.Points.PointUpdated(pointId))
 						{
-							MainMenu.Connection.SendData(@"PB" + pointId + @"|");
+							MainMenu.TcpConnection.SendData(@"PB" + pointId + @"|");
 
 							MainMenu.Points.PointList.Single(b => b.HexId == pointId).Updated = false;
 						}

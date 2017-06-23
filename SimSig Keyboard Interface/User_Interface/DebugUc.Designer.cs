@@ -47,6 +47,8 @@
 			this.debugFlagView = new System.Windows.Forms.DataGridView();
 			this.debugTcpRaw = new System.Windows.Forms.TabPage();
 			this.debugRawTcpDisplay = new System.Windows.Forms.ListBox();
+			this.debugComRaw = new System.Windows.Forms.TabPage();
+			this.debugRawComDisplay = new System.Windows.Forms.ListBox();
 			this.debugTabs.SuspendLayout();
 			this.debugBerths.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.debugBerthView)).BeginInit();
@@ -65,6 +67,7 @@
 			this.debugFlags.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.debugFlagView)).BeginInit();
 			this.debugTcpRaw.SuspendLayout();
+			this.debugComRaw.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// debugTabs
@@ -78,6 +81,7 @@
 			this.debugTabs.Controls.Add(this.debugFrames);
 			this.debugTabs.Controls.Add(this.debugFlags);
 			this.debugTabs.Controls.Add(this.debugTcpRaw);
+			this.debugTabs.Controls.Add(this.debugComRaw);
 			this.debugTabs.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.debugTabs.Location = new System.Drawing.Point(0, 0);
 			this.debugTabs.Margin = new System.Windows.Forms.Padding(4);
@@ -332,6 +336,28 @@
 			this.debugRawTcpDisplay.Size = new System.Drawing.Size(529, 455);
 			this.debugRawTcpDisplay.TabIndex = 4;
 			// 
+			// debugComRaw
+			// 
+			this.debugComRaw.Controls.Add(this.debugRawComDisplay);
+			this.debugComRaw.Location = new System.Drawing.Point(4, 22);
+			this.debugComRaw.Name = "debugComRaw";
+			this.debugComRaw.Padding = new System.Windows.Forms.Padding(3);
+			this.debugComRaw.Size = new System.Drawing.Size(529, 455);
+			this.debugComRaw.TabIndex = 9;
+			this.debugComRaw.Text = "COM Raw";
+			this.debugComRaw.UseVisualStyleBackColor = true;
+			// 
+			// debugRawComDisplay
+			// 
+			this.debugRawComDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.debugRawComDisplay.FormattingEnabled = true;
+			this.debugRawComDisplay.Location = new System.Drawing.Point(3, 3);
+			this.debugRawComDisplay.Margin = new System.Windows.Forms.Padding(4);
+			this.debugRawComDisplay.Name = "debugRawComDisplay";
+			this.debugRawComDisplay.SelectionMode = System.Windows.Forms.SelectionMode.None;
+			this.debugRawComDisplay.Size = new System.Drawing.Size(523, 449);
+			this.debugRawComDisplay.TabIndex = 5;
+			// 
 			// DebugUc
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -357,6 +383,7 @@
 			this.debugFlags.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.debugFlagView)).EndInit();
 			this.debugTcpRaw.ResumeLayout(false);
+			this.debugComRaw.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -382,5 +409,7 @@
 		private System.Windows.Forms.TabPage debugTcpRaw;
 		public System.Windows.Forms.ListBox debugRawTcpDisplay;
 		public System.Windows.Forms.DataGridView debugBerthView;
+		private System.Windows.Forms.TabPage debugComRaw;
+		public System.Windows.Forms.ListBox debugRawComDisplay;
 	}
 }

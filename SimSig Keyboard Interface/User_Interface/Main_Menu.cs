@@ -15,7 +15,8 @@ using SimSig_Keyboard_Interface.Data;
 using SimSig_Keyboard_Interface.DataProcess.Flags;
 using SimSig_Keyboard_Interface.DataProcess.GroundFrames;
 using SimSig_Keyboard_Interface.DataProcess.Slots;
-
+using SimSig_Keyboard_Interface.User_Interface;
+using SimSig_Keyboard_Interface.User_Interface.IndependantDisplays;
 
 // ************************************************************** Load Points config file ^^^
 
@@ -31,11 +32,11 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		/*************************/
 		/*Creating containers    */
 		/*************************/
-		public static TcpClient Connection = new TcpClient();
+		public static TcpClient TcpConnection = new TcpClient();
+		public static SerialClient ComConnection = new SerialClient();
 
 		public static TcpConnect TcpConnectForm = new TcpConnect();
 
-		public static SerialPort ComReceiver = new SerialPort();
 
 		public static BerthContainer Berths = new BerthContainer();
 		public static FlagContainer Flags = new FlagContainer();
@@ -48,28 +49,34 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 		public static DebugUc Debug = new DebugUc();
 		public static KeyboardInterface Keyboard = new KeyboardInterface();
-		
+
 
 		/*******************************/
 		/* Creating Events             */
 		/*******************************/
 
+		public static event EventHandler<MsgEventArgs> DebugComDataReceived;
 		public static event EventHandler<MsgEventArgs> DebugTcpDataReceived;
 		public static event EventHandler<MsgEventArgs> KeyboardTcpDataReceived;
 		public static event EventHandler<MsgEventArgs> BerthWatch;
 
 
 
-
-
 		public static bool TcpConnected = false;
+		public static bool SerialConnected = false;
 
 		public MainMenu()
 		{
 			InitializeComponent();
 
-			Connection.DataReceived += TcpDataUpdate;
+			TcpConnection.DataReceived += TcpDataUpdate;
+			ComConnection.DataReceived += ComDataUpdate;
+
+
+
+
 		}
+
 
 		private void MenuLoadSaveXml(object sender, EventArgs e)
 		{
@@ -90,9 +97,27 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			Refresh();
 
 		}
+		private void ComDataUpdate(object sender, MsgEventArgs e)
+		{
+			string element = e.Msg;
+			if (element != null && InvokeRequired)
+				try
+				{
+					{
+						MsgEventArgs m = new MsgEventArgs() { Msg = element };
+						var handler = DebugComDataReceived;
+						if (handler != null) DebugComDataReceived?.Invoke(this, m);
+					}
+				}
+				catch
+				{
+					Console.WriteLine(@"A Unhandled String was Received - " + element);
+				}
+
+		}
 
 
-		private void TcpDataUpdate(Object sender, MsgEventArgs e)
+		private void TcpDataUpdate(object sender, MsgEventArgs e)
 		{
 			string element = e.Msg;
 			if (element != null && InvokeRequired)
@@ -227,9 +252,9 @@ namespace SimSig_Keyboard_Interface.User_Interface
 						var handler = KeyboardTcpDataReceived;
 						if (handler != null) KeyboardTcpDataReceived?.Invoke(this, m);
 					}
-					
-					
-					
+
+
+
 				}
 				catch
 				{
@@ -237,10 +262,6 @@ namespace SimSig_Keyboard_Interface.User_Interface
 				}
 		}
 
-		private void SerialDataReceived()
-		{
-
-		}
 
 
 
@@ -265,7 +286,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			Thread tcpConnectThread = new Thread(() =>
 				{
 					TcpConnectForm.ShowDialog();
-					Connection.Connect(Settings.Default.ipAddress, Settings.Default.clientPort);
+					TcpConnection.Connect(Settings.Default.ipAddress, Settings.Default.clientPort);
 				}
 			);
 			tcpConnectThread.Start();
@@ -276,7 +297,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		{
 
 			connectToolStripMenuItem.Enabled = true;
-			Connection.Disconnect();
+			TcpConnection.Disconnect();
 			disconnectToolStripMenuItem.Enabled = false;
 			TcpConnected = false;
 
@@ -288,16 +309,25 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 		private void ConnectToolStripMenuItem1_Click(object sender, EventArgs e)
 		{
-			connectToolStripMenuItem.Enabled = false;
+			connectToolStripMenuItem1.Enabled = false;
 			Thread serialReceiver = new Thread(() =>
 			{
 
-				Rs232Main.Rs232Receiver();
+				ComConnection.Connect();
 
 			});
 			serialReceiver.Start();
+			disconnectToolStripMenuItem1.Enabled = true;
+			SerialConnected = true;
 		}
 
+		private void DisconnectToolStripMenuItem1_Click(object sender, EventArgs e)
+		{
+			connectToolStripMenuItem1.Enabled = true;
+			ComConnection.Disconnect();
+			disconnectToolStripMenuItem1.Enabled = false;
+			SerialConnected = false;
+		}
 
 		private void BerthListReset(object sender, EventArgs e)
 		{
@@ -322,7 +352,39 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			Signals.SignalStatusRequest();
 		}
 
-		private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+		private void MainMenu_NewPhone(object sender, EventArgs e)
+		{
+			var additionalPhone = new Thread(() =>
+			{
+				IndependentPhoneDisplay phoneDisplayExternal = new IndependentPhoneDisplay();
+				if (InvokeRequired)
+					Invoke(new MethodInvoker(delegate
+					{
+						phoneDisplayExternal.Show();
+					}));
+			});
+			additionalPhone.Start();
+		}
+
+		private void MainMenu_NewKeyboard(object sender, EventArgs e)
+		{
+
+			var additionalKeyboard = new Thread(() =>
+			{
+				IndependentKeyboardInterface keyboardInterfaceExternal = new IndependentKeyboardInterface();
+
+				if (InvokeRequired)
+					Invoke(new MethodInvoker(delegate
+					{
+						keyboardInterfaceExternal.Show();
+					}));
+			});
+			additionalKeyboard.Start();
+
+
+		}
+
+		private void MainMenu_Load(object sender, EventArgs e)
 		{
 
 		}
