@@ -49,8 +49,6 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 		public static DebugUc Debug = new DebugUc();
 		public static KeyboardInterface Keyboard = new KeyboardInterface();
-		public static IndependentPhoneDisplay PhoneDisplayExternal = new IndependentPhoneDisplay();
-		public static IndependentKeyboardInterface KeyboardInterfaceExternal = new IndependentKeyboardInterface();
 
 
 		/*******************************/
@@ -75,31 +73,8 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			ComConnection.DataReceived += ComDataUpdate;
 
 
-			var additionalPhone = new Thread(() =>
-			{
-				if (InvokeRequired)
-					Invoke(new MethodInvoker(delegate
-					{
-						PhoneDisplayExternal.Show();
-					}));
-			});
-			additionalPhone.Start();
-
-			var additionalKeyboard = new Thread(() =>
-			{
-				if (InvokeRequired)
-					Invoke(new MethodInvoker(delegate
-					{
-						KeyboardInterfaceExternal.Show();
-					}));
-			});
-			additionalKeyboard.Start();
-
-			Thread.Sleep(100);
 
 
-			PhoneDisplayExternal.Hide();
-			KeyboardInterfaceExternal.Hide();
 		}
 
 
@@ -379,33 +354,32 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 		private void MainMenu_NewPhone(object sender, EventArgs e)
 		{
-			if (newPhoneToolStripMenuItem.Checked)
+			var additionalPhone = new Thread(() =>
 			{
-				PhoneDisplayExternal.Hide();
-				newPhoneToolStripMenuItem.Checked = false;
-			}
-			else
-			{
-				PhoneDisplayExternal.Show();
-				newPhoneToolStripMenuItem.Checked = true;
-			}
-
-
+				IndependentPhoneDisplay phoneDisplayExternal = new IndependentPhoneDisplay();
+				if (InvokeRequired)
+					Invoke(new MethodInvoker(delegate
+					{
+						phoneDisplayExternal.Show();
+					}));
+			});
+			additionalPhone.Start();
 		}
 
 		private void MainMenu_NewKeyboard(object sender, EventArgs e)
 		{
-			if (newKeyboardToolStripMenuItem.Checked)
+
+			var additionalKeyboard = new Thread(() =>
 			{
-				KeyboardInterfaceExternal.Hide();
-				newKeyboardToolStripMenuItem.Checked = false;
-			}
-			else
-			{
-				KeyboardInterfaceExternal.Show();
-				newKeyboardToolStripMenuItem.Checked = true;
-				
-			}
+				IndependentKeyboardInterface keyboardInterfaceExternal = new IndependentKeyboardInterface();
+
+				if (InvokeRequired)
+					Invoke(new MethodInvoker(delegate
+					{
+						keyboardInterfaceExternal.Show();
+					}));
+			});
+			additionalKeyboard.Start();
 
 
 		}

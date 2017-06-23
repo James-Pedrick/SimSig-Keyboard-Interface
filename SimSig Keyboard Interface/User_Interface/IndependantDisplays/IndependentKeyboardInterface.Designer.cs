@@ -44,7 +44,6 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
 			this.BackColor = System.Drawing.Color.Black;
 			this.ClientSize = new System.Drawing.Size(784, 561);
-			this.ControlBox = false;
 			this.Controls.Add(this.keyboardInterface1);
 			this.IsMdiContainer = true;
 			this.Name = "IndependentKeyboardInterface";
