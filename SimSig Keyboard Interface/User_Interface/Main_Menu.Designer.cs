@@ -447,6 +447,7 @@
 			this.Margin = new System.Windows.Forms.Padding(4);
 			this.Name = "MainMenu";
 			this.Text = "SimSig Keyboard Interface";
+			this.Load += new System.EventHandler(this.MainMenu_Load);
 			this.menuStrip.ResumeLayout(false);
 			this.menuStrip.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -463,8 +464,6 @@
 		}
 
 		#endregion
-
-		private System.Windows.Forms.MenuStrip menuStrip;
 		private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem dataToolStripMenuItem;
@@ -507,8 +506,9 @@
 		private ComConnect comConnect1;
         private System.Windows.Forms.ToolStripMenuItem disconnectToolStripMenuItem1;
 		private System.Windows.Forms.ToolStripMenuItem showToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem newPhoneToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem newKeyboardToolStripMenuItem;
+		public System.Windows.Forms.MenuStrip menuStrip;
+		public System.Windows.Forms.ToolStripMenuItem newPhoneToolStripMenuItem;
+		public System.Windows.Forms.ToolStripMenuItem newKeyboardToolStripMenuItem;
 	}
 }
 

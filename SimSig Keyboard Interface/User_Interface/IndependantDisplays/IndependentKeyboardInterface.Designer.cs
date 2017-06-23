@@ -41,19 +41,24 @@
 			// 
 			// IndependentKeyboardInterface
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
 			this.BackColor = System.Drawing.Color.Black;
 			this.ClientSize = new System.Drawing.Size(784, 561);
+			this.ControlBox = false;
 			this.Controls.Add(this.keyboardInterface1);
+			this.IsMdiContainer = true;
 			this.Name = "IndependentKeyboardInterface";
-			this.Text = "IndependentKeyboardInterface";
+			this.ShowInTaskbar = false;
+			this.Text = "Keyboard Interace";
+			this.Load += new System.EventHandler(this.IndependentKeyboardInterface_Load);
 			this.ResumeLayout(false);
 
 		}
 
 		#endregion
 
+
+			
 		private KeyboardInterface keyboardInterface1;
 	}
 }

@@ -74,6 +74,32 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			TcpConnection.DataReceived += TcpDataUpdate;
 			ComConnection.DataReceived += ComDataUpdate;
 
+
+			var additionalPhone = new Thread(() =>
+			{
+				if (InvokeRequired)
+					Invoke(new MethodInvoker(delegate
+					{
+						PhoneDisplayExternal.Show();
+					}));
+			});
+			additionalPhone.Start();
+
+			var additionalKeyboard = new Thread(() =>
+			{
+				if (InvokeRequired)
+					Invoke(new MethodInvoker(delegate
+					{
+						KeyboardInterfaceExternal.Show();
+					}));
+			});
+			additionalKeyboard.Start();
+
+			Thread.Sleep(100);
+
+
+			PhoneDisplayExternal.Hide();
+			KeyboardInterfaceExternal.Hide();
 		}
 
 
@@ -353,31 +379,39 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 		private void MainMenu_NewPhone(object sender, EventArgs e)
 		{
-			Thread additionalPhone = new Thread(() =>
+			if (newPhoneToolStripMenuItem.Checked)
 			{
-				if (InvokeRequired)
-					Invoke(new MethodInvoker(delegate
-					{
-						PhoneDisplayExternal.Show();
-					}));
-			});
-			additionalPhone.Start();
+				PhoneDisplayExternal.Hide();
+				newPhoneToolStripMenuItem.Checked = false;
+			}
+			else
+			{
+				PhoneDisplayExternal.Show();
+				newPhoneToolStripMenuItem.Checked = true;
+			}
+
 
 		}
 
 		private void MainMenu_NewKeyboard(object sender, EventArgs e)
 		{
-			Thread additionalKeyboard = new Thread(() =>
+			if (newKeyboardToolStripMenuItem.Checked)
 			{
+				KeyboardInterfaceExternal.Hide();
+				newKeyboardToolStripMenuItem.Checked = false;
+			}
+			else
+			{
+				KeyboardInterfaceExternal.Show();
+				newKeyboardToolStripMenuItem.Checked = true;
 				
+			}
 
-				if (InvokeRequired)
-					Invoke(new MethodInvoker(delegate
-					{
-						KeyboardInterfaceExternal.Show();
-					}));
-			});
-				additionalKeyboard.Start();
+
+		}
+
+		private void MainMenu_Load(object sender, EventArgs e)
+		{
 
 		}
 	}
