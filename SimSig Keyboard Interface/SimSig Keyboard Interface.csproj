@@ -121,6 +121,12 @@
     <Compile Include="User_Interface\Connetions\ComConnect.Designer.cs">
       <DependentUpon>ComConnect.cs</DependentUpon>
     </Compile>
+    <Compile Include="User_Interface\MainDisplays\IndependentDebugDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="User_Interface\MainDisplays\IndependentDebugDisplay.Designer.cs">
+      <DependentUpon>IndependentDebugDisplay.cs</DependentUpon>
+    </Compile>
     <Compile Include="User_Interface\UserControls\BerthWatchUc.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -173,6 +179,9 @@
     </Compile>
     <EmbeddedResource Include="User_Interface\Connetions\ComConnect.resx">
       <DependentUpon>ComConnect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User_Interface\MainDisplays\IndependentDebugDisplay.resx">
+      <DependentUpon>IndependentDebugDisplay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="User_Interface\UserControls\BerthWatchUc.resx">
       <DependentUpon>BerthWatchUc.cs</DependentUpon>

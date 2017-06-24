@@ -93,8 +93,6 @@ namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
 					ref Tracks, ref Slots, ref Frames, ref Flags); //Parse load with ref to points container
 
 			}
-			Refresh();
-
 		}
 		private void ComDataUpdate(object sender, MsgEventArgs e)
 		{
@@ -353,7 +351,7 @@ namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
 
 		private void MainMenu_NewPhone(object sender, EventArgs e)
 		{
-			var additionalPhone = new Thread(() =>
+			var additioinalView = new Thread(() =>
 			{
 				IndependentPhoneDisplay phoneDisplayExternal = new IndependentPhoneDisplay();
 				if (InvokeRequired)
@@ -362,13 +360,13 @@ namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
 						phoneDisplayExternal.Show();
 					}));
 			});
-			additionalPhone.Start();
+			additioinalView.Start();
 		}
 
 		private void MainMenu_NewKeyboard(object sender, EventArgs e)
 		{
 
-			var additionalKeyboard = new Thread(() =>
+			var additioinalView = new Thread(() =>
 			{
 				IndependentKeyboardInterface keyboardInterfaceExternal = new IndependentKeyboardInterface();
 
@@ -378,12 +376,27 @@ namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
 						keyboardInterfaceExternal.Show();
 					}));
 			});
-			additionalKeyboard.Start();
+			additioinalView.Start();
 
 
 		}
 
+		private void newDebugToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			var additioinalView = new Thread(() =>
+			{
+				IndependentDebugDisplay debugDisplay = new IndependentDebugDisplay();
 
+				if (InvokeRequired)
+					Invoke(new MethodInvoker(delegate
+					{
+						debugDisplay.Show();
+					}));
+			});
+			additioinalView.Start();
+
+
+		}
 	}
 }
 

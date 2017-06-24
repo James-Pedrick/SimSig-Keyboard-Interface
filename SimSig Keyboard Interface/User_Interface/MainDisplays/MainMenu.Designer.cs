@@ -65,15 +65,16 @@ namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
 			this.pageSetupDialog1 = new System.Windows.Forms.PageSetupDialog();
 			this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
 			this.phone = new System.Windows.Forms.TabPage();
-			this.phoneUi = new PhoneUc();
+			this.phoneUi = new SimSig_Keyboard_Interface.User_Interface.UserControls.PhoneUc();
 			this.keyboardInterface = new System.Windows.Forms.TabPage();
-			this.keyboardInterface2 = new KeyboardInterfaceUc();
+			this.keyboardInterface2 = new SimSig_Keyboard_Interface.User_Interface.UserControls.KeyboardInterfaceUc();
 			this.debug = new System.Windows.Forms.TabPage();
-			this.debugUc1 = new DebugUc();
+			this.debugUc1 = new SimSig_Keyboard_Interface.User_Interface.UserControls.DebugUc();
 			this.tabControl = new System.Windows.Forms.TabControl();
 			this.berthWatch = new System.Windows.Forms.TabPage();
-			this.berthWatch1 = new BerthWatch();
+			this.berthWatch1 = new SimSig_Keyboard_Interface.User_Interface.UserControls.BerthWatch();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.newDebugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.SuspendLayout();
@@ -90,9 +91,9 @@ namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
             this.fileToolStripMenuItem,
             this.dataToolStripMenuItem,
             this.networkToolStripMenuItem,
+            this.showToolStripMenuItem,
             this.logsToolStripMenuItem,
-            this.helpToolStripMenuItem,
-            this.showToolStripMenuItem});
+            this.helpToolStripMenuItem});
 			this.menuStrip.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip.Name = "menuStrip";
 			this.menuStrip.Padding = new System.Windows.Forms.Padding(8, 3, 0, 3);
@@ -174,8 +175,8 @@ namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
             this.clientToolStripMenuItem,
             this.serialToolStripMenuItem});
 			this.networkToolStripMenuItem.Name = "networkToolStripMenuItem";
-			this.networkToolStripMenuItem.Size = new System.Drawing.Size(64, 19);
-			this.networkToolStripMenuItem.Text = "Network";
+			this.networkToolStripMenuItem.Size = new System.Drawing.Size(61, 19);
+			this.networkToolStripMenuItem.Text = "Comms";
 			// 
 			// clientToolStripMenuItem
 			// 
@@ -220,7 +221,7 @@ namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
 			// connectToolStripMenuItem1
 			// 
 			this.connectToolStripMenuItem1.Name = "connectToolStripMenuItem1";
-			this.connectToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+			this.connectToolStripMenuItem1.Size = new System.Drawing.Size(133, 22);
 			this.connectToolStripMenuItem1.Text = "Connect";
 			this.connectToolStripMenuItem1.Click += new System.EventHandler(this.ConnectToolStripMenuItem1_Click);
 			// 
@@ -228,7 +229,7 @@ namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
 			// 
 			this.disconnectToolStripMenuItem1.Enabled = false;
 			this.disconnectToolStripMenuItem1.Name = "disconnectToolStripMenuItem1";
-			this.disconnectToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+			this.disconnectToolStripMenuItem1.Size = new System.Drawing.Size(133, 22);
 			this.disconnectToolStripMenuItem1.Text = "Disconnect";
 			// 
 			// logsToolStripMenuItem
@@ -245,25 +246,25 @@ namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
 			// savePointsToolStripMenuItem
 			// 
 			this.savePointsToolStripMenuItem.Name = "savePointsToolStripMenuItem";
-			this.savePointsToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+			this.savePointsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.savePointsToolStripMenuItem.Text = "Save Points";
 			// 
 			// saveSignalsToolStripMenuItem
 			// 
 			this.saveSignalsToolStripMenuItem.Name = "saveSignalsToolStripMenuItem";
-			this.saveSignalsToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+			this.saveSignalsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.saveSignalsToolStripMenuItem.Text = "Save Signals";
 			// 
 			// saveBerthsToolStripMenuItem
 			// 
 			this.saveBerthsToolStripMenuItem.Name = "saveBerthsToolStripMenuItem";
-			this.saveBerthsToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+			this.saveBerthsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.saveBerthsToolStripMenuItem.Text = "Save Berths";
 			// 
 			// saveRawToolStripMenuItem
 			// 
 			this.saveRawToolStripMenuItem.Name = "saveRawToolStripMenuItem";
-			this.saveRawToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+			this.saveRawToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.saveRawToolStripMenuItem.Text = "Save Raw";
 			// 
 			// helpToolStripMenuItem
@@ -277,12 +278,13 @@ namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
 			// aboutToolStripMenuItem
 			// 
 			this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-			this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+			this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.aboutToolStripMenuItem.Text = "About";
 			// 
 			// showToolStripMenuItem
 			// 
 			this.showToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newDebugToolStripMenuItem,
             this.newPhoneToolStripMenuItem,
             this.newKeyboardToolStripMenuItem});
 			this.showToolStripMenuItem.Name = "showToolStripMenuItem";
@@ -292,14 +294,14 @@ namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
 			// newPhoneToolStripMenuItem
 			// 
 			this.newPhoneToolStripMenuItem.Name = "newPhoneToolStripMenuItem";
-			this.newPhoneToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+			this.newPhoneToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.newPhoneToolStripMenuItem.Text = "New Phone";
 			this.newPhoneToolStripMenuItem.Click += new System.EventHandler(this.MainMenu_NewPhone);
 			// 
 			// newKeyboardToolStripMenuItem
 			// 
 			this.newKeyboardToolStripMenuItem.Name = "newKeyboardToolStripMenuItem";
-			this.newKeyboardToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+			this.newKeyboardToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.newKeyboardToolStripMenuItem.Text = "New Keyboard";
 			this.newKeyboardToolStripMenuItem.Click += new System.EventHandler(this.MainMenu_NewKeyboard);
 			// 
@@ -425,6 +427,13 @@ namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
 			this.tabPage1.Text = "tabPage1";
 			this.tabPage1.UseVisualStyleBackColor = true;
 			// 
+			// newDebugToolStripMenuItem
+			// 
+			this.newDebugToolStripMenuItem.Name = "newDebugToolStripMenuItem";
+			this.newDebugToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.newDebugToolStripMenuItem.Text = "New Debug";
+			this.newDebugToolStripMenuItem.Click += new System.EventHandler(this.newDebugToolStripMenuItem_Click);
+			// 
 			// MainMenu
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
@@ -498,6 +507,7 @@ namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
 		public System.Windows.Forms.MenuStrip menuStrip;
 		public System.Windows.Forms.ToolStripMenuItem newPhoneToolStripMenuItem;
 		public System.Windows.Forms.ToolStripMenuItem newKeyboardToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem newDebugToolStripMenuItem;
 	}
 }
 
