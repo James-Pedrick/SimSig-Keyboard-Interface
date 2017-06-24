@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq;
+using SimSig_Keyboard_Interface.User_Interface.MainDisplays;
 
 namespace SimSig_Keyboard_Interface.DataProcess.Signals
 {
@@ -70,7 +71,7 @@ namespace SimSig_Keyboard_Interface.DataProcess.Signals
 				signalRequest = signalRequest + "iBS" + x.HexId + x.HexId + "|";
 
 			}
-			User_Interface.MainMenu.TcpConnection.SendData(signalRequest);
+			MainMenu.TcpConnection.SendData(signalRequest);
 		}
 	}
 }

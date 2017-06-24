@@ -115,10 +115,10 @@
     <Compile Include="Data\SaveGameParser.cs" />
     <Compile Include="Data\SendPrep.cs" />
     <Compile Include="Properties\Settings.cs" />
-    <Compile Include="User_Interface\MainDisplays\ComConnect.cs">
+    <Compile Include="User_Interface\Connetions\ComConnect.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="User_Interface\MainDisplays\ComConnect.Designer.cs">
+    <Compile Include="User_Interface\Connetions\ComConnect.Designer.cs">
       <DependentUpon>ComConnect.cs</DependentUpon>
     </Compile>
     <Compile Include="User_Interface\UserControls\BerthWatchUc.cs">
@@ -126,12 +126,6 @@
     </Compile>
     <Compile Include="User_Interface\UserControls\BerthWatchUc.Designer.cs">
       <DependentUpon>BerthWatchUc.cs</DependentUpon>
-    </Compile>
-    <Compile Include="User_Interface\UserControls\ComConnectUc.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="User_Interface\UserControls\ComConnectUc.Designer.cs">
-      <DependentUpon>ComConnectUc.cs</DependentUpon>
     </Compile>
     <Compile Include="User_Interface\UserControls\DebugUc.cs">
       <SubType>UserControl</SubType>
@@ -171,20 +165,17 @@
     <Compile Include="User_Interface\UserControls\PhoneUc.Designer.cs">
       <DependentUpon>PhoneUc.cs</DependentUpon>
     </Compile>
-    <Compile Include="User_Interface\MainDisplays\TcpConnect.cs">
+    <Compile Include="User_Interface\Connetions\TcpConnect.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="User_Interface\MainDisplays\TcpConnect.Designer.cs">
+    <Compile Include="User_Interface\Connetions\TcpConnect.Designer.cs">
       <DependentUpon>TcpConnect.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="User_Interface\MainDisplays\ComConnect.resx">
+    <EmbeddedResource Include="User_Interface\Connetions\ComConnect.resx">
       <DependentUpon>ComConnect.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="User_Interface\UserControls\BerthWatchUc.resx">
       <DependentUpon>BerthWatchUc.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="User_Interface\UserControls\ComConnectUc.resx">
-      <DependentUpon>ComConnectUc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="User_Interface\UserControls\DebugUc.resx">
       <DependentUpon>DebugUc.cs</DependentUpon>
@@ -213,7 +204,7 @@
     <EmbeddedResource Include="User_Interface\UserControls\PhoneUc.resx">
       <DependentUpon>PhoneUc.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="User_Interface\MainDisplays\TcpConnect.resx">
+    <EmbeddedResource Include="User_Interface\Connetions\TcpConnect.resx">
       <DependentUpon>TcpConnect.cs</DependentUpon>
     </EmbeddedResource>
     <None Include=".dockerignore">

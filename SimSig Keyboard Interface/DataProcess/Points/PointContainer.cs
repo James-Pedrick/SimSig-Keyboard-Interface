@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using System.Linq;
 using SimSig_Keyboard_Interface.Comms.TCP;
+using SimSig_Keyboard_Interface.User_Interface.MainDisplays;
 
 namespace SimSig_Keyboard_Interface.DataProcess.Points
 {
@@ -94,7 +95,7 @@ namespace SimSig_Keyboard_Interface.DataProcess.Points
 			{
 				var pointRequest = "iBP" + x.HexId + x.HexId + "|";
 
-				User_Interface.MainMenu.TcpConnection.SendData(pointRequest);
+				MainMenu.TcpConnection.SendData(pointRequest);
 			}
 		}
 

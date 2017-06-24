@@ -1,4 +1,6 @@
-﻿namespace SimSig_Keyboard_Interface.User_Interface
+﻿using SimSig_Keyboard_Interface.User_Interface.UserControls;
+
+namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
 {
 	partial class IndependentPhoneDisplay
 	{
@@ -28,7 +30,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.phoneUi = new SimSig_Keyboard_Interface.User_Interface.PhoneUc();
+			this.phoneUi = new PhoneUc();
 			this.SuspendLayout();
 			// 
 			// phoneUi

@@ -1,4 +1,6 @@
-﻿namespace SimSig_Keyboard_Interface.User_Interface
+﻿using SimSig_Keyboard_Interface.User_Interface.UserControls;
+
+namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
 {
 	partial class MainMenu
 	{
@@ -63,14 +65,14 @@
 			this.pageSetupDialog1 = new System.Windows.Forms.PageSetupDialog();
 			this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
 			this.phone = new System.Windows.Forms.TabPage();
-			this.phoneUi = new SimSig_Keyboard_Interface.User_Interface.PhoneUc();
+			this.phoneUi = new PhoneUc();
 			this.keyboardInterface = new System.Windows.Forms.TabPage();
-			this.keyboardInterface2 = new SimSig_Keyboard_Interface.User_Interface.KeyboardInterfaceUc();
+			this.keyboardInterface2 = new KeyboardInterfaceUc();
 			this.debug = new System.Windows.Forms.TabPage();
-			this.debugUc1 = new SimSig_Keyboard_Interface.User_Interface.DebugUc();
+			this.debugUc1 = new DebugUc();
 			this.tabControl = new System.Windows.Forms.TabControl();
 			this.berthWatch = new System.Windows.Forms.TabPage();
-			this.berthWatch1 = new SimSig_Keyboard_Interface.User_Interface.BerthWatch();
+			this.berthWatch1 = new BerthWatch();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.menuStrip.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -422,7 +424,6 @@
 			this.tabPage1.TabIndex = 5;
 			this.tabPage1.Text = "tabPage1";
 			this.tabPage1.UseVisualStyleBackColor = true;
-			this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
 			// 
 			// MainMenu
 			// 
@@ -438,7 +439,6 @@
 			this.Margin = new System.Windows.Forms.Padding(4);
 			this.Name = "MainMenu";
 			this.Text = "SimSig Keyboard Interface";
-			this.Load += new System.EventHandler(this.MainMenu_Load);
 			this.menuStrip.ResumeLayout(false);
 			this.menuStrip.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();

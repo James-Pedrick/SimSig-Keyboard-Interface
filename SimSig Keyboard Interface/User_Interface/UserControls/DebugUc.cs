@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
 using SimSig_Keyboard_Interface.Comms.TCP;
+using MainMenu = SimSig_Keyboard_Interface.User_Interface.MainDisplays.MainMenu;
 
-namespace SimSig_Keyboard_Interface.User_Interface
+namespace SimSig_Keyboard_Interface.User_Interface.UserControls
 {
 	public partial class DebugUc : UserControl
 	{

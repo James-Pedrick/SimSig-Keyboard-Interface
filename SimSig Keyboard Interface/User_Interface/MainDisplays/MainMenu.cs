@@ -1,29 +1,26 @@
 ﻿using System;
-
 using System.Threading;
 using System.Windows.Forms;
+using SimSig_Keyboard_Interface.Comms.RS232;
 using SimSig_Keyboard_Interface.Comms.TCP;
+using SimSig_Keyboard_Interface.Data;
 using SimSig_Keyboard_Interface.DataProcess.Berths;
 using SimSig_Keyboard_Interface.DataProcess.Calls;
-using SimSig_Keyboard_Interface.DataProcess.Points;
-using SimSig_Keyboard_Interface.DataProcess.Signals;
-using SimSig_Keyboard_Interface.DataProcess.Track;
-using SimSig_Keyboard_Interface.Properties;
-using System.IO.Ports;
-using SimSig_Keyboard_Interface.Comms.RS232;
-using SimSig_Keyboard_Interface.Data;
 using SimSig_Keyboard_Interface.DataProcess.Flags;
 using SimSig_Keyboard_Interface.DataProcess.GroundFrames;
+using SimSig_Keyboard_Interface.DataProcess.Points;
+using SimSig_Keyboard_Interface.DataProcess.Signals;
 using SimSig_Keyboard_Interface.DataProcess.Slots;
-using SimSig_Keyboard_Interface.User_Interface;
-using SimSig_Keyboard_Interface.User_Interface.IndependantDisplays;
-using SimSig_Keyboard_Interface.User_Interface.MainDisplays;
+using SimSig_Keyboard_Interface.DataProcess.Track;
+using SimSig_Keyboard_Interface.Properties;
+using SimSig_Keyboard_Interface.User_Interface.Connetions;
+using SimSig_Keyboard_Interface.User_Interface.UserControls;
 
 // ************************************************************** Load Points config file ^^^
 
 
 
-namespace SimSig_Keyboard_Interface.User_Interface
+namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
 {
 	public partial class MainMenu : Form
 	{
@@ -386,15 +383,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 		}
 
-		private void MainMenu_Load(object sender, EventArgs e)
-		{
 
-		}
-
-		private void tabPage1_Click(object sender, EventArgs e)
-		{
-
-		}
 	}
 }
 

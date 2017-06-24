@@ -1,19 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Text;
 using System.Globalization;
 using System.IO;
-using System.IO.Ports;
-using System.Linq;
-using System.Windows.Forms;
 using System.Text.RegularExpressions;
-using System.Windows.Shapes;
+using System.Windows.Forms;
 using System.Xml;
 using SimSig_Keyboard_Interface.Comms.TCP;
+using MainMenu = SimSig_Keyboard_Interface.User_Interface.MainDisplays.MainMenu;
 
-
-namespace SimSig_Keyboard_Interface.User_Interface
+namespace SimSig_Keyboard_Interface.User_Interface.UserControls
 {
 	public partial class KeyboardInterfaceUc : UserControl
 	{
@@ -36,7 +32,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			if (e.KeyCode == Keys.F5) { DataProcess.KeyboardInterface.PointsKeyNorm(userInputString.Text); userInputString.Text = ""; keyboardSpecFunction.Text = ""; }
 			if (e.KeyCode == Keys.F6) { DataProcess.KeyboardInterface.PointsCentre(userInputString.Text); userInputString.Text = ""; keyboardSpecFunction.Text = ""; }
 			if (e.KeyCode == Keys.F7) { DataProcess.KeyboardInterface.PointsKeyReverse(userInputString.Text); userInputString.Text = ""; keyboardSpecFunction.Text = ""; }
-			
+
 			if (e.KeyCode == Keys.F12) MainMenu.TcpConnection.SendData(userInputString.Text + "|");
 
 			if (e.KeyCode == Keys.Enter) //Set
@@ -363,7 +359,8 @@ namespace SimSig_Keyboard_Interface.User_Interface
 						departure = arrival;
 					}
 
-					String simplifierString = departure + " " + arrival + " " + headcode + " " + platform + " " + line + " " + path + " " + delay;
+					String simplifierString = departure + " " + arrival + " " + headcode + " " + platform + " " + line + " " + path +
+											  " " + delay;
 					Console.WriteLine(simplifierString);
 					simplfierList.Add(simplifierString);
 
@@ -377,20 +374,23 @@ namespace SimSig_Keyboard_Interface.User_Interface
 				{
 					//Console.WriteLine(train.ToString());
 
-					Console.WriteLine(train.ToString().Substring(14, 4) + train.ToString().Substring(6, 8) + train.ToString().Substring(0, 6) + train.ToString().Substring(18));
-					ttDisplay.Items.Add(train.ToString().Substring(14, 4) + train.ToString().Substring(6, 8) + train.ToString().Substring(0, 6) + train.ToString().Substring(18));
+					Console.WriteLine(train.ToString().Substring(14, 4) + train.ToString().Substring(6, 8) +
+									  train.ToString().Substring(0, 6) + train.ToString().Substring(18));
+					ttDisplay.Items.Add(train.ToString().Substring(14, 4) + train.ToString().Substring(6, 8) +
+										train.ToString().Substring(0, 6) + train.ToString().Substring(18));
 					if (InvokeRequired)
 						Invoke(new MethodInvoker(delegate
 						{
-							ttDisplay.Items.Add(train.ToString().Substring(14, 4) + train.ToString().Substring(6, 8) + train.ToString().Substring(0, 6) + train.ToString().Substring(18));
+							ttDisplay.Items.Add(train.ToString().Substring(14, 4) + train.ToString().Substring(6, 8) +
+												train.ToString().Substring(0, 6) + train.ToString().Substring(18));
 						}));
 
 				}
 
-
-
 			}
+
 		}
+
 
 		private void TeMessage(string element)
 		{

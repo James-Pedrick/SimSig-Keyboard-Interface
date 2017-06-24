@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using SimSig_Keyboard_Interface.Properties;
 
-namespace SimSig_Keyboard_Interface.User_Interface
+namespace SimSig_Keyboard_Interface.User_Interface.Connetions
 {
 	public partial class TcpConnect : Form
 	{
