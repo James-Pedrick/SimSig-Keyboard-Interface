@@ -28,7 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.keyboardInterface1 = new SimSig_Keyboard_Interface.User_Interface.KeyboardInterface();
+			this.keyboardInterface1 = new SimSig_Keyboard_Interface.User_Interface.KeyboardInterfaceUc();
 			this.SuspendLayout();
 			// 
 			// keyboardInterface1
@@ -58,6 +58,6 @@
 
 
 			
-		private KeyboardInterface keyboardInterface1;
+		private KeyboardInterfaceUc keyboardInterface1;
 	}
 }

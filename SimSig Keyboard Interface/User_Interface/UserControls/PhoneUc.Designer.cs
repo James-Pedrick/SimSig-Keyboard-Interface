@@ -1,6 +1,6 @@
 ﻿namespace SimSig_Keyboard_Interface.User_Interface
 {
-	partial class PhoneUi
+	partial class PhoneUc
 	{
 		/// <summary> 
 		/// Required designer variable.
@@ -178,7 +178,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.splitContainer2);
-			this.Name = "PhoneUi";
+			this.Name = "PhoneUc";
 			this.Size = new System.Drawing.Size(1086, 695);
 			this.splitContainer2.Panel1.ResumeLayout(false);
 			this.splitContainer2.Panel2.ResumeLayout(false);

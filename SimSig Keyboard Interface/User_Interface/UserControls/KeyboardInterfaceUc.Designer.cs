@@ -1,6 +1,6 @@
 ﻿namespace SimSig_Keyboard_Interface.User_Interface
 {
-    partial class KeyboardInterface
+    partial class KeyboardInterfaceUc
     {
         /// <summary> 
         /// Required designer variable.
@@ -133,12 +133,12 @@
 			this.panel1.Size = new System.Drawing.Size(582, 495);
 			this.panel1.TabIndex = 18;
 			// 
-			// KeyboardInterface
+			// KeyboardInterfaceUc
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.panel1);
-			this.Name = "KeyboardInterface";
+			this.Name = "KeyboardInterfaceUc";
 			this.Size = new System.Drawing.Size(582, 495);
 			this.Header.ResumeLayout(false);
 			this.Header.PerformLayout();

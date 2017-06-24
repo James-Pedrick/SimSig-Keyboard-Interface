@@ -4,9 +4,9 @@ using System.Windows.Forms;
 
 namespace SimSig_Keyboard_Interface.User_Interface
 {
-	public partial class PhoneUi : UserControl
+	public partial class PhoneUc : UserControl
 	{
-		public PhoneUi()
+		public PhoneUc()
 		{
 			InitializeComponent();
 

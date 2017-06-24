@@ -28,7 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.phoneUi = new SimSig_Keyboard_Interface.User_Interface.PhoneUi();
+			this.phoneUi = new SimSig_Keyboard_Interface.User_Interface.PhoneUc();
 			this.SuspendLayout();
 			// 
 			// phoneUi
@@ -54,6 +54,6 @@
 
 		#endregion
 
-		private PhoneUi phoneUi;
+		private PhoneUc phoneUi;
 	}
 }

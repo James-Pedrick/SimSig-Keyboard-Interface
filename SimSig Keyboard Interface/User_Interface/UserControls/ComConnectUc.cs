@@ -12,9 +12,9 @@ using SimSig_Keyboard_Interface.Properties;
 
 namespace SimSig_Keyboard_Interface.User_Interface
 {
-	public partial class ComConnect : UserControl
+	public partial class ComConnectUc : UserControl
 	{
-		public ComConnect()
+		public ComConnectUc()
 		{
 			InitializeComponent();
 

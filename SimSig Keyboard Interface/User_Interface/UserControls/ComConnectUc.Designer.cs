@@ -1,6 +1,6 @@
 ﻿namespace SimSig_Keyboard_Interface.User_Interface
 {
-	partial class ComConnect
+	partial class ComConnectUc
 	{
 		/// <summary> 
 		/// Required designer variable.
@@ -45,7 +45,7 @@
 			// 
 			this.portSelect.Font = new System.Drawing.Font("Consolas", 11F);
 			this.portSelect.FormattingEnabled = true;
-			this.portSelect.Location = new System.Drawing.Point(108, 3);
+			this.portSelect.Location = new System.Drawing.Point(108, 20);
 			this.portSelect.Name = "portSelect";
 			this.portSelect.Size = new System.Drawing.Size(121, 26);
 			this.portSelect.Sorted = true;
@@ -54,7 +54,7 @@
 			// baudRate
 			// 
 			this.baudRate.Font = new System.Drawing.Font("Consolas", 11F);
-			this.baudRate.Location = new System.Drawing.Point(109, 38);
+			this.baudRate.Location = new System.Drawing.Point(109, 54);
 			this.baudRate.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -72,7 +72,7 @@
 			// comListRefresh
 			// 
 			this.comListRefresh.Font = new System.Drawing.Font("Consolas", 11F);
-			this.comListRefresh.Location = new System.Drawing.Point(235, 6);
+			this.comListRefresh.Location = new System.Drawing.Point(235, 21);
 			this.comListRefresh.Name = "comListRefresh";
 			this.comListRefresh.Size = new System.Drawing.Size(75, 23);
 			this.comListRefresh.TabIndex = 2;
@@ -84,7 +84,7 @@
 			// 
 			this.label1.AutoSize = true;
 			this.label1.Font = new System.Drawing.Font("Consolas", 11F);
-			this.label1.Location = new System.Drawing.Point(10, 6);
+			this.label1.Location = new System.Drawing.Point(10, 20);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(72, 18);
 			this.label1.TabIndex = 3;
@@ -94,7 +94,7 @@
 			// 
 			this.label2.AutoSize = true;
 			this.label2.Font = new System.Drawing.Font("Consolas", 11F);
-			this.label2.Location = new System.Drawing.Point(10, 40);
+			this.label2.Location = new System.Drawing.Point(10, 54);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(80, 18);
 			this.label2.TabIndex = 4;
@@ -102,7 +102,7 @@
 			// 
 			// connect
 			// 
-			this.connect.Location = new System.Drawing.Point(219, 137);
+			this.connect.Location = new System.Drawing.Point(219, 146);
 			this.connect.Name = "connect";
 			this.connect.Size = new System.Drawing.Size(75, 23);
 			this.connect.TabIndex = 5;
@@ -112,7 +112,7 @@
 			// 
 			// cancel
 			// 
-			this.cancel.Location = new System.Drawing.Point(24, 137);
+			this.cancel.Location = new System.Drawing.Point(24, 146);
 			this.cancel.Name = "cancel";
 			this.cancel.Size = new System.Drawing.Size(75, 23);
 			this.cancel.TabIndex = 6;
@@ -123,7 +123,7 @@
 			// 
 			this.label3.AutoSize = true;
 			this.label3.Font = new System.Drawing.Font("Consolas", 11F);
-			this.label3.Location = new System.Drawing.Point(10, 74);
+			this.label3.Location = new System.Drawing.Point(10, 88);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(80, 18);
 			this.label3.TabIndex = 8;
@@ -132,7 +132,7 @@
 			// comDataBits
 			// 
 			this.comDataBits.Font = new System.Drawing.Font("Consolas", 11F);
-			this.comDataBits.Location = new System.Drawing.Point(109, 72);
+			this.comDataBits.Location = new System.Drawing.Point(109, 88);
 			this.comDataBits.Maximum = new decimal(new int[] {
             20,
             0,
@@ -160,8 +160,8 @@
 			this.Controls.Add(this.comListRefresh);
 			this.Controls.Add(this.baudRate);
 			this.Controls.Add(this.portSelect);
-			this.Name = "ComConnect";
-			this.Size = new System.Drawing.Size(322, 186);
+			this.Name = "ComConnectUc";
+			this.Size = new System.Drawing.Size(322, 231);
 			((System.ComponentModel.ISupportInitialize)(this.baudRate)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.comDataBits)).EndInit();
 			this.ResumeLayout(false);

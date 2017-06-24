@@ -15,12 +15,12 @@ using SimSig_Keyboard_Interface.Comms.TCP;
 
 namespace SimSig_Keyboard_Interface.User_Interface
 {
-	public partial class KeyboardInterface : UserControl
+	public partial class KeyboardInterfaceUc : UserControl
 	{
 		private string trustString;
 
 
-		public KeyboardInterface()
+		public KeyboardInterfaceUc()
 		{
 			InitializeComponent();
 			MainMenu.KeyboardTcpDataReceived += TcpDataReceived;

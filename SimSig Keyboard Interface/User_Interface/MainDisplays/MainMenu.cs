@@ -17,6 +17,7 @@ using SimSig_Keyboard_Interface.DataProcess.GroundFrames;
 using SimSig_Keyboard_Interface.DataProcess.Slots;
 using SimSig_Keyboard_Interface.User_Interface;
 using SimSig_Keyboard_Interface.User_Interface.IndependantDisplays;
+using SimSig_Keyboard_Interface.User_Interface.MainDisplays;
 
 // ************************************************************** Load Points config file ^^^
 
@@ -34,13 +35,14 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		/*************************/
 		public static TcpClient TcpConnection = new TcpClient();
 		public static SerialClient ComConnection = new SerialClient();
+		public static FlagContainer Flags = new FlagContainer();
+		public static FrameContainer Frames = new FrameContainer();
 
 		public static TcpConnect TcpConnectForm = new TcpConnect();
+		public static ComConnect ComConnectForm = new ComConnect();
 
 
 		public static BerthContainer Berths = new BerthContainer();
-		public static FlagContainer Flags = new FlagContainer();
-		public static FrameContainer Frames = new FrameContainer();
 		public static PointContainer Points = new PointContainer();
 		public static SignalContainer Signals = new SignalContainer();
 		public static SlotContainer Slots = new SlotContainer();
@@ -48,7 +50,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		public static readonly CallContainer Calls = new CallContainer();
 
 		public static DebugUc Debug = new DebugUc();
-		public static KeyboardInterface Keyboard = new KeyboardInterface();
+		public static KeyboardInterfaceUc Keyboard = new KeyboardInterfaceUc();
 
 
 		/*******************************/
@@ -312,7 +314,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			connectToolStripMenuItem1.Enabled = false;
 			Thread serialReceiver = new Thread(() =>
 			{
-
+				ComConnectForm.ShowDialog();
 				ComConnection.Connect();
 
 			});
@@ -385,6 +387,11 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		}
 
 		private void MainMenu_Load(object sender, EventArgs e)
+		{
+
+		}
+
+		private void tabPage1_Click(object sender, EventArgs e)
 		{
 
 		}
