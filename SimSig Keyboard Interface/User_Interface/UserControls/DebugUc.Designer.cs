@@ -1,4 +1,4 @@
-﻿namespace SimSig_Keyboard_Interface.User_Interface
+﻿namespace SimSig_Keyboard_Interface.User_Interface.UserControls
 {
 	partial class DebugUc
 	{
@@ -49,6 +49,8 @@
 			this.debugRawTcpDisplay = new System.Windows.Forms.ListBox();
 			this.debugComRaw = new System.Windows.Forms.TabPage();
 			this.debugRawComDisplay = new System.Windows.Forms.ListBox();
+			this.simLocations = new System.Windows.Forms.TabPage();
+			this.simTiplocs = new System.Windows.Forms.DataGridView();
 			this.debugTabs.SuspendLayout();
 			this.debugBerths.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.debugBerthView)).BeginInit();
@@ -68,6 +70,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.debugFlagView)).BeginInit();
 			this.debugTcpRaw.SuspendLayout();
 			this.debugComRaw.SuspendLayout();
+			this.simLocations.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.simTiplocs)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// debugTabs
@@ -82,6 +86,7 @@
 			this.debugTabs.Controls.Add(this.debugFlags);
 			this.debugTabs.Controls.Add(this.debugTcpRaw);
 			this.debugTabs.Controls.Add(this.debugComRaw);
+			this.debugTabs.Controls.Add(this.simLocations);
 			this.debugTabs.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.debugTabs.Location = new System.Drawing.Point(0, 0);
 			this.debugTabs.Margin = new System.Windows.Forms.Padding(4);
@@ -94,10 +99,10 @@
 			// debugBerths
 			// 
 			this.debugBerths.Controls.Add(this.debugBerthView);
-			this.debugBerths.Location = new System.Drawing.Point(4, 22);
+			this.debugBerths.Location = new System.Drawing.Point(4, 40);
 			this.debugBerths.Margin = new System.Windows.Forms.Padding(4);
 			this.debugBerths.Name = "debugBerths";
-			this.debugBerths.Size = new System.Drawing.Size(529, 455);
+			this.debugBerths.Size = new System.Drawing.Size(529, 437);
 			this.debugBerths.TabIndex = 2;
 			this.debugBerths.Text = "Berths";
 			this.debugBerths.UseVisualStyleBackColor = true;
@@ -116,16 +121,16 @@
 			this.debugBerthView.Margin = new System.Windows.Forms.Padding(4);
 			this.debugBerthView.Name = "debugBerthView";
 			this.debugBerthView.ReadOnly = true;
-			this.debugBerthView.Size = new System.Drawing.Size(529, 455);
+			this.debugBerthView.Size = new System.Drawing.Size(529, 437);
 			this.debugBerthView.TabIndex = 3;
 			// 
 			// debugGroundFrames
 			// 
 			this.debugGroundFrames.Controls.Add(this.debugCallView);
-			this.debugGroundFrames.Location = new System.Drawing.Point(4, 22);
+			this.debugGroundFrames.Location = new System.Drawing.Point(4, 40);
 			this.debugGroundFrames.Margin = new System.Windows.Forms.Padding(4);
 			this.debugGroundFrames.Name = "debugGroundFrames";
-			this.debugGroundFrames.Size = new System.Drawing.Size(529, 455);
+			this.debugGroundFrames.Size = new System.Drawing.Size(529, 437);
 			this.debugGroundFrames.TabIndex = 5;
 			this.debugGroundFrames.Text = "Calls";
 			this.debugGroundFrames.UseVisualStyleBackColor = true;
@@ -144,17 +149,17 @@
 			this.debugCallView.Margin = new System.Windows.Forms.Padding(4);
 			this.debugCallView.Name = "debugCallView";
 			this.debugCallView.ReadOnly = true;
-			this.debugCallView.Size = new System.Drawing.Size(529, 455);
+			this.debugCallView.Size = new System.Drawing.Size(529, 437);
 			this.debugCallView.TabIndex = 3;
 			// 
 			// debugPoints
 			// 
 			this.debugPoints.Controls.Add(this.debugPointView);
-			this.debugPoints.Location = new System.Drawing.Point(4, 22);
+			this.debugPoints.Location = new System.Drawing.Point(4, 40);
 			this.debugPoints.Margin = new System.Windows.Forms.Padding(4);
 			this.debugPoints.Name = "debugPoints";
 			this.debugPoints.Padding = new System.Windows.Forms.Padding(4);
-			this.debugPoints.Size = new System.Drawing.Size(529, 455);
+			this.debugPoints.Size = new System.Drawing.Size(529, 437);
 			this.debugPoints.TabIndex = 0;
 			this.debugPoints.Text = "Points";
 			this.debugPoints.UseVisualStyleBackColor = true;
@@ -173,7 +178,7 @@
 			this.debugPointView.Margin = new System.Windows.Forms.Padding(4);
 			this.debugPointView.Name = "debugPointView";
 			this.debugPointView.ReadOnly = true;
-			this.debugPointView.Size = new System.Drawing.Size(521, 447);
+			this.debugPointView.Size = new System.Drawing.Size(521, 429);
 			this.debugPointView.TabIndex = 3;
 			// 
 			// debugSignals
@@ -358,6 +363,34 @@
 			this.debugRawComDisplay.Size = new System.Drawing.Size(523, 449);
 			this.debugRawComDisplay.TabIndex = 5;
 			// 
+			// simLocations
+			// 
+			this.simLocations.Controls.Add(this.simTiplocs);
+			this.simLocations.Location = new System.Drawing.Point(4, 40);
+			this.simLocations.Name = "simLocations";
+			this.simLocations.Padding = new System.Windows.Forms.Padding(3);
+			this.simLocations.Size = new System.Drawing.Size(529, 437);
+			this.simLocations.TabIndex = 10;
+			this.simLocations.Text = "Locations";
+			this.simLocations.UseVisualStyleBackColor = true;
+			// 
+			// simTiplocs
+			// 
+			this.simTiplocs.AllowUserToAddRows = false;
+			this.simTiplocs.AllowUserToDeleteRows = false;
+			this.simTiplocs.AllowUserToOrderColumns = true;
+			this.simTiplocs.AllowUserToResizeColumns = false;
+			this.simTiplocs.AllowUserToResizeRows = false;
+			this.simTiplocs.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+			this.simTiplocs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.simTiplocs.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.simTiplocs.Location = new System.Drawing.Point(3, 3);
+			this.simTiplocs.Margin = new System.Windows.Forms.Padding(4);
+			this.simTiplocs.Name = "simTiplocs";
+			this.simTiplocs.ReadOnly = true;
+			this.simTiplocs.Size = new System.Drawing.Size(523, 431);
+			this.simTiplocs.TabIndex = 4;
+			// 
 			// DebugUc
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -384,6 +417,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.debugFlagView)).EndInit();
 			this.debugTcpRaw.ResumeLayout(false);
 			this.debugComRaw.ResumeLayout(false);
+			this.simLocations.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.simTiplocs)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -411,5 +446,7 @@
 		public System.Windows.Forms.DataGridView debugBerthView;
 		private System.Windows.Forms.TabPage debugComRaw;
 		public System.Windows.Forms.ListBox debugRawComDisplay;
+		private System.Windows.Forms.TabPage simLocations;
+		private System.Windows.Forms.DataGridView simTiplocs;
 	}
 }

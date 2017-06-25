@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
+using MainMenu = SimSig_Keyboard_Interface.User_Interface.MainDisplays.MainMenu;
 
-namespace SimSig_Keyboard_Interface.User_Interface
+namespace SimSig_Keyboard_Interface.User_Interface.UserControls
 {
-	public partial class PhoneUi : UserControl
+	public partial class PhoneUc : UserControl
 	{
-		public PhoneUi()
+		public PhoneUc()
 		{
 			InitializeComponent();
 

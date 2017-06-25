@@ -2,6 +2,7 @@ using System;
 using System.Net.Sockets;
 using SimSig_Keyboard_Interface.Properties;
 using SimSig_Keyboard_Interface.User_Interface;
+using SimSig_Keyboard_Interface.User_Interface.MainDisplays;
 
 namespace SimSig_Keyboard_Interface.Comms.TCP
 {

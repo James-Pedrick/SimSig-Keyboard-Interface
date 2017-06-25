@@ -1,4 +1,4 @@
-﻿namespace SimSig_Keyboard_Interface.User_Interface
+﻿namespace SimSig_Keyboard_Interface.User_Interface.UserControls
 {
 	partial class BerthWatch
 	{

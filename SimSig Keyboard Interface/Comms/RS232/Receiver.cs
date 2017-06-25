@@ -68,12 +68,12 @@ namespace SimSig_Keyboard_Interface.Comms.RS232
                 thread.Interrupt();
                 if (thread.Join(TimeSpan.FromSeconds(5)))
                 {
-                    Console.WriteLine("Closing correctly");
+                    Console.WriteLine(@"Closing correctly");
                 }
                 else
                 {
                     thread.Abort();
-                    Console.WriteLine("Force Closed");
+                    Console.WriteLine(@"Force Closed");
                 }
             }
         }

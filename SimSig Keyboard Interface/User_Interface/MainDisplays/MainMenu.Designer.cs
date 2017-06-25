@@ -1,4 +1,6 @@
-﻿namespace SimSig_Keyboard_Interface.User_Interface
+﻿using SimSig_Keyboard_Interface.User_Interface.UserControls;
+
+namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
 {
 	partial class MainMenu
 	{
@@ -56,23 +58,23 @@
 			this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.showToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.newPhoneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.newKeyboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.loadSaveGameXML = new System.Windows.Forms.OpenFileDialog();
 			this.dataSave = new System.Windows.Forms.SaveFileDialog();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.pageSetupDialog1 = new System.Windows.Forms.PageSetupDialog();
 			this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
 			this.phone = new System.Windows.Forms.TabPage();
-			this.phoneUi = new SimSig_Keyboard_Interface.User_Interface.PhoneUi();
+			this.phoneUi = new SimSig_Keyboard_Interface.User_Interface.UserControls.PhoneUc();
 			this.keyboardInterface = new System.Windows.Forms.TabPage();
-			this.keyboardInterface2 = new SimSig_Keyboard_Interface.User_Interface.KeyboardInterface();
+			this.keyboardInterface2 = new SimSig_Keyboard_Interface.User_Interface.UserControls.KeyboardInterfaceUc();
 			this.debug = new System.Windows.Forms.TabPage();
-			this.debugUc1 = new SimSig_Keyboard_Interface.User_Interface.DebugUc();
+			this.debugUc1 = new SimSig_Keyboard_Interface.User_Interface.UserControls.DebugUc();
 			this.tabControl = new System.Windows.Forms.TabControl();
 			this.berthWatch = new System.Windows.Forms.TabPage();
-			this.berthWatch1 = new SimSig_Keyboard_Interface.User_Interface.BerthWatch();
+			this.berthWatch1 = new SimSig_Keyboard_Interface.User_Interface.UserControls.BerthWatch();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
-			this.comConnect1 = new SimSig_Keyboard_Interface.User_Interface.ComConnect();
-			this.newKeyboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.newDebugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.SuspendLayout();
@@ -81,7 +83,6 @@
 			this.debug.SuspendLayout();
 			this.tabControl.SuspendLayout();
 			this.berthWatch.SuspendLayout();
-			this.tabPage1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// menuStrip
@@ -90,9 +91,9 @@
             this.fileToolStripMenuItem,
             this.dataToolStripMenuItem,
             this.networkToolStripMenuItem,
+            this.showToolStripMenuItem,
             this.logsToolStripMenuItem,
-            this.helpToolStripMenuItem,
-            this.showToolStripMenuItem});
+            this.helpToolStripMenuItem});
 			this.menuStrip.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip.Name = "menuStrip";
 			this.menuStrip.Padding = new System.Windows.Forms.Padding(8, 3, 0, 3);
@@ -174,8 +175,8 @@
             this.clientToolStripMenuItem,
             this.serialToolStripMenuItem});
 			this.networkToolStripMenuItem.Name = "networkToolStripMenuItem";
-			this.networkToolStripMenuItem.Size = new System.Drawing.Size(64, 19);
-			this.networkToolStripMenuItem.Text = "Network";
+			this.networkToolStripMenuItem.Size = new System.Drawing.Size(61, 19);
+			this.networkToolStripMenuItem.Text = "Comms";
 			// 
 			// clientToolStripMenuItem
 			// 
@@ -184,7 +185,7 @@
             this.requestDataToolStripMenuItem,
             this.disconnectToolStripMenuItem});
 			this.clientToolStripMenuItem.Name = "clientToolStripMenuItem";
-			this.clientToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
+			this.clientToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.clientToolStripMenuItem.Text = "Client";
 			// 
 			// connectToolStripMenuItem
@@ -214,7 +215,7 @@
             this.connectToolStripMenuItem1,
             this.disconnectToolStripMenuItem1});
 			this.serialToolStripMenuItem.Name = "serialToolStripMenuItem";
-			this.serialToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
+			this.serialToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.serialToolStripMenuItem.Text = "Serial";
 			// 
 			// connectToolStripMenuItem1
@@ -245,25 +246,25 @@
 			// savePointsToolStripMenuItem
 			// 
 			this.savePointsToolStripMenuItem.Name = "savePointsToolStripMenuItem";
-			this.savePointsToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+			this.savePointsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.savePointsToolStripMenuItem.Text = "Save Points";
 			// 
 			// saveSignalsToolStripMenuItem
 			// 
 			this.saveSignalsToolStripMenuItem.Name = "saveSignalsToolStripMenuItem";
-			this.saveSignalsToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+			this.saveSignalsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.saveSignalsToolStripMenuItem.Text = "Save Signals";
 			// 
 			// saveBerthsToolStripMenuItem
 			// 
 			this.saveBerthsToolStripMenuItem.Name = "saveBerthsToolStripMenuItem";
-			this.saveBerthsToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+			this.saveBerthsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.saveBerthsToolStripMenuItem.Text = "Save Berths";
 			// 
 			// saveRawToolStripMenuItem
 			// 
 			this.saveRawToolStripMenuItem.Name = "saveRawToolStripMenuItem";
-			this.saveRawToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+			this.saveRawToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.saveRawToolStripMenuItem.Text = "Save Raw";
 			// 
 			// helpToolStripMenuItem
@@ -277,12 +278,13 @@
 			// aboutToolStripMenuItem
 			// 
 			this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-			this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+			this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.aboutToolStripMenuItem.Text = "About";
 			// 
 			// showToolStripMenuItem
 			// 
 			this.showToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newDebugToolStripMenuItem,
             this.newPhoneToolStripMenuItem,
             this.newKeyboardToolStripMenuItem});
 			this.showToolStripMenuItem.Name = "showToolStripMenuItem";
@@ -295,6 +297,13 @@
 			this.newPhoneToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.newPhoneToolStripMenuItem.Text = "New Phone";
 			this.newPhoneToolStripMenuItem.Click += new System.EventHandler(this.MainMenu_NewPhone);
+			// 
+			// newKeyboardToolStripMenuItem
+			// 
+			this.newKeyboardToolStripMenuItem.Name = "newKeyboardToolStripMenuItem";
+			this.newKeyboardToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.newKeyboardToolStripMenuItem.Text = "New Keyboard";
+			this.newKeyboardToolStripMenuItem.Click += new System.EventHandler(this.MainMenu_NewKeyboard);
 			// 
 			// loadSaveGameXML
 			// 
@@ -411,7 +420,6 @@
 			// 
 			// tabPage1
 			// 
-			this.tabPage1.Controls.Add(this.comConnect1);
 			this.tabPage1.Location = new System.Drawing.Point(4, 23);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Size = new System.Drawing.Size(786, 484);
@@ -419,19 +427,12 @@
 			this.tabPage1.Text = "tabPage1";
 			this.tabPage1.UseVisualStyleBackColor = true;
 			// 
-			// comConnect1
+			// newDebugToolStripMenuItem
 			// 
-			this.comConnect1.Location = new System.Drawing.Point(101, 63);
-			this.comConnect1.Name = "comConnect1";
-			this.comConnect1.Size = new System.Drawing.Size(433, 298);
-			this.comConnect1.TabIndex = 0;
-			// 
-			// newKeyboardToolStripMenuItem
-			// 
-			this.newKeyboardToolStripMenuItem.Name = "newKeyboardToolStripMenuItem";
-			this.newKeyboardToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-			this.newKeyboardToolStripMenuItem.Text = "New Keyboard";
-			this.newKeyboardToolStripMenuItem.Click += new System.EventHandler(this.MainMenu_NewKeyboard);
+			this.newDebugToolStripMenuItem.Name = "newDebugToolStripMenuItem";
+			this.newDebugToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.newDebugToolStripMenuItem.Text = "New Debug";
+			this.newDebugToolStripMenuItem.Click += new System.EventHandler(this.newDebugToolStripMenuItem_Click);
 			// 
 			// MainMenu
 			// 
@@ -447,7 +448,6 @@
 			this.Margin = new System.Windows.Forms.Padding(4);
 			this.Name = "MainMenu";
 			this.Text = "SimSig Keyboard Interface";
-			this.Load += new System.EventHandler(this.MainMenu_Load);
 			this.menuStrip.ResumeLayout(false);
 			this.menuStrip.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -457,7 +457,6 @@
 			this.debug.ResumeLayout(false);
 			this.tabControl.ResumeLayout(false);
 			this.berthWatch.ResumeLayout(false);
-			this.tabPage1.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -492,7 +491,7 @@
 		private System.Windows.Forms.ToolStripMenuItem requestDataToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem disconnectToolStripMenuItem;
 		private System.Windows.Forms.TabPage phone;
-		private PhoneUi phoneUi;
+		private PhoneUc phoneUi;
 		private System.Windows.Forms.TabPage keyboardInterface;
 		private System.Windows.Forms.TabPage debug;
 		private DebugUc debugUc1;
@@ -500,15 +499,15 @@
 		private System.Windows.Forms.TabPage berthWatch;
 		private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
-		private KeyboardInterface keyboardInterface2;
+		private KeyboardInterfaceUc keyboardInterface2;
 		private BerthWatch berthWatch1;
 		private System.Windows.Forms.TabPage tabPage1;
-		private ComConnect comConnect1;
         private System.Windows.Forms.ToolStripMenuItem disconnectToolStripMenuItem1;
 		private System.Windows.Forms.ToolStripMenuItem showToolStripMenuItem;
 		public System.Windows.Forms.MenuStrip menuStrip;
 		public System.Windows.Forms.ToolStripMenuItem newPhoneToolStripMenuItem;
 		public System.Windows.Forms.ToolStripMenuItem newKeyboardToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem newDebugToolStripMenuItem;
 	}
 }
 

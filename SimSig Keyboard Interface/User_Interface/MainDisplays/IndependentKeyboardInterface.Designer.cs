@@ -1,4 +1,6 @@
-﻿namespace SimSig_Keyboard_Interface.User_Interface.IndependantDisplays
+﻿using SimSig_Keyboard_Interface.User_Interface.UserControls;
+
+namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
 {
 	partial class IndependentKeyboardInterface
 	{
@@ -28,7 +30,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.keyboardInterface1 = new SimSig_Keyboard_Interface.User_Interface.KeyboardInterface();
+			this.keyboardInterface1 = new KeyboardInterfaceUc();
 			this.SuspendLayout();
 			// 
 			// keyboardInterface1
@@ -58,6 +60,6 @@
 
 
 			
-		private KeyboardInterface keyboardInterface1;
+		private KeyboardInterfaceUc keyboardInterface1;
 	}
 }

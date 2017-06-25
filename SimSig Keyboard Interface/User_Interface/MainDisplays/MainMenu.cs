@@ -1,28 +1,27 @@
 ﻿using System;
-
 using System.Threading;
 using System.Windows.Forms;
+using SimSig_Keyboard_Interface.Comms.RS232;
 using SimSig_Keyboard_Interface.Comms.TCP;
+using SimSig_Keyboard_Interface.Data;
 using SimSig_Keyboard_Interface.DataProcess.Berths;
 using SimSig_Keyboard_Interface.DataProcess.Calls;
-using SimSig_Keyboard_Interface.DataProcess.Points;
-using SimSig_Keyboard_Interface.DataProcess.Signals;
-using SimSig_Keyboard_Interface.DataProcess.Track;
-using SimSig_Keyboard_Interface.Properties;
-using System.IO.Ports;
-using SimSig_Keyboard_Interface.Comms.RS232;
-using SimSig_Keyboard_Interface.Data;
 using SimSig_Keyboard_Interface.DataProcess.Flags;
 using SimSig_Keyboard_Interface.DataProcess.GroundFrames;
+using SimSig_Keyboard_Interface.DataProcess.Locations;
+using SimSig_Keyboard_Interface.DataProcess.Points;
+using SimSig_Keyboard_Interface.DataProcess.Signals;
 using SimSig_Keyboard_Interface.DataProcess.Slots;
-using SimSig_Keyboard_Interface.User_Interface;
-using SimSig_Keyboard_Interface.User_Interface.IndependantDisplays;
+using SimSig_Keyboard_Interface.DataProcess.Track;
+using SimSig_Keyboard_Interface.Properties;
+using SimSig_Keyboard_Interface.User_Interface.Connetions;
+using SimSig_Keyboard_Interface.User_Interface.UserControls;
 
 // ************************************************************** Load Points config file ^^^
 
 
 
-namespace SimSig_Keyboard_Interface.User_Interface
+namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
 {
 	public partial class MainMenu : Form
 	{
@@ -34,13 +33,15 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		/*************************/
 		public static TcpClient TcpConnection = new TcpClient();
 		public static SerialClient ComConnection = new SerialClient();
+		public static FlagContainer Flags = new FlagContainer();
+		public static FrameContainer Frames = new FrameContainer();
 
 		public static TcpConnect TcpConnectForm = new TcpConnect();
+		public static ComConnect ComConnectForm = new ComConnect();
 
 
 		public static BerthContainer Berths = new BerthContainer();
-		public static FlagContainer Flags = new FlagContainer();
-		public static FrameContainer Frames = new FrameContainer();
+		public static LocationContainer Locations = new LocationContainer();
 		public static PointContainer Points = new PointContainer();
 		public static SignalContainer Signals = new SignalContainer();
 		public static SlotContainer Slots = new SlotContainer();
@@ -48,7 +49,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 		public static readonly CallContainer Calls = new CallContainer();
 
 		public static DebugUc Debug = new DebugUc();
-		public static KeyboardInterface Keyboard = new KeyboardInterface();
+		public static KeyboardInterfaceUc Keyboard = new KeyboardInterfaceUc();
 
 
 		/*******************************/
@@ -62,8 +63,8 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 
 
-		public static bool TcpConnected = false;
-		public static bool SerialConnected = false;
+		public static bool TcpConnected;
+		public static bool ComConnected;
 
 		public MainMenu()
 		{
@@ -94,8 +95,6 @@ namespace SimSig_Keyboard_Interface.User_Interface
 					ref Tracks, ref Slots, ref Frames, ref Flags); //Parse load with ref to points container
 
 			}
-			Refresh();
-
 		}
 		private void ComDataUpdate(object sender, MsgEventArgs e)
 		{
@@ -312,13 +311,13 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			connectToolStripMenuItem1.Enabled = false;
 			Thread serialReceiver = new Thread(() =>
 			{
-
+				ComConnectForm.ShowDialog();
 				ComConnection.Connect();
 
 			});
 			serialReceiver.Start();
 			disconnectToolStripMenuItem1.Enabled = true;
-			SerialConnected = true;
+			ComConnected = true;
 		}
 
 		private void DisconnectToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -326,7 +325,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			connectToolStripMenuItem1.Enabled = true;
 			ComConnection.Disconnect();
 			disconnectToolStripMenuItem1.Enabled = false;
-			SerialConnected = false;
+			ComConnected = false;
 		}
 
 		private void BerthListReset(object sender, EventArgs e)
@@ -354,7 +353,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 
 		private void MainMenu_NewPhone(object sender, EventArgs e)
 		{
-			var additionalPhone = new Thread(() =>
+			var additioinalView = new Thread(() =>
 			{
 				IndependentPhoneDisplay phoneDisplayExternal = new IndependentPhoneDisplay();
 				if (InvokeRequired)
@@ -363,13 +362,13 @@ namespace SimSig_Keyboard_Interface.User_Interface
 						phoneDisplayExternal.Show();
 					}));
 			});
-			additionalPhone.Start();
+			additioinalView.Start();
 		}
 
 		private void MainMenu_NewKeyboard(object sender, EventArgs e)
 		{
 
-			var additionalKeyboard = new Thread(() =>
+			var additioinalView = new Thread(() =>
 			{
 				IndependentKeyboardInterface keyboardInterfaceExternal = new IndependentKeyboardInterface();
 
@@ -379,13 +378,25 @@ namespace SimSig_Keyboard_Interface.User_Interface
 						keyboardInterfaceExternal.Show();
 					}));
 			});
-			additionalKeyboard.Start();
+			additioinalView.Start();
 
 
 		}
 
-		private void MainMenu_Load(object sender, EventArgs e)
+		private void newDebugToolStripMenuItem_Click(object sender, EventArgs e)
 		{
+			var additioinalView = new Thread(() =>
+			{
+				IndependentDebugDisplay debugDisplay = new IndependentDebugDisplay();
+
+				if (InvokeRequired)
+					Invoke(new MethodInvoker(delegate
+					{
+						debugDisplay.Show();
+					}));
+			});
+			additioinalView.Start();
+
 
 		}
 	}

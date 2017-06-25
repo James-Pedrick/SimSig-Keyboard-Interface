@@ -101,6 +101,8 @@
     <Compile Include="DataProcess\GroundFrames\FrameContainer.cs" />
     <Compile Include="DataProcess\GroundFrames\Frames.cs" />
     <Compile Include="DataProcess\KeyboardInterface.cs" />
+    <Compile Include="DataProcess\Locations\LocationContainer.cs" />
+    <Compile Include="DataProcess\Locations\Locations.cs" />
     <Compile Include="DataProcess\Points\PointContainer.cs" />
     <Compile Include="DataProcess\Points\Points.cs" />
     <Compile Include="DataProcess\Signals\SignalContainer.cs" />
@@ -115,22 +117,28 @@
     <Compile Include="Data\SaveGameParser.cs" />
     <Compile Include="Data\SendPrep.cs" />
     <Compile Include="Properties\Settings.cs" />
-    <Compile Include="User_Interface\User Controls\BerthWatch.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="User_Interface\Connetions\ComConnect.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="User_Interface\User Controls\BerthWatch.Designer.cs">
-      <DependentUpon>BerthWatch.cs</DependentUpon>
-    </Compile>
-    <Compile Include="User_Interface\User Controls\ComConnect.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="User_Interface\User Controls\ComConnect.Designer.cs">
+    <Compile Include="User_Interface\Connetions\ComConnect.Designer.cs">
       <DependentUpon>ComConnect.cs</DependentUpon>
     </Compile>
-    <Compile Include="User_Interface\User Controls\DebugUc.cs">
+    <Compile Include="User_Interface\MainDisplays\IndependentDebugDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="User_Interface\MainDisplays\IndependentDebugDisplay.Designer.cs">
+      <DependentUpon>IndependentDebugDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User_Interface\UserControls\BerthWatchUc.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="User_Interface\User Controls\DebugUc.Designer.cs">
+    <Compile Include="User_Interface\UserControls\BerthWatchUc.Designer.cs">
+      <DependentUpon>BerthWatchUc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User_Interface\UserControls\DebugUc.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User_Interface\UserControls\DebugUc.Designer.cs">
       <DependentUpon>DebugUc.cs</DependentUpon>
     </Compile>
     <Compile Include="User_Interface\MainDisplays\IndependentKeyboardInterface.cs">
@@ -145,11 +153,11 @@
     <Compile Include="User_Interface\MainDisplays\IndependentPhoneDisplay.Designer.cs">
       <DependentUpon>IndependentPhoneDisplay.cs</DependentUpon>
     </Compile>
-    <Compile Include="User_Interface\User Controls\KeyboardInterface.cs">
+    <Compile Include="User_Interface\UserControls\KeyboardInterfaceUc.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="User_Interface\User Controls\KeyboardInterface.Designer.cs">
-      <DependentUpon>KeyboardInterface.cs</DependentUpon>
+    <Compile Include="User_Interface\UserControls\KeyboardInterfaceUc.Designer.cs">
+      <DependentUpon>KeyboardInterfaceUc.cs</DependentUpon>
     </Compile>
     <Compile Include="User_Interface\MainDisplays\MainMenu.cs">
       <SubType>Form</SubType>
@@ -159,25 +167,28 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="User_Interface\User Controls\PhoneUi.cs">
+    <Compile Include="User_Interface\UserControls\PhoneUc.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="User_Interface\User Controls\PhoneUi.Designer.cs">
-      <DependentUpon>PhoneUi.cs</DependentUpon>
+    <Compile Include="User_Interface\UserControls\PhoneUc.Designer.cs">
+      <DependentUpon>PhoneUc.cs</DependentUpon>
     </Compile>
-    <Compile Include="User_Interface\MainDisplays\TcpConnect.cs">
+    <Compile Include="User_Interface\Connetions\TcpConnect.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="User_Interface\MainDisplays\TcpConnect.Designer.cs">
+    <Compile Include="User_Interface\Connetions\TcpConnect.Designer.cs">
       <DependentUpon>TcpConnect.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="User_Interface\User Controls\BerthWatch.resx">
-      <DependentUpon>BerthWatch.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="User_Interface\User Controls\ComConnect.resx">
+    <EmbeddedResource Include="User_Interface\Connetions\ComConnect.resx">
       <DependentUpon>ComConnect.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="User_Interface\User Controls\DebugUc.resx">
+    <EmbeddedResource Include="User_Interface\MainDisplays\IndependentDebugDisplay.resx">
+      <DependentUpon>IndependentDebugDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User_Interface\UserControls\BerthWatchUc.resx">
+      <DependentUpon>BerthWatchUc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User_Interface\UserControls\DebugUc.resx">
       <DependentUpon>DebugUc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="User_Interface\MainDisplays\IndependentKeyboardInterface.resx">
@@ -186,8 +197,8 @@
     <EmbeddedResource Include="User_Interface\MainDisplays\IndependentPhoneDisplay.resx">
       <DependentUpon>IndependentPhoneDisplay.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="User_Interface\User Controls\KeyboardInterface.resx">
-      <DependentUpon>KeyboardInterface.cs</DependentUpon>
+    <EmbeddedResource Include="User_Interface\UserControls\KeyboardInterfaceUc.resx">
+      <DependentUpon>KeyboardInterfaceUc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="User_Interface\MainDisplays\MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>
@@ -201,10 +212,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="User_Interface\User Controls\PhoneUi.resx">
-      <DependentUpon>PhoneUi.cs</DependentUpon>
+    <EmbeddedResource Include="User_Interface\UserControls\PhoneUc.resx">
+      <DependentUpon>PhoneUc.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="User_Interface\MainDisplays\TcpConnect.resx">
+    <EmbeddedResource Include="User_Interface\Connetions\TcpConnect.resx">
       <DependentUpon>TcpConnect.cs</DependentUpon>
     </EmbeddedResource>
     <None Include=".dockerignore">

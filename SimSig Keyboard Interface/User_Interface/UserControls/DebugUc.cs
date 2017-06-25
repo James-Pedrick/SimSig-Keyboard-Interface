@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
 using SimSig_Keyboard_Interface.Comms.TCP;
+using MainMenu = SimSig_Keyboard_Interface.User_Interface.MainDisplays.MainMenu;
 
-namespace SimSig_Keyboard_Interface.User_Interface
+namespace SimSig_Keyboard_Interface.User_Interface.UserControls
 {
 	public partial class DebugUc : UserControl
 	{
@@ -19,6 +20,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			debugSignalView.DataSource = MainMenu.Signals.SignalList;
 			debugSlotView.DataSource = MainMenu.Slots.SlotList;
 			debugTrackView.DataSource = MainMenu.Tracks.TrackList;
+			simTiplocs.DataSource = MainMenu.Locations.LocationList;
 
 			MainMenu.DebugTcpDataReceived += DebugTcpUpdate;
 			MainMenu.DebugComDataReceived += DebugComUpdate;

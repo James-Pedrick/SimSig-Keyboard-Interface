@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using MainMenu = SimSig_Keyboard_Interface.User_Interface.MainMenu;
+using MainMenu = SimSig_Keyboard_Interface.User_Interface.MainDisplays.MainMenu;
 
 namespace SimSig_Keyboard_Interface
 {

@@ -1,26 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Text;
 using System.Globalization;
 using System.IO;
-using System.IO.Ports;
-using System.Linq;
-using System.Windows.Forms;
 using System.Text.RegularExpressions;
-using System.Windows.Shapes;
+using System.Windows.Forms;
 using System.Xml;
 using SimSig_Keyboard_Interface.Comms.TCP;
+using MainMenu = SimSig_Keyboard_Interface.User_Interface.MainDisplays.MainMenu;
 
-
-namespace SimSig_Keyboard_Interface.User_Interface
+namespace SimSig_Keyboard_Interface.User_Interface.UserControls
 {
-	public partial class KeyboardInterface : UserControl
+	public partial class KeyboardInterfaceUc : UserControl
 	{
 		private string trustString;
 
 
-		public KeyboardInterface()
+		public KeyboardInterfaceUc()
 		{
 			InitializeComponent();
 			MainMenu.KeyboardTcpDataReceived += TcpDataReceived;
@@ -36,7 +32,7 @@ namespace SimSig_Keyboard_Interface.User_Interface
 			if (e.KeyCode == Keys.F5) { DataProcess.KeyboardInterface.PointsKeyNorm(userInputString.Text); userInputString.Text = ""; keyboardSpecFunction.Text = ""; }
 			if (e.KeyCode == Keys.F6) { DataProcess.KeyboardInterface.PointsCentre(userInputString.Text); userInputString.Text = ""; keyboardSpecFunction.Text = ""; }
 			if (e.KeyCode == Keys.F7) { DataProcess.KeyboardInterface.PointsKeyReverse(userInputString.Text); userInputString.Text = ""; keyboardSpecFunction.Text = ""; }
-			
+
 			if (e.KeyCode == Keys.F12) MainMenu.TcpConnection.SendData(userInputString.Text + "|");
 
 			if (e.KeyCode == Keys.Enter) //Set
@@ -267,6 +263,8 @@ namespace SimSig_Keyboard_Interface.User_Interface
 						ttDisplay.Items.Add("TRAIN ARR    DEP  PLT LIN PTH  DELAY");
 					}));
 
+				if (listOfHeadcodes == null) return;
+				
 				foreach (XmlNode trainInSimplfier in listOfHeadcodes)
 				{
 
@@ -281,77 +279,87 @@ namespace SimSig_Keyboard_Interface.User_Interface
 					delay = "       ";
 					stock = null;
 
-					headcode = trainInSimplfier.Attributes["id"].Value;
-					platform = trainInSimplfier.SelectSingleNode("platform").InnerText;
-					while (platform.Length != 3)
+
+					if (trainInSimplfier.Attributes != null)
 					{
-						platform = platform + " ";
-					}
-					line = trainInSimplfier.SelectSingleNode("line").InnerText;
-					while (line.Length != 3)
-					{
-						line = line + " ";
-					}
-					path = trainInSimplfier.SelectSingleNode("path").InnerText;
-					while (path.Length != 3)
-					{
-						path = path + " ";
-					}
-					description = trainInSimplfier.SelectSingleNode("description").InnerText;
-					if (trainInSimplfier.SelectSingleNode("delay") != null)
-					{
-						if (trainInSimplfier.SelectSingleNode("delay").InnerText != "RT")
+						headcode = trainInSimplfier.Attributes["id"].Value;
+						var selectSingleNode = trainInSimplfier.SelectSingleNode("platform");
+						if (selectSingleNode != null)
+							platform = selectSingleNode.InnerText;
+						while (platform.Length != 3)
 						{
-							if (trainInSimplfier.SelectSingleNode("delay").InnerText.Contains("E"))
+							platform = platform + " ";
+						}
+						var singleNode = trainInSimplfier.SelectSingleNode("line");
+						if (singleNode != null) line = singleNode.InnerText;
+						while (line.Length != 3)
+						{
+							line = line + " ";
+						}
+						var xmlNode = trainInSimplfier.SelectSingleNode("path");
+						if (xmlNode != null) path = xmlNode.InnerText;
+						while (path.Length != 3)
+						{
+							path = path + " ";
+						}
+						var node = trainInSimplfier.SelectSingleNode("description");
+						if (node != null)
+							description = node.InnerText;
+						if (trainInSimplfier.SelectSingleNode("delay") != null)
+						{
+							if (trainInSimplfier.SelectSingleNode("delay").InnerText != "RT")
 							{
-								delay = trainInSimplfier.SelectSingleNode("delay").InnerText.Replace("E", "") + " EARLY";
+								if (trainInSimplfier.SelectSingleNode("delay").InnerText.Contains("E"))
+								{
+									delay = trainInSimplfier.SelectSingleNode("delay").InnerText.Replace("E", "") + " EARLY";
+								}
+								else
+								{
+									delay = trainInSimplfier.SelectSingleNode("delay").InnerText.Replace("L", "") + " LATE";
+								}
 							}
 							else
 							{
-								delay = trainInSimplfier.SelectSingleNode("delay").InnerText.Replace("L", "") + " LATE";
+								delay = "RT TIME";
 							}
 						}
-						else
+						//stock = trainInSimplfier.SelectSingleNode("stock").InnerText;
+
+						//Check if all of these are null!?
+
+						XmlNodeList listOfTimes = trainInSimplfier.SelectNodes("time");
+
+						foreach (XmlNode time in listOfTimes)
 						{
-							delay = "RT TIME";
-						}
-					}
-					//stock = trainInSimplfier.SelectSingleNode("stock").InnerText;
-
-					//Check if all of these are null!?
-
-					XmlNodeList listOfTimes = trainInSimplfier.SelectNodes("time");
-
-					foreach (XmlNode time in listOfTimes)
-					{
-						if (time.Attributes != null)
-						{
-							if (time.Attributes["timeType"] != null)
+							if (time.Attributes != null)
 							{
-								if (time.Attributes["timeType"].Value == "arrival")
+								if (time.Attributes["timeType"] != null)
 								{
-									arrival = time.InnerText;
-									if (arrival.Length != 6)
+									if (time.Attributes["timeType"].Value == "arrival")
 									{
-										arrival = arrival + " ";
+										arrival = time.InnerText;
+										if (arrival.Length != 6)
+										{
+											arrival = arrival + " ";
+										}
 									}
-								}
-								else if (time.Attributes["timeType"].Value == "departure")
-								{
-									departure = time.InnerText;
-									if (departure.Length != 6)
+									else if (time.Attributes["timeType"].Value == "departure")
 									{
-										departure = departure + " ";
+										departure = time.InnerText;
+										if (departure.Length != 6)
+										{
+											departure = departure + " ";
+										}
 									}
-								}
-								else if (time.Attributes["timeType"].Value == "passing")
-								{
-									departure = time.InnerText;
-									arrival = "PASS  ";
-									departure = time.InnerText;
-									if (departure.Length != 6)
+									else if (time.Attributes["timeType"].Value == "passing")
 									{
-										departure = departure + " ";
+										departure = time.InnerText;
+										arrival = "PASS  ";
+										departure = time.InnerText;
+										if (departure.Length != 6)
+										{
+											departure = departure + " ";
+										}
 									}
 								}
 							}
@@ -363,34 +371,38 @@ namespace SimSig_Keyboard_Interface.User_Interface
 						departure = arrival;
 					}
 
-					String simplifierString = departure + " " + arrival + " " + headcode + " " + platform + " " + line + " " + path + " " + delay;
+					String simplifierString = departure + " " + arrival + " " + headcode + " " + platform + " " + line + " " + path +
+											  " " + delay;
 					Console.WriteLine(simplifierString);
 					simplfierList.Add(simplifierString);
 
 				}
 
 				//The simplfier needs to be sorted
-				Console.WriteLine("*************************");
+				Console.WriteLine(@"*************************");
 
 				simplfierList.Sort();
 				foreach (string train in simplfierList)
 				{
 					//Console.WriteLine(train.ToString());
 
-					Console.WriteLine(train.ToString().Substring(14, 4) + train.ToString().Substring(6, 8) + train.ToString().Substring(0, 6) + train.ToString().Substring(18));
-					ttDisplay.Items.Add(train.ToString().Substring(14, 4) + train.ToString().Substring(6, 8) + train.ToString().Substring(0, 6) + train.ToString().Substring(18));
+					Console.WriteLine(train.ToString().Substring(14, 4) + train.ToString().Substring(6, 8) +
+									  train.ToString().Substring(0, 6) + train.ToString().Substring(18));
+					ttDisplay.Items.Add(train.ToString().Substring(14, 4) + train.ToString().Substring(6, 8) +
+										train.ToString().Substring(0, 6) + train.ToString().Substring(18));
 					if (InvokeRequired)
 						Invoke(new MethodInvoker(delegate
 						{
-							ttDisplay.Items.Add(train.ToString().Substring(14, 4) + train.ToString().Substring(6, 8) + train.ToString().Substring(0, 6) + train.ToString().Substring(18));
+							ttDisplay.Items.Add(train.ToString().Substring(14, 4) + train.ToString().Substring(6, 8) +
+												train.ToString().Substring(0, 6) + train.ToString().Substring(18));
 						}));
 
 				}
 
-
-
 			}
+
 		}
+
 
 		private void TeMessage(string element)
 		{
