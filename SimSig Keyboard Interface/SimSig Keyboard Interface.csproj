@@ -101,6 +101,8 @@
     <Compile Include="DataProcess\GroundFrames\FrameContainer.cs" />
     <Compile Include="DataProcess\GroundFrames\Frames.cs" />
     <Compile Include="DataProcess\KeyboardInterface.cs" />
+    <Compile Include="DataProcess\Locations\LocationContainer.cs" />
+    <Compile Include="DataProcess\Locations\Locations.cs" />
     <Compile Include="DataProcess\Points\PointContainer.cs" />
     <Compile Include="DataProcess\Points\Points.cs" />
     <Compile Include="DataProcess\Signals\SignalContainer.cs" />

@@ -8,6 +8,7 @@ using SimSig_Keyboard_Interface.DataProcess.Berths;
 using SimSig_Keyboard_Interface.DataProcess.Calls;
 using SimSig_Keyboard_Interface.DataProcess.Flags;
 using SimSig_Keyboard_Interface.DataProcess.GroundFrames;
+using SimSig_Keyboard_Interface.DataProcess.Locations;
 using SimSig_Keyboard_Interface.DataProcess.Points;
 using SimSig_Keyboard_Interface.DataProcess.Signals;
 using SimSig_Keyboard_Interface.DataProcess.Slots;
@@ -40,6 +41,7 @@ namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
 
 
 		public static BerthContainer Berths = new BerthContainer();
+		public static LocationContainer Locations = new LocationContainer();
 		public static PointContainer Points = new PointContainer();
 		public static SignalContainer Signals = new SignalContainer();
 		public static SlotContainer Slots = new SlotContainer();
@@ -61,8 +63,8 @@ namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
 
 
 
-		public static bool TcpConnected = false;
-		public static bool SerialConnected = false;
+		public static bool TcpConnected;
+		public static bool ComConnected;
 
 		public MainMenu()
 		{
@@ -315,7 +317,7 @@ namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
 			});
 			serialReceiver.Start();
 			disconnectToolStripMenuItem1.Enabled = true;
-			SerialConnected = true;
+			ComConnected = true;
 		}
 
 		private void DisconnectToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -323,7 +325,7 @@ namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
 			connectToolStripMenuItem1.Enabled = true;
 			ComConnection.Disconnect();
 			disconnectToolStripMenuItem1.Enabled = false;
-			SerialConnected = false;
+			ComConnected = false;
 		}
 
 		private void BerthListReset(object sender, EventArgs e)

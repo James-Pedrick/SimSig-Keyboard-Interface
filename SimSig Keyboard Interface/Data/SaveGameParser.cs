@@ -4,6 +4,7 @@ using System.IO;
 using SimSig_Keyboard_Interface.DataProcess.Berths;
 using SimSig_Keyboard_Interface.DataProcess.Flags;
 using SimSig_Keyboard_Interface.DataProcess.GroundFrames;
+using SimSig_Keyboard_Interface.DataProcess.Locations;
 using SimSig_Keyboard_Interface.DataProcess.Points;
 using SimSig_Keyboard_Interface.DataProcess.Signals;
 using SimSig_Keyboard_Interface.DataProcess.Slots;
@@ -193,6 +194,11 @@ namespace SimSig_Keyboard_Interface.Data
 
 			flag.AddFlagXml(flagHex, itemId);
 			_flagDecimal++;
+		}
+
+		private static void LocationParse(ref LocationContainer locations, string tiploc)
+		{
+			
 		}
 	}
 }

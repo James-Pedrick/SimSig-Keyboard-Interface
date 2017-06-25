@@ -20,6 +20,7 @@ namespace SimSig_Keyboard_Interface.User_Interface.UserControls
 			debugSignalView.DataSource = MainMenu.Signals.SignalList;
 			debugSlotView.DataSource = MainMenu.Slots.SlotList;
 			debugTrackView.DataSource = MainMenu.Tracks.TrackList;
+			simTiplocs.DataSource = MainMenu.Locations.LocationList;
 
 			MainMenu.DebugTcpDataReceived += DebugTcpUpdate;
 			MainMenu.DebugComDataReceived += DebugComUpdate;

@@ -19,7 +19,7 @@ namespace SimSig_Keyboard_Interface.Comms.RS232
 
 		public void SendData(string data)
 		{
-            if (MainMenu.SerialConnected)
+            if (MainMenu.ComConnected)
                 _comPort.WriteLine(data);
 		}
 
