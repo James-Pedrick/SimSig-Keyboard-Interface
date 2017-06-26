@@ -34,7 +34,8 @@ namespace SimSig_Keyboard_Interface.Data
 			ref TrackContainer tracks,
 			ref SlotContainer slots,
 			ref FrameContainer frames,
-			ref FlagContainer flags)
+			ref FlagContainer flags,
+			ref LocationContainer locations)
 		// ******************************************  brings points container ref
 		{
 
@@ -60,13 +61,13 @@ namespace SimSig_Keyboard_Interface.Data
 				while ((itemId = xmlData.ReadLine()) != null)
 				{
 					if (itemId.Contains("TBER ID=")) Berths_Parse(ref berths, itemId);      //Berths
-					if (itemId.Contains("TFLG ID=")) Flag_Parse(ref flags, itemId);			//Flags
+					if (itemId.Contains("TFLG ID=")) Flag_Parse(ref flags, itemId);         //Flags
 					if (itemId.Contains("TFRM ID=")) Frame_Parse(ref frames, itemId);       //Ground Frames
 					if (itemId.Contains("TPTS ID=")) Points_Parse(ref points, itemId);      //Points ******************** also passes container ref
 					if (itemId.Contains("TSIG ID=")) Signal_Parse(ref signals, itemId);     //Signals
 					if (itemId.Contains("TSlot ID=")) Slot_Parse(ref slots, itemId);        //Slots 
 					if (itemId.Contains("TTCS ID=")) Track_Parse(ref tracks, itemId);       //Track
-
+					if (itemId.Contains("TLOC ID=")) LocationParse(ref locations, itemId);  //Location
 				}
 
 
@@ -198,7 +199,32 @@ namespace SimSig_Keyboard_Interface.Data
 
 		private static void LocationParse(ref LocationContainer locations, string tiploc)
 		{
-			
+			tiploc = tiploc.TrimStart(' ');
+			tiploc = tiploc.Remove(0, 10);
+			tiploc = tiploc.Substring(0, tiploc.Length - 2);
+
+
+			StreamReader tiplocReader = new StreamReader("Notes//Tiplocs.csv");
+
+			string itemLine;
+
+			while ((itemLine = tiplocReader.ReadLine()) != null)
+			{
+				if (itemLine.Contains("," + tiploc + ","))
+				{
+					string[] z = itemLine.Split(',');
+					locations.AddTiploc(tiploc, z[2], z[3]);
+
+
+				}
+				//	Console.WriteLine(itemLine);
+			}
+
+
+
+
+
+
 		}
 	}
 }

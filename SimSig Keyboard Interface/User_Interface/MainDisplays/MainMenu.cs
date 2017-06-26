@@ -92,7 +92,7 @@ namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
 				if (loadSaveGameXML.ShowDialog() == DialogResult.OK)
 					Settings.Default.wi = loadSaveGameXML.InitialDirectory + loadSaveGameXML.FileName;
 				SaveGameParser.Parse(ref Berths, ref Points, ref Signals,
-					ref Tracks, ref Slots, ref Frames, ref Flags); //Parse load with ref to points container
+					ref Tracks, ref Slots, ref Frames, ref Flags, ref Locations); //Parse load with ref to points container
 
 			}
 		}

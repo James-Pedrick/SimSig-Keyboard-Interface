@@ -10,5 +10,6 @@ namespace SimSig_Keyboard_Interface.DataProcess.Locations
 	{
 		public string Tiploc { get; set; }
 		public string LocName { get; set; }
+		public string StnCode { get; set; }
 	}
 }
