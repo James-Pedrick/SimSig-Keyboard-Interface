@@ -28,9 +28,13 @@ namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
 
 
 
+		#region Creating Containers
+
 		/*************************/
 		/*Creating containers    */
 		/*************************/
+
+
 		public static TcpClient TcpConnection = new TcpClient();
 		public static SerialClient ComConnection = new SerialClient();
 		public static FlagContainer Flags = new FlagContainer();
@@ -51,6 +55,11 @@ namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
 		public static DebugUc Debug = new DebugUc();
 		public static KeyboardInterfaceUc Keyboard = new KeyboardInterfaceUc();
 
+		#endregion
+
+
+		#region  Creating Events
+
 
 		/*******************************/
 		/* Creating Events             */
@@ -62,6 +71,7 @@ namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
 		public static event EventHandler<MsgEventArgs> BerthWatch;
 
 
+		#endregion
 
 		public static bool TcpConnected;
 		public static bool ComConnected;
@@ -72,10 +82,6 @@ namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
 
 			TcpConnection.DataReceived += TcpDataUpdate;
 			ComConnection.DataReceived += ComDataUpdate;
-
-
-
-
 		}
 
 
@@ -270,14 +276,6 @@ namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
 		{
 			Environment.Exit(1);
 		}
-		private void Point_List_Reset(object sender, EventArgs e)
-		{
-			Points.PointList.Clear();
-		}
-		private void SignalListReset(object sender, EventArgs e)
-		{
-			Signals.SignalList.Clear();
-		}
 		private void ConnectToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 
@@ -328,21 +326,6 @@ namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
 			ComConnected = false;
 		}
 
-		private void BerthListReset(object sender, EventArgs e)
-		{
-			Berths.BerthList.Clear();
-		}
-
-		private void SignalListResetToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			Signals.SignalList.Clear();
-		}
-
-		private void PointListRest(object sender, EventArgs e)
-		{
-			Points.PointList.Clear();
-
-		}
 
 		private void RequestDataToolStripMenuItem1_Click(object sender, EventArgs e)
 		{
@@ -379,8 +362,6 @@ namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
 					}));
 			});
 			additioinalView.Start();
-
-
 		}
 
 		private void newDebugToolStripMenuItem_Click(object sender, EventArgs e)
@@ -396,9 +377,35 @@ namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
 					}));
 			});
 			additioinalView.Start();
-
-
 		}
+
+		#region Menu List Resets
+		private void AllListResetMenuItem_Click(object sender, EventArgs e)
+		{
+			Berths.BerthList.Clear();
+			Flags.FlagList.Clear();
+			Frames.FrameList.Clear();
+			Locations.LocationList.Clear();
+			Points.PointList.Clear();
+			Signals.SignalList.Clear();
+			Slots.SlotList.Clear();
+		}
+
+		private void BerthListReset(object sender, EventArgs e)
+		{
+			Berths.BerthList.Clear();
+		}
+
+		private void SignalListReset(object sender, EventArgs e)
+		{
+			Signals.SignalList.Clear();
+		}
+
+		private void PointListRest(object sender, EventArgs e)
+		{
+			Points.PointList.Clear();
+		}
+		#endregion
 	}
 }
 
