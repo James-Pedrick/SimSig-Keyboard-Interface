@@ -215,7 +215,7 @@ namespace SimSig_Keyboard_Interface.Data
 					string[] z = itemLine.Split(',');
 					locations.AddTiploc(tiploc, z[2], z[3]);
 
-
+					break;
 				}
 				//	Console.WriteLine(itemLine);
 			}
