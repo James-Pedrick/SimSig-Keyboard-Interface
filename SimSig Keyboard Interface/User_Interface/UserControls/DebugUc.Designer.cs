@@ -45,12 +45,16 @@
 			this.debugFrameView = new System.Windows.Forms.DataGridView();
 			this.debugFlags = new System.Windows.Forms.TabPage();
 			this.debugFlagView = new System.Windows.Forms.DataGridView();
+			this.debugUlcs = new System.Windows.Forms.TabPage();
+			this.ulcView = new System.Windows.Forms.DataGridView();
+			this.simLocations = new System.Windows.Forms.TabPage();
+			this.simTiplocs = new System.Windows.Forms.DataGridView();
 			this.debugTcpRaw = new System.Windows.Forms.TabPage();
 			this.debugRawTcpDisplay = new System.Windows.Forms.ListBox();
 			this.debugComRaw = new System.Windows.Forms.TabPage();
 			this.debugRawComDisplay = new System.Windows.Forms.ListBox();
-			this.simLocations = new System.Windows.Forms.TabPage();
-			this.simTiplocs = new System.Windows.Forms.DataGridView();
+			this.debugOverlaps = new System.Windows.Forms.TabPage();
+			this.overlapView = new System.Windows.Forms.DataGridView();
 			this.debugTabs.SuspendLayout();
 			this.debugBerths.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.debugBerthView)).BeginInit();
@@ -68,10 +72,14 @@
 			((System.ComponentModel.ISupportInitialize)(this.debugFrameView)).BeginInit();
 			this.debugFlags.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.debugFlagView)).BeginInit();
-			this.debugTcpRaw.SuspendLayout();
-			this.debugComRaw.SuspendLayout();
+			this.debugUlcs.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.ulcView)).BeginInit();
 			this.simLocations.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.simTiplocs)).BeginInit();
+			this.debugTcpRaw.SuspendLayout();
+			this.debugComRaw.SuspendLayout();
+			this.debugOverlaps.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.overlapView)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// debugTabs
@@ -84,9 +92,11 @@
 			this.debugTabs.Controls.Add(this.debugSlots);
 			this.debugTabs.Controls.Add(this.debugFrames);
 			this.debugTabs.Controls.Add(this.debugFlags);
+			this.debugTabs.Controls.Add(this.debugUlcs);
+			this.debugTabs.Controls.Add(this.simLocations);
 			this.debugTabs.Controls.Add(this.debugTcpRaw);
 			this.debugTabs.Controls.Add(this.debugComRaw);
-			this.debugTabs.Controls.Add(this.simLocations);
+			this.debugTabs.Controls.Add(this.debugOverlaps);
 			this.debugTabs.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.debugTabs.Location = new System.Drawing.Point(0, 0);
 			this.debugTabs.Margin = new System.Windows.Forms.Padding(4);
@@ -155,11 +165,11 @@
 			// debugPoints
 			// 
 			this.debugPoints.Controls.Add(this.debugPointView);
-			this.debugPoints.Location = new System.Drawing.Point(4, 40);
+			this.debugPoints.Location = new System.Drawing.Point(4, 22);
 			this.debugPoints.Margin = new System.Windows.Forms.Padding(4);
 			this.debugPoints.Name = "debugPoints";
 			this.debugPoints.Padding = new System.Windows.Forms.Padding(4);
-			this.debugPoints.Size = new System.Drawing.Size(529, 437);
+			this.debugPoints.Size = new System.Drawing.Size(529, 455);
 			this.debugPoints.TabIndex = 0;
 			this.debugPoints.Text = "Points";
 			this.debugPoints.UseVisualStyleBackColor = true;
@@ -178,7 +188,7 @@
 			this.debugPointView.Margin = new System.Windows.Forms.Padding(4);
 			this.debugPointView.Name = "debugPointView";
 			this.debugPointView.ReadOnly = true;
-			this.debugPointView.Size = new System.Drawing.Size(521, 429);
+			this.debugPointView.Size = new System.Drawing.Size(521, 447);
 			this.debugPointView.TabIndex = 3;
 			// 
 			// debugSignals
@@ -319,57 +329,40 @@
 			this.debugFlagView.Size = new System.Drawing.Size(529, 455);
 			this.debugFlagView.TabIndex = 4;
 			// 
-			// debugTcpRaw
+			// debugUlcs
 			// 
-			this.debugTcpRaw.Controls.Add(this.debugRawTcpDisplay);
-			this.debugTcpRaw.Location = new System.Drawing.Point(4, 22);
-			this.debugTcpRaw.Margin = new System.Windows.Forms.Padding(4);
-			this.debugTcpRaw.Name = "debugTcpRaw";
-			this.debugTcpRaw.Size = new System.Drawing.Size(529, 455);
-			this.debugTcpRaw.TabIndex = 3;
-			this.debugTcpRaw.Text = "TCP Raw";
-			this.debugTcpRaw.UseVisualStyleBackColor = true;
+			this.debugUlcs.Controls.Add(this.ulcView);
+			this.debugUlcs.Location = new System.Drawing.Point(4, 22);
+			this.debugUlcs.Name = "debugUlcs";
+			this.debugUlcs.Size = new System.Drawing.Size(529, 455);
+			this.debugUlcs.TabIndex = 11;
+			this.debugUlcs.Text = "ULCs";
+			this.debugUlcs.UseVisualStyleBackColor = true;
 			// 
-			// debugRawTcpDisplay
+			// ulcView
 			// 
-			this.debugRawTcpDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.debugRawTcpDisplay.FormattingEnabled = true;
-			this.debugRawTcpDisplay.Location = new System.Drawing.Point(0, 0);
-			this.debugRawTcpDisplay.Margin = new System.Windows.Forms.Padding(4);
-			this.debugRawTcpDisplay.Name = "debugRawTcpDisplay";
-			this.debugRawTcpDisplay.SelectionMode = System.Windows.Forms.SelectionMode.None;
-			this.debugRawTcpDisplay.Size = new System.Drawing.Size(529, 455);
-			this.debugRawTcpDisplay.TabIndex = 4;
-			// 
-			// debugComRaw
-			// 
-			this.debugComRaw.Controls.Add(this.debugRawComDisplay);
-			this.debugComRaw.Location = new System.Drawing.Point(4, 22);
-			this.debugComRaw.Name = "debugComRaw";
-			this.debugComRaw.Padding = new System.Windows.Forms.Padding(3);
-			this.debugComRaw.Size = new System.Drawing.Size(529, 455);
-			this.debugComRaw.TabIndex = 9;
-			this.debugComRaw.Text = "COM Raw";
-			this.debugComRaw.UseVisualStyleBackColor = true;
-			// 
-			// debugRawComDisplay
-			// 
-			this.debugRawComDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.debugRawComDisplay.FormattingEnabled = true;
-			this.debugRawComDisplay.Location = new System.Drawing.Point(3, 3);
-			this.debugRawComDisplay.Margin = new System.Windows.Forms.Padding(4);
-			this.debugRawComDisplay.Name = "debugRawComDisplay";
-			this.debugRawComDisplay.SelectionMode = System.Windows.Forms.SelectionMode.None;
-			this.debugRawComDisplay.Size = new System.Drawing.Size(523, 449);
-			this.debugRawComDisplay.TabIndex = 5;
+			this.ulcView.AllowUserToAddRows = false;
+			this.ulcView.AllowUserToDeleteRows = false;
+			this.ulcView.AllowUserToOrderColumns = true;
+			this.ulcView.AllowUserToResizeColumns = false;
+			this.ulcView.AllowUserToResizeRows = false;
+			this.ulcView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+			this.ulcView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.ulcView.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.ulcView.Location = new System.Drawing.Point(0, 0);
+			this.ulcView.Margin = new System.Windows.Forms.Padding(4);
+			this.ulcView.Name = "ulcView";
+			this.ulcView.ReadOnly = true;
+			this.ulcView.Size = new System.Drawing.Size(529, 455);
+			this.ulcView.TabIndex = 4;
 			// 
 			// simLocations
 			// 
 			this.simLocations.Controls.Add(this.simTiplocs);
-			this.simLocations.Location = new System.Drawing.Point(4, 40);
+			this.simLocations.Location = new System.Drawing.Point(4, 22);
 			this.simLocations.Name = "simLocations";
 			this.simLocations.Padding = new System.Windows.Forms.Padding(3);
-			this.simLocations.Size = new System.Drawing.Size(529, 437);
+			this.simLocations.Size = new System.Drawing.Size(529, 455);
 			this.simLocations.TabIndex = 10;
 			this.simLocations.Text = "Locations";
 			this.simLocations.UseVisualStyleBackColor = true;
@@ -388,8 +381,79 @@
 			this.simTiplocs.Margin = new System.Windows.Forms.Padding(4);
 			this.simTiplocs.Name = "simTiplocs";
 			this.simTiplocs.ReadOnly = true;
-			this.simTiplocs.Size = new System.Drawing.Size(523, 431);
+			this.simTiplocs.Size = new System.Drawing.Size(523, 449);
 			this.simTiplocs.TabIndex = 4;
+			// 
+			// debugTcpRaw
+			// 
+			this.debugTcpRaw.Controls.Add(this.debugRawTcpDisplay);
+			this.debugTcpRaw.Location = new System.Drawing.Point(4, 40);
+			this.debugTcpRaw.Margin = new System.Windows.Forms.Padding(4);
+			this.debugTcpRaw.Name = "debugTcpRaw";
+			this.debugTcpRaw.Size = new System.Drawing.Size(529, 437);
+			this.debugTcpRaw.TabIndex = 3;
+			this.debugTcpRaw.Text = "TCP Raw";
+			this.debugTcpRaw.UseVisualStyleBackColor = true;
+			// 
+			// debugRawTcpDisplay
+			// 
+			this.debugRawTcpDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.debugRawTcpDisplay.FormattingEnabled = true;
+			this.debugRawTcpDisplay.Location = new System.Drawing.Point(0, 0);
+			this.debugRawTcpDisplay.Margin = new System.Windows.Forms.Padding(4);
+			this.debugRawTcpDisplay.Name = "debugRawTcpDisplay";
+			this.debugRawTcpDisplay.SelectionMode = System.Windows.Forms.SelectionMode.None;
+			this.debugRawTcpDisplay.Size = new System.Drawing.Size(529, 437);
+			this.debugRawTcpDisplay.TabIndex = 4;
+			// 
+			// debugComRaw
+			// 
+			this.debugComRaw.Controls.Add(this.debugRawComDisplay);
+			this.debugComRaw.Location = new System.Drawing.Point(4, 40);
+			this.debugComRaw.Name = "debugComRaw";
+			this.debugComRaw.Padding = new System.Windows.Forms.Padding(3);
+			this.debugComRaw.Size = new System.Drawing.Size(529, 437);
+			this.debugComRaw.TabIndex = 9;
+			this.debugComRaw.Text = "COM Raw";
+			this.debugComRaw.UseVisualStyleBackColor = true;
+			// 
+			// debugRawComDisplay
+			// 
+			this.debugRawComDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.debugRawComDisplay.FormattingEnabled = true;
+			this.debugRawComDisplay.Location = new System.Drawing.Point(3, 3);
+			this.debugRawComDisplay.Margin = new System.Windows.Forms.Padding(4);
+			this.debugRawComDisplay.Name = "debugRawComDisplay";
+			this.debugRawComDisplay.SelectionMode = System.Windows.Forms.SelectionMode.None;
+			this.debugRawComDisplay.Size = new System.Drawing.Size(523, 431);
+			this.debugRawComDisplay.TabIndex = 5;
+			// 
+			// debugOverlaps
+			// 
+			this.debugOverlaps.Controls.Add(this.overlapView);
+			this.debugOverlaps.Location = new System.Drawing.Point(4, 40);
+			this.debugOverlaps.Name = "debugOverlaps";
+			this.debugOverlaps.Size = new System.Drawing.Size(529, 437);
+			this.debugOverlaps.TabIndex = 12;
+			this.debugOverlaps.Text = "Overlaps";
+			this.debugOverlaps.UseVisualStyleBackColor = true;
+			// 
+			// overlapView
+			// 
+			this.overlapView.AllowUserToAddRows = false;
+			this.overlapView.AllowUserToDeleteRows = false;
+			this.overlapView.AllowUserToOrderColumns = true;
+			this.overlapView.AllowUserToResizeColumns = false;
+			this.overlapView.AllowUserToResizeRows = false;
+			this.overlapView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+			this.overlapView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.overlapView.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.overlapView.Location = new System.Drawing.Point(0, 0);
+			this.overlapView.Margin = new System.Windows.Forms.Padding(4);
+			this.overlapView.Name = "overlapView";
+			this.overlapView.ReadOnly = true;
+			this.overlapView.Size = new System.Drawing.Size(529, 437);
+			this.overlapView.TabIndex = 4;
 			// 
 			// DebugUc
 			// 
@@ -415,10 +479,14 @@
 			((System.ComponentModel.ISupportInitialize)(this.debugFrameView)).EndInit();
 			this.debugFlags.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.debugFlagView)).EndInit();
-			this.debugTcpRaw.ResumeLayout(false);
-			this.debugComRaw.ResumeLayout(false);
+			this.debugUlcs.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.ulcView)).EndInit();
 			this.simLocations.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.simTiplocs)).EndInit();
+			this.debugTcpRaw.ResumeLayout(false);
+			this.debugComRaw.ResumeLayout(false);
+			this.debugOverlaps.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.overlapView)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -448,5 +516,9 @@
 		public System.Windows.Forms.ListBox debugRawComDisplay;
 		private System.Windows.Forms.TabPage simLocations;
 		private System.Windows.Forms.DataGridView simTiplocs;
+		private System.Windows.Forms.TabPage debugUlcs;
+		private System.Windows.Forms.DataGridView ulcView;
+		private System.Windows.Forms.TabPage debugOverlaps;
+		private System.Windows.Forms.DataGridView overlapView;
 	}
 }

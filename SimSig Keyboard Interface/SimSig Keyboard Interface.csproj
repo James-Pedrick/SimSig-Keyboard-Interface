@@ -112,8 +112,10 @@
     <Compile Include="Comms\TCP\Sender.cs" />
     <Compile Include="DataProcess\Slots\SlotContainer.cs" />
     <Compile Include="DataProcess\Slots\Slots.cs" />
+    <Compile Include="DataProcess\Track\Overlaps.cs" />
     <Compile Include="DataProcess\Track\Tracks.cs" />
     <Compile Include="DataProcess\Track\TrackContainer.cs" />
+    <Compile Include="DataProcess\Track\Ulcs.cs" />
     <Compile Include="Data\SaveGameParser.cs" />
     <Compile Include="Data\SendPrep.cs" />
     <Compile Include="Properties\Settings.cs" />
@@ -238,6 +240,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\DataSources\" />
+    <Folder Include="SimSpecific\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.2">

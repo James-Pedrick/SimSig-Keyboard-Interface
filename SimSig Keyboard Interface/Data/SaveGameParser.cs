@@ -25,6 +25,8 @@ namespace SimSig_Keyboard_Interface.Data
 		private static int _slotDecimal;
 		private static int _tracksDecimal;
 		private static int _flagDecimal;
+		private static int _ulcDecimal;
+		private static int _overlapDecimal;
 
 
 		public static void Parse(
@@ -68,6 +70,10 @@ namespace SimSig_Keyboard_Interface.Data
 					if (itemId.Contains("TSlot ID=")) Slot_Parse(ref slots, itemId);        //Slots 
 					if (itemId.Contains("TTCS ID=")) Track_Parse(ref tracks, itemId);       //Track
 					if (itemId.Contains("TLOC ID=")) LocationParse(ref locations, itemId);  //Location
+					if (itemId.Contains("TULC ID=")) UlcParse(ref tracks, itemId);          //Ulc
+					if (itemId.Contains("TOVL ID=")) OverlapParse(ref tracks, itemId);
+
+					//TULC
 				}
 
 
@@ -147,6 +153,22 @@ namespace SimSig_Keyboard_Interface.Data
 			_berthsDecimal++;
 		}
 
+		private static void UlcParse(ref TrackContainer tracks, string itemId)
+		{
+			Console.WriteLine(itemId);
+
+			string trackHex = _ulcDecimal.ToString("X").PadLeft(4, '0');
+
+			itemId = itemId.TrimStart(' ');
+			itemId = itemId.Remove(0, 10);
+			itemId = itemId.Substring(0, itemId.Length - 3);
+
+			string ends = itemId.Substring(itemId.Length - 2, 2);
+
+			tracks.AddUlcXml(trackHex, itemId, ends);
+
+			_ulcDecimal++;
+		}
 		private static void Track_Parse(ref TrackContainer tracks, string itemId)
 		{
 			string trackHex = _tracksDecimal.ToString("X").PadLeft(4, '0');
@@ -195,6 +217,22 @@ namespace SimSig_Keyboard_Interface.Data
 
 			flag.AddFlagXml(flagHex, itemId);
 			_flagDecimal++;
+		}
+
+		private static void OverlapParse(ref TrackContainer tracks, string itemId)
+		{
+			Console.WriteLine(itemId);
+
+			string trackHex = _overlapDecimal.ToString("X").PadLeft(4, '0');
+
+			itemId = itemId.TrimStart(' ');
+			itemId = itemId.Remove(0, 10);
+			itemId = itemId.Substring(0, itemId.Length - 3);
+
+
+			tracks.AddOverlapXml(trackHex, itemId);
+
+			_overlapDecimal++;
 		}
 
 		private static void LocationParse(ref LocationContainer locations, string tiploc)
