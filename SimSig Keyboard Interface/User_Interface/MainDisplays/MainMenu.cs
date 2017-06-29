@@ -199,7 +199,14 @@ namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
 								Refresh();
 							}));
 					}
-
+					if (element.StartsWith("sU"))
+					{
+						if (InvokeRequired)
+							Invoke(new MethodInvoker(delegate
+							{
+								Tracks.AddUlcTcp(element.Substring(2, element.Length - 2));
+							}));
+					}
 					if (element.StartsWith("tE") || element.StartsWith("tL") || element.StartsWith("tM"))
 					{
 						MsgEventArgs m = new MsgEventArgs() { Msg = element };

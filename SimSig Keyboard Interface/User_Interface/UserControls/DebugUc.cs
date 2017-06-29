@@ -21,11 +21,18 @@ namespace SimSig_Keyboard_Interface.User_Interface.UserControls
 			debugSlotView.DataSource = MainMenu.Slots.SlotList;
 			debugTrackView.DataSource = MainMenu.Tracks.TrackList;
 			simTiplocs.DataSource = MainMenu.Locations.LocationList;
+			ulcView.DataSource = MainMenu.Tracks.UlcList;
+			overlapView.DataSource = MainMenu.Tracks.OverlapList;
+
 
 			MainMenu.DebugTcpDataReceived += DebugTcpUpdate;
 			MainMenu.DebugComDataReceived += DebugComUpdate;
 
-			//		this.Controls.Add(debugTcpRaw);
+
+			Timer timer = new Timer();
+			timer.Interval = (10 * 1000); // 10 secs
+			timer.Tick += new EventHandler(timer_Tick);
+			timer.Start();
 		}
 
 		private void DebugTcpUpdate(Object sender, MsgEventArgs e)
@@ -56,6 +63,14 @@ namespace SimSig_Keyboard_Interface.User_Interface.UserControls
 						debugRawComDisplay.Items.Insert(0, element);
 				}));
 			}
+		}
+
+
+
+
+		private void timer_Tick(object sender, EventArgs e)
+		{
+			Refresh();
 		}
 	}
 }
