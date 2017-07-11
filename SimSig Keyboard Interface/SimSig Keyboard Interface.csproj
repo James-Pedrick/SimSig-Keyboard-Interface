@@ -72,6 +72,12 @@
     <ManifestKeyFile>SimSig Keyboard Interface_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Apache.NMS, Version=1.5.1.2739, Culture=neutral, PublicKeyToken=82756feee3957618, processorArchitecture=MSIL">
+      <HintPath>..\packages\Apache.NMS.1.5.1\lib\net40\Apache.NMS.dll</HintPath>
+    </Reference>
+    <Reference Include="Apache.NMS.Stomp, Version=1.5.4.3215, Culture=neutral, PublicKeyToken=82756feee3957618, processorArchitecture=MSIL">
+      <HintPath>..\packages\Apache.NMS.Stomp.1.5.4\lib\net40\Apache.NMS.Stomp.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -118,12 +124,20 @@
     <Compile Include="DataProcess\Track\Ulcs.cs" />
     <Compile Include="Data\SaveGameParser.cs" />
     <Compile Include="Data\SendPrep.cs" />
+    <Compile Include="NrData\NrDataProcess.cs" />
+    <Compile Include="NrData\NrDataReceiver.cs" />
     <Compile Include="Properties\Settings.cs" />
     <Compile Include="User_Interface\Connetions\ComConnect.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="User_Interface\Connetions\ComConnect.Designer.cs">
       <DependentUpon>ComConnect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User_Interface\Connetions\NrConnect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="User_Interface\Connetions\NrConnect.Designer.cs">
+      <DependentUpon>NrConnect.cs</DependentUpon>
     </Compile>
     <Compile Include="User_Interface\MainDisplays\IndependentDebugDisplay.cs">
       <SubType>Form</SubType>
@@ -169,6 +183,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User_Interface\UserControls\NrDataFeeds.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User_Interface\UserControls\NrDataFeeds.Designer.cs">
+      <DependentUpon>NrDataFeeds.cs</DependentUpon>
+    </Compile>
     <Compile Include="User_Interface\UserControls\PhoneUc.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -183,6 +203,9 @@
     </Compile>
     <EmbeddedResource Include="User_Interface\Connetions\ComConnect.resx">
       <DependentUpon>ComConnect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User_Interface\Connetions\NrConnect.resx">
+      <DependentUpon>NrConnect.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="User_Interface\MainDisplays\IndependentDebugDisplay.resx">
       <DependentUpon>IndependentDebugDisplay.cs</DependentUpon>
@@ -214,6 +237,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="User_Interface\UserControls\NrDataFeeds.resx">
+      <DependentUpon>NrDataFeeds.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="User_Interface\UserControls\PhoneUc.resx">
       <DependentUpon>PhoneUc.cs</DependentUpon>
     </EmbeddedResource>
@@ -224,6 +250,7 @@
       <DependentUpon>Dockerfile</DependentUpon>
     </None>
     <None Include="Dockerfile" />
+    <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>

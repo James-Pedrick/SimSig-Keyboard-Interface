@@ -47,11 +47,11 @@ namespace SimSig_Keyboard_Interface.User_Interface.UserControls
 						debugRawTcpDisplay.Items.Insert(0, element);
 					}
 				}));
-				
+
 			}
 		}
 
-		private void DebugComUpdate(object sender, MsgEventArgs e)
+		private void DebugComUpdate(Object sender, MsgEventArgs e)
 		{
 			string element = e.Msg;
 
@@ -65,7 +65,21 @@ namespace SimSig_Keyboard_Interface.User_Interface.UserControls
 			}
 		}
 
+		private void DebugNrReceived(Object sender, MsgEventArgs e)
+		{
+			string element = e.Msg;
+			if (InvokeRequired)
+			{
+				Invoke(new MethodInvoker(delegate
+				{
+					if (element != null)
+					{
+						NrRawDataFeeds.Items.Insert(0, element);
+					}
+				}));
 
+			}
+		}
 
 
 		private void timer_Tick(object sender, EventArgs e)

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Windows.Forms;
+using Apache.NMS;
 using SimSig_Keyboard_Interface.Comms.RS232;
 using SimSig_Keyboard_Interface.Comms.TCP;
 using SimSig_Keyboard_Interface.Data;
@@ -16,6 +17,8 @@ using SimSig_Keyboard_Interface.DataProcess.Track;
 using SimSig_Keyboard_Interface.Properties;
 using SimSig_Keyboard_Interface.User_Interface.Connetions;
 using SimSig_Keyboard_Interface.User_Interface.UserControls;
+using SimSig_Keyboard_Interface.NrData;
+
 
 // ************************************************************** Load Points config file ^^^
 
@@ -37,44 +40,42 @@ namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
 
 		public static TcpClient TcpConnection = new TcpClient();
 		public static SerialClient ComConnection = new SerialClient();
-		public static FlagContainer Flags = new FlagContainer();
-		public static FrameContainer Frames = new FrameContainer();
-
-		public static TcpConnect TcpConnectForm = new TcpConnect();
-		public static ComConnect ComConnectForm = new ComConnect();
-
+		public static NrDataReceiver NrConnection = new NrDataReceiver(); 
+		
 
 		public static BerthContainer Berths = new BerthContainer();
+		public static readonly CallContainer Calls = new CallContainer();
+		public static FlagContainer Flags = new FlagContainer();
+		public static FrameContainer Frames = new FrameContainer();
 		public static LocationContainer Locations = new LocationContainer();
 		public static PointContainer Points = new PointContainer();
 		public static SignalContainer Signals = new SignalContainer();
 		public static SlotContainer Slots = new SlotContainer();
 		public static TrackContainer Tracks = new TrackContainer();
-		public static readonly CallContainer Calls = new CallContainer();
+
+
+		public static TcpConnect TcpConnectForm = new TcpConnect();
+		public static ComConnect ComConnectForm = new ComConnect();
+		public static NrConnect NrConnectForm = new NrConnect();
+
+
 
 		public static DebugUc Debug = new DebugUc();
 		public static KeyboardInterfaceUc Keyboard = new KeyboardInterfaceUc();
-
 		#endregion
 
 
 		#region  Creating Events
 
-
-		/*******************************/
-		/* Creating Events             */
-		/*******************************/
-
 		public static event EventHandler<MsgEventArgs> DebugComDataReceived;
 		public static event EventHandler<MsgEventArgs> DebugTcpDataReceived;
 		public static event EventHandler<MsgEventArgs> KeyboardTcpDataReceived;
 		public static event EventHandler<MsgEventArgs> BerthWatch;
-
-
 		#endregion
 
 		public static bool TcpConnected;
 		public static bool ComConnected;
+		public static string NrPassword;
 
 		public MainMenu()
 		{
@@ -82,6 +83,7 @@ namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
 
 			TcpConnection.DataReceived += TcpDataUpdate;
 			ComConnection.DataReceived += ComDataUpdate;
+		//	NrConnection.DataReceived += NrDataUpdate;
 		}
 
 
@@ -274,7 +276,19 @@ namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
 				}
 		}
 
-
+		private void NrDataUpdate(object sender, MsgEventArgs e)
+		{
+			var element = e.Msg;
+			if (element == null || !InvokeRequired) return;
+			try
+			{
+				Console.WriteLine(element);
+			}
+			catch
+			{
+				Console.WriteLine(@"A Unhandled String was Received - " + element);
+			}
+		}
 
 
 		#region Misc Menu Items
@@ -413,6 +427,35 @@ namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
 			Points.PointList.Clear();
 		}
 		#endregion
+
+		private void connectToolStripMenuItem2_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void MainMenu_Load(object sender, EventArgs e)
+		{
+
+		}
+
+		private void nRDataFeedsToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			//connectToolStripMenuItem.Enabled = false;
+
+
+
+			Thread nrReceiver = new Thread(() =>
+			{
+				//			NrConnectForm.ShowDialog();
+				NrConnection.NrReceiverMain(NrPassword);
+			});
+			nrReceiver.Start();
+
+		}
+
+		
+
+
 	}
 }
 

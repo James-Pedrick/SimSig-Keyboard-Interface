@@ -14,14 +14,14 @@ namespace SimSig_Keyboard_Interface.Data
 		public static void Interpose(string berth, string descrition)
 		{
 			var berthHex = MainMenu.Berths.BerthHIdLookup(berth);
-
+			if(berthHex != null)
 			MainMenu.TcpConnection.SendData(@"BB" + berthHex + descrition + "|");
 		}
 
 		public static void InterposeCancel(string berth)
 		{
 			var berthHex = MainMenu.Berths.BerthHIdLookup(berth);
-			MainMenu.TcpConnection.SendData(@"BC" + berthHex+ "|");
+			if(berthHex!=null) MainMenu.TcpConnection.SendData(@"BC" + berthHex+ "|");
 		}
 
 		public static void RouteSet(string entry, string exit)

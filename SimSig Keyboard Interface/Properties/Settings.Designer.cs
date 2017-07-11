@@ -142,5 +142,17 @@ namespace SimSig_Keyboard_Interface.Properties {
                 this["comDataBits"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string nrUserName {
+            get {
+                return ((string)(this["nrUserName"]));
+            }
+            set {
+                this["nrUserName"] = value;
+            }
+        }
     }
 }

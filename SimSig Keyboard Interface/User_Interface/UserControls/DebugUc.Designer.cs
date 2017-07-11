@@ -55,6 +55,8 @@
 			this.debugRawComDisplay = new System.Windows.Forms.ListBox();
 			this.debugOverlaps = new System.Windows.Forms.TabPage();
 			this.overlapView = new System.Windows.Forms.DataGridView();
+			this.debugNrRaw = new System.Windows.Forms.TabPage();
+			this.NrRawDataFeeds = new System.Windows.Forms.ListBox();
 			this.debugTabs.SuspendLayout();
 			this.debugBerths.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.debugBerthView)).BeginInit();
@@ -80,6 +82,7 @@
 			this.debugComRaw.SuspendLayout();
 			this.debugOverlaps.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.overlapView)).BeginInit();
+			this.debugNrRaw.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// debugTabs
@@ -97,6 +100,7 @@
 			this.debugTabs.Controls.Add(this.debugTcpRaw);
 			this.debugTabs.Controls.Add(this.debugComRaw);
 			this.debugTabs.Controls.Add(this.debugOverlaps);
+			this.debugTabs.Controls.Add(this.debugNrRaw);
 			this.debugTabs.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.debugTabs.Location = new System.Drawing.Point(0, 0);
 			this.debugTabs.Margin = new System.Windows.Forms.Padding(4);
@@ -137,10 +141,10 @@
 			// debugGroundFrames
 			// 
 			this.debugGroundFrames.Controls.Add(this.debugCallView);
-			this.debugGroundFrames.Location = new System.Drawing.Point(4, 40);
+			this.debugGroundFrames.Location = new System.Drawing.Point(4, 22);
 			this.debugGroundFrames.Margin = new System.Windows.Forms.Padding(4);
 			this.debugGroundFrames.Name = "debugGroundFrames";
-			this.debugGroundFrames.Size = new System.Drawing.Size(529, 437);
+			this.debugGroundFrames.Size = new System.Drawing.Size(529, 455);
 			this.debugGroundFrames.TabIndex = 5;
 			this.debugGroundFrames.Text = "Calls";
 			this.debugGroundFrames.UseVisualStyleBackColor = true;
@@ -159,7 +163,7 @@
 			this.debugCallView.Margin = new System.Windows.Forms.Padding(4);
 			this.debugCallView.Name = "debugCallView";
 			this.debugCallView.ReadOnly = true;
-			this.debugCallView.Size = new System.Drawing.Size(529, 437);
+			this.debugCallView.Size = new System.Drawing.Size(529, 455);
 			this.debugCallView.TabIndex = 3;
 			// 
 			// debugPoints
@@ -455,6 +459,27 @@
 			this.overlapView.Size = new System.Drawing.Size(529, 437);
 			this.overlapView.TabIndex = 4;
 			// 
+			// debugNrRaw
+			// 
+			this.debugNrRaw.Controls.Add(this.NrRawDataFeeds);
+			this.debugNrRaw.Location = new System.Drawing.Point(4, 40);
+			this.debugNrRaw.Name = "debugNrRaw";
+			this.debugNrRaw.Size = new System.Drawing.Size(529, 437);
+			this.debugNrRaw.TabIndex = 13;
+			this.debugNrRaw.Text = "NR RAW";
+			this.debugNrRaw.UseVisualStyleBackColor = true;
+			// 
+			// NrRawDataFeeds
+			// 
+			this.NrRawDataFeeds.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.NrRawDataFeeds.FormattingEnabled = true;
+			this.NrRawDataFeeds.Location = new System.Drawing.Point(0, 0);
+			this.NrRawDataFeeds.Margin = new System.Windows.Forms.Padding(4);
+			this.NrRawDataFeeds.Name = "NrRawDataFeeds";
+			this.NrRawDataFeeds.SelectionMode = System.Windows.Forms.SelectionMode.None;
+			this.NrRawDataFeeds.Size = new System.Drawing.Size(529, 437);
+			this.NrRawDataFeeds.TabIndex = 5;
+			// 
 			// DebugUc
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -487,6 +512,7 @@
 			this.debugComRaw.ResumeLayout(false);
 			this.debugOverlaps.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.overlapView)).EndInit();
+			this.debugNrRaw.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -520,5 +546,7 @@
 		private System.Windows.Forms.DataGridView ulcView;
 		private System.Windows.Forms.TabPage debugOverlaps;
 		private System.Windows.Forms.DataGridView overlapView;
+		private System.Windows.Forms.TabPage debugNrRaw;
+		public System.Windows.Forms.ListBox NrRawDataFeeds;
 	}
 }
