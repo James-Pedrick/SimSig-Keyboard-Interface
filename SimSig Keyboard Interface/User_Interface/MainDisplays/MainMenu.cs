@@ -310,6 +310,7 @@ namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
 			tcpConnectThread.Start();
 			disconnectToolStripMenuItem.Enabled = true;
 			TcpConnected = true;
+			
 		}
 		private void DisconnectToolStripMenuItem_Click(object sender, EventArgs e)
 		{
@@ -453,7 +454,11 @@ namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
 
 		}
 
-		
+		private void aRSToolStripMenuItem1_Click(object sender, EventArgs e)
+		{
+			Thread nwcArs = new Thread(SimSpecific.NorthWalesCoast.Ars.NwcArs);
+			nwcArs.Start();
+		}
 
 
 	}

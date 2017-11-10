@@ -6,6 +6,8 @@
 		public string Number { get; set; }
 		public string Aspect { get; set; } = "R";
 
+		public bool RouteSet { get; set; }
+
 		public bool IsoAppS { get; set; }
 		public bool RemAppS { get; set; }
 		public bool IsoAppA { get; set; }
@@ -53,9 +55,7 @@
 			if (intValue >= 0x02) { IsoAppS = true; intValue = intValue - 0x02; } else { IsoAppS = false; }
 			if (intValue >= 0x01) { RemAppS = true; } else { RemAppS = false; }
 		}
-
-
-
+		
 
 		public void SignalUpdateControls(string data)
 		{

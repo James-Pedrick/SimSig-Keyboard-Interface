@@ -67,7 +67,7 @@ namespace SimSig_Keyboard_Interface.Comms.TCP
                                 }
                             }
 
-                            Thread.Sleep(20);
+                           // Thread.Sleep(20);
                         }
                     }
 

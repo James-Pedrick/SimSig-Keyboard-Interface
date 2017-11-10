@@ -63,6 +63,9 @@ namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
 			this.disconnectToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
 			this.nRDataFeedsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.connectToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+			this.simSpecificToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.aRSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.aRSToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
 			this.loadSaveGameXML = new System.Windows.Forms.OpenFileDialog();
 			this.dataSave = new System.Windows.Forms.SaveFileDialog();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -78,6 +81,7 @@ namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
 			this.berthWatch = new System.Windows.Forms.TabPage();
 			this.berthWatch1 = new SimSig_Keyboard_Interface.User_Interface.UserControls.BerthWatch();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.northWalesCoast1 = new SimSig_Keyboard_Interface.User_Interface.Ars.NorthWalesCoast();
 			this.menuStrip.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.SuspendLayout();
@@ -86,6 +90,7 @@ namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
 			this.debug.SuspendLayout();
 			this.tabControl.SuspendLayout();
 			this.berthWatch.SuspendLayout();
+			this.tabPage1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// menuStrip
@@ -96,7 +101,8 @@ namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
             this.showToolStripMenuItem,
             this.logsToolStripMenuItem,
             this.helpToolStripMenuItem,
-            this.networkToolStripMenuItem});
+            this.networkToolStripMenuItem,
+            this.simSpecificToolStripMenuItem});
 			this.menuStrip.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip.Name = "menuStrip";
 			this.menuStrip.Padding = new System.Windows.Forms.Padding(8, 3, 0, 3);
@@ -225,25 +231,25 @@ namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
 			// savePointsToolStripMenuItem
 			// 
 			this.savePointsToolStripMenuItem.Name = "savePointsToolStripMenuItem";
-			this.savePointsToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+			this.savePointsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.savePointsToolStripMenuItem.Text = "Save Points";
 			// 
 			// saveSignalsToolStripMenuItem
 			// 
 			this.saveSignalsToolStripMenuItem.Name = "saveSignalsToolStripMenuItem";
-			this.saveSignalsToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+			this.saveSignalsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.saveSignalsToolStripMenuItem.Text = "Save Signals";
 			// 
 			// saveBerthsToolStripMenuItem
 			// 
 			this.saveBerthsToolStripMenuItem.Name = "saveBerthsToolStripMenuItem";
-			this.saveBerthsToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+			this.saveBerthsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.saveBerthsToolStripMenuItem.Text = "Save Berths";
 			// 
 			// saveRawToolStripMenuItem
 			// 
 			this.saveRawToolStripMenuItem.Name = "saveRawToolStripMenuItem";
-			this.saveRawToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+			this.saveRawToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.saveRawToolStripMenuItem.Text = "Save Raw";
 			// 
 			// helpToolStripMenuItem
@@ -277,7 +283,7 @@ namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
             this.requestDataToolStripMenuItem,
             this.disconnectToolStripMenuItem});
 			this.clientToolStripMenuItem.Name = "clientToolStripMenuItem";
-			this.clientToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.clientToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
 			this.clientToolStripMenuItem.Text = "Client";
 			// 
 			// connectToolStripMenuItem
@@ -307,7 +313,7 @@ namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
             this.connectToolStripMenuItem1,
             this.disconnectToolStripMenuItem1});
 			this.serialToolStripMenuItem.Name = "serialToolStripMenuItem";
-			this.serialToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.serialToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
 			this.serialToolStripMenuItem.Text = "Serial";
 			// 
 			// connectToolStripMenuItem1
@@ -329,16 +335,39 @@ namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
 			this.nRDataFeedsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.connectToolStripMenuItem2});
 			this.nRDataFeedsToolStripMenuItem.Name = "nRDataFeedsToolStripMenuItem";
-			this.nRDataFeedsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.nRDataFeedsToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
 			this.nRDataFeedsToolStripMenuItem.Text = "NR Data Feeds";
 			this.nRDataFeedsToolStripMenuItem.Click += new System.EventHandler(this.nRDataFeedsToolStripMenuItem_Click);
 			// 
 			// connectToolStripMenuItem2
 			// 
 			this.connectToolStripMenuItem2.Name = "connectToolStripMenuItem2";
-			this.connectToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+			this.connectToolStripMenuItem2.Size = new System.Drawing.Size(119, 22);
 			this.connectToolStripMenuItem2.Text = "Connect";
 			this.connectToolStripMenuItem2.Click += new System.EventHandler(this.connectToolStripMenuItem2_Click);
+			// 
+			// simSpecificToolStripMenuItem
+			// 
+			this.simSpecificToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aRSToolStripMenuItem});
+			this.simSpecificToolStripMenuItem.Name = "simSpecificToolStripMenuItem";
+			this.simSpecificToolStripMenuItem.Size = new System.Drawing.Size(83, 19);
+			this.simSpecificToolStripMenuItem.Text = "Sim Specific";
+			// 
+			// aRSToolStripMenuItem
+			// 
+			this.aRSToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aRSToolStripMenuItem1});
+			this.aRSToolStripMenuItem.Name = "aRSToolStripMenuItem";
+			this.aRSToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+			this.aRSToolStripMenuItem.Text = "North Wales Coast";
+			// 
+			// aRSToolStripMenuItem1
+			// 
+			this.aRSToolStripMenuItem1.Name = "aRSToolStripMenuItem1";
+			this.aRSToolStripMenuItem1.Size = new System.Drawing.Size(95, 22);
+			this.aRSToolStripMenuItem1.Text = "ARS";
+			this.aRSToolStripMenuItem1.Click += new System.EventHandler(this.aRSToolStripMenuItem1_Click);
 			// 
 			// loadSaveGameXML
 			// 
@@ -455,12 +484,20 @@ namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
 			// 
 			// tabPage1
 			// 
+			this.tabPage1.Controls.Add(this.northWalesCoast1);
 			this.tabPage1.Location = new System.Drawing.Point(4, 23);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Size = new System.Drawing.Size(786, 484);
 			this.tabPage1.TabIndex = 5;
 			this.tabPage1.Text = "tabPage1";
 			this.tabPage1.UseVisualStyleBackColor = true;
+			// 
+			// northWalesCoast1
+			// 
+			this.northWalesCoast1.Location = new System.Drawing.Point(20, 16);
+			this.northWalesCoast1.Name = "northWalesCoast1";
+			this.northWalesCoast1.Size = new System.Drawing.Size(629, 421);
+			this.northWalesCoast1.TabIndex = 0;
 			// 
 			// MainMenu
 			// 
@@ -486,6 +523,7 @@ namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
 			this.debug.ResumeLayout(false);
 			this.tabControl.ResumeLayout(false);
 			this.berthWatch.ResumeLayout(false);
+			this.tabPage1.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -540,6 +578,10 @@ namespace SimSig_Keyboard_Interface.User_Interface.MainDisplays
 		private System.Windows.Forms.ToolStripMenuItem allListResetToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem nRDataFeedsToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem connectToolStripMenuItem2;
+		private System.Windows.Forms.ToolStripMenuItem simSpecificToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem aRSToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem aRSToolStripMenuItem1;
+		private Ars.NorthWalesCoast northWalesCoast1;
 	}
 }
 

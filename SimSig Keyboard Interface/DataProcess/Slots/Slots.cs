@@ -5,6 +5,6 @@ namespace SimSig_Keyboard_Interface.DataProcess.Slots
 	{
 		public string HexId { get; set; }
 		public string Number { get; set; }
-
+		public bool SlotActive { get; set; }
 	}
 }

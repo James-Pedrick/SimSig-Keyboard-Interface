@@ -34,9 +34,9 @@ namespace SimSig_Keyboard_Interface.NrData
 
 			foreach (string element in elementStrings)
 			{
-				if (element.Contains(BerthStpMsg) && element.Contains(AreaName)) BerthStp(element);
-				if (element.Contains(BerthCanMsg) && element.Contains(AreaName)) BerthCan(element);
-				if (element.Contains(BerthIntMsg) && element.Contains(AreaName)) BerthInt(element);
+				if (element.Contains(BerthStpMsg)) BerthStp(element);
+				if (element.Contains(BerthCanMsg)) BerthCan(element);
+				if (element.Contains(BerthIntMsg)) BerthInt(element);
 			}
 		}
 
@@ -49,18 +49,21 @@ namespace SimSig_Keyboard_Interface.NrData
 
 			string[] berthElement = data.Split(',');
 
+			var areaId = berthElement[2].Substring(11).TrimEnd('\"');
 			var from = berthElement[4].Substring(8, 4);
 			var to = berthElement[0].Substring(16, 4);
 			var descr = berthElement[5].Substring(9, 4);
 
 
-			Console.WriteLine(from + ' ' + to + ' ' + descr);
+			Console.WriteLine(areaId + ' ' + from + ' ' + to + ' ' + descr);
 
 			if (User_Interface.MainDisplays.MainMenu.TcpConnected.Equals(true))
 			{
 				Data.SendPrep.InterposeCancel('B' + from);
 				Data.SendPrep.Interpose('B' + to, descr);
 			}
+
+			NrSave(areaId, from, to, descr);
 
 		}
 
@@ -70,12 +73,14 @@ namespace SimSig_Keyboard_Interface.NrData
 
 			string[] berthElement = data.Split(',');
 
+			var areaId = berthElement[1].Substring(11).TrimEnd('\"');
 			var from = berthElement[3].Substring(8, 4);
 
 			if (User_Interface.MainDisplays.MainMenu.TcpConnected.Equals(true))
 				Data.SendPrep.InterposeCancel('B' + from);
 
-			Console.WriteLine(from);
+			Console.WriteLine(areaId + ' ' + from);
+			NrSave(areaId, from, null, null);
 		}
 
 		private static void BerthInt(string data)
@@ -84,15 +89,25 @@ namespace SimSig_Keyboard_Interface.NrData
 
 			string[] berthElement = data.Split(',');
 
+			var areaId = berthElement[2].Substring(11).TrimEnd('\"');
 			var to = berthElement[0].Substring(16, 4);
 			var descr = berthElement[4].Substring(9, 4);
 
 			if (User_Interface.MainDisplays.MainMenu.TcpConnected.Equals(true))
 				Data.SendPrep.Interpose('B' + to, descr);
 
-			Console.WriteLine("     " + to + " " + descr);
+			Console.WriteLine(areaId + ' ' + "     " + to + " " + descr);
+			NrSave(areaId, null, to, descr);
 		}
 
+
+		private static void NrSave(string areaId, string from, string to, string descr)
+		{
+			using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"D:\\nr.csv", true))
+			{
+				file.WriteLine(areaId + ',' + from + ',' + to + ',' + descr);
+			}
+		}
 
 	}
 }

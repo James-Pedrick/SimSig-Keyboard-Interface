@@ -40,6 +40,10 @@ namespace SimSig_Keyboard_Interface.DataProcess.Signals
 
 				SignalList.Single(s => s.HexId == hId).SignalUpdateControls(data.Substring(6, 1)); //One Nibble
 				SignalList.Single(s => s.HexId == hId).SignalUpdateAspect(data.Substring(7, 1)); //One Nibble
+
+				SignalList.Single(s => s.HexId == hId).RouteSet = !data.Substring(8, 4).Equals("FFFF");
+
+				//8,4
 			}
 			catch (Exception e)
 			{
@@ -72,6 +76,17 @@ namespace SimSig_Keyboard_Interface.DataProcess.Signals
 
 			}
 			MainMenu.TcpConnection.SendData(signalRequest);
+		}
+
+		public void QueryRouteSet(string signal)
+		{
+			string hId = SignalIdLookup(signal);
+
+			if (SignalList.SingleOrDefault(s => s.HexId == hId) != null)
+			{
+				
+			}
+
 		}
 	}
 }

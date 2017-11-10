@@ -127,6 +127,19 @@
     <Compile Include="NrData\NrDataProcess.cs" />
     <Compile Include="NrData\NrDataReceiver.cs" />
     <Compile Include="Properties\Settings.cs" />
+    <Compile Include="SimSpecific\NorthWalesCoast\Ars.cs" />
+    <Compile Include="User_Interface\Ars\NorthWalesCoast.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User_Interface\Ars\NorthWalesCoast.Designer.cs">
+      <DependentUpon>NorthWalesCoast.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User_Interface\Ars\Shrewsbury.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User_Interface\Ars\Shrewsbury.Designer.cs">
+      <DependentUpon>Shrewsbury.cs</DependentUpon>
+    </Compile>
     <Compile Include="User_Interface\Connetions\ComConnect.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -201,6 +214,9 @@
     <Compile Include="User_Interface\Connetions\TcpConnect.Designer.cs">
       <DependentUpon>TcpConnect.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="User_Interface\Ars\NorthWalesCoast.resx">
+      <DependentUpon>NorthWalesCoast.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="User_Interface\Connetions\ComConnect.resx">
       <DependentUpon>ComConnect.cs</DependentUpon>
     </EmbeddedResource>
@@ -267,7 +283,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\DataSources\" />
-    <Folder Include="SimSpecific\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.2">
