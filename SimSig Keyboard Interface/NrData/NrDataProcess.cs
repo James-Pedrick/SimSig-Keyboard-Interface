@@ -58,12 +58,12 @@ namespace SimSig_Keyboard_Interface.NrData
 			Console.WriteLine(areaId + ' ' + from + ' ' + to + ' ' + descr);
 
 			if (User_Interface.MainDisplays.MainMenu.TcpConnected.Equals(true))
-			{
+			{ 
 				Data.SendPrep.InterposeCancel('B' + from);
 				Data.SendPrep.Interpose('B' + to, descr);
 			}
 
-			NrSave(areaId, from, to, descr);
+			NrSave(null, areaId, from, to, descr);
 
 		}
 
@@ -80,7 +80,7 @@ namespace SimSig_Keyboard_Interface.NrData
 				Data.SendPrep.InterposeCancel('B' + from);
 
 			Console.WriteLine(areaId + ' ' + from);
-			NrSave(areaId, from, null, null);
+			NrSave(null, areaId, from, null, null);
 		}
 
 		private static void BerthInt(string data)
@@ -97,11 +97,11 @@ namespace SimSig_Keyboard_Interface.NrData
 				Data.SendPrep.Interpose('B' + to, descr);
 
 			Console.WriteLine(areaId + ' ' + "     " + to + " " + descr);
-			NrSave(areaId, null, to, descr);
+			NrSave(null, areaId, null, to, descr);
 		}
 
 
-		private static void NrSave(string areaId, string from, string to, string descr)
+		private static void NrSave(string time, string areaId, string from, string to, string descr)
 		{
 			using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"D:\\nr.csv", true))
 			{
