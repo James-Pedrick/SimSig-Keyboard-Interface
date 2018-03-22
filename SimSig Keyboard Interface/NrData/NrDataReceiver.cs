@@ -24,7 +24,7 @@ namespace SimSig_Keyboard_Interface.NrData
 		{
 			IConnectionFactory factory = new NMSConnectionFactory(new Uri("stomp:tcp://datafeeds.networkrail.co.uk:61618"));
 
-			IConnection connection = factory.CreateConnection("ben@benwoodward.me.uk", "5qY#n7BV&g6$3lp0hrL#");
+			IConnection connection = factory.CreateConnection("", "");
 			ISession session = connection.CreateSession();
 
 			IDestination destination = session.GetDestination("topic://" + "TD_ALL_SIG_AREA");
